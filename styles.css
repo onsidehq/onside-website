@@ -1,0 +1,494 @@
+/* ==========================================================================
+   ONSIDE — Basis-Stylesheet
+   Alle Farben, Abstände und Schriftgrößen laufen über CSS-Variablen (:root).
+   Willst du z.B. die Akzentfarbe ändern -> einfach --accent unten anpassen,
+   sie wird überall auf der Seite automatisch übernommen.
+   ========================================================================== */
+
+:root {
+  --bg: #000000;
+  --bg-elevated: #171616;
+  --text: #f5f5f5;
+  --text-muted: #a3a3a3;
+  --accent: #3fd5ff;       /* Platzhalter-Akzentfarbe — gegen eure Markenfarbe tauschen */
+  --border: rgba(255, 255, 255, 0.1);
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --max-width: 1200px;
+  --section-padding: 8rem 2rem;
+}
+
+/* ---------- Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #0a0a0a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn--small {
+  padding: 0.6rem 1.3rem;
+  font-size: 0.85rem;
+}
+
+.btn--large {
+  padding: 1.2rem 2.5rem;
+  font-size: 1.1rem;
+}
+
+/* ---------- Navigation ---------- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+}
+
+.nav__links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__links a {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.nav__links a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Platzhalter-Verlauf, bis ihr ein eigenes Video/Bild einbindet */
+  background:
+    radial-gradient(circle at 30% 20%, rgba(212, 255, 63, 0.08), transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(212, 255, 63, 0.05), transparent 50%),
+    var(--bg);
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+.hero__content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 1.5rem;
+}
+
+.hero__sub {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- Services ---------- */
+.services {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-padding);
+}
+
+.services h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 3.5rem;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .services__grid { grid-template-columns: 1fr; }
+}
+
+.service-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  padding: 2.5rem 2rem;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.service-card__number {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.service-card h3 {
+  font-size: 1.4rem;
+  margin: 1rem 0 0.8rem;
+}
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Moment (volle Breite, Bild/Video-Break) ----------
+   Kurzer, großformatiger Break zwischen den Sektionen — wie bei betterlife.gmbh.
+   .moment__bg ist aktuell ein Verlauf als Platzhalter. Sobald du ein Foto/Video
+   vom Night Run hast: entweder die background-Zeile in .moment__bg durch
+   background: url('../assets/moments/01.jpg') center/cover; ersetzen,
+   oder das auskommentierte <video class="moment__video"> in index.html aktivieren. */
+.moment {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.moment__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(rgba(10, 10, 10, 0.45), rgba(10, 10, 10, 0.55)),
+    radial-gradient(circle at 20% 30%, rgba(212, 255, 63, 0.12), transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(212, 255, 63, 0.08), transparent 55%),
+    var(--bg-elevated);
+}
+
+.moment__bg--alt {
+  background:
+    linear-gradient(rgba(10, 10, 10, 0.45), rgba(10, 10, 10, 0.55)),
+    radial-gradient(circle at 75% 25%, rgba(212, 255, 63, 0.12), transparent 55%),
+    radial-gradient(circle at 25% 75%, rgba(212, 255, 63, 0.08), transparent 55%),
+    var(--bg-elevated);
+}
+
+.moment__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.moment__text {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-weight: 500;
+  text-align: center;
+  padding: 0 2rem;
+  max-width: 900px;
+}
+
+/* ---------- Projekte ---------- */
+.projekte {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-padding);
+}
+
+.projekte h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 3.5rem;
+}
+
+.project__cover {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  min-height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+}
+
+.project__cover-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* Platzhalter — später durch ein Titelbild/Video vom Event ersetzen */
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.1), rgba(10, 10, 10, 0.75)),
+    radial-gradient(circle at 30% 20%, rgba(212, 255, 63, 0.14), transparent 55%),
+    var(--bg-elevated);
+}
+
+.project__cover-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project__cover-content {
+  position: relative;
+  z-index: 1;
+  padding: 2.5rem;
+}
+
+.project__cover-content h3 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.project__body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 700px) {
+  .project__body { grid-template-columns: 1fr; }
+}
+
+.project__text {
+  color: var(--text-muted);
+  max-width: 640px;
+}
+
+/* Bildergalerie: unregelmäßiges Grid, ein paar Felder sind bewusst
+   groß/hoch, damit es nicht wie eine langweilige Bildertabelle aussieht. */
+.project__gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 180px;
+  gap: 1rem;
+}
+
+@media (max-width: 700px) {
+  .project__gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-item--tall {
+  grid-row: span 2;
+}
+
+.gallery-item--wide {
+  grid-column: span 2;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item__ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  border: 1px dashed var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.gallery-item:hover .gallery-item__ph {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- Lightbox (Klick auf Galerie-Bild = groß anzeigen) ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  background: rgba(10, 10, 10, 0.92);
+  cursor: zoom-out;
+}
+
+.lightbox.is-open {
+  display: flex;
+}
+
+.lightbox__inner {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 0.8rem;
+  overflow: hidden;
+}
+
+.lightbox__inner img {
+  display: block;
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+/* ---------- Contact ---------- */
+.contact {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: var(--section-padding);
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.contact__sub {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ---------- Scroll-Reveal-Basiszustand ----------
+   Die eigentliche Animation (Einblenden + nach oben) übernimmt GSAP
+   in js/script.js. Hier nur der "unsichtbare" Startzustand. */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}

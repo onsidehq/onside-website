@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onside — Event-Organisation, Marketing & Social Media</title>
+  <meta name="description" content="Onside plant Live-Events, berät Sportmarken bei Positionierung und Content und übernimmt Social-Media-Management — mit echter Energie statt Corporate-Sprache." />
+
+  <!-- Google Fonts: eine fette, moderne Sans-Serif für die großen Headlines -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav">
+    <a href="#" class="nav__logo">ONSIDE</a>
+    <nav class="nav__links">
+      <a href="#services">Tätigkeitsfelder</a>
+      <a href="#projekte">Projekte</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+    <a href="#contact" class="btn btn--small">Projekt anfragen</a>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <!--
+      Hier später euer eigenes Video reinlegen (z.B. Night-Run-Aftermovie-Ausschnitt).
+      Einfach eine .mp4/.webm-Datei in einen /assets Ordner legen und den src unten anpassen,
+      dann die Kommentarzeichen um <video class="hero__video"> entfernen.
+      Bis dahin läuft ein dunkler Verlauf als Platzhalter (siehe CSS: .hero__bg).
+    -->
+    <div class="hero__bg"></div>
+    <!-- <video class="hero__video" autoplay muted loop playsinline src="assets/hero.mp4"></video> -->
+
+    <div class="hero__content reveal">
+      <p class="eyebrow">Event-Organisation · Marketing · Social Media</p>
+      <h1>Wir bauen Momente,<br>die eine Marke bewegen.</h1>
+      <p class="hero__sub">
+        Onside plant und produziert Live-Events, berät Sport- und Lifestyle-Marken
+        bei Positionierung und Content — und übernimmt das Social-Media-Management dazu.
+        Mit echter Energie statt Corporate-Sprache.
+      </p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn">Projekt anfragen</a>
+        <a href="#projekte" class="btn btn--ghost">Projekte ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TÄTIGKEITSFELDER ============ -->
+  <section id="services" class="services">
+    <p class="eyebrow reveal">Was wir machen</p>
+    <h2 class="reveal">Drei Bereiche. Eine Handschrift.</h2>
+
+    <div class="services__grid">
+      <article class="service-card reveal">
+        <span class="service-card__number">01</span>
+        <h3>Event-Organisation</h3>
+        <p>
+          Konzeption, Planung und Durchführung von Live-Events — von der ersten Idee
+          bis zur Umsetzung vor Ort. Inklusive Partner- und Sponsoring-Koordination,
+          Logistik und Content-Produktion während des Events.
+        </p>
+      </article>
+
+      <article class="service-card reveal">
+        <span class="service-card__number">02</span>
+        <h3>Marketing- & Markenberatung</h3>
+        <p>
+          Strategische Beratung für Marken, die eine junge, sportaffine Zielgruppe
+          aufbauen oder stärker einbinden wollen — Positionierung, Markenauftritt
+          und Content-Strategie mit echtem Gespür für die Zielgruppe.
+        </p>
+      </article>
+
+      <article class="service-card reveal">
+        <span class="service-card__number">03</span>
+        <h3>Social-Media-Management</h3>
+        <p>
+          Laufende Betreuung von Social-Media-Kanälen für Sportmarken und -betriebe:
+          Content-Produktion, Community-Aufbau und -Pflege, Wachstumsstrategie.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ MOMENT (volle Breite, Bild/Video) ============
+       So ein Break wie bei betterlife.gmbh: kein Text-Block, sondern ein
+       großformatiges Bild oder Video mit kurzer Zeile drüber. Sobald du Fotos
+       vom Night Run hast, eins davon hier als Hintergrund reinlegen. -->
+  <section class="moment">
+    <div class="moment__bg"></div>
+    <!-- <video class="moment__video" autoplay muted loop playsinline src="assets/moments/01.mp4"></video> -->
+    <p class="moment__text reveal">Wir denken in Bildern, nicht in Folien.</p>
+  </section>
+
+  <!-- ============ PROJEKTE ============ -->
+  <section id="projekte" class="projekte">
+    <p class="eyebrow reveal">Proof of Concept</p>
+    <h2 class="reveal">Unsere Projekte</h2>
+
+    <article class="project">
+      <!-- Cover: großes Bild/Video oben im Projekt, wie ein Titelbild.
+           Ersetze .project__cover-bg (Platzhalter) durch ein echtes Foto/Video. -->
+      <div class="project__cover reveal">
+        <div class="project__cover-bg"></div>
+        <!-- <video class="project__cover-video" autoplay muted loop playsinline src="assets/projects/berlin-night-run/cover.mp4"></video> -->
+        <div class="project__cover-content">
+          <p class="eyebrow">Berlin</p>
+          <h3>Night Run</h3>
+        </div>
+      </div>
+
+      <div class="project__body">
+        <p class="project__text reveal">
+          Unser erstes komplett selbst organisiertes Event. Ein Konzept, das drei Tage
+          vor dem Termin nach dem Ausfall des Hauptsponsors komplett neu gedacht werden
+          musste — und trotzdem lief. Ein Lauf durch die Stadt bei Nacht, mit DJ, Verpflegungsstation
+          und einer Afterparty in Kooperation mit einer Berliner Bar.
+        </p>
+        <a href="#contact" class="btn btn--ghost reveal">Mehr über unsere Arbeit</a>
+      </div>
+
+      <!-- Bildergalerie: jedes .gallery-item ist aktuell ein Platzhalter.
+           Sobald du deine Fotos hast: das <div class="gallery-item__ph">...</div>
+           durch ein <img src="assets/projects/berlin-night-run/01.jpg" alt="..."> ersetzen
+           (einfach den Platzhalter-div löschen und stattdessen das img-Tag reinschreiben). -->
+      <div class="project__gallery reveal">
+        <figure class="gallery-item gallery-item--tall">
+          <div class="gallery-item__ph"><span>Bild 1</span></div>
+        </figure>
+        <figure class="gallery-item">
+          <div class="gallery-item__ph"><span>Bild 2</span></div>
+        </figure>
+        <figure class="gallery-item">
+          <div class="gallery-item__ph"><span>Bild 3</span></div>
+        </figure>
+        <figure class="gallery-item gallery-item--wide">
+          <div class="gallery-item__ph"><span>Bild 4</span></div>
+        </figure>
+        <figure class="gallery-item gallery-item--tall">
+          <div class="gallery-item__ph"><span>Bild 5</span></div>
+        </figure>
+        <figure class="gallery-item">
+          <div class="gallery-item__ph"><span>Bild 6</span></div>
+        </figure>
+        <figure class="gallery-item">
+          <div class="gallery-item__ph"><span>Bild 7</span></div>
+        </figure>
+        <figure class="gallery-item gallery-item--wide">
+          <div class="gallery-item__ph"><span>Bild 8</span></div>
+        </figure>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ MOMENT #2 (volle Breite, Bild/Video) ============ -->
+  <section class="moment">
+    <div class="moment__bg moment__bg--alt"></div>
+    <!-- <video class="moment__video" autoplay muted loop playsinline src="assets/moments/02.mp4"></video> -->
+    <p class="moment__text reveal">Das nächste Projekt entsteht schon.</p>
+  </section>
+
+  <!-- ============ KONTAKT ============ -->
+  <section id="contact" class="contact">
+    <p class="eyebrow reveal">Lass uns reden</p>
+    <h2 class="reveal">Bereit für euer nächstes Projekt?</h2>
+    <p class="contact__sub reveal">
+      Ob Event, Markenaufbau oder Social-Media-Betreuung — schreib uns kurz, worum's geht.
+    </p>
+   <a href="mailto:onide.hq@gmail.com" class="btn btn--large reveal">onside.hq@gmail.com</a>
+  </section>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Onside</span>
+    <span>Potsdam · Innsbruck</span>
+  </footer>
+
+  <!-- Lightbox-Overlay fürs Vergrößern der Galerie-Bilder (siehe js/script.js) -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox__inner"></div>
+  </div>
+
+  <!-- GSAP + ScrollTrigger: kostenlos, für die Scroll-Reveal-Animationen -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
