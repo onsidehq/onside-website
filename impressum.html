@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum — onside.hq</title>
+  <meta name="description" content="Impressum und Anbieterkennzeichnung von onside.hq." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="nav nav--simple">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo">ONSIDE</a>
+    </div>
+    <a href="index.html" class="btn btn--small btn--ghost">Zurück zur Startseite</a>
+  </header>
+
+  <main class="legal">
+    <p class="eyebrow">Rechtliches</p>
+    <h1>Impressum</h1>
+
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <p>
+      onside.hq GbR<br>
+      Forststraße 44/46<br>
+      14471 Potsdam<br>
+      Deutschland
+    </p>
+
+    <h2>Vertreten durch</h2>
+    <p>
+      Julian Seibt<br>
+      Malte Gerdes
+    </p>
+
+    <h2>Kontakt</h2>
+    <p>
+      E-Mail: <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a><br>
+      Telefon: <a href="tel:+491788519859">+49 178 8519859</a><br>
+      Instagram: <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </p>
+
+    <h2>Umsatzsteuer</h2>
+    <p class="todo">
+      [Hier gehört ausschließlich die Umsatzsteuer-Identifikationsnummer hin —
+      falls ihr eine habt: „Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG:
+      DE…". Wenn nicht, diesen gesamten Abschnitt ersatzlos löschen. Eine
+      Steuernummer ist etwas anderes als eine USt-IdNr., ist nicht
+      veröffentlichungspflichtig und sollte hier bewusst nicht stehen.]
+    </p>
+
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>
+      Julian Seibt und Malte Gerdes<br>
+      Forststraße 44/46, 14471 Potsdam
+    </p>
+
+    <h2>Verbraucherstreitbeilegung</h2>
+    <p>
+      Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren
+      vor einer Verbraucherschlichtungsstelle teilzunehmen.
+    </p>
+
+    <h2>Haftung für Inhalte</h2>
+    <p>
+      Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf
+      diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10
+      DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
+      gespeicherte fremde Informationen zu überwachen oder nach Umständen zu
+      forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur
+      Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen
+      Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst
+      ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei
+      Bekanntwerden entsprechender Rechtsverletzungen werden wir diese Inhalte
+      umgehend entfernen.
+    </p>
+
+    <h2>Haftung für Links</h2>
+    <p>
+      Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte
+      wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch
+      keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der
+      jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten
+      Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße
+      überprüft; rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht
+      erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links
+      umgehend entfernen.
+    </p>
+
+    <h2>Urheberrecht</h2>
+    <p>
+      Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
+      unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
+      Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
+      Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors
+      bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten,
+      nicht kommerziellen Gebrauch gestattet.
+    </p>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> onside.hq</span>
+    <nav class="footer__links">
+      <a href="index.html">Startseite</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+    <span>Potsdam · Innsbruck</span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

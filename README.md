@@ -10,8 +10,14 @@ onsidehq-website/
 ├── index.html      ← Seiteninhalt & Struktur (Hero, Projekte, Wer sind wir, Leistungen, Kontakt)
 ├── css/
 │   └── styles.css  ← Alles Visuelle. Farben stehen ganz oben als Variablen.
+├── BILDER.md       ← Übersicht aller Bilder, die noch fehlen
+├── fonts/          ← selbst gehostete Schriften (nicht löschen)
+├── impressum.html  ← Pflichtangaben
+├── datenschutz.html ← Datenschutzerklärung
 ├── js/
-│   └── script.js   ← Scroll-Animationen, Nav/Burger-Menü, Carousel, Marquee, Cursor-Dot
+│   ├── script.js
+│   ├── gsap.min.js        ← Animationsbibliothek, lokal
+│   └── ScrollTrigger.min.js   ← Hero-Animation (Crowd & Beat), Scroll-Animationen, Nav/Burger-Menü, Carousel, Laufband
 ├── favicon.ico, favicon-512.png, apple-touch-icon.png  ← Browser-Tab-Icon (müssen im Repo-Root liegen!)
 └── README.md
 ```
@@ -21,27 +27,35 @@ deine Fotos/Videos vom Night Run hast (siehe "Was zuerst anpassen" unten).
 
 ## Was neu ist in diesem Update
 
-- **Nav:** Menüpunkte jetzt Home / Projekte / Wer sind wir? / Leistungen / Kontakt,
-  plus Sprachauswahl DE/EN rechts (aktuell nur optisch — EN zeigt einen Hinweis,
-  echte Übersetzung wäre ein eigenes nächstes Projekt).
-- **Scroll-Menü:** Sobald du runterscrollst, verschwindet die Nav-Zeile und links
-  unter dem Logo erscheint ein Drei-Strich-Button, der ein Vollbild-Menü öffnet.
-  Auf dem Handy ist der Button immer sichtbar (vorher gab's dort gar keine Navigation).
-- **Hero-Video:** `<video class="hero__video">` ist jetzt aktiv (nicht mehr auskommentiert),
-  zeigt aber erstmal nichts, bis du `assets/hero.mp4` hochlädst — bis dahin läuft der
-  Verlaufs-Platzhalter einfach weiter.
-- **Bildergalerie → Carousel:** Statt dem unregelmäßigen 8er-Grid gibt's jetzt unter
-  Night Run ein Carousel mit 5 Bildern, durchklickbar über Pfeile oder die Punkte unten
-  (auf dem Handy auch per Wischen).
-- **"Proof of Concept"** über "Unsere Projekte" ist raus.
-- **"Das nächste Projekt entsteht schon"** läuft jetzt als endlos scrollender
-  Text-Ticker (Marquee) statt als stiller Satz.
-- **Neue Sektion "Wer sind wir?"** mit kurzem Team-Blurb — Text ist ein erster
-  Entwurf, gerne says Bescheid, wenn der anders klingen soll.
-- Insgesamt mehr Bewegung: leichter Parallax auf den großen Hintergrundbildern,
-  ein Cursor-Punkt, der der Maus folgt (nur Desktop), und alles so gebaut, dass
-  die Seite auch normal funktioniert, falls die Animations-Bibliothek (GSAP) mal
-  nicht laden sollte.
+- **Keine externen Verbindungen mehr:** Schriften (Space Grotesk, Inter) und die
+  Animationsbibliothek GSAP liegen jetzt im Projekt statt bei Google bzw. einem
+  CDN. Beim Seitenaufruf geht dadurch keine IP-Adresse der Besucher nach außen —
+  in Deutschland ein echtes Abmahnrisiko weniger. Nebenbei lädt die Seite schneller.
+- **Kontaktformular** statt nur Mail-Link, inklusive Einwilligungs-Häkchen,
+  Spam-Falle und Rückmeldung ohne Seitenwechsel. Muss noch mit einem Access Key
+  scharf geschaltet werden (Anleitung steht als Kommentar in `index.html`).
+- **Instagram** (@onside.hq) im Footer, im Kontaktbereich und im Impressum verlinkt.
+- **Impressum und Datenschutz** mit den echten Daten gefüllt.
+
+## Wo welche Bilder hinkommen
+
+Lege dafür einen Ordner `assets/` an. In `index.html` steht an jeder Stelle ein
+Kommentar (BILD 1 bis BILD 8) mit genau dieser Info:
+
+| # | Datei | Wo auf der Seite |
+|---|-------|------------------|
+| 1 | `assets/projects/berlin-night-run/cover.jpg` | Großes Titelbild über "Night Run" |
+| 2-6 | `assets/projects/berlin-night-run/01.jpg` … `05.jpg` | Die fünf Carousel-Bilder |
+| 7 | `assets/team/julian.jpg` | Gründerkarte Julian |
+| 8 | `assets/team/malte.jpg` | Gründerkarte Malte |
+| 9 | `assets/og-image.jpg` | Vorschaubild beim Teilen des Links (1200 × 630 px) |
+
+Am Code muss dafür nichts geändert werden: Liegt die Datei mit genau diesem
+Namen im Repo, erscheint das Foto automatisch über dem Platzhalter. Details und
+Stolperfallen (Dateinamen, Komprimieren) stehen in `BILDER.md`.
+
+Die großflächigen Bild-Breaks zwischen den Abschnitten gibt es nicht mehr —
+an ihrer Stelle stehen jetzt das Laufband und die Animation im Hero.
 
 ## Lokal ansehen
 
@@ -56,22 +70,14 @@ Jede Änderung an den Dateien ist dann sofort im Browser sichtbar.
 
 ## Was zuerst anpassen
 
-1. **Farbe:** `css/styles.css` → `--accent` ganz oben auf eure Markenfarbe setzen
-2. **Texte:** in `index.html` die Platzhalter-Texte durch eure finalen ersetzen
-   (z. B. den Team-Text unter "Wer sind wir?")
-3. **Hero-Video:** `assets/hero.mp4` (+ optional `assets/hero-poster.jpg` als Vorschaubild)
-   in einen neuen `assets/`-Ordner legen — der `<video class="hero__video">`-Tag in
-   `index.html` ist schon aktiv und greift automatisch darauf zu
-4. **Carousel (Projekte → Berlin Night Run):** in `index.html` im Abschnitt
-   `#carouselTrack` jeden Platzhalter
-   `<div class="gallery-item__ph"><span>Bild 1</span></div>` löschen und durch
-   `<img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run">`
-   ersetzen (Nummer/Dateiname anpassen). Pfeile und Punkte funktionieren danach
-   automatisch mit den echten Fotos.
-5. **Moment-Sections (die großen Bild-Breaks zwischen den Abschnitten):**
-   entweder in `css/styles.css` bei `.moment__bg` die `background`-Zeile durch
-   `background: url('../assets/moments/01.jpg') center/cover;` ersetzen, oder
-   das auskommentierte `<video class="moment__video">` in `index.html` aktivieren.
+1. **Farbe:** `css/styles.css` → `--accent` **und** `--accent-rgb` ganz oben
+   gemeinsam auf eure Markenfarbe setzen (die Hero-Animation liest `--accent-rgb`).
+2. **Hero-Animation:** `js/script.js` ganz oben bei `SETTINGS` —
+   `spacing` (wie dicht das Publikum steht), `bpm` (Takt der Wellen),
+   `waveSpeed` (Tempo der Welle), `waveWidth` (wie weich die Front ist),
+   `grow` + `lift` (wie heftig die Punkte reagieren).
+3. **Bilder:** siehe Tabelle oben.
+4. **Texte:** in `index.html` direkt im Text ändern.
 
 ## Kostenlos deployen (Domain: onsidehq.de)
 

@@ -3,35 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>onside.hq — Event-Organisation, Marketing & Social Media</title>
-  <meta name="description" content="onside.hq plant Live-Events, berät Sportmarken bei Positionierung und Content und übernimmt Social-Media-Management — mit echter Energie statt Corporate-Sprache." />
+  <title>onside.hq — Events, Marken & Content</title>
+  <meta name="description" content="onside.hq entwickelt Events, Marken und Content für Sport-, Lifestyle- und Eventmarken. Von der ersten Idee bis zum letzten Reel." />
 
   <!-- Favicon / Browser-Tab-Icon -->
   <link rel="icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-  <!-- Google Fonts: eine fette, moderne Sans-Serif für die großen Headlines -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird.
+       BILD 9: assets/og-image.jpg anlegen (1200 x 630 px), dann greift es automatisch. -->
+  <meta property="og:title" content="onside.hq — Events, Marken & Content" />
+  <meta property="og:description" content="Von der ersten Idee bis zum letzten Reel. Wir entwickeln Events, Marken und Content, die Menschen nicht nur sehen — sondern erleben." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <!-- Cursor-Dot (nur Desktop mit Maus, siehe js/script.js) -->
-  <div class="cursor-dot" id="cursorDot"></div>
-
   <!-- ============ NAVIGATION ============ -->
   <header class="nav" id="nav">
-    <a href="#top" class="nav__logo">ONSIDE</a>
+    <div class="nav__brand">
+      <a href="#top" class="nav__logo">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
     <nav class="nav__links">
       <a href="#top">Home</a>
       <a href="#projekte">Projekte</a>
-      <a href="#wer-sind-wir">Wer sind wir?</a>
       <a href="#leistungen">Leistungen</a>
+      <a href="#wer-sind-wir">Wer sind wir?</a>
       <a href="#contact">Kontakt</a>
     </nav>
 
@@ -42,21 +54,15 @@
     </div>
 
     <a href="#contact" class="btn btn--small nav__cta">Projekt anfragen</a>
-
-    <!-- Erscheint beim Runterscrollen (Desktop) bzw. immer (Mobile) -->
-    <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </header>
 
   <!-- Vollbild-Menü-Overlay, wird vom Burger-Button geöffnet -->
   <div class="menu-overlay" id="menuOverlay">
-    <button class="menu-overlay__close" id="menuClose" type="button" aria-label="Menü schließen">&times;</button>
     <nav class="menu-overlay__links">
       <a href="#top">Home</a>
       <a href="#projekte">Projekte</a>
-      <a href="#wer-sind-wir">Wer sind wir?</a>
       <a href="#leistungen">Leistungen</a>
+      <a href="#wer-sind-wir">Wer sind wir?</a>
       <a href="#contact">Kontakt</a>
     </nav>
     <div class="lang-switch lang-switch--overlay">
@@ -66,26 +72,24 @@
     </div>
   </div>
 
-  <!-- ============ HERO ============ -->
+  <!-- ============ HERO ============
+       Der Hintergrund ist eine abstrakte Animation: ein Strömungsfeld, durch das
+       sich Linien bewegen, dazu rotierende Ringe und schwebende Punkte.
+       Alles live gezeichnet per Canvas in js/script.js — kein Video, kein Bild.
+       Zum Anpassen: SETTINGS ganz oben in js/script.js. -->
   <section class="hero" id="top">
-    <!--
-      Video läuft im Hintergrund. Lege deine Datei als assets/hero.mp4 ab
-      (+ optional ein Vorschaubild als assets/hero-poster.jpg), dann läuft
-      es automatisch. Bis die Datei da ist, zeigt der Verlauf dahinter
-      (siehe CSS: .hero__bg) einfach weiter den Platzhalter-Look.
-    -->
     <div class="hero__bg"></div>
-    <video class="hero__video" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
-      <source src="assets/hero.mp4" type="video/mp4">
-    </video>
+    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__grain" aria-hidden="true"></div>
 
     <div class="hero__content reveal">
-      <p class="eyebrow">Event-Organisation · Marketing · Social Media</p>
-      <h1>Wir bauen Momente,<br>die eine Marke bewegen.</h1>
+      <p class="eyebrow">Events · Marken · Content</p>
+      <h1>We build what people <br class="br-lg">want to be part of.</h1>
       <p class="hero__sub">
-        onside.hq plant und produziert Live-Events, berät Sport- und Lifestyle-Marken
-        bei Positionierung und Content — und übernimmt das Social-Media-Management dazu.
-        Mit echter Energie statt Corporate-Sprache.
+        Von der ersten Idee bis zum letzten Reel. Wir entwickeln Events, Marken und
+        Content, die Menschen nicht nur sehen — sondern erleben.
       </p>
       <div class="hero__actions">
         <a href="#contact" class="btn">Projekt anfragen</a>
@@ -94,23 +98,19 @@
     </div>
   </section>
 
-  <!-- ============ MOMENT (volle Breite, Bild/Video) ============ -->
-  <section class="moment">
-    <div class="moment__bg"></div>
-    <!-- <video class="moment__video" autoplay muted loop playsinline src="assets/moments/01.mp4"></video> -->
-    <p class="moment__text reveal">Wir denken in Bildern, nicht in Folien.</p>
-  </section>
-
-  <!-- ============ PROJEKTE ============ -->
+  <!-- ============ 01 — PROJEKTE ============ -->
   <section id="projekte" class="projekte">
+    <p class="eyebrow reveal">01 — Arbeit</p>
     <h2 class="reveal">Unsere Projekte</h2>
 
     <article class="project">
-      <!-- Cover: großes Bild/Video oben im Projekt, wie ein Titelbild.
-           Ersetze .project__cover-bg (Platzhalter) durch ein echtes Foto/Video. -->
+      <!-- BILD 1: Titelbild vom Event → assets/projects/berlin-night-run/cover.jpg
+           Am Code muss dafür nichts geändert werden: Sobald die Datei mit genau
+           diesem Namen hochgeladen ist, liegt das Foto über dem Platzhalter.
+           Fehlt sie, bleibt einfach der dunkle Platzhalter stehen. -->
       <div class="project__cover reveal">
         <div class="project__cover-bg"></div>
-        <!-- <video class="project__cover-video" autoplay muted loop playsinline src="assets/projects/berlin-night-run/cover.mp4"></video> -->
+        <img class="project__cover-img" src="assets/projects/berlin-night-run/cover.jpg" alt="Berlin Night Run" onerror="this.remove()">
         <div class="project__cover-content">
           <p class="eyebrow">Berlin</p>
           <h3>Night Run</h3>
@@ -119,35 +119,40 @@
 
       <div class="project__body">
         <p class="project__text reveal">
-          Unser erstes komplett selbst organisiertes Event. Ein Konzept, das drei Tage
-          vor dem Termin nach dem Ausfall des Hauptsponsors komplett neu gedacht werden
-          musste — und trotzdem lief. Ein Lauf durch die Stadt bei Nacht, mit DJ, Verpflegungsstation
-          und einer Afterparty in Kooperation mit einer Berliner Bar.
+          Der Berlin Night Run war der Start von onside.hq. Aus einer Idee wurde
+          innerhalb weniger Wochen ein Laufevent mit DJ, Partnern, Verpflegung und
+          Afterparty. Von der Konzeption bis zur Umsetzung lag jeder Schritt in unserer
+          Hand — und genau dieser Anspruch begleitet heute jedes neue Projekt.
         </p>
         <a href="#contact" class="btn btn--ghost reveal">Mehr über unsere Arbeit</a>
       </div>
 
-      <!-- Bildergalerie als Carousel: 5 Bilder, durchklickbar über die Pfeile/Punkte.
-           Sobald du deine Fotos hast: in jedem .carousel__slide das
-           <div class="gallery-item__ph">...</div> durch
-           <img src="assets/projects/berlin-night-run/01.jpg" alt="..."> ersetzen. -->
+      <!-- BILDER 2–6: die fünf Galeriebilder →
+           assets/projects/berlin-night-run/01.jpg bis 05.jpg
+           Wie beim Titelbild: Datei hochladen, das Foto erscheint von selbst
+           über dem Platzhalter. Am Code muss nichts geändert werden. -->
       <div class="project__carousel reveal" id="carousel">
         <div class="carousel__viewport">
           <div class="carousel__track" id="carouselTrack">
             <div class="carousel__slide">
               <div class="gallery-item__ph"><span>Bild 1</span></div>
+              <img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run" onerror="this.remove()">
             </div>
             <div class="carousel__slide">
               <div class="gallery-item__ph"><span>Bild 2</span></div>
+              <img src="assets/projects/berlin-night-run/02.jpg" alt="Berlin Night Run" onerror="this.remove()">
             </div>
             <div class="carousel__slide">
               <div class="gallery-item__ph"><span>Bild 3</span></div>
+              <img src="assets/projects/berlin-night-run/03.jpg" alt="Berlin Night Run" onerror="this.remove()">
             </div>
             <div class="carousel__slide">
               <div class="gallery-item__ph"><span>Bild 4</span></div>
+              <img src="assets/projects/berlin-night-run/04.jpg" alt="Berlin Night Run" onerror="this.remove()">
             </div>
             <div class="carousel__slide">
               <div class="gallery-item__ph"><span>Bild 5</span></div>
+              <img src="assets/projects/berlin-night-run/05.jpg" alt="Berlin Night Run" onerror="this.remove()">
             </div>
           </div>
         </div>
@@ -158,105 +163,240 @@
     </article>
   </section>
 
-  <!-- ============ MOMENT #2 — Marquee-Ticker ============ -->
-  <section class="moment moment--marquee">
-    <div class="moment__bg moment__bg--alt"></div>
-    <div class="marquee">
-      <div class="marquee__track" id="marqueeTrack">
-        <div class="marquee__group">
-          <span>Das nächste Projekt entsteht schon</span>
-          <span class="marquee__dot">●</span>
-          <span>Das nächste Projekt entsteht schon</span>
-          <span class="marquee__dot">●</span>
-          <span>Das nächste Projekt entsteht schon</span>
-          <span class="marquee__dot">●</span>
-        </div>
+  <!-- ============ LAUFBAND — Ausblick ============
+       Zwei Zeilen, die gegeneinander laufen: oben gefüllt, unten als Outline.
+       Der Inhalt wird in js/script.js automatisch verdoppelt, damit die
+       Schleife nahtlos läuft. -->
+  <section class="next" aria-label="Ausblick">
+    <div class="next__row next__row--a" data-marquee>
+      <div class="next__group">
+        <span class="next__word">Das nächste Projekt entsteht schon</span>
+        <span class="next__mark"></span>
+        <span class="next__word next__word--outline">Das nächste Projekt entsteht schon</span>
+        <span class="next__mark"></span>
+      </div>
+    </div>
+    <div class="next__row next__row--b" data-marquee>
+      <div class="next__group">
+        <span class="next__word next__word--outline">Das nächste Projekt entsteht schon</span>
+        <span class="next__mark"></span>
+        <span class="next__word">Das nächste Projekt entsteht schon</span>
+        <span class="next__mark"></span>
       </div>
     </div>
   </section>
 
-  <!-- ============ WER SIND WIR ============ -->
-  <section id="wer-sind-wir" class="about">
-    <p class="eyebrow reveal">Das Team</p>
-    <h2 class="reveal">Wer wir sind</h2>
-
-    <div class="about__grid">
-      <p class="about__text reveal">
-        onside.hq ist der nächste Schritt nach dem Berlin Night Run: zwei Gründer, die gezeigt haben,
-        dass sie ein Event aus dem Nichts auf die Beine stellen können — auch wenn drei Tage vorher
-        der Hauptsponsor abspringt. Heute übernehmen wir für Marken und Veranstalter genau das:
-        Events, die Aufmerksamkeit verdienen, Markenauftritte mit echtem Gespür für eine junge
-        Zielgruppe, und Social-Media-Arbeit, die nicht nach Agentur-Floskel klingt.
-      </p>
-
-      <div class="about__founders reveal">
-        <div class="founder">
-          <span class="founder__role">Co-Founder</span>
-          <h3>Julian Seibt</h3>
-        </div>
-        <div class="founder">
-          <span class="founder__role">Co-Founder</span>
-          <h3>Malte Gerdes</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ LEISTUNGEN ============ -->
+  <!-- ============ 02 — LEISTUNGEN ============ -->
   <section id="leistungen" class="services">
-    <p class="eyebrow reveal">Was wir machen</p>
-    <h2 class="reveal">Drei Bereiche. Eine Handschrift.</h2>
+    <p class="eyebrow reveal">02 — Was wir machen</p>
+    <h2 class="reveal">Drei Leistungen. Eine Handschrift.</h2>
 
     <div class="services__grid">
       <article class="service-card reveal">
         <span class="service-card__number">01</span>
         <h3>Event-Organisation</h3>
         <p>
-          Konzeption, Planung und Durchführung von Live-Events — von der ersten Idee
-          bis zur Umsetzung vor Ort. Inklusive Partner- und Sponsoring-Koordination,
-          Logistik und Content-Produktion während des Events.
+          Wir entwickeln Events, die Menschen zusammenbringen und Marken erlebbar machen.
+          Von der ersten Idee bis zur Umsetzung: Konzeption, Planung, Partnermanagement
+          und die gesamte Organisation.
         </p>
       </article>
 
       <article class="service-card reveal">
         <span class="service-card__number">02</span>
-        <h3>Marketing- & Markenberatung</h3>
+        <h3>Marketing & Markenstrategie</h3>
         <p>
-          Strategische Beratung für Marken, die eine junge, sportaffine Zielgruppe
-          aufbauen oder stärker einbinden wollen — Positionierung, Markenauftritt
-          und Content-Strategie mit echtem Gespür für die Zielgruppe.
+          Jede starke Marke beginnt mit einer klaren Positionierung. Wir entwickeln
+          Strategien, Markenauftritte und Konzepte, die relevant sind — nicht nur sichtbar.
         </p>
       </article>
 
       <article class="service-card reveal">
         <span class="service-card__number">03</span>
-        <h3>Social-Media-Management</h3>
+        <h3>Social Media</h3>
         <p>
-          Laufende Betreuung von Social-Media-Kanälen für Sportmarken und -betriebe:
-          Content-Produktion, Community-Aufbau und -Pflege, Wachstumsstrategie.
+          Aus einem Event wird erst dann eine Geschichte, wenn Menschen sie teilen. Wir
+          produzieren Content, betreuen Kanäle und entwickeln Strategien, die Reichweite
+          in echte Community verwandeln.
         </p>
       </article>
     </div>
   </section>
 
-  <!-- ============ KONTAKT ============ -->
+  <!-- ============ 03 — WER SIND WIR ============ -->
+  <section id="wer-sind-wir" class="about">
+    <p class="eyebrow reveal">03 — Wer sind wir?</p>
+    <h2 class="reveal">Zwei, die lieber bauen <br class="br-lg">als zuschauen.</h2>
+    <p class="about__lead reveal">
+      onside.hq ist ein Studio für Events, Marken und Content — gegründet von zwei
+      Sportmanagement-Studenten, die irgendwann gemerkt haben: Die Momente, die bleiben,
+      entstehen nicht von allein. Jemand baut sie.
+    </p>
+
+    <div class="founders">
+      <!-- BILD 7: Foto Julian → assets/team/julian.jpg
+           Datei hochladen, das Foto erscheint von selbst. -->
+      <article class="founder reveal">
+        <div class="founder__media">
+          <div class="founder__ph"><span>Foto Julian</span></div>
+          <img src="assets/team/julian.jpg" alt="Julian Seibt" onerror="this.remove()">
+        </div>
+        <div class="founder__body">
+          <span class="founder__role">Konzept & Organisation</span>
+          <h3>Julian Seibt</h3>
+          <p class="founder__meta">24 · Sportmanagement</p>
+          <p class="founder__text">
+            Denkt Events vom Erlebnis her und baut von dort rückwärts die Struktur, die
+            es trägt. „Die Momente, die mich geprägt haben, hat irgendwer gebaut.
+            Irgendwann wollte ich auf dieser Seite stehen."
+          </p>
+          <ul class="tags">
+            <li>Kreativität</li>
+            <li>Ideenentwicklung</li>
+            <li>Eventkonzepte</li>
+            <li>Organisation</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- BILD 8: Foto Malte → assets/team/malte.jpg
+           Datei hochladen, das Foto erscheint von selbst. -->
+      <article class="founder reveal">
+        <div class="founder__media">
+          <div class="founder__ph"><span>Foto Malte</span></div>
+          <img src="assets/team/malte.jpg" alt="Malte Gerdes" onerror="this.remove()">
+        </div>
+        <div class="founder__body">
+          <span class="founder__role">Content & Social</span>
+          <h3>Malte Gerdes</h3>
+          <p class="founder__meta">23 · Sportmanagement</p>
+          <p class="founder__text">
+            Übersetzt ein Event in Bilder, die danach weiterlaufen — im Feed, im Kanal,
+            im Kopf. Schnitt, Content und die Verbindungen, aus denen das nächste Projekt
+            entsteht.
+          </p>
+          <ul class="tags">
+            <li>Content-Produktion</li>
+            <li>Videoschnitt</li>
+            <li>Social Media</li>
+            <li>Networking</li>
+            <li>Kommunikation</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="story">
+      <article class="story__block reveal">
+        <h3>Unsere Geschichte</h3>
+        <p>
+          Kennengelernt haben wir uns im Sportmanagement-Studium. Verbunden hat uns aber
+          nicht der Hörsaal, sondern das, was dazwischen lag: Festivals, Konzerte,
+          Spiele, Reisen. Erlebnisse, an die man sich Jahre später noch erinnert.
+          Irgendwann reichte es uns nicht mehr, Teil dieser Momente zu sein — wir wollten
+          sie selbst bauen. Daraus wurde onside.hq.
+        </p>
+      </article>
+
+      <article class="story__block reveal">
+        <h3>Was uns unterscheidet</h3>
+        <p>
+          Wir gehören zur Gen Z — also zu der Zielgruppe, über die anderswo in Workshops
+          gesprochen wird. Wir müssen nicht recherchieren, was gerade funktioniert; wir
+          sehen es jeden Tag im eigenen Feed. Diese Perspektive verbinden wir mit
+          strategischem Denken und sauberer Umsetzung. Was dabei entstehen soll, ist
+          keine Kampagne, die man wegklickt, sondern etwas, über das gesprochen wird.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 04 — WARUM ONSIDE ============ -->
+  <section class="statement">
+    <div class="statement__rings" aria-hidden="true"></div>
+    <div class="statement__inner">
+      <p class="eyebrow reveal">04 — Warum onside?</p>
+      <p class="statement__text reveal">
+        Der Name kommt aus dem Sport. <em>Onside</em> ist das Gegenteil von Abseits.
+        Genau darin liegt unsere Aufgabe: Marken aus dem Abseits zurück ins Spiel holen —
+        dorthin, wo Aufmerksamkeit entsteht.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 05 — KONTAKT ============ -->
   <section id="contact" class="contact">
-    <p class="eyebrow reveal">Lass uns reden</p>
-    <h2 class="reveal">Bereit für euer nächstes Projekt?</h2>
+    <p class="eyebrow reveal">05 — Lass uns reden</p>
+    <h2 class="reveal">Lasst uns etwas schaffen, <br class="br-lg">worüber gesprochen wird.</h2>
     <p class="contact__sub reveal">
       Ob Event, Markenaufbau oder Social-Media-Betreuung — schreib uns kurz, worum's geht.
     </p>
-    <a href="mailto:hello@onsidehq.de" class="btn btn--large reveal">hello@onsidehq.de</a>
+
+    <!-- ================= KONTAKTFORMULAR =================
+         Das Formular verschickt die Anfrage über den Dienst Web3Forms an eure
+         Mailadresse — eine eigene Server-Programmierung braucht es dafür nicht.
+
+         EINRICHTEN (dauert zwei Minuten):
+         1. web3forms.com öffnen, eure Mailadresse eintragen
+         2. Ihr bekommt per Mail einen "Access Key"
+         3. Den Key unten bei value="..." eintragen (statt DEIN-ACCESS-KEY-HIER)
+         Danach landen alle Anfragen direkt in eurem Postfach.
+    ==================================================== -->
+    <form class="contact-form reveal" id="contactForm" novalidate>
+      <input type="hidden" name="access_key" value="DEIN-ACCESS-KEY-HIER">
+      <input type="hidden" name="subject" value="Neue Anfrage über onsidehq.de">
+      <input type="hidden" name="from_name" value="onside.hq Website">
+      <!-- Spam-Falle: für Menschen unsichtbar, Bots füllen sie aus -->
+      <input type="checkbox" name="botcheck" class="contact-form__trap" tabindex="-1" autocomplete="off">
+
+      <div class="field">
+        <label for="cf-name">Name</label>
+        <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Wie heißt du?">
+      </div>
+
+      <div class="field">
+        <label for="cf-mail">E-Mail</label>
+        <input id="cf-mail" name="email" type="email" required autocomplete="email" placeholder="Damit wir antworten können">
+      </div>
+
+      <div class="field field--full">
+        <label for="cf-msg">Worum geht's?</label>
+        <textarea id="cf-msg" name="message" rows="5" required placeholder="Event, Markenaufbau, Social Media — erzähl kurz, was ihr vorhabt."></textarea>
+      </div>
+
+      <label class="consent field--full">
+        <input type="checkbox" id="cf-consent" required>
+        <span>
+          Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage
+          verarbeitet werden. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.
+        </span>
+      </label>
+
+      <div class="field--full contact-form__actions">
+        <button type="submit" class="btn btn--large" id="formSubmit">Anfrage senden</button>
+        <p class="contact-form__status" id="formStatus" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <p class="contact__fallback reveal">
+      Lieber direkt? <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+      · <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </p>
   </section>
 
   <footer class="footer">
     <span>© <span id="year"></span> onside.hq</span>
+    <nav class="footer__links">
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
     <span>Potsdam · Innsbruck</span>
   </footer>
 
-  <!-- GSAP + ScrollTrigger: kostenlos, für Scroll-Reveal- & Parallax-Animationen -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- GSAP + ScrollTrigger — ebenfalls lokal, nicht über ein fremdes CDN -->
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
