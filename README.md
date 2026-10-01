@@ -1,4 +1,4 @@
-# Onside — Website-Grundgerüst
+# onside.hq — Website-Grundgerüst
 
 Startpunkt für eure Website, gebaut mit purem HTML/CSS/JS + GSAP (alles kostenlos).
 Gedacht zum Weiterlernen — nicht als fertiges Produkt.
@@ -7,16 +7,41 @@ Gedacht zum Weiterlernen — nicht als fertiges Produkt.
 
 ```
 onsidehq-website/
-├── index.html      ← Seiteninhalt & Struktur (Hero, Services, Moments, Projekte, Kontakt)
+├── index.html      ← Seiteninhalt & Struktur (Hero, Projekte, Wer sind wir, Leistungen, Kontakt)
 ├── css/
 │   └── styles.css  ← Alles Visuelle. Farben stehen ganz oben als Variablen.
 ├── js/
-│   └── script.js   ← Scroll-Animationen (GSAP) + Bildergalerie-Lightbox
+│   └── script.js   ← Scroll-Animationen, Nav/Burger-Menü, Carousel, Marquee, Cursor-Dot
+├── favicon.ico, favicon-512.png, apple-touch-icon.png  ← Browser-Tab-Icon (müssen im Repo-Root liegen!)
 └── README.md
 ```
 
 Es gibt (noch) keinen `assets/`-Ordner — den legst du selbst an, sobald du
 deine Fotos/Videos vom Night Run hast (siehe "Was zuerst anpassen" unten).
+
+## Was neu ist in diesem Update
+
+- **Nav:** Menüpunkte jetzt Home / Projekte / Wer sind wir? / Leistungen / Kontakt,
+  plus Sprachauswahl DE/EN rechts (aktuell nur optisch — EN zeigt einen Hinweis,
+  echte Übersetzung wäre ein eigenes nächstes Projekt).
+- **Scroll-Menü:** Sobald du runterscrollst, verschwindet die Nav-Zeile und links
+  unter dem Logo erscheint ein Drei-Strich-Button, der ein Vollbild-Menü öffnet.
+  Auf dem Handy ist der Button immer sichtbar (vorher gab's dort gar keine Navigation).
+- **Hero-Video:** `<video class="hero__video">` ist jetzt aktiv (nicht mehr auskommentiert),
+  zeigt aber erstmal nichts, bis du `assets/hero.mp4` hochlädst — bis dahin läuft der
+  Verlaufs-Platzhalter einfach weiter.
+- **Bildergalerie → Carousel:** Statt dem unregelmäßigen 8er-Grid gibt's jetzt unter
+  Night Run ein Carousel mit 5 Bildern, durchklickbar über Pfeile oder die Punkte unten
+  (auf dem Handy auch per Wischen).
+- **"Proof of Concept"** über "Unsere Projekte" ist raus.
+- **"Das nächste Projekt entsteht schon"** läuft jetzt als endlos scrollender
+  Text-Ticker (Marquee) statt als stiller Satz.
+- **Neue Sektion "Wer sind wir?"** mit kurzem Team-Blurb — Text ist ein erster
+  Entwurf, gerne says Bescheid, wenn der anders klingen soll.
+- Insgesamt mehr Bewegung: leichter Parallax auf den großen Hintergrundbildern,
+  ein Cursor-Punkt, der der Maus folgt (nur Desktop), und alles so gebaut, dass
+  die Seite auch normal funktioniert, falls die Animations-Bibliothek (GSAP) mal
+  nicht laden sollte.
 
 ## Lokal ansehen
 
@@ -33,15 +58,16 @@ Jede Änderung an den Dateien ist dann sofort im Browser sichtbar.
 
 1. **Farbe:** `css/styles.css` → `--accent` ganz oben auf eure Markenfarbe setzen
 2. **Texte:** in `index.html` die Platzhalter-Texte durch eure finalen ersetzen
-3. **Hero-Video:** eigenes Video (z. B. Night-Run-Footage) in einen neuen `assets/`-Ordner
-   legen, dann in `index.html` den auskommentierten `<video class="hero__video">`-Tag
-   aktivieren und den `src` anpassen
-4. **Bildergalerie (Projekte → Berlin Night Run):** in `index.html` im Abschnitt
-   `<section id="projekte">` jeden Platzhalter
+   (z. B. den Team-Text unter "Wer sind wir?")
+3. **Hero-Video:** `assets/hero.mp4` (+ optional `assets/hero-poster.jpg` als Vorschaubild)
+   in einen neuen `assets/`-Ordner legen — der `<video class="hero__video">`-Tag in
+   `index.html` ist schon aktiv und greift automatisch darauf zu
+4. **Carousel (Projekte → Berlin Night Run):** in `index.html` im Abschnitt
+   `#carouselTrack` jeden Platzhalter
    `<div class="gallery-item__ph"><span>Bild 1</span></div>` löschen und durch
    `<img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run">`
-   ersetzen (Nummer/Dateiname anpassen). Die Lightbox (Klick = groß anzeigen)
-   funktioniert dann automatisch mit den echten Fotos.
+   ersetzen (Nummer/Dateiname anpassen). Pfeile und Punkte funktionieren danach
+   automatisch mit den echten Fotos.
 5. **Moment-Sections (die großen Bild-Breaks zwischen den Abschnitten):**
    entweder in `css/styles.css` bei `.moment__bg` die `background`-Zeile durch
    `background: url('../assets/moments/01.jpg') center/cover;` ersetzen, oder
