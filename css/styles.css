@@ -595,11 +595,16 @@ body.menu-open .nav__cta {
 }
 
 .founder__media {
+  position: relative;
   aspect-ratio: 4 / 3;
   background: #0d0d0d;
 }
 
+/* Foto liegt über dem Platzhalter. Fehlt die Datei, entfernt sich das <img>
+   selbst (onerror in index.html) und der Platzhalter bleibt sichtbar. */
 .founder__media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -930,6 +935,7 @@ body.menu-open .nav__cta {
 }
 
 .carousel__slide {
+  position: relative;
   flex: 0 0 100%;
   min-width: 0;
   height: 56vh;
@@ -937,7 +943,10 @@ body.menu-open .nav__cta {
   max-height: 560px;
 }
 
+/* Wie bei den Gründerkarten: Foto liegt über dem Platzhalter */
 .carousel__slide img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
