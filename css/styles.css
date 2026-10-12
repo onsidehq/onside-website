@@ -10,10 +10,9 @@
     6  Navigation + Vollbild-Menü
     7  Hero (Startseite)
     8  Animationsflächen (.viz) — Platzhalter, bis Fotos da sind
-    9  Projekte + Carousel
+    9  Projekte
    10  Laufband
    11  Leistungen (Karten)
-   11b Für wen? (Zielgruppen)
    12  Wer sind wir (Gründer, Geschichte)
    13  Statement "Warum onside?"
    13b Fragen (FAQ)
@@ -652,6 +651,7 @@ body.menu-open .nav__cta {
 .menu-overlay.is-open .menu-overlay__links a:nth-child(3) { transition-delay: 0.16s; }
 .menu-overlay.is-open .menu-overlay__links a:nth-child(4) { transition-delay: 0.21s; }
 .menu-overlay.is-open .menu-overlay__links a:nth-child(5) { transition-delay: 0.26s; }
+.menu-overlay.is-open .menu-overlay__links a:nth-child(6) { transition-delay: 0.31s; }
 
 @media (hover: hover) {
   .menu-overlay__links a:hover {
@@ -676,24 +676,25 @@ body.menu-open .nav__cta {
 
 
 /* ==========================================================================
-   7  Hero (Startseite): "Blitzlicht"
-   Fotos vom Night Run erscheinen nacheinander, jedes mit einem kurzen Blitz.
+   7  Hero (Startseite): Fotos, die ruhig ineinander überblenden
+   Die Fotos vom Night Run laufen nacheinander durch. Jedes blendet weich über
+   das vorige und zoomt dabei ganz langsam auf sein Motiv zu.
    Aufbau in Ebenen (von hinten nach vorne):
    .hero__stage — die Fotos (das erste steht im HTML, die übrigen holt
                   js/script.js aus der Liste in js/config.js)
-   .hero__burst — der Blitz
    .hero__shade — dunkler Verlauf, damit der Text lesbar bleibt
-   .hero__hud   — Zähler und Bildunterschrift unten rechts
+   .hero__hud   — Zähler und Bildunterschrift
    .hero__text  — Headline, Text, Buttons
    ========================================================================== */
+/* mindestens 34rem hoch: Auf sehr flachen Bildschirmen (Handy quer) würde
+   der Text sonst unter die Navigation rutschen */
 .hero {
   position: relative;
   min-height: 100vh;
-  min-height: 100svh;
+  min-height: max(100svh, 34rem);
   overflow: hidden;
   isolation: isolate;
   background: #000;
-  cursor: crosshair;
 }
 
 .hero__stage {
@@ -702,6 +703,7 @@ body.menu-open .nav__cta {
   overflow: hidden;
 }
 
+/* --pos = Bildausschnitt (aus js/config.js), um diesen Punkt wird auch gezoomt */
 .hero__img {
   position: absolute;
   inset: 0;
@@ -709,47 +711,44 @@ body.menu-open .nav__cta {
   height: 100%;
   object-fit: cover;
   object-position: var(--pos, 50% 50%);
+  transform-origin: var(--pos, 50% 50%);
   opacity: 0;
   filter: brightness(0.62) contrast(1.06) saturate(1.05);
 }
 
-/* Das neue Foto "entwickelt" sich: erst überbelichtet, dann ruhig */
+/* Hochformat-Bildschirme (Handy, Tablet hochkant): eigener Ausschnitt */
+@media (orientation: portrait) {
+  .hero__img {
+    object-position: var(--pos-m, var(--pos, 50% 50%));
+    transform-origin: var(--pos-m, var(--pos, 50% 50%));
+  }
+}
+
+/* Ein neues Foto blendet über das alte; das alte verschwindet erst danach.
+   Das erste Foto ist sofort da und zoomt nur langsam. */
 .hero__img.is-on {
   opacity: 1;
   z-index: 1;
-  animation: hero-develop 3.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: hero-in 1.6s ease both, hero-drift 10s linear both;
+}
+
+.hero__img.is-first {
+  animation: hero-drift 10s linear both;
 }
 
 .hero__img.is-off {
   opacity: 1;
   z-index: 0;
-  animation: hero-fade-out 0.5s ease forwards;
 }
 
-@keyframes hero-develop {
-  0% { filter: brightness(2.1) contrast(0.8) saturate(0.6); transform: scale(1.075); }
-  14% { filter: brightness(1.15) contrast(1.02) saturate(0.95); }
-  100% { filter: brightness(0.62) contrast(1.06) saturate(1.05); transform: scale(1); }
+@keyframes hero-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes hero-fade-out { to { opacity: 0; } }
-
-.hero__burst {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(circle at var(--bx, 50%) var(--by, 45%),
-    #fff 0%, rgba(255, 255, 255, 0.92) 30%, rgba(255, 255, 255, 0.7) 100%);
-}
-
-.hero__burst.is-firing { animation: hero-burst 0.42s ease-out; }
-
-@keyframes hero-burst {
-  0% { opacity: 0; }
-  12% { opacity: 0.82; }
-  100% { opacity: 0; }
+@keyframes hero-drift {
+  from { transform: scale(1.07); }
+  to { transform: scale(1); }
 }
 
 .hero__shade {
@@ -829,34 +828,12 @@ body.menu-open .nav__cta {
   color: var(--text);
 }
 
-/* Hinweis oben rechts, verschwindet nach dem ersten Klick */
-.hero__hint {
-  position: absolute;
-  z-index: 4;
-  top: calc(var(--nav-height) + 1.4rem);
-  right: max(var(--gutter), calc((100vw - 1320px) / 2));
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid rgba(var(--cream-rgb), 0.2);
-  background: rgba(0, 0, 0, 0.45);
-  color: var(--text);
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.hero__hint svg { width: 12px; height: 14px; fill: var(--accent); }
-.hero.was-used .hero__hint { opacity: 0; }
-
 .hero__text {
   position: absolute;
   z-index: 5;
   left: max(var(--gutter), calc((100vw - 1320px) / 2));
   bottom: clamp(2.5rem, 7vh, 4.5rem);
   width: min(880px, calc(100% - 2 * var(--gutter)));
-  cursor: auto;
 }
 
 .hero__eyebrow {
@@ -942,8 +919,6 @@ body.menu-open .nav__cta {
   }
   .hero__caption { font-size: 1rem; }
   .hero__bar { width: 130px; }
-  .hero__hint { display: none; }
-  .hero__img { object-position: var(--pos-m, var(--pos, 50% 50%)); } /* eigener Ausschnitt fürs erste Foto */
   .hero__text { bottom: 1.6rem; }
   .hero__title { font-size: clamp(2.3rem, 10.5vw, 2.9rem); }
   .hero__sub { margin-bottom: 1.5rem; font-size: 0.98rem; line-height: 1.55; }
@@ -1006,6 +981,14 @@ body.menu-open .nav__cta {
   color: rgba(var(--cream-rgb), 0.62);
 }
 
+/* Solange ein Foto lädt, bleibt die Fläche ruhig dunkel. Die Animation
+   erscheint nur, wenn das Foto fehlt (dann wird das <img> entfernt). */
+.viz:has(img) canvas,
+.viz:has(img) .viz__label,
+.viz:has(img) .founder__initials {
+  visibility: hidden;
+}
+
 /* Foto ist da -> Beschriftung der Animation ausblenden */
 .viz.has-photo .viz__label,
 .viz.has-photo .founder__initials {
@@ -1013,7 +996,7 @@ body.menu-open .nav__cta {
 }
 
 /* ==========================================================================
-   9  Projekte + Carousel
+   9  Projekte
    ========================================================================== */
 .projekte {
   max-width: var(--max-width);
@@ -1127,144 +1110,10 @@ body.menu-open .nav__cta {
   max-width: 58ch;
 }
 
-/* ---------- Bilder-Carousel ----------
-   Läuft über das eingebaute Scrollen des Browsers (scroll-snap): Auf dem
-   Handy folgt das Bild direkt dem Finger, am Laptop steuern Pfeile und Punkte. */
-.carousel {
-  position: relative;
-}
-
-.carousel__viewport {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  border-radius: var(--radius);
-}
-
-.carousel__viewport::-webkit-scrollbar {
-  display: none;
-}
-
-.carousel__slide {
-  position: relative;
-  flex: 0 0 100%;
-  min-width: 0;
-  height: clamp(320px, 56vh, 560px);
-  border-radius: var(--radius);
-  overflow: hidden;
-  scroll-snap-align: start;
-}
-
-.carousel__slide .viz,
+/* Galerie-Felder: das Foto füllt das Feld ganz aus */
 .case-gallery__item .viz {
   position: absolute;
   inset: 0;
-}
-
-.carousel__arrow {
-  position: absolute;
-  top: calc(50% - 1.5rem);   /* Mitte der Bildfläche (die Punkte darunter abgezogen) */
-  transform: translateY(-50%);
-  z-index: 3;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1px solid var(--border-strong);
-  background: rgba(0, 0, 0, 0.6);
-  color: var(--text);
-  font-size: 1.1rem;
-  cursor: pointer;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-
-@media (hover: hover) {
-  .carousel__arrow:hover {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: #04141a;
-  }
-}
-
-.carousel__arrow--prev { left: 1rem; }
-.carousel__arrow--next { right: 1rem; }
-
-.carousel__dots {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-/* Der sichtbare Punkt ist klein, die Tippfläche drumherum aber groß genug
-   für einen Finger (der Punkt selbst ist das ::before). */
-.carousel__dot {
-  position: relative;
-  width: 22px;
-  height: 32px;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: width 0.25s ease;
-}
-
-.carousel__dot::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--border-strong);
-  transform: translate(-50%, -50%);
-  transition: width 0.25s ease, background 0.25s ease;
-}
-
-.carousel__dot.is-active {
-  width: 38px;
-}
-
-.carousel__dot.is-active::before {
-  width: 24px;
-  background: var(--accent);
-}
-
-/* Handy: Bilder im Hochformat, das nächste schaut am Rand schon hervor —
-   so sieht man sofort, dass man wischen kann. Pfeile braucht es dann nicht. */
-@media (max-width: 700px) {
-  .carousel__viewport {
-    gap: 0.75rem;
-    margin: 0 calc(var(--gutter) * -1);
-    padding-left: var(--gutter);
-    scroll-padding-left: var(--gutter);
-    border-radius: 0;
-  }
-
-  /* Abstand nach dem letzten Bild */
-  .carousel__viewport::after {
-    content: '';
-    flex: 0 0 calc(var(--gutter) - 0.75rem);
-  }
-
-  .carousel__slide {
-    flex-basis: 84%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-  }
-
-  .carousel__arrow {
-    display: none;
-  }
-
-  .carousel__dots {
-    margin-top: 0.6rem;
-  }
 }
 
 /* Eckdaten unter dem Projekttext auf der Startseite */
@@ -1877,476 +1726,6 @@ body.menu-open .nav__cta {
   [data-spot]:hover::after {
     opacity: 1;
   }
-}
-
-/* ==========================================================================
-   11b  Für wen? (Startseite)
-   Am Laptop: links die vier Zielgruppen, rechts der passende Text. Auf dem
-   Handy klappt jeder Punkt unter sich auf. Bis das Skript bereit ist (oder
-   ohne JavaScript) steht einfach alles untereinander. Bei einer fünften Zielgruppe unten bei
-   "grid-template-rows" die 4 durch eine 5 ersetzen.
-   ========================================================================== */
-.audience {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--section-padding);
-}
-
-.audience h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: clamp(2.2rem, 5vw, 3.5rem);
-}
-
-/* erster Satz der Überschrift gedämpft, der zweite leuchtet */
-.audience h2 .dim {
-  color: var(--text-dim);
-}
-
-.aud__item {
-  margin: 0;
-  font-size: inherit;
-  letter-spacing: 0;
-}
-
-.aud__tab {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  padding: clamp(1.05rem, 2.2vw, 1.45rem) 0;
-  border: 0;
-  border-bottom: 1px solid var(--border);
-  background: none;
-  color: var(--text-dim);
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2.3vw, 1.85rem);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  text-align: left;
-  cursor: pointer;
-  transition: color 0.25s ease;
-}
-
-.aud__item:first-child .aud__tab {
-  border-top: 1px solid var(--border);
-}
-
-/* Linie, die unter dem gewählten Punkt einläuft */
-.aud__tab::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 1px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s var(--ease-out);
-}
-
-.aud__num {
-  min-width: 1.7rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  transition: color 0.25s ease;
-}
-
-.aud__name {
-  flex: 1;
-}
-
-.aud__tab[aria-expanded='true'] {
-  color: var(--text);
-}
-
-.aud__tab[aria-expanded='true'] .aud__num {
-  color: var(--accent);
-}
-
-.aud__tab[aria-expanded='true']::after {
-  transform: scaleX(1);
-}
-
-@media (hover: hover) {
-  .aud__tab:hover {
-    color: var(--text-soft);
-  }
-}
-
-/* rechts im Punkt: am Laptop ein Pfeil zum Text, auf dem Handy ein Plus */
-.aud__plus {
-  position: relative;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  color: var(--accent);
-}
-
-.aud__plus::before,
-.aud__plus::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  height: 1.5px;
-  margin-top: -0.75px;
-  border-radius: 2px;
-  background: currentColor;
-  transition: transform 0.35s var(--ease-out), opacity 0.35s ease;
-}
-
-.aud__plus::after {
-  transform: rotate(90deg);
-}
-
-.aud__tab[aria-expanded='true'] .aud__plus::after {
-  transform: rotate(0deg);
-  opacity: 0;
-}
-
-.aud:not(.is-ready) .aud__plus {
-  display: none;
-}
-
-/* "Nicht dabei?" unter den vier Punkten */
-.aud__note {
-  margin-top: 1.6rem;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.aud__note a {
-  color: var(--text);
-  font-weight: 600;
-  white-space: nowrap;
-  transition: color 0.2s ease;
-}
-
-.aud__note a i {
-  display: inline-block;
-  font-style: normal;
-  color: var(--accent);
-  transition: transform 0.25s var(--ease-out);
-}
-
-@media (hover: hover) {
-  .aud__note a:hover { color: var(--accent); }
-  .aud__note a:hover i { transform: translateX(4px); }
-}
-
-/* Die Karte mit dem Text */
-.aud__card {
-  position: relative;
-  padding: clamp(1.6rem, 3vw, 2.4rem);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background:
-    radial-gradient(90% 70% at 100% 0%, rgba(var(--accent-rgb), 0.11), transparent 70%),
-    var(--bg-elevated);
-}
-
-.aud__top {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  margin-bottom: 1.4rem;
-}
-
-.aud__for {
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.aud__lead {
-  margin-bottom: 0.9rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  color: var(--text);
-  text-wrap: balance;
-}
-
-.aud__text {
-  max-width: 52ch;
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.aud__label {
-  margin-top: 1.5rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.aud__card .tags {
-  margin-top: 0.7rem;
-}
-
-.aud__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.9rem 1.5rem;
-  margin-top: 1.9rem;
-}
-
-.aud__link {
-  color: var(--text-soft);
-  font-size: 0.92rem;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.aud__link i {
-  display: inline-block;
-  font-style: normal;
-  color: var(--accent);
-  transition: transform 0.25s var(--ease-out);
-}
-
-@media (hover: hover) {
-  .aud__link:hover { color: var(--text); }
-  .aud__link:hover i { transform: translateX(4px); }
-}
-
-/* Symbole: kleine SVG-Zeichnungen, die sich bewegen, solange ihr Text offen ist */
-.aud__icon {
-  flex-shrink: 0;
-  width: 54px;
-  height: 54px;
-  padding: 9px;
-  overflow: visible;
-  border: 1px solid rgba(var(--accent-rgb), 0.45);
-  border-radius: 50%;
-  background: rgba(var(--accent-rgb), 0.08);
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.aud__icon--rings .r1,
-.aud__icon--crowd circle,
-.aud__icon--rec .dot {
-  fill: var(--accent);
-  stroke: none;
-}
-
-.aud__icon--rings .r3 { stroke-dasharray: 3 4; }
-.aud__icon--pin .shadow { fill: var(--accent); stroke: none; opacity: 0.35; }
-
-.aud__icon * {
-  transform-box: view-box;
-  transform-origin: 24px 24px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .is-open .aud__icon--rings .r2,
-  .is-open .aud__icon--rings .r3 {
-    animation: aud-ring calc(var(--beat) * 4) var(--ease-out) infinite;
-  }
-
-  .is-open .aud__icon--rings .r3 { animation-delay: calc(var(--beat) * 0.6); }
-
-  .is-open .aud__icon--crowd circle {
-    animation: aud-bob calc(var(--beat) * 2) ease-in-out infinite;
-  }
-
-  .is-open .aud__icon--crowd circle:nth-child(2) { animation-delay: -0.2s; }
-  .is-open .aud__icon--crowd circle:nth-child(3) { animation-delay: -0.45s; }
-  .is-open .aud__icon--crowd circle:nth-child(4) { animation-delay: -0.7s; }
-  .is-open .aud__icon--crowd circle:nth-child(5) { animation-delay: -0.95s; }
-  .is-open .aud__icon--crowd circle:nth-child(6) { animation-delay: -0.3s; }
-  .is-open .aud__icon--crowd circle:nth-child(7) { animation-delay: -0.8s; }
-
-  .is-open .aud__icon--pin .pin {
-    animation: aud-drop 0.8s var(--ease-out) both;
-  }
-
-  .is-open .aud__icon--pin .shadow {
-    transform-origin: 24px 42px;
-    animation: aud-shadow 0.8s var(--ease-out) both;
-  }
-
-  .is-open .aud__icon--rec path {
-    animation: aud-focus 0.7s var(--ease-out) both;
-  }
-
-  .is-open .aud__icon--rec .dot {
-    animation: aud-rec calc(var(--beat) * 2) steps(1, end) infinite;
-  }
-}
-
-@keyframes aud-ring {
-  0% { transform: scale(0.5); opacity: 0; }
-  25% { opacity: 1; }
-  100% { transform: scale(1.1); opacity: 0; }
-}
-
-@keyframes aud-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
-
-@keyframes aud-drop {
-  0% { transform: translateY(-12px); opacity: 0; }
-  55% { transform: translateY(1.5px); opacity: 1; }
-  78% { transform: translateY(-1.5px); }
-  100% { transform: none; }
-}
-
-@keyframes aud-shadow {
-  0% { transform: scaleX(0.3); opacity: 0; }
-  55%, 100% { transform: none; opacity: 0.35; }
-}
-
-@keyframes aud-focus {
-  from { transform: scale(1.25); opacity: 0; }
-  to { transform: none; opacity: 1; }
-}
-
-@keyframes aud-rec {
-  0% { opacity: 1; }
-  50% { opacity: 0.2; }
-}
-
-/* Laptop: zwei Spalten, die Texte liegen übereinander und blenden über */
-@media (min-width: 901px) {
-  .aud.is-ready {
-    display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    grid-template-rows: repeat(4, auto) 1fr;
-    column-gap: clamp(2.5rem, 5.5vw, 5rem);
-    align-items: start;
-  }
-
-  .aud.is-ready .aud__item,
-  .aud.is-ready .aud__note {
-    grid-column: 1;
-  }
-
-  .aud.is-ready .aud__note {
-    grid-row: 5;
-    max-width: 34ch;
-  }
-
-  /* alle Karten gleich hoch: Beim Wechseln bleibt der Rahmen stehen,
-     nur der Inhalt blendet über. Die Buttons sitzen immer unten. */
-  .aud.is-ready .aud__card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .aud.is-ready .aud__actions {
-    margin-top: auto;
-    padding-top: 1.9rem;
-  }
-
-  .aud.is-ready .aud__panel {
-    align-self: stretch;
-    grid-column: 2;
-    grid-row: 1 / -1;
-    transition:
-      opacity 0.5s var(--ease-out) 0.08s,
-      transform 0.6s var(--ease-out) 0.08s,
-      visibility 0s linear 0s;
-  }
-
-  .aud.is-ready .aud__panel:not(.is-open) {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(14px);
-    transition:
-      opacity 0.22s ease,
-      transform 0.22s ease,
-      visibility 0s linear 0.22s;
-  }
-
-  /* der Pfeil zeigt vom gewählten Punkt auf den Text daneben */
-  .aud__plus {
-    width: 20px;
-  }
-
-  .aud__plus::before {
-    content: '→';
-    height: auto;
-    margin-top: 0;
-    background: none;
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    line-height: 1;
-    opacity: 0;
-    transform: translate(-8px, -50%);
-  }
-
-  .aud__plus::after {
-    display: none;
-  }
-
-  .aud__tab[aria-expanded='true'] .aud__plus::before {
-    opacity: 1;
-    transform: translate(0, -50%);
-  }
-}
-
-/* Handy: Akkordeon. Der Text klappt unter seinem Punkt auf (ohne Kasten). */
-@media (max-width: 900px) {
-  .aud.is-ready .aud__panel {
-    display: grid;
-    grid-template-rows: 0fr;
-    visibility: hidden;
-    transition: grid-template-rows 0.45s var(--ease-out), visibility 0s linear 0.45s;
-  }
-
-  .aud.is-ready .aud__panel.is-open {
-    grid-template-rows: 1fr;
-    visibility: visible;
-    transition: grid-template-rows 0.45s var(--ease-out), visibility 0s linear 0s;
-  }
-
-  .aud.is-ready .aud__card {
-    min-height: 0;
-    overflow: hidden;
-    padding: 0 0 0 2.7rem;
-    border: 0;
-    border-radius: 0;
-    background: none;
-  }
-
-  .aud.is-ready .aud__card > :first-child { margin-top: 1.4rem; }
-  .aud.is-ready .aud__card > :last-child { margin-bottom: 2rem; }
-
-  .aud__icon {
-    width: 46px;
-    height: 46px;
-    padding: 8px;
-  }
-}
-
-/* bevor das Skript bereit ist: alle Karten untereinander, mit etwas Luft */
-.aud:not(.is-ready) .aud__card {
-  margin: 1rem 0 1.5rem;
-}
-
-@media (max-width: 420px) {
-  .aud.is-ready .aud__card { padding-left: 0; }
 }
 
 /* ==========================================================================
@@ -3723,9 +3102,9 @@ body.menu-open .nav__cta {
   .case-route__viz { aspect-ratio: 1 / 1; }
 }
 
-/* Galerie: ein breites Bild oben, darunter Querformate (3:2) zu zweit und
-   Hochformate (4:5, Klasse case-gallery__item--tall) zu dritt. Das Raster hat
-   sechs Spalten: quer belegt drei, hoch zwei. "dense" füllt Lücken auf. */
+/* Galerie: breite Bilder (--wide) über die ganze Breite, Querformate (3:2)
+   zu zweit, Hochformate (4:5, --tall) zu dritt. Das Raster hat sechs Spalten:
+   quer belegt drei, hoch zwei. "dense" füllt Lücken auf. */
 /* ---------- Projektseite: "Der Plan dahinter" ----------
    Ein Foto, darunter dieselbe Szene als Planskizze. Der Regler (in
    js/script.js) zeigt links das Foto, rechts den Plan. Die Markierungen im
@@ -4023,19 +3402,21 @@ body.menu-open .nav__cta {
   aspect-ratio: 4 / 5;
 }
 
-.case-gallery__item:first-child {
+.case-gallery__item--wide {
   grid-column: 1 / -1;
   aspect-ratio: 21 / 9;
 }
 
-/* Handy: quer über die volle Breite, hoch zu zweit nebeneinander */
+/* Handy: quer über die volle Breite, hoch zu zweit nebeneinander. Das dritte
+   Hochformat jeder Dreiergruppe (Klasse --solo) bekommt dort die ganze Breite,
+   so bleibt keine Lücke. */
 @media (max-width: 640px) {
   .case-gallery__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .case-gallery__item,
-  .case-gallery__item:first-child {
+  .case-gallery__item--wide {
     grid-column: 1 / -1;
     aspect-ratio: 3 / 2;
   }
@@ -4043,6 +3424,10 @@ body.menu-open .nav__cta {
   .case-gallery__item--tall {
     grid-column: span 1;
     aspect-ratio: 4 / 5;
+  }
+
+  .case-gallery__item--solo {
+    grid-column: 1 / -1;
   }
 }
 
@@ -4497,7 +3882,7 @@ body.menu-open .nav__cta {
   .hero__eyebrow::before,
   .hero__dot,
   .hero__img.is-on,
-  .hero__burst.is-firing,
+  .hero__img.is-first,
   .hero__text > *,
   .statement__rings::before,
   .statement__rings::after,
@@ -4509,12 +3894,6 @@ body.menu-open .nav__cta {
     animation: none;
   }
 
-  .aud__tab::after,
-  .aud__plus::before,
-  .aud__plus::after,
-  .aud.is-ready .aud__panel,
-  .aud.is-ready .aud__panel.is-open,
-  .aud.is-ready .aud__panel:not(.is-open),
   .faq__item summary::before,
   .faq__item summary::after {
     transition: none;
@@ -4533,5 +3912,10 @@ body.menu-open .nav__cta {
 
   .js [data-split] {
     visibility: visible;
+  }
+
+  .hero__bar,
+  .hero__count {
+    display: none;
   }
 }

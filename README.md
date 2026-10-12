@@ -7,7 +7,7 @@ nichts muss umgewandelt werden: Was im Ordner liegt, ist die Seite.
 
 | Datei | Was drauf ist |
 |-------|---------------|
-| `index.html` | Startseite: Startbildschirm mit Fotos, Projekt-Teaser, Laufband, Leistungen, Für wen?, Wer sind wir, Warum onside, Fragen (FAQ), Kontakt |
+| `index.html` | Startseite: Startbildschirm mit Fotos, Projekt-Teaser, Laufband, Leistungen, Wer sind wir, Warum onside, Fragen (FAQ), Kontakt |
 | `projekte.html` | Übersicht aller Projekte |
 | `berlin-night-run.html` | Projektseite Night Run mit dem Regler „Der Plan dahinter“ – zugleich die Vorlage für jedes weitere Projekt |
 | `leistungen.html` | Die drei Leistungen ausführlich + Ablauf einer Zusammenarbeit |
@@ -25,7 +25,7 @@ nichts muss umgewandelt werden: Was im Ordner liegt, ist die Seite.
 ├── js/
 │   ├── config.js       ← eure Einstellungen: Formular-Key und Fotos des Startbildschirms
 │   ├── visuals.js      ← alles, was gezeichnet und animiert wird
-│   └── script.js       ← Bedienung: Einblenden, Menü, Carousel, Laufband, Formular, Startbildschirm, Regler, „Für wen?“
+│   └── script.js       ← Bedienung: Einblenden, Menü, Laufband, Formular, Startbildschirm, Regler
 ├── fonts/              ← selbst gehostete Schriften, auf das Nötige verkleinert (nicht löschen)
 ├── assets/             ← eure Bilder (siehe BILDER.md)
 ├── favicon.ico, favicon-512.png, apple-touch-icon.png   ← müssen ganz oben im Ordner liegen
@@ -38,6 +38,7 @@ nichts muss umgewandelt werden: Was im Ordner liegt, ist die Seite.
 Navigation und Footer stehen in jeder HTML-Datei gleich. Wenn ihr dort etwas
 ändert (z. B. einen neuen Menüpunkt), muss das in allen neun HTML-Dateien
 passieren – jeweils in der Navigationsleiste, im Vollbild-Menü und im Footer.
+Der Menüpunkt „FAQ“ springt auf der Startseite zum Abschnitt „Fragen“.
 
 ## Kontaktformular
 
@@ -68,16 +69,20 @@ muss nichts geändert werden. Welche Datei wohin gehört, steht in `BILDER.md`.
 
 ## Der Startbildschirm
 
-Auf der Startseite erscheinen Fotos vom Night Run nacheinander, jedes mit einem
-kurzen Blitz. Ein Klick ins Bild löst den Blitz selbst aus. Die Fotos stehen als
-Liste in `js/config.js` unter `startbild`:
+Auf der Startseite laufen Fotos vom Night Run nacheinander durch und blenden
+ruhig ineinander über. Die Fotos stehen als Liste in `js/config.js` unter
+`startbild`:
 
-- `breit` für Laptop und Tablet, `handy` fürs Handy
+- `breit` für Bildschirme im Querformat (Dateien `start-quer-1.jpg` bis
+  `start-quer-5.jpg`), `handy` für Hochformat wie Handy und Tablet hochkant
+  (`start-hoch-1.jpg` bis `start-hoch-5.jpg`)
 - pro Foto: Datei, Bildunterschrift, Bildausschnitt
 - `sekunden`: wie lange ein Foto stehen bleibt
 
-Das erste Foto steht zusätzlich in `index.html` im Abschnitt HERO (`data-src`
-und `data-srcset`). Wer das erste Foto tauscht, ändert es an beiden Stellen.
+Das erste Foto steht zusätzlich in `index.html`: im Kopf (zwei Zeilen
+`preload`, damit es sofort lädt) und im Abschnitt HERO (`src` beim Bild,
+`srcset` beim `<source>` davor). Wer das erste Foto tauscht, ändert es an
+allen Stellen.
 
 ## Die Animationen
 
@@ -106,7 +111,7 @@ Anpassen:
   (oder `data-scribble="circle"` für einen Kringel).
 
 Wer am Gerät "Bewegung reduzieren" eingeschaltet hat, sieht Standbilder statt
-Animationen und keine Blitze. Auf schwächeren Geräten schalten die Animationen
+Animationen, und der Startbildschirm bleibt beim ersten Foto stehen. Auf schwächeren Geräten schalten die Animationen
 automatisch auf eine niedrigere Bildrate, damit die Seite flüssig bleibt.
 
 ## Was zuerst anpassen
@@ -117,9 +122,9 @@ automatisch auf eine niedrigere Bildrate, damit die Seite flüssig bleibt.
 2. **Texte:** direkt in der jeweiligen HTML-Datei ändern.
 3. **Eckdaten Night Run:** in `berlin-night-run.html` im Abschnitt "Eckdaten"
    und auf der Startseite unter dem Projekttext (`project__facts`).
-4. **Für wen? und Fragen (FAQ):** direkt in `index.html` in den Abschnitten
-   "03 — FÜR WEN" und "06 — FRAGEN". Ändert ihr eine Antwort im FAQ, bitte auch
-   oben im `<head>` im Block "FAQPage" ändern (für Suchmaschinen).
+4. **Fragen (FAQ):** direkt in `index.html` im Abschnitt "05 — FRAGEN". Ändert
+   ihr eine Antwort, bitte auch oben im `<head>` im Block "FAQPage" ändern (für
+   Suchmaschinen).
    Die Namen der Stopps auf der gezeichneten Route stehen in `berlin-night-run.html`
    im Attribut `data-labels` (aktuell "Start | Stopp 1 | Stopp 2 | Stopp 3 | Afterparty").
 
@@ -149,7 +154,7 @@ die Ordnerstruktur beibehalten (also `css/`, `js/`, `fonts/`, `assets/` als
 Ordner, nicht die Dateien einzeln ins Hauptverzeichnis).
 
 Wer `css/styles.css` oder eine Datei in `js/` ändert, zählt in allen HTML-Dateien
-die Versionsnummer hinter dem Dateinamen eins hoch (`styles.css?v=6` → `?v=7`).
+die Versionsnummer hinter dem Dateinamen eins hoch (`styles.css?v=8` → `?v=9`).
 Sonst zeigen manche Browser noch einen Tag lang die alte Fassung.
 
 ## Weiterlernen

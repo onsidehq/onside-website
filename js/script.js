@@ -3,20 +3,18 @@
    Was hier passiert:
    1) Einblenden beim Scrollen, Überschriften Wort für Wort
    2) Nav: Menü-Button + Vollbild-Menü
-   3) Bilder-Carousel
-   4) Laufband-Ticker (zwei Zeilen, gegenläufig)
-   5) Lichtfleck auf Karten, der der Maus folgt
-   6) Kontaktformular
-   7) Startbildschirm "Blitzlicht" (Fotos aus js/config.js)
-   8) Projektseite: Regler "Der Plan dahinter"
-   9) Startseite: "Für wen?" (Zielgruppen zum Aufklappen)
-   10) Direkte Links ohne Umleitung (nur online)
+   3) Laufband-Ticker (zwei Zeilen, gegenläufig)
+   4) Lichtfleck auf Karten, der der Maus folgt
+   5) Kontaktformular
+   6) Startbildschirm: Fotos, die ruhig überblenden (Liste in js/config.js)
+   7) Projektseite: Regler "Der Plan dahinter"
+   8) Direkte Links ohne Umleitung (nur online)
 
    Alles, was gezeichnet und animiert wird (Hintergrund, Szenen, Striche),
    steht in js/visuals.js. Eure Einstellungen stehen in js/config.js.
 
-   Jeder Teil läuft für sich: Fehlt auf einer Seite ein Element (z. B. das
-   Carousel auf der Kontaktseite), wird der Teil einfach übersprungen.
+   Jeder Teil läuft für sich: Fehlt auf einer Seite ein Element (z. B. der
+   Regler auf der Kontaktseite), wird der Teil einfach übersprungen.
    ========================================================================== */
 
 // Meldung an das Sicherheitsnetz im <head>: Das Skript ist gestartet.
@@ -207,92 +205,7 @@ if (navBurger && menuOverlay) {
 }
 
 /* ---------------------------------------------------------------------
-   3) Bilder-Carousel
-   Das Verschieben übernimmt der Browser selbst (scroll-snap im CSS): Auf dem
-   Handy folgt das Bild direkt dem Finger. Dieses Skript ergänzt Pfeile,
-   Punkte und die Pfeiltasten.
---------------------------------------------------------------------- */
-document.querySelectorAll('[data-carousel]').forEach((root) => {
-  const viewport = root.querySelector('.carousel__viewport');
-  const slides = Array.from(root.querySelectorAll('.carousel__slide'));
-  const dotsWrap = root.querySelector('.carousel__dots');
-  if (!viewport || !slides.length) return;
-  let current = 0;
-
-  // wie weit muss gescrollt werden, damit Bild i vorne steht
-  const offsetOf = (i) => slides[i].offsetLeft - slides[0].offsetLeft;
-
-  function goTo(i) {
-    const index = ((i % slides.length) + slides.length) % slides.length;
-    const left = offsetOf(index);
-    try {
-      viewport.scrollTo({ left, behavior: reducedMotion ? 'auto' : 'smooth' });
-    } catch (err) {
-      viewport.scrollLeft = left; // sehr alte Browser
-    }
-  }
-
-  const dots = slides.map((_, i) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'carousel__dot';
-    dot.setAttribute('aria-label', `Zu Bild ${i + 1}`);
-    dot.addEventListener('click', () => goTo(i));
-    if (dotsWrap) dotsWrap.appendChild(dot);
-    return dot;
-  });
-
-  // welches Bild steht gerade vorne? -> Punkte aktualisieren
-  function sync() {
-    const x = viewport.scrollLeft;
-    let best = 0;
-    let bestDist = Infinity;
-    slides.forEach((_, i) => {
-      const dist = Math.abs(offsetOf(i) - x);
-      if (dist < bestDist) {
-        bestDist = dist;
-        best = i;
-      }
-    });
-    current = best;
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
-  }
-
-  let syncFrame = null;
-  viewport.addEventListener('scroll', () => {
-    if (syncFrame !== null) return;
-    syncFrame = requestAnimationFrame(() => {
-      syncFrame = null;
-      sync();
-    });
-  }, { passive: true });
-
-  const prev = root.querySelector('.carousel__arrow--prev');
-  const next = root.querySelector('.carousel__arrow--next');
-  if (prev) prev.addEventListener('click', () => goTo(current - 1));
-  if (next) next.addEventListener('click', () => goTo(current + 1));
-
-  viewport.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
-  });
-
-  // Die hinteren Fotos laden erst, wenn das Carousel ins Bild kommt (spart
-  // Datenvolumen) — dann aber alle auf einmal, damit beim Wischen nichts nachlädt.
-  if ('IntersectionObserver' in window) {
-    const loader = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      loader.disconnect();
-      root.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = 'eager'; });
-    }, { rootMargin: '300px 0px' });
-    loader.observe(root);
-  }
-
-  sync();
-});
-
-/* ---------------------------------------------------------------------
-   4) Laufband
+   3) Laufband
    Ein Durchlauf ist ein .next__group (gefülltes Wort + Outline-Wort).
    Das Skript misst dessen echte Breite in Pixeln, hängt so viele Kopien an,
    dass die Zeile immer über den ganzen Bildschirm reicht, und schiebt sie
@@ -436,7 +349,7 @@ if (marqueeSection && marquees.length) {
 }
 
 /* ---------------------------------------------------------------------
-   5) Lichtfleck auf Karten (alle Elemente mit data-spot)
+   4) Lichtfleck auf Karten (alle Elemente mit data-spot)
    Die Mausposition wird als CSS-Variable an die Karte gegeben; den Rest
    macht das CSS. Auf Touch-Geräten gibt es keinen Mauszeiger — dort aus.
 --------------------------------------------------------------------- */
@@ -451,7 +364,7 @@ if (window.matchMedia('(hover: hover)').matches) {
 }
 
 /* ---------------------------------------------------------------------
-   6) Kontaktformular
+   5) Kontaktformular
    Schickt die Anfrage an Web3Forms, die daraus eine Mail an euer Postfach
    machen. Läuft ohne Seitenwechsel: Die Rückmeldung erscheint direkt unter
    dem Button. Den Access Key tragt ihr in js/config.js ein.
@@ -560,13 +473,14 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
 });
 
 /* ---------------------------------------------------------------------
-   7) Startbildschirm "Blitzlicht"
-   Die Fotos stehen in js/config.js (startbild). Alle paar Sekunden blitzt es
-   und das nächste Foto erscheint; ein Klick ins Bild löst den Blitz selbst
-   aus. Läuft nur, solange der Startbildschirm zu sehen ist.
+   6) Startbildschirm
+   Die Fotos stehen in js/config.js (startbild). Alle paar Sekunden blendet
+   das nächste Foto ruhig über. Läuft nur, solange der Startbildschirm zu
+   sehen ist. Wer am Gerät "Bewegung reduzieren" eingestellt hat, sieht ein
+   ruhiges Standbild.
 --------------------------------------------------------------------- */
 (function () {
-  const hero = document.querySelector('[data-flash]');
+  const hero = document.querySelector('[data-slides]');
   const nav = document.getElementById('nav');
 
   // Navigation oben durchsichtig auf dem Foto, beim Scrollen wieder dunkel
@@ -579,13 +493,15 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   const cfg = (window.ONSIDE && window.ONSIDE.startbild) || {};
   if (!hero || !Array.isArray(cfg.breit) || !cfg.breit.length) return;
 
-  const small = window.matchMedia('(max-width: 720px)');
-  const pickList = () => (small.matches && Array.isArray(cfg.handy) && cfg.handy.length ? cfg.handy : cfg.breit);
-  const DUR = Math.max(1.5, cfg.sekunden || 3.4) * 1000 * (reducedMotion ? 2 : 1);
+  // Hochformat (Handy, Tablet hochkant) bekommt die Liste "handy"
+  const portrait = window.matchMedia('(orientation: portrait)');
+  const hasHandy = Array.isArray(cfg.handy) && cfg.handy.length > 0;
+  const pickList = () => (portrait.matches && hasHandy ? cfg.handy : cfg.breit);
+  const DUR = Math.max(3, cfg.sekunden || 6) * 1000;
+  const FADE = 1600; // so lange dauert das Überblenden (wie in css/styles.css)
   const pad = (n) => String(n).padStart(2, '0');
 
   const stage = hero.querySelector('.hero__stage');
-  const burst = hero.querySelector('.hero__burst');
   const countEl = hero.querySelector('.hero__count');
   const capEl = hero.querySelector('.hero__caption');
   const bar = hero.querySelector('.hero__bar i');
@@ -608,7 +524,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
     if (running) bar.classList.add('is-running');
   }
 
-  function show(k, bx, by) {
+  function show(k) {
     if (busy) return;
     busy = true;
     const slide = list[k];
@@ -618,21 +534,15 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
     img.decoding = 'async';
     img.src = slide.bild;
     img.style.setProperty('--pos', slide.ausschnitt || '50% 50%');
+    img.style.setProperty('--pos-m', slide.ausschnitt || '50% 50%');
     const go = () => {
       stage.appendChild(img);
-      if (!reducedMotion && burst) {
-        burst.style.setProperty('--bx', bx || '50%');
-        burst.style.setProperty('--by', by || '45%');
-        burst.classList.remove('is-firing');
-        void burst.offsetWidth;
-        burst.classList.add('is-firing');
-      }
       img.classList.add('is-on');
       if (current) {
         const old = current;
-        old.classList.remove('is-on');
+        old.classList.remove('is-on', 'is-first');
         old.classList.add('is-off');
-        setTimeout(() => old.remove(), 600);
+        setTimeout(() => old.remove(), FADE + 100);
       }
       current = img;
       index = k;
@@ -640,7 +550,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
       warm(k + 1);
       busy = false;
     };
-    // erst zeigen, wenn das Foto fertig geladen ist (sonst blitzt es ins Leere)
+    // erst zeigen, wenn das Foto fertig geladen ist (sonst blendet es ins Leere)
     (img.decode ? img.decode() : Promise.resolve()).then(go, () => { busy = false; });
   }
 
@@ -649,22 +559,20 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
     if (running) timer = setTimeout(() => { show((index + 1) % list.length); schedule(); }, DUR);
   }
 
-  hero.addEventListener('click', (e) => {
-    if (e.target.closest('.hero__text')) return;
-    hero.classList.add('was-used');
-    const r = hero.getBoundingClientRect();
-    show((index + 1) % list.length, (e.clientX - r.left) + 'px', (e.clientY - r.top) + 'px');
-    schedule();
-  });
+  // Bildausschnitte des ersten Fotos ebenfalls aus js/config.js
+  current.style.setProperty('--pos', cfg.breit[0].ausschnitt || '50% 50%');
+  if (hasHandy) current.style.setProperty('--pos-m', cfg.handy[0].ausschnitt || '50% 50%');
+  label(0);
 
-  small.addEventListener('change', () => {
+  // Handy gedreht oder Fenster umgestellt: passende Liste von vorn
+  portrait.addEventListener('change', () => {
     list = pickList();
     show(0);
     schedule();
   });
 
-  current.style.setProperty('--pos', list[0].ausschnitt || '50% 50%');
-  label(0);
+  if (reducedMotion) return; // Standbild, kein Durchlaufen
+
   // das nächste Foto erst vorladen, wenn die Seite fertig ist (das erste hat Vorrang)
   if (document.readyState === 'complete') warm(1);
   else window.addEventListener('load', () => setTimeout(() => warm(1), 400), { once: true });
@@ -690,7 +598,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
 })();
 
 /* ---------------------------------------------------------------------
-   8) Projektseite: Regler "Der Plan dahinter"
+   7) Projektseite: Regler "Der Plan dahinter"
    Links das Foto, rechts dieselbe Szene als Planskizze. Die Markierungen
    (Kreis + Beschriftung) hängen an Punkten im Foto und rutschen mit, wenn
    sich der Bildausschnitt ändert. Ein Punkt steht als Anteil der Bildbreite
@@ -839,55 +747,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
 })();
 
 /* ---------------------------------------------------------------------
-   9) Startseite: "Für wen?"
-   Am Laptop: links die vier Zielgruppen, rechts der passende Text. Ein
-   Klick (oder die Pfeiltasten) wechselt, es ist immer genau einer offen.
-   Auf dem Handy klappt jeder Punkt unter sich auf, mehrere dürfen offen
-   sein – so springt beim Antippen nichts nach oben weg.
---------------------------------------------------------------------- */
-document.querySelectorAll('[data-audience]').forEach((box) => {
-  const tabs = Array.from(box.querySelectorAll('.aud__tab'));
-  const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')));
-  const wide = window.matchMedia('(min-width: 901px)');
-  const isOpen = (i) => tabs[i].getAttribute('aria-expanded') === 'true';
-  if (!tabs.length || panels.some((p) => !p)) return;
-  box.classList.add('is-ready'); // ab jetzt Auswahl bzw. Aufklappen (CSS)
-
-  const setOpen = (i, open) => {
-    tabs[i].setAttribute('aria-expanded', String(open));
-    panels[i].classList.toggle('is-open', open);
-  };
-  const select = (i) => tabs.forEach((_, j) => setOpen(j, j === i));
-
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => {
-      if (wide.matches) select(i);
-      else setOpen(i, !isOpen(i));
-    });
-    tab.addEventListener('keydown', (e) => {
-      if (!wide.matches) return;
-      const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
-      if (!step) return;
-      e.preventDefault();
-      const next = (i + step + tabs.length) % tabs.length;
-      tabs[next].focus();
-      select(next);
-    });
-  });
-
-  // Vom Handy- ins Laptop-Format gewechselt (Fenster breiter, Tablet
-  // gedreht): Es bleibt nur der erste offene Punkt offen.
-  const sync = () => {
-    if (!wide.matches) return;
-    const first = tabs.findIndex((_, i) => isOpen(i));
-    select(first < 0 ? 0 : first);
-  };
-  if (wide.addEventListener) wide.addEventListener('change', sync);
-  else if (wide.addListener) wide.addListener(sync);
-});
-
-/* ---------------------------------------------------------------------
-   10) Direkte Links
+   8) Direkte Links
    Cloudflare zeigt jede Seite unter ihrer kurzen Adresse (onsidehq.de/kontakt)
    und leitet "kontakt.html" dorthin um. Damit ein Klick nicht erst über diese
    Umleitung läuft, zeigen die Links online gleich auf die kurze Adresse.

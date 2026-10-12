@@ -29,7 +29,7 @@
   <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=6" />
+  <link rel="stylesheet" href="css/styles.css?v=8" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -39,7 +39,7 @@
     // sichtbar. Liegt es in einem <picture> mit Handy-Version (hoch-...), wird
     // zuerst die Handy-Version weggelassen und das große Foto genommen.
     window.onsideBildFehlt = function (img) {
-      if (!img.getAttribute('src')) return; // lädt erst später (data-src)
+      if (!img.getAttribute('src')) return; // ohne Bildadresse nichts zu tun
       var s = img.parentNode && img.parentNode.querySelector('source');
       if (s) { s.remove(); img.src = img.getAttribute('src'); } else { img.remove(); }
     };
@@ -76,6 +76,7 @@
       <a href="projekte.html" aria-current="page">Projekte</a>
       <a href="leistungen.html">Leistungen</a>
       <a href="ueber-uns.html">Wer sind wir?</a>
+      <a href="index.html#fragen">FAQ</a>
       <a href="kontakt.html">Kontakt</a>
     </nav>
 
@@ -90,7 +91,8 @@
       <a href="projekte.html" aria-current="page"><span class="menu-overlay__num">02</span>Projekte</a>
       <a href="leistungen.html"><span class="menu-overlay__num">03</span>Leistungen</a>
       <a href="ueber-uns.html"><span class="menu-overlay__num">04</span>Wer sind wir?</a>
-      <a href="kontakt.html"><span class="menu-overlay__num">05</span>Kontakt</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">05</span>FAQ</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">06</span>Kontakt</a>
     </nav>
     <div class="menu-overlay__meta">
       <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -118,9 +120,11 @@
       <a class="project-card" href="berlin-night-run.html" data-spot>
         <div class="project-card__media viz">
           <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
+          <!-- Foto: 01.jpg (Handy: hoch-01.jpg). object-position = Bildausschnitt,
+               "55% 45%" hält die Gruppe in der Mitte im Bild. -->
           <picture>
-            <source media="(max-width: 720px)" srcset="assets/projects/berlin-night-run/hoch-cover.jpg">
-            <img src="assets/projects/berlin-night-run/cover.jpg" alt="Läuferinnen und Läufer beim Berlin Night Run" fetchpriority="high" style="object-position: 34% 50%" onerror="onsideBildFehlt(this)">
+            <source media="(max-width: 720px)" srcset="assets/projects/berlin-night-run/hoch-01.jpg">
+            <img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run: die Laufgruppe unterwegs" fetchpriority="high" style="object-position: 55% 45%" onerror="onsideBildFehlt(this)">
           </picture>
         </div>
         <div class="project-card__body">
@@ -161,6 +165,7 @@
         <a href="projekte.html">Projekte</a>
         <a href="leistungen.html">Leistungen</a>
         <a href="ueber-uns.html">Wer sind wir?</a>
+        <a href="index.html#fragen">FAQ</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
       <nav class="footer__nav" aria-label="Kontakt">
@@ -186,9 +191,9 @@
   <!-- Skripte — alles lokal, nichts von fremden Servern.
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
-       script.js  = Bedienung: Einblenden, Menü, Carousel, Laufband, Formular -->
-  <script src="js/config.js?v=6"></script>
-  <script src="js/visuals.js?v=6"></script>
-  <script src="js/script.js?v=6"></script>
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="js/config.js?v=8"></script>
+  <script src="js/visuals.js?v=8"></script>
+  <script src="js/script.js?v=8"></script>
 </body>
 </html>

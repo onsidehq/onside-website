@@ -13,6 +13,10 @@
   <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
+  <!-- erstes Foto des Startbildschirms so früh wie möglich laden
+       (Querformat-Bildschirme: start-quer-1.jpg, Hochformat: start-hoch-1.jpg) -->
+  <link rel="preload" href="assets/projects/berlin-night-run/start-quer-1.jpg" as="image" fetchpriority="high" media="(orientation: landscape)">
+  <link rel="preload" href="assets/projects/berlin-night-run/start-hoch-1.jpg" as="image" fetchpriority="high" media="(orientation: portrait)">
   <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
   <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
@@ -59,7 +63,7 @@
   }
   </script>
 
-  <!-- FAQPage: dieselben Fragen und Antworten wie im Abschnitt "06 — Fragen"
+  <!-- FAQPage: dieselben Fragen und Antworten wie im Abschnitt "05 — Fragen"
        weiter unten. Ändert ihr dort etwas, hier bitte genauso ändern. -->
   <script type="application/ld+json">
   {
@@ -134,7 +138,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=6" />
+  <link rel="stylesheet" href="css/styles.css?v=8" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -144,7 +148,7 @@
     // sichtbar. Liegt es in einem <picture> mit Handy-Version (hoch-...), wird
     // zuerst die Handy-Version weggelassen und das große Foto genommen.
     window.onsideBildFehlt = function (img) {
-      if (!img.getAttribute('src')) return; // lädt erst später (data-src)
+      if (!img.getAttribute('src')) return; // ohne Bildadresse nichts zu tun
       var s = img.parentNode && img.parentNode.querySelector('source');
       if (s) { s.remove(); img.src = img.getAttribute('src'); } else { img.remove(); }
     };
@@ -179,6 +183,7 @@
       <a href="projekte.html">Projekte</a>
       <a href="leistungen.html">Leistungen</a>
       <a href="ueber-uns.html">Wer sind wir?</a>
+      <a href="#fragen">FAQ</a>
       <a href="kontakt.html">Kontakt</a>
     </nav>
 
@@ -193,7 +198,8 @@
       <a href="projekte.html"><span class="menu-overlay__num">02</span>Projekte</a>
       <a href="leistungen.html"><span class="menu-overlay__num">03</span>Leistungen</a>
       <a href="ueber-uns.html"><span class="menu-overlay__num">04</span>Wer sind wir?</a>
-      <a href="kontakt.html"><span class="menu-overlay__num">05</span>Kontakt</a>
+      <a href="#fragen"><span class="menu-overlay__num">05</span>FAQ</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">06</span>Kontakt</a>
     </nav>
     <div class="menu-overlay__meta">
       <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -202,31 +208,25 @@
   </div>
 
   <main id="main">
-    <!-- ============ HERO: "Blitzlicht" ============
-         Fotos vom Night Run erscheinen nacheinander, jedes mit einem kurzen
-         Blitz. Das erste Foto steht hier im HTML, damit es sofort lädt; die
-         ganze Liste (mit Bildunterschriften) steht in js/config.js.
-         Ein Klick ins Bild löst den Blitz selbst aus. -->
-    <section class="hero" id="top" data-flash aria-label="Start">
-      <!-- Das erste Foto: data-src = Laptop/Tablet, data-srcset = Handy.
-           Es lädt direkt nach dem ersten Aufbau der Seite (Skript unter diesem
-           Abschnitt): Überschrift und Buttons stehen sofort, das Foto
-           "entwickelt" sich einen Augenblick später. -->
+    <!-- ============ HERO: Fotos vom Night Run ============
+         Die Fotos laufen nacheinander durch und blenden ruhig ineinander über.
+         Das erste Foto steht hier im HTML, damit es sofort lädt (start-quer-1.jpg
+         für Laptop und Tablet quer, start-hoch-1.jpg für Handy und Tablet hochkant).
+         Die ganze Liste mit Bildunterschriften und Bildausschnitten steht in
+         js/config.js unter "startbild". -->
+    <section class="hero" id="top" data-slides aria-label="Start">
       <div class="hero__stage" aria-hidden="true">
         <picture>
-          <source media="(max-width: 720px)" data-srcset="assets/projects/berlin-night-run/hoch-01.jpg">
-          <img class="hero__img" data-src="assets/projects/berlin-night-run/01.jpg" alt="" fetchpriority="high" style="--pos: 50% 40%; --pos-m: 50% 50%">
+          <source media="(orientation: portrait)" srcset="assets/projects/berlin-night-run/start-hoch-1.jpg">
+          <img class="hero__img is-on is-first" src="assets/projects/berlin-night-run/start-quer-1.jpg" alt="" fetchpriority="high" style="--pos: 50% 40%; --pos-m: 50% 50%" onerror="onsideBildFehlt(this)">
         </picture>
-        <noscript><img class="hero__img is-on" src="assets/projects/berlin-night-run/01.jpg" alt="" style="--pos: 50% 40%"></noscript>
       </div>
-      <div class="hero__burst" aria-hidden="true"></div>
       <div class="hero__shade" aria-hidden="true"></div>
       <div class="hero__hud" aria-hidden="true">
-        <div class="hero__hud-top hero__label"><span class="hero__dot"></span><span>Berlin Night Run · 19.09.2026</span><span class="hero__count">01 / 08</span></div>
+        <div class="hero__hud-top hero__label"><span class="hero__dot"></span><span>Berlin Night Run · 19.09.2026</span><span class="hero__count">01 / 05</span></div>
         <div class="hero__bar"><i></i></div>
-        <span class="hero__caption">Alle laufen los</span>
+        <span class="hero__caption">Gute Laune auf der Strecke</span>
       </div>
-      <p class="hero__hint hero__label" aria-hidden="true"><svg viewBox="0 0 12 14"><path d="M7 0 0 8h4.5L3.5 14 12 5H7.2L7 0z"/></svg>Klick ins Bild</p>
 
       <div class="hero__text">
         <p class="hero__eyebrow"><span>Event- &amp; Content-Studio<span class="hero__where"> · Potsdam &amp; Innsbruck</span></span></p>
@@ -241,38 +241,6 @@
         </div>
       </div>
     </section>
-    <script>
-      // Reihenfolge beim Laden der Fotos: zuerst das Startbild (sobald die Seite
-      // zum ersten Mal zu sehen ist), danach die übrigen Fotos der Startseite
-      // (alles mit data-src). Wer vorher scrollt, bekommt sie sofort.
-      (function () {
-        var hero = document.querySelector('.hero__stage img[data-src]');
-        var rest = false;
-        function swap(img) {
-          var source = img.parentNode.querySelector('source[data-srcset]');
-          if (source) { source.srcset = source.getAttribute('data-srcset'); source.removeAttribute('data-srcset'); }
-          img.src = img.getAttribute('data-src');
-          img.removeAttribute('data-src');
-        }
-        function loadRest() {
-          if (rest) return;
-          if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadRest); return; }
-          rest = true;
-          document.querySelectorAll('main img[data-src]').forEach(swap);
-        }
-        addEventListener('scroll', loadRest, { once: true, passive: true });
-        if (!hero) { loadRest(); return; }
-        requestAnimationFrame(function () {
-          setTimeout(function () {
-            var on = function () { hero.classList.add('is-on'); loadRest(); };
-            hero.onerror = function () { hero.onerror = null; window.onsideBildFehlt(hero); };
-            swap(hero);
-            if (hero.decode) hero.decode().then(on, on); else hero.onload = on;
-            setTimeout(loadRest, 2500); // spätestens dann
-          }, 0);
-        });
-      })();
-    </script>
 
     <!-- ============ 01 — PROJEKTE ============ -->
     <section id="projekte" class="projekte">
@@ -280,23 +248,17 @@
       <h2 data-split>Unsere Projekte</h2>
 
       <article class="project">
-        <!-- Die Fotos in diesem Abschnitt stehen in data-src / data-srcset statt
-             src / srcset: Sie laden erst, wenn das erste Foto oben fertig ist
-             (oder sobald jemand scrollt). So hat das Startbild Vorfahrt.
-             Zum Austauschen trotzdem nur die Datei ersetzen, wie gehabt.
-
-             BILD 1: Titelbild vom Event → assets/projects/berlin-night-run/cover.jpg
-             Zum Austauschen reicht eine neue Datei mit genau diesem Namen. Fehlt
-             sie, laufen an ihrer Stelle Lichtspuren durch die Nacht.
-             object-position bestimmt, welcher Teil des Fotos auf schmalen
-             Bildschirmen zu sehen ist: 34% heißt etwas links der Mitte, dort ist
-             der Läufer. Sitzt das Motiv in einem neuen Foto mittig: 50% 50%. -->
+        <!-- Titelbild vom Event → assets/projects/berlin-night-run/cover.jpg
+             (Handy: hoch-cover.jpg). Zum Austauschen reicht eine neue Datei mit
+             genau diesem Namen. Fehlt sie, laufen Lichtspuren durch die Nacht.
+             object-position = Bildausschnitt: erste Zahl links/rechts, zweite
+             oben/unten. "55% 30%" hält Kopf und Mütze des Läufers im Bild. -->
         <a class="project__cover reveal" href="berlin-night-run.html" aria-label="Zum Projekt: Berlin Night Run">
           <div class="project__cover-bg viz">
             <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
             <picture>
-              <source media="(max-width: 720px)" data-srcset="assets/projects/berlin-night-run/hoch-cover.jpg">
-              <img data-src="assets/projects/berlin-night-run/cover.jpg" alt="Läuferinnen und Läufer beim Berlin Night Run" loading="lazy" decoding="async" style="object-position: 34% 50%" onerror="onsideBildFehlt(this)">
+              <source media="(max-width: 720px)" srcset="assets/projects/berlin-night-run/hoch-cover.jpg">
+              <img src="assets/projects/berlin-night-run/cover.jpg" alt="Läuferinnen und Läufer beim Berlin Night Run" loading="lazy" decoding="async" style="object-position: 55% 30%" onerror="onsideBildFehlt(this)">
             </picture>
           </div>
           <div class="project__cover-content">
@@ -324,67 +286,6 @@
           <div><dt>Partner</dt><dd>Red&nbsp;Bull, HEJ&nbsp;Natural</dd></div>
         </dl>
 
-        <div class="carousel reveal" data-carousel>
-          <div class="carousel__viewport" tabindex="0" role="region" aria-label="Bilder vom Berlin Night Run">
-            <!-- BILDER 2–6: die fünf Galeriebilder →
-                 assets/projects/berlin-night-run/01.jpg bis 05.jpg
-                 Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft in jedem
-                 Feld eine eigene kleine Animation. Am Code muss nichts geändert werden. -->
-            <div class="carousel__slide">
-              <div class="viz">
-                <canvas data-scene="route" data-seed="3" aria-hidden="true"></canvas>
-                <span class="viz__label">01 — Start</span>
-                <picture>
-                  <source media="(max-width: 720px)" data-srcset="assets/projects/berlin-night-run/hoch-01.jpg">
-                  <img data-src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run: die Laufgruppe unterwegs" loading="lazy" onerror="onsideBildFehlt(this)">
-                </picture>
-              </div>
-            </div>
-            <div class="carousel__slide">
-              <div class="viz">
-                <canvas data-scene="trails" data-seed="21" aria-hidden="true"></canvas>
-                <span class="viz__label">02 — Strecke</span>
-                <picture>
-                  <source media="(max-width: 720px)" data-srcset="assets/projects/berlin-night-run/hoch-02.jpg">
-                  <img data-src="assets/projects/berlin-night-run/02.jpg" alt="Berlin Night Run: Trinkpause" loading="lazy" onerror="onsideBildFehlt(this)">
-                </picture>
-              </div>
-            </div>
-            <div class="carousel__slide">
-              <div class="viz">
-                <canvas data-scene="eq" data-seed="5" aria-hidden="true"></canvas>
-                <span class="viz__label">03 — Beat</span>
-                <picture>
-                  <source media="(max-width: 720px)" data-srcset="assets/projects/berlin-night-run/hoch-03.jpg">
-                  <img data-src="assets/projects/berlin-night-run/03.jpg" alt="Berlin Night Run: der DJ am Pult" loading="lazy" onerror="onsideBildFehlt(this)">
-                </picture>
-              </div>
-            </div>
-            <div class="carousel__slide">
-              <div class="viz">
-                <canvas data-scene="crowd" data-seed="8" aria-hidden="true"></canvas>
-                <span class="viz__label">04 — Crowd</span>
-                <picture>
-                  <source media="(max-width: 720px)" data-srcset="assets/projects/berlin-night-run/hoch-04.jpg">
-                  <img data-src="assets/projects/berlin-night-run/04.jpg" alt="Berlin Night Run: die versammelte Crowd" loading="lazy" onerror="onsideBildFehlt(this)">
-                </picture>
-              </div>
-            </div>
-            <div class="carousel__slide">
-              <div class="viz">
-                <canvas data-scene="bokeh" data-seed="13" aria-hidden="true"></canvas>
-                <span class="viz__label">05 — Afterparty</span>
-                <picture>
-                  <source media="(max-width: 720px)" data-srcset="assets/projects/berlin-night-run/hoch-05.jpg">
-                  <img data-src="assets/projects/berlin-night-run/05.jpg" alt="Berlin Night Run: Anstoßen am Abend" loading="lazy" onerror="onsideBildFehlt(this)">
-                </picture>
-              </div>
-            </div>
-          </div>
-          <button class="carousel__arrow carousel__arrow--prev" type="button" aria-label="Vorheriges Bild">←</button>
-          <button class="carousel__arrow carousel__arrow--next" type="button" aria-label="Nächstes Bild">→</button>
-          <div class="carousel__dots"></div>
-        </div>
       </article>
     </section>
 
@@ -489,126 +390,11 @@
       </div>
     </section>
 
-    <!-- ============ 03 — FÜR WEN ============
-         Vier Zielgruppen: links die Auswahl, rechts der passende Text. Auf dem
-         Handy klappt jeder Punkt unter sich auf. Texte direkt hier ändern; das
-         Verhalten steht in js/script.js (Abschnitt 9), das Aussehen in
-         css/styles.css bei "Für wen". Die Symbole sind kleine SVG-Zeichnungen. -->
-    <section id="fuer-wen" class="audience">
-      <p class="eyebrow reveal">03 — Für wen?</p>
-      <h2 data-split><span class="dim">Ihr habt die Marke, den Ort oder die Leute.</span><br>Wir bauen den <span class="scribble" data-scribble="underline">Moment.</span></h2>
-
-      <div class="aud reveal" data-audience>
-        <h3 class="aud__item">
-          <button class="aud__tab" type="button" id="aud-tab-1" aria-expanded="true" aria-controls="aud-1">
-            <span class="aud__num">01</span><span class="aud__name">Marken</span><span class="aud__plus" aria-hidden="true"></span>
-          </button>
-        </h3>
-        <div class="aud__panel is-open" id="aud-1" role="region" aria-labelledby="aud-tab-1">
-          <div class="aud__card">
-            <div class="aud__top">
-              <svg class="aud__icon aud__icon--rings" viewBox="0 0 48 48" aria-hidden="true"><circle class="r3" cx="24" cy="24" r="20"/><circle class="r2" cx="24" cy="24" r="13"/><circle class="r1" cx="24" cy="24" r="4.5"/></svg>
-              <span class="aud__for">Für Marken</span>
-            </div>
-            <p class="aud__lead">Ihr wollt nicht nur gesehen, sondern erlebt werden.</p>
-            <p class="aud__text">
-              Wir bauen Formate, bei denen eure Zielgruppe mitmacht, statt nur zuzuschauen,
-              und produzieren den Content gleich mit. So bleibt mehr hängen als ein Logo auf
-              einem Banner.
-            </p>
-            <p class="aud__label">Passt zum Beispiel</p>
-            <ul class="tags"><li>Launch-Event</li><li>Pop-up</li><li>Brand-Run</li><li>Kampagnen-Content</li></ul>
-            <div class="aud__actions">
-              <a href="#contact" class="btn">Projekt anfragen</a>
-              <a href="leistungen.html" class="aud__link">Leistungen ansehen <i>→</i></a>
-            </div>
-          </div>
-        </div>
-
-        <h3 class="aud__item">
-          <button class="aud__tab" type="button" id="aud-tab-2" aria-expanded="false" aria-controls="aud-2">
-            <span class="aud__num">02</span><span class="aud__name">Vereine &amp; Communities</span><span class="aud__plus" aria-hidden="true"></span>
-          </button>
-        </h3>
-        <div class="aud__panel" id="aud-2" role="region" aria-labelledby="aud-tab-2">
-          <div class="aud__card">
-            <div class="aud__top">
-              <svg class="aud__icon aud__icon--crowd" viewBox="0 0 48 48" aria-hidden="true"><circle cx="11" cy="28" r="3.2"/><circle cx="19" cy="20" r="3.2"/><circle cx="24" cy="31" r="3.2"/><circle cx="29" cy="15" r="3.2"/><circle cx="33" cy="26" r="3.2"/><circle cx="40" cy="19" r="3.2"/><circle cx="17" cy="38" r="3.2"/></svg>
-              <span class="aud__for">Für Vereine &amp; Communities</span>
-            </div>
-            <p class="aud__lead">Ihr habt Mitglieder, Fans oder eine Crew.</p>
-            <p class="aud__text">
-              Wir machen daraus Abende, von denen alle erzählen, und holen neue Leute dazu.
-              Genau so ist der Berlin Night Run entstanden.
-            </p>
-            <p class="aud__label">Passt zum Beispiel</p>
-            <ul class="tags"><li>Community-Run</li><li>Saisonauftakt</li><li>Jubiläum</li><li>Social Media</li></ul>
-            <div class="aud__actions">
-              <a href="#contact" class="btn">Projekt anfragen</a>
-              <a href="berlin-night-run.html" class="aud__link">Zum Night Run <i>→</i></a>
-            </div>
-          </div>
-        </div>
-
-        <h3 class="aud__item">
-          <button class="aud__tab" type="button" id="aud-tab-3" aria-expanded="false" aria-controls="aud-3">
-            <span class="aud__num">03</span><span class="aud__name">Locations &amp; Gastro</span><span class="aud__plus" aria-hidden="true"></span>
-          </button>
-        </h3>
-        <div class="aud__panel" id="aud-3" role="region" aria-labelledby="aud-tab-3">
-          <div class="aud__card">
-            <div class="aud__top">
-              <svg class="aud__icon aud__icon--pin" viewBox="0 0 48 48" aria-hidden="true"><ellipse class="shadow" cx="24" cy="42" rx="7" ry="1.8"/><g class="pin"><path d="M24 38s-11-11.2-11-19.5a11 11 0 0 1 22 0C35 26.8 24 38 24 38z"/><circle cx="24" cy="18.5" r="4"/></g></svg>
-              <span class="aud__for">Für Locations &amp; Gastro</span>
-            </div>
-            <p class="aud__lead">Ihr habt den Ort. Wir bringen den Anlass.</p>
-            <p class="aud__text">
-              Eventreihen, die wiederkommen, Kooperationen mit passenden Marken und Content,
-              der zeigt, was bei euch los ist.
-            </p>
-            <p class="aud__label">Passt zum Beispiel</p>
-            <ul class="tags"><li>Eventreihe</li><li>Afterparty</li><li>Run-Club-Treff</li><li>Content für eure Kanäle</li></ul>
-            <div class="aud__actions">
-              <a href="#contact" class="btn">Projekt anfragen</a>
-              <a href="leistungen.html#events" class="aud__link">Event-Organisation <i>→</i></a>
-            </div>
-          </div>
-        </div>
-
-        <h3 class="aud__item">
-          <button class="aud__tab" type="button" id="aud-tab-4" aria-expanded="false" aria-controls="aud-4">
-            <span class="aud__num">04</span><span class="aud__name">Creator</span><span class="aud__plus" aria-hidden="true"></span>
-          </button>
-        </h3>
-        <div class="aud__panel" id="aud-4" role="region" aria-labelledby="aud-tab-4">
-          <div class="aud__card">
-            <div class="aud__top">
-              <svg class="aud__icon aud__icon--rec" viewBox="0 0 48 48" aria-hidden="true"><path d="M7 16V9.5A2.5 2.5 0 0 1 9.5 7H16M32 7h6.5A2.5 2.5 0 0 1 41 9.5V16M41 32v6.5a2.5 2.5 0 0 1-2.5 2.5H32M16 41H9.5A2.5 2.5 0 0 1 7 38.5V32"/><circle class="dot" cx="24" cy="24" r="5"/></svg>
-              <span class="aud__for">Für Creator</span>
-            </div>
-            <p class="aud__lead">Ihr habt die Reichweite. Wir bauen das Event dazu.</p>
-            <p class="aud__text">
-              Vom Meet-up bis zum eigenen Format: Wir kümmern uns um Planung, Partner und
-              Ablauf, damit ihr euch ganz auf eure Community konzentrieren könnt.
-            </p>
-            <p class="aud__label">Passt zum Beispiel</p>
-            <ul class="tags"><li>Meet-up</li><li>Community-Event</li><li>Launch</li><li>Content-Produktion</li></ul>
-            <div class="aud__actions">
-              <a href="#contact" class="btn">Projekt anfragen</a>
-              <a href="leistungen.html#social" class="aud__link">Social Media <i>→</i></a>
-            </div>
-          </div>
-        </div>
-
-        <p class="aud__note">Nicht dabei? Erzählt uns trotzdem, was ihr vorhabt. <a href="#contact">Zur Anfrage <i>→</i></a></p>
-      </div>
-    </section>
-
-    <!-- ============ 04 — WER SIND WIR ============
+    <!-- ============ 03 — WER SIND WIR ============
          Kurzfassung. Geschichte und "Was uns unterscheidet" stehen ausführlich
          auf der Seite ueber-uns.html. -->
     <section id="wer-sind-wir" class="about">
-      <p class="eyebrow reveal">04 — Wer sind wir?</p>
+      <p class="eyebrow reveal">03 — Wer sind wir?</p>
       <h2 data-split>Zwei, die lieber <span class="scribble" data-scribble="underline">bauen</span> <br class="br-lg">als zuschauen.</h2>
       <p class="about__lead reveal">
         onside.hq ist ein Studio für Events, Marken und Content&nbsp;– gegründet von zwei
@@ -644,13 +430,15 @@
           </div>
         </article>
 
-        <!-- BILD 8: Foto Malte → assets/team/malte.jpg
-             Datei hochladen, das Foto erscheint von selbst. -->
+        <!-- BILD 8: Foto Malte → assets/team/malte.jpg (Malte mit Megafon beim
+             Night Run). Datei hochladen, das Foto erscheint von selbst. Das ?v=2
+             sorgt dafür, dass Browser das neue Foto sofort laden; beim nächsten
+             Austausch auf ?v=3 erhöhen. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">MG</span>
-            <img src="assets/team/malte.jpg" alt="Malte Gerdes" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/malte.jpg?v=2" alt="Malte Gerdes mit dem Megafon beim Berlin Night Run" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Content &amp; Social</span>
@@ -684,7 +472,7 @@
     <section class="statement">
       <div class="statement__rings" aria-hidden="true"></div>
       <div class="statement__inner">
-        <p class="eyebrow reveal">05 — Warum onside?</p>
+        <p class="eyebrow reveal">04 — Warum onside?</p>
         <div class="statement__board viz reveal">
           <canvas data-scene="offside" aria-hidden="true"></canvas>
         </div>
@@ -696,7 +484,7 @@
       </div>
     </section>
 
-    <!-- ============ 06 — FRAGEN ============
+    <!-- ============ 05 — FRAGEN ============
          Jede Frage ist ein <details>-Element: Klick auf die Frage klappt die
          Antwort auf. Eine Frage ergänzen: einen <details>-Block kopieren und
          Frage und Antwort ändern. Dieselben Fragen stehen noch einmal ganz oben
@@ -704,7 +492,7 @@
          Suchmaschinen dieselben Antworten sehen. -->
     <section id="fragen" class="faq">
       <div class="faq__head">
-        <p class="eyebrow reveal">06 — Fragen</p>
+        <p class="eyebrow reveal">05 — Fragen</p>
         <h2 data-split>Kurz <span class="scribble" data-scribble="underline">gefragt.</span></h2>
         <p class="faq__sub reveal">Das Wichtigste vorab. Fehlt etwas? Schreibt uns einfach.</p>
         <a href="#contact" class="btn btn--ghost btn--arrow faq__cta reveal">Frag uns direkt</a>
@@ -762,9 +550,9 @@
       </div>
     </section>
 
-    <!-- ============ 07 — KONTAKT ============ -->
+    <!-- ============ 06 — KONTAKT ============ -->
     <section id="contact" class="contact">
-      <p class="eyebrow reveal">07 — Lasst uns reden</p>
+      <p class="eyebrow reveal">06 — Lasst uns reden</p>
       <h2 data-split>Lasst uns etwas schaffen, <br class="br-lg">worüber gesprochen wird.</h2>
       <p class="contact__sub reveal">
         Ob Event, Markenaufbau oder <span class="nowrap">Social-Media-Betreuung</span>&nbsp;– schreib uns kurz, worum’s geht.
@@ -845,6 +633,7 @@
         <a href="projekte.html">Projekte</a>
         <a href="leistungen.html">Leistungen</a>
         <a href="ueber-uns.html">Wer sind wir?</a>
+        <a href="#fragen">FAQ</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
       <nav class="footer__nav" aria-label="Kontakt">
@@ -870,9 +659,9 @@
   <!-- Skripte — alles lokal, nichts von fremden Servern.
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
-       script.js  = Bedienung: Einblenden, Menü, Carousel, Laufband, Formular -->
-  <script src="js/config.js?v=6"></script>
-  <script src="js/visuals.js?v=6"></script>
-  <script src="js/script.js?v=6"></script>
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="js/config.js?v=8"></script>
+  <script src="js/visuals.js?v=8"></script>
+  <script src="js/script.js?v=8"></script>
 </body>
 </html>
