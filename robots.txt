@@ -1,0 +1,5 @@
+# Suchmaschinen dürfen alles lesen. Die Sitemap listet alle Seiten auf.
+User-agent: *
+Allow: /
+
+Sitemap: https://onsidehq.de/sitemap.xml

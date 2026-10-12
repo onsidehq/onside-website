@@ -1,5 +1,29 @@
 /* ==========================================================================
-   Schriften — bewusst selbst gehostet statt über Google Fonts geladen.
+   onside.hq — Stylesheet (gilt für alle Seiten)
+
+   Inhalt:
+    1  Schriften
+    2  Variablen (Farben, Abstände) — hier zuerst schauen, wenn du etwas ändern willst
+    3  Grundlagen
+    4  Hintergrund für die ganze Seite (Punktfeld + Korn)
+    5  Buttons, Eyebrow, handgezeichnete Striche
+    6  Navigation + Vollbild-Menü
+    7  Hero (Startseite)
+    8  Animationsflächen (.viz) — Platzhalter, bis Fotos da sind
+    9  Projekte + Carousel
+   10  Laufband
+   11  Leistungen (Karten)
+   12  Wer sind wir (Gründer, Geschichte)
+   13  Statement "Warum onside?"
+   14  Kontakt + Formular
+   15  Footer
+   16  Unterseiten: Seitenkopf, Projektseite, Leistungen, Kontakt
+   17  Rechtsseiten
+   18  Einblenden beim Scrollen
+   ========================================================================== */
+
+/* ==========================================================================
+   1  Schriften — bewusst selbst gehostet statt über Google Fonts geladen.
    So verlässt beim Seitenaufruf keine IP-Adresse der Besucher die Seite
    (in Deutschland ein echtes Abmahnrisiko) und es lädt schneller.
    Beides sind Variable Fonts: eine Datei deckt alle Schriftschnitte ab.
@@ -21,31 +45,54 @@
 }
 
 /* ==========================================================================
-   onside.hq — Stylesheet
-   Alle Farben, Abstände und Schriftgrößen laufen über CSS-Variablen (:root).
-   Willst du z.B. die Akzentfarbe ändern -> einfach --accent unten anpassen,
-   sie wird überall auf der Seite automatisch übernommen.
+   2  Variablen
+   Alle Farben, Abstände und Schriften laufen über diese Variablen.
+   Willst du z. B. die Akzentfarbe ändern -> --accent UND --accent-rgb anpassen,
+   sie wird überall auf der Seite (auch in den Animationen) übernommen.
    ========================================================================== */
-
 :root {
   --bg: #000000;
-  --bg-elevated: #121212;
-  --text: #f5f5f5;
-  --text-muted: #a7b1ba;   /* leicht kühles Grau — harmoniert mit dem Akzent */
-  --text-soft: #cfd6dc;    /* für Lead-Absätze, etwas heller als der Fließtext */
-  --accent: #3fd5ff;       /* Akzentfarbe */
-  --accent-rgb: 63, 213, 255;  /* gleiche Farbe als RGB-Werte (für die Hero-Animation) */
-  --border: rgba(255, 255, 255, 0.1);
+  --bg-elevated: #12110f;   /* Karten: ein Hauch wärmer als reines Grau */
+  --bg-raised: #1a1815;
+
+  /* Text: warmes Creme statt kühlem Grau */
+  --text: #f7f2e8;          /* Überschriften, wichtige Texte */
+  --text-soft: #ece4d4;     /* Einleitungen */
+  --text-muted: #d2c8b6;    /* Fließtext */
+  --text-dim: #a09684;      /* Kleingedrucktes, Beschriftungen */
+  --cream-rgb: 247, 242, 232;
+
+  --accent: #3fd5ff;        /* Akzentfarbe */
+  --accent-rgb: 63, 213, 255;  /* gleiche Farbe als RGB-Werte (für Animationen und Transparenzen) */
+
+  --border: rgba(var(--cream-rgb), 0.12);
+  --border-strong: rgba(var(--cream-rgb), 0.26);
 
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
 
   --max-width: 1200px;
-  --section-padding: 8rem 2rem;
+  --gutter: clamp(1.25rem, 4.5vw, 2rem);        /* Seitenrand links/rechts */
+  --section-y: clamp(4.5rem, 11vw, 8rem);       /* Abstand über/unter Abschnitten */
+  --section-padding: var(--section-y) var(--gutter);
   --nav-height: 76px;
+  --radius: 1.2rem;
+  --radius-lg: 1.5rem;
+
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Ein Schlag bei 96 bpm — derselbe Takt wie in den Animationen (js/visuals.js) */
+  --beat: 0.625s;
 }
 
-/* ---------- Reset ---------- */
+@media (max-width: 768px) {
+  :root { --nav-height: 64px; }
+}
+
+/* ==========================================================================
+   3  Grundlagen
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -53,21 +100,39 @@
 }
 
 html {
+  background: var(--bg);
   scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-height);
+  scroll-padding-top: calc(var(--nav-height) + 1rem);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Nichts darf die Seite seitlich verschiebbar machen (v. a. auf dem Handy) */
+@supports (overflow: clip) {
+  html { overflow-x: clip; }
 }
 
 body {
-  background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
+  /* runde Satzzeichen und ein offeneres kleines "l" — kleine Details,
+     durch die der Fließtext weniger nach Standard aussieht */
+  font-feature-settings: 'ss03', 'cv05';
   line-height: 1.5;
   overflow-x: hidden;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+img {
+  max-width: 100%;
 }
 
 h1, h2, h3 {
@@ -78,13 +143,98 @@ h1, h2, h3 {
   text-wrap: balance;   /* gleichmäßigere Zeilenlängen in Überschriften */
 }
 
-/* Fließtext: etwas mehr Luft zwischen den Zeilen, begrenzte Satzbreite und
-   ein ruhigerer Umbruch — das ist der Unterschied zwischen "Standardgrau"
-   und Text, der gesetzt aussieht. */
 p {
   text-wrap: pretty;
 }
 
+::selection {
+  background: var(--accent);
+  color: #04141a;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* hält ein zusammengesetztes Wort in einer Zeile ("Social-Media-Betreuung") */
+.nowrap {
+  white-space: nowrap;
+}
+
+/* nur für Screenreader sichtbar (z. B. Überschriften, die die Seite gliedern) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 600;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #04141a;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* Sanfter Übergang beim Wechsel zwischen den Seiten (wo der Browser es kann) */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+}
+
+/* ==========================================================================
+   4  Hintergrund für die ganze Seite
+   .ambient = das Punktfeld ("Crowd & Beat"), gezeichnet in js/visuals.js.
+   Es steht fest hinter allen Abschnitten, die Seite scrollt darüber hinweg.
+   .grain   = feines Korn, damit die Fläche nicht digital-glatt wirkt.
+   ========================================================================== */
+.ambient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  z-index: -2;
+  display: block;
+  pointer-events: none;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   5  Buttons, Eyebrow, handgezeichnete Striche
+   ========================================================================== */
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -94,27 +244,29 @@ p {
   margin-bottom: 1rem;
 }
 
-/* ---------- Buttons ---------- */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
   padding: 0.9rem 1.8rem;
+  border: 1px solid transparent;
   border-radius: 999px;
   background: var(--accent);
-  color: #0a0a0a;
+  color: #04141a;
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.95rem;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-out), background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .btn--ghost {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.35);
   color: var(--text);
-  border: 1px solid var(--border);
+  border-color: var(--border-strong);
 }
 
 .btn--small {
@@ -123,11 +275,88 @@ p {
 }
 
 .btn--large {
-  padding: 1.2rem 2.5rem;
-  font-size: 1.1rem;
+  padding: 1.15rem 2.3rem;
+  font-size: 1.05rem;
 }
 
-/* ---------- Navigation ---------- */
+/* Pfeil, der beim Darüberfahren ein Stück mitläuft */
+.btn--arrow::after {
+  content: '→';
+  transition: transform 0.25s var(--ease-out);
+}
+
+/* Der wichtigste Button pulsiert leise im Takt: ein Ring, der sich löst */
+.btn--beat {
+  position: relative;
+}
+
+.btn--beat::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  animation: beat-ring calc(var(--beat) * 4) ease-out infinite;
+}
+
+@keyframes beat-ring {
+  0% { transform: scale(1); opacity: 0.7; }
+  45%, 100% { transform: scale(1.14, 1.5); opacity: 0; }
+}
+
+/* Hover nur dort, wo es eine Maus gibt — auf dem Handy bleibt sonst der
+   Hover-Zustand nach dem Tippen "kleben" */
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-2px);
+    background: #7be3ff;
+  }
+
+  .btn--ghost:hover {
+    background: rgba(var(--accent-rgb), 0.08);
+    border-color: var(--accent);
+  }
+
+  .btn--arrow:hover::after {
+    transform: translateX(4px);
+  }
+}
+
+/* Handgezeichnete Striche: Wörter mit data-scribble bekommen per JavaScript
+   einen Strich (underline) oder Kringel (circle), der sich selbst zeichnet.
+   Form und Länge passen sich automatisch an das Wort an. */
+.scribble {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  font-style: normal;
+}
+
+/* ein eingekringeltes Wort braucht links und rechts etwas Luft für den Kringel */
+.scribble[data-scribble='circle'] {
+  margin: 0 0.2em;
+}
+
+.scribble__svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.scribble__svg path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ==========================================================================
+   6  Navigation + Vollbild-Menü
+   ========================================================================== */
 .nav {
   position: fixed;
   top: 0;
@@ -138,12 +367,12 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 1.5rem 2rem;
-  min-height: var(--nav-height);
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
+  padding: 0 var(--gutter);
+  height: var(--nav-height);
+  background: rgba(0, 0, 0, 0.72);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  overflow: visible;
 }
 
 .nav__logo {
@@ -159,18 +388,48 @@ p {
   gap: 1.8rem;
   margin-right: auto;
   margin-left: 2rem;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s;
 }
 
 .nav__links a {
+  position: relative;
   color: var(--text-muted);
   font-size: 0.9rem;
   white-space: nowrap;
+  padding: 0.4rem 0;
   transition: color 0.2s ease;
 }
 
-.nav__links a:hover {
+/* feine Linie unter dem Link — bei der aktuellen Seite steht sie dauerhaft */
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+
+.nav__links a[aria-current='page'] {
   color: var(--text);
+}
+
+.nav__links a[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) {
+  .nav__links a:hover {
+    color: var(--text);
+  }
+
+  .nav__links a:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 /* ---------- Sprachauswahl ---------- */
@@ -179,19 +438,19 @@ p {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.8rem;
-  color: var(--text-muted);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: var(--text-dim);
+  transition: opacity 0.3s ease, visibility 0.3s;
 }
 
 .lang-switch__btn {
   background: none;
   border: none;
-  color: var(--text-muted);
+  color: var(--text-dim);
   font-family: var(--font-body);
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   cursor: pointer;
-  padding: 0.2rem 0.3rem;
+  padding: 0.4rem 0.3rem;
   transition: color 0.2s ease;
 }
 
@@ -206,7 +465,12 @@ p {
 
 .nav__cta {
   flex-shrink: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s, transform 0.25s var(--ease-out), background 0.25s ease;
+}
+
+/* Auf dem Handy steht nur die kurze Beschriftung im Button */
+.nav__cta-short {
+  display: none;
 }
 
 /* ---------- Menü-Button (fest neben dem Logo) ---------- */
@@ -219,8 +483,8 @@ p {
 
 .nav__burger {
   position: relative;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -240,8 +504,8 @@ p {
   height: 1.5px;
   border-radius: 2px;
   background: var(--text);
-  transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1),
-              transform 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+  transition: width 0.3s var(--ease),
+              transform 0.3s var(--ease),
               opacity 0.2s ease,
               background 0.25s ease;
 }
@@ -251,14 +515,16 @@ p {
 .nav__burger span:nth-child(2) { width: 11px; }
 .nav__burger span:nth-child(3) { width: 15px; }
 
-.nav__burger:hover {
-  border-color: rgba(var(--accent-rgb), 0.6);
-  background: rgba(var(--accent-rgb), 0.07);
-}
+@media (hover: hover) {
+  .nav__burger:hover {
+    border-color: rgba(var(--accent-rgb), 0.6);
+    background: rgba(var(--accent-rgb), 0.07);
+  }
 
-.nav__burger:hover span {
-  width: 18px;
-  background: var(--accent);
+  .nav__burger:hover span {
+    width: 18px;
+    background: var(--accent);
+  }
 }
 
 /* offen: aus den Strichen wird ein X */
@@ -277,21 +543,43 @@ p {
   transform: translateY(-6.5px) rotate(-45deg);
 }
 
-/* Bei offenem Menü treten die Nav-Elemente zurück — Logo und Button bleiben */
+/* Bei offenem Menü scrollt die Seite dahinter nicht mit … */
+html.menu-open,
+html.menu-open body {
+  overflow: hidden;
+}
+
+/* … und die Nav-Elemente treten zurück — Logo und Button bleiben */
+
 body.menu-open .nav__links,
 body.menu-open .nav .lang-switch,
 body.menu-open .nav__cta {
   opacity: 0;
+  visibility: hidden;   /* auch für die Tab-Taste nicht mehr erreichbar */
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
+/* Unter 980 px ist kein Platz mehr für die Linkleiste -> Menü-Button übernimmt.
+   Die Grenze steht in em (61.25em = 980 px bei normaler Schriftgröße): Wer im
+   Browser eine größere Schrift eingestellt hat, bekommt die kompakte Leiste
+   entsprechend früher, statt dass rechts etwas abgeschnitten wird. */
+@media (max-width: 61.25em) {
   .nav__links { display: none; }
-  .lang-switch { display: none; }
+  .nav .lang-switch { display: none; }
+}
+
+@media (max-width: 35em) {
+  .nav__cta-long { display: none; }
+  .nav__cta-short { display: inline; }
+  .nav__cta { padding: 0.6rem 1.1rem; }
+}
+
+/* sehr große Schrift auf sehr schmalem Screen: nur Logo und Menü-Button */
+@media (max-width: 19em) {
   .nav__cta { display: none; }
 }
 
-/* ---------- Vollbild-Menü-Overlay ---------- */
+/* ---------- Vollbild-Menü ---------- */
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -299,78 +587,132 @@ body.menu-open .nav__cta {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2.5rem;
-  background: rgba(0, 0, 0, 0.97);
-  backdrop-filter: blur(16px);
+  gap: 2.2rem;
+  padding: calc(var(--nav-height) + 1.5rem) var(--gutter) 2rem;
+  background: rgba(0, 0, 0, 0.985);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-12px);
-  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+  overflow-y: auto;
+  transition: opacity 0.35s ease, visibility 0.35s;
 }
 
 .menu-overlay.is-open {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
 }
 
 .menu-overlay__links {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: auto;      /* zusammen mit margin-bottom unten: senkrecht mittig, … */
+}
+
+.menu-overlay > :last-child {
+  margin-bottom: auto;   /* … aber von oben scrollbar, wenn der Platz nicht reicht */
+}
+
+/* Handy im Querformat: kleinere Links, damit alles ohne Scrollen passt */
+@media (max-height: 520px) {
+  .menu-overlay {
+    gap: 1rem;
+    padding-top: calc(var(--nav-height) + 0.75rem);
+    padding-bottom: 1rem;
+  }
+
+  .menu-overlay__links {
+    gap: 0;
+  }
+
+  .menu-overlay .menu-overlay__links a {
+    font-size: 1.6rem;
+  }
 }
 
 .menu-overlay__links a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-size: clamp(2.1rem, 8.5vw, 3.4rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
   color: var(--text);
-  transition: color 0.2s ease;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: color 0.2s ease, opacity 0.45s ease, transform 0.55s var(--ease-out);
 }
 
-.menu-overlay__links a:hover {
+.menu-overlay__num {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   color: var(--accent);
+  min-width: 1.6rem;
+}
+
+.menu-overlay__links a[aria-current='page'] {
+  color: var(--accent);
+}
+
+/* die Links kommen beim Öffnen nacheinander herein */
+.menu-overlay.is-open .menu-overlay__links a {
+  opacity: 1;
+  transform: none;
+}
+
+.menu-overlay.is-open .menu-overlay__links a:nth-child(1) { transition-delay: 0.06s; }
+.menu-overlay.is-open .menu-overlay__links a:nth-child(2) { transition-delay: 0.11s; }
+.menu-overlay.is-open .menu-overlay__links a:nth-child(3) { transition-delay: 0.16s; }
+.menu-overlay.is-open .menu-overlay__links a:nth-child(4) { transition-delay: 0.21s; }
+.menu-overlay.is-open .menu-overlay__links a:nth-child(5) { transition-delay: 0.26s; }
+
+@media (hover: hover) {
+  .menu-overlay__links a:hover {
+    color: var(--accent);
+  }
+}
+
+.menu-overlay__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 1.6rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.menu-overlay__meta a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--border-strong);
 }
 
 .lang-switch--overlay { font-size: 1rem; }
 .lang-switch--overlay .lang-switch__btn { font-size: 1rem; }
 
-/* ---------- Hero ----------
+/* ==========================================================================
+   7  Hero (Startseite)
    Aufbau in Ebenen (von hinten nach vorne):
-   .hero__bg     — schwarze Grundfläche (sofort sichtbar, bevor JS startet)
-   .hero__canvas — die abstrakte Animation (Lichtspuren), gezeichnet in js/script.js
-   .hero__glow   — zwei langsam driftende Farbschleier
-   .hero__grain  — feines Korn, damit es nicht digital-glatt wirkt
-   .hero__content— der Text darüber
-*/
+   .ambient       — das Punktfeld der ganzen Seite, hier oben am kräftigsten
+   .hero__glow    — zwei langsam driftende Farbschleier
+   .hero__scrim   — dunkler Schleier hinter dem Text, damit er lesbar bleibt
+   .hero__content — der Text
+   ========================================================================== */
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8rem 2rem 4rem;
+  padding: calc(var(--nav-height) + 3rem) var(--gutter) 5.5rem;
   text-align: center;
   overflow: hidden;
   isolation: isolate;
-}
-
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: -3;
-  background: var(--bg);
-}
-
-.hero__canvas {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 .hero__glow {
@@ -382,8 +724,7 @@ body.menu-open .nav__cta {
 }
 
 /* Wichtig: hier bewusst KEIN filter: blur(). Ein radialer Verlauf ist von sich
-   aus weich — ein zusätzlicher 90px-Weichzeichner sah identisch aus, kostete aber
-   den Großteil der Bildrate, solange die Animation darunter läuft. */
+   aus weich — ein zusätzlicher Weichzeichner kostet nur Bildrate. */
 .hero__glow::before,
 .hero__glow::after {
   content: '';
@@ -393,7 +734,6 @@ body.menu-open .nav__cta {
   min-width: 520px;
   min-height: 520px;
   border-radius: 50%;
-  mix-blend-mode: screen;
   will-change: transform;
 }
 
@@ -401,8 +741,8 @@ body.menu-open .nav__cta {
   top: -22%;
   left: -16%;
   background: radial-gradient(circle,
-    rgba(var(--accent-rgb), 0.30) 0%,
-    rgba(var(--accent-rgb), 0.14) 32%,
+    rgba(var(--accent-rgb), 0.26) 0%,
+    rgba(var(--accent-rgb), 0.12) 32%,
     transparent 72%);
   animation: drift-a 26s ease-in-out infinite alternate;
 }
@@ -411,8 +751,8 @@ body.menu-open .nav__cta {
   bottom: -26%;
   right: -16%;
   background: radial-gradient(circle,
-    rgba(var(--accent-rgb), 0.18) 0%,
-    rgba(var(--accent-rgb), 0.08) 32%,
+    rgba(var(--accent-rgb), 0.16) 0%,
+    rgba(var(--accent-rgb), 0.07) 32%,
     transparent 72%);
   animation: drift-b 34s ease-in-out infinite alternate;
 }
@@ -425,8 +765,6 @@ body.menu-open .nav__cta {
   to { transform: translate3d(-10vw, -6vh, 0) scale(1.12); }
 }
 
-/* Dunkler Schleier in der Mitte — damit die Schrift über der Animation
-   immer sauber lesbar bleibt, ohne dass der Hintergrund flach wirkt. */
 .hero__scrim {
   position: absolute;
   inset: 0;
@@ -438,8 +776,7 @@ body.menu-open .nav__cta {
     transparent 75%);
 }
 
-/* Auf schmalen Screens muss der Schleier breiter und kräftiger sein,
-   sonst laufen die Linien quer durch die Schrift. */
+/* Auf schmalen Screens muss der Schleier breiter und kräftiger sein */
 @media (max-width: 768px) {
   .hero__scrim {
     background: radial-gradient(ellipse 120% 48% at 50% 46%,
@@ -449,36 +786,27 @@ body.menu-open .nav__cta {
   }
 }
 
-/* Der harte Zeilenumbruch in der Headline ergibt nur auf breiten Screens Sinn */
+/* Der harte Zeilenumbruch in Headlines ergibt nur auf breiten Screens Sinn */
 .br-lg { display: inline; }
 
 @media (max-width: 720px) {
   .br-lg { display: none; }
 }
 
-.hero__grain {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.055;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 .hero__content {
   position: relative;
   z-index: 1;
-  max-width: 860px;
+  max-width: 880px;
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 6.2vw, 4.6rem);
+  font-size: clamp(2.5rem, 6.2vw, 4.6rem);
   margin-bottom: 1.5rem;
 }
 
 .hero__sub {
   color: var(--text-soft);
-  font-size: 1.08rem;
+  font-size: clamp(1.02rem, 1.3vw, 1.12rem);
   line-height: 1.65;
   max-width: 560px;
   margin: 0 auto 2.5rem;
@@ -491,12 +819,413 @@ body.menu-open .nav__cta {
   flex-wrap: wrap;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero__glow::before,
-  .hero__glow::after { animation: none; }
+/* kleiner Scroll-Hinweis unten im Hero */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  width: 26px;
+  height: 42px;
+  margin-left: -13px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
 }
 
-/* ---------- Services / Leistungen ---------- */
+.scroll-cue span {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--accent);
+  animation: cue calc(var(--beat) * 3) var(--ease) infinite;
+}
+
+@keyframes cue {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  70%, 100% { transform: translateY(15px); opacity: 0; }
+}
+
+@media (max-height: 640px) {
+  .scroll-cue { display: none; }
+}
+
+/* ==========================================================================
+   8  Animationsflächen (.viz)
+   Überall, wo später ein Foto hinkommt, liegt bis dahin eine <canvas>-
+   Animation (gezeichnet in js/visuals.js). Das Foto liegt darüber: Sobald
+   die Bilddatei existiert, verdeckt sie die Animation von selbst.
+   ========================================================================== */
+.viz {
+  position: relative;
+  overflow: hidden;
+  background: #060606;
+}
+
+.viz canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.viz img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ohne eigene Fläche: die Animation steht frei auf dem Seitenhintergrund */
+.viz--bare {
+  background: none;
+  overflow: visible;
+}
+
+.viz__label {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 0.95rem;
+  z-index: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--cream-rgb), 0.62);
+}
+
+/* Foto ist da -> Beschriftung der Animation ausblenden */
+.viz.has-photo .viz__label,
+.viz.has-photo .founder__initials {
+  display: none;
+}
+
+/* ==========================================================================
+   9  Projekte + Carousel
+   ========================================================================== */
+.projekte {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-padding);
+}
+
+.projekte h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.project__cover {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(340px, 54vh, 580px);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* etwas höher als der Rahmen, damit beim Scrollen Platz für den Versatz ist */
+.project__cover-bg {
+  position: absolute;
+  top: -8%;
+  left: 0;
+  right: 0;
+  height: 116%;
+  z-index: 0;
+}
+
+.project__cover-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  /* Verlauf, damit der Titel auch auf hellen Fotos lesbar bleibt */
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.78));
+}
+
+.project__cover-content h3 {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+}
+
+.project__cover-content .eyebrow {
+  margin-bottom: 0.6rem;
+}
+
+/* "Zum Projekt"-Marke oben rechts im Titelbild */
+.project__cover-go {
+  position: absolute;
+  top: clamp(1rem, 2.5vw, 1.5rem);
+  right: clamp(1rem, 2.5vw, 1.5rem);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.05rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.project__cover-go i,
+.service-card__more i,
+.back-link i {
+  font-style: normal;
+  display: inline-block;
+  transition: transform 0.25s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .project__cover:hover .project__cover-go {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #04141a;
+  }
+
+  .project__cover:hover .project__cover-go i {
+    transform: translateX(4px);
+  }
+}
+
+.project__body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.5rem 2rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+@media (max-width: 700px) {
+  .project__body {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}
+
+.project__text {
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  max-width: 58ch;
+}
+
+/* ---------- Bilder-Carousel ----------
+   Läuft über das eingebaute Scrollen des Browsers (scroll-snap): Auf dem
+   Handy folgt das Bild direkt dem Finger, am Laptop steuern Pfeile und Punkte. */
+.carousel {
+  position: relative;
+}
+
+.carousel__viewport {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: var(--radius);
+}
+
+.carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  height: clamp(320px, 56vh, 560px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.carousel__slide .viz,
+.case-gallery__item .viz {
+  position: absolute;
+  inset: 0;
+}
+
+.carousel__arrow {
+  position: absolute;
+  top: calc(50% - 1.5rem);   /* Mitte der Bildfläche (die Punkte darunter abgezogen) */
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .carousel__arrow:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #04141a;
+  }
+}
+
+.carousel__arrow--prev { left: 1rem; }
+.carousel__arrow--next { right: 1rem; }
+
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Der sichtbare Punkt ist klein, die Tippfläche drumherum aber groß genug
+   für einen Finger (der Punkt selbst ist das ::before). */
+.carousel__dot {
+  position: relative;
+  width: 22px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: width 0.25s ease;
+}
+
+.carousel__dot::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border-strong);
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.carousel__dot.is-active {
+  width: 38px;
+}
+
+.carousel__dot.is-active::before {
+  width: 24px;
+  background: var(--accent);
+}
+
+/* Handy: Bilder im Hochformat, das nächste schaut am Rand schon hervor —
+   so sieht man sofort, dass man wischen kann. Pfeile braucht es dann nicht. */
+@media (max-width: 700px) {
+  .carousel__viewport {
+    gap: 0.75rem;
+    margin: 0 calc(var(--gutter) * -1);
+    padding-left: var(--gutter);
+    scroll-padding-left: var(--gutter);
+    border-radius: 0;
+  }
+
+  /* Abstand nach dem letzten Bild */
+  .carousel__viewport::after {
+    content: '';
+    flex: 0 0 calc(var(--gutter) - 0.75rem);
+  }
+
+  .carousel__slide {
+    flex-basis: 84%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
+
+  .carousel__arrow {
+    display: none;
+  }
+
+  .carousel__dots {
+    margin-top: 0.6rem;
+  }
+}
+
+/* ==========================================================================
+   10  Laufband / Ausblick
+   Zwei Zeilen, die gegeneinander laufen: eine gefüllt, eine als Outline.
+   Die Bewegung steuert js/script.js: Dort wird die echte Breite gemessen
+   und in Pixeln animiert — das Tempo lässt sich dort anpassen.
+   ========================================================================== */
+.next {
+  position: relative;
+  padding: clamp(2.6rem, 6vw, 4.5rem) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  background: #040404;
+}
+
+.next__row {
+  display: flex;
+  width: max-content;
+  will-change: transform; /* eigene Ebene: wird vorab gezeichnet, läuft ohne Ruckler */
+}
+
+.next__row--b { margin-top: 0.3rem; }
+
+.next__group {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.3rem, 3vw, 2.2rem);
+  padding-right: clamp(1.3rem, 3vw, 2.2rem);
+}
+
+.next__word {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 6.5vw, 4.6rem);
+  line-height: 1.02;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+
+/* Outline-Variante: Schrift ohne Füllung, nur Kontur in Akzentfarbe */
+.next__word--outline {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(var(--accent-rgb), 0.65);
+}
+
+/* kleine gedrehte Raute als Trenner — sie pulsiert im Takt */
+.next__mark {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  animation: mark-beat calc(var(--beat) * 2) ease-out infinite;
+}
+
+@keyframes mark-beat {
+  0% { transform: rotate(45deg) scale(1.45); }
+  40%, 100% { transform: rotate(45deg) scale(1); }
+}
+
+/* ==========================================================================
+   11  Leistungen (Karten auf der Startseite)
+   ========================================================================== */
 .services {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -505,13 +1234,13 @@ body.menu-open .nav__cta {
 
 .services h2 {
   font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 3.5rem;
+  margin-bottom: clamp(2.2rem, 5vw, 3.5rem);
 }
 
 .services__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: clamp(1rem, 2.4vw, 2rem);
 }
 
 @media (max-width: 900px) {
@@ -519,17 +1248,22 @@ body.menu-open .nav__cta {
 }
 
 .service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: 1.2rem;
-  padding: 2.5rem 2rem;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  border-radius: var(--radius);
+  padding: clamp(1.6rem, 3vw, 2.2rem);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease-out), border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.service-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-  box-shadow: 0 20px 40px rgba(var(--accent-rgb), 0.08);
+/* das kleine animierte Zeichen oben in der Karte */
+.service-card__viz {
+  width: 100px;
+  height: 100px;
+  margin: -0.5rem 0 1.3rem -0.6rem;
 }
 
 .service-card__number {
@@ -541,7 +1275,7 @@ body.menu-open .nav__cta {
 
 .service-card h3 {
   font-size: 1.4rem;
-  margin: 1rem 0 0.8rem;
+  margin: 0.8rem 0 0.8rem;
 }
 
 .service-card p {
@@ -550,7 +1284,83 @@ body.menu-open .nav__cta {
   line-height: 1.72;
 }
 
-/* ---------- Wer sind wir ---------- */
+.service-card__more {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+@media (hover: hover) {
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(var(--accent-rgb), 0.7);
+    box-shadow: 0 20px 40px rgba(var(--accent-rgb), 0.08);
+  }
+
+  .service-card:hover .service-card__more i {
+    transform: translateX(4px);
+  }
+}
+
+/* Auf dem Handy: Zeichen rechts oben neben Nummer und Titel, spart Höhe */
+@media (max-width: 900px) {
+  .service-card__viz {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    width: 80px;
+    height: 80px;
+    margin: 0;
+  }
+
+  .service-card h3 {
+    max-width: calc(100% - 86px);
+  }
+}
+
+/* Sehr schmale Handys: lange deutsche Wörter ("Markenstrategie") dürfen
+   in den kleineren Überschriften getrennt werden, statt überzulaufen */
+@media (max-width: 420px) {
+  .service-card h3,
+  .process__step h3,
+  .founder h3,
+  .project-card h2,
+  .story__block h2,
+  .service-detail h2 {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Lichtfleck, der der Maus über Karten folgt (Karten mit data-spot) */
+[data-spot] {
+  --mx: 50%;
+  --my: 50%;
+}
+
+[data-spot]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(440px circle at var(--mx) var(--my), rgba(var(--accent-rgb), 0.12), transparent 62%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+@media (hover: hover) {
+  [data-spot]:hover::after {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   12  Wer sind wir
+   ========================================================================== */
 .about {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -564,7 +1374,7 @@ body.menu-open .nav__cta {
 
 .about__lead {
   color: var(--text-soft);
-  font-size: 1.22rem;
+  font-size: clamp(1.08rem, 1.7vw, 1.22rem);
   line-height: 1.6;
   max-width: 44ch;
 }
@@ -573,8 +1383,8 @@ body.menu-open .nav__cta {
 .founders {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin: 4rem 0 5rem;
+  gap: clamp(1rem, 2.4vw, 2rem);
+  margin: clamp(2.5rem, 6vw, 4rem) 0 0;
 }
 
 @media (max-width: 800px) {
@@ -584,46 +1394,42 @@ body.menu-open .nav__cta {
 .founder {
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: 1.2rem;
+  border-radius: var(--radius);
   overflow: hidden;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.3s var(--ease-out), border-color 0.25s ease;
 }
 
-.founder:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
+@media (hover: hover) {
+  .founder:hover {
+    transform: translateY(-5px);
+    border-color: rgba(var(--accent-rgb), 0.7);
+  }
 }
 
+/* Foto liegt über der Animation. Fehlt die Datei, entfernt sich das <img>
+   selbst (onerror im HTML) und Animation + Initialen bleiben sichtbar. */
 .founder__media {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  background: #0d0d0d;
+  aspect-ratio: 1 / 1;
+  border-bottom: 1px solid var(--border);
 }
 
-/* Foto liegt über dem Platzhalter. Fehlt die Datei, entfernt sich das <img>
-   selbst (onerror in index.html) und der Platzhalter bleibt sichtbar. */
-.founder__media img {
+.founder__initials {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.founder__ph {
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px dashed var(--border);
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4.5rem, 15vw, 8.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(var(--cream-rgb), 0.85);
 }
 
 .founder__body {
-  padding: 1.8rem;
+  padding: clamp(1.4rem, 3vw, 1.8rem);
 }
 
 .founder__role {
@@ -640,11 +1446,10 @@ body.menu-open .nav__cta {
 }
 
 .founder__meta {
-  color: var(--text-muted);
+  color: var(--text-dim);
   font-size: 0.82rem;
   letter-spacing: 0.03em;
   margin-bottom: 1rem;
-  opacity: 0.85;
 }
 
 .founder__text {
@@ -672,16 +1477,37 @@ body.menu-open .nav__cta {
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
-.founder:hover .tags li {
-  border-color: rgba(var(--accent-rgb), 0.35);
-  color: var(--text-soft);
+@media (hover: hover) {
+  .founder:hover .tags li {
+    border-color: rgba(var(--accent-rgb), 0.35);
+    color: var(--text-soft);
+  }
+}
+
+.section-more {
+  margin-top: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+/* auf der Seite "Wer sind wir?" folgen die Karten direkt auf den Seitenkopf */
+.about--page {
+  padding-top: 0;
+}
+
+.about--page .founders {
+  margin-top: 0;
 }
 
 /* Geschichte / Unterschied */
+.story-section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter) var(--section-y);
+}
+
 .story {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
+  gap: clamp(2.2rem, 5vw, 3rem);
 }
 
 @media (max-width: 800px) {
@@ -705,8 +1531,8 @@ body.menu-open .nav__cta {
   background: var(--accent);
 }
 
-.story__block h3 {
-  font-size: 1.35rem;
+.story__block h2 {
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
   margin-bottom: 0.9rem;
 }
 
@@ -716,11 +1542,14 @@ body.menu-open .nav__cta {
   max-width: 54ch;
 }
 
-/* ---------- Statement (Warum onside?) ----------
-   Dahinter liegen zwei langsam rotierende Ringe als abstraktes Grafikelement. */
+/* ==========================================================================
+   13  Statement (Warum onside?)
+   Oben die Taktiktafel (Abseits -> Onside), dahinter zwei langsam
+   rotierende Ringe als abstraktes Grafikelement.
+   ========================================================================== */
 .statement {
   position: relative;
-  padding: 7rem 2rem 8rem;
+  padding: clamp(4.5rem, 10vw, 7rem) var(--gutter) clamp(5rem, 11vw, 8rem);
   overflow: hidden;
   isolation: isolate;
 }
@@ -731,6 +1560,15 @@ body.menu-open .nav__cta {
   max-width: 940px;
   margin: 0 auto;
   text-align: center;
+}
+
+.statement__board {
+  width: 100%;
+  max-width: 620px;
+  height: clamp(160px, 27vw, 214px);
+  margin: 0.4rem auto clamp(1.8rem, 4vw, 2.6rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
 .statement__rings {
@@ -760,7 +1598,7 @@ body.menu-open .nav__cta {
   width: 880px;
   height: 880px;
   border-style: solid;
-  border-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(var(--cream-rgb), 0.06);
   animation: spin-center 90s linear infinite reverse;
 }
 
@@ -769,14 +1607,9 @@ body.menu-open .nav__cta {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .statement__rings::before,
-  .statement__rings::after { animation: none; }
-}
-
 .statement__text {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3.6vw, 2.5rem);
+  font-size: clamp(1.4rem, 3.6vw, 2.5rem);
   font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -787,231 +1620,9 @@ body.menu-open .nav__cta {
   color: var(--accent);
 }
 
-/* ---------- Laufband / Ausblick ----------
-   Zwei Zeilen, die gegeneinander laufen: eine gefüllt, eine als Outline.
-   Oben und unten eine Haarlinie, dazwischen schwarz — liest sich als
-   bewusst gesetztes Gestaltungselement, nicht als Platzhalter.
-   Die Bewegung steuert js/script.js (Abschnitt 5): Dort wird die echte
-   Breite gemessen und in Pixeln animiert — Tempo lässt sich dort anpassen. */
-.next {
-  position: relative;
-  padding: 4.5rem 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  overflow: hidden;
-  background: #040404;
-}
-
-.next__row {
-  display: flex;
-  width: max-content;
-  will-change: transform; /* eigene Ebene: wird vorab gezeichnet, läuft ohne Ruckler */
-}
-
-.next__row--b { margin-top: 0.3rem; }
-
-.next__group {
-  display: flex;
-  align-items: center;
-  gap: 2.2rem;
-  padding-right: 2.2rem;
-}
-
-.next__word {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.9rem, 6.5vw, 4.6rem);
-  line-height: 1.02;
-  text-transform: uppercase;
-  letter-spacing: -0.025em;
-  white-space: nowrap;
-}
-
-/* Outline-Variante: Schrift ohne Füllung, nur Kontur in Akzentfarbe */
-.next__word--outline {
-  color: transparent;
-  -webkit-text-stroke: 1.2px rgba(var(--accent-rgb), 0.65);
-}
-
-/* kleine gedrehte Raute als Trenner zwischen den Durchläufen */
-.next__mark {
-  flex-shrink: 0;
-  width: 12px;
-  height: 12px;
-  background: var(--accent);
-  transform: rotate(45deg);
-}
-
-/* ---------- Projekte ---------- */
-.projekte {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--section-padding);
-}
-
-.projekte h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 3.5rem;
-}
-
-.project__cover {
-  position: relative;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  min-height: 50vh;
-  display: flex;
-  align-items: flex-end;
-  margin-bottom: 3rem;
-}
-
-.project__cover-bg {
-  position: absolute;
-  top: -8%;
-  left: 0;
-  right: 0;
-  height: 116%;
-  z-index: 0;
-  /* Platzhalter — später durch ein Titelbild vom Event ersetzen */
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.75)),
-    radial-gradient(circle at 30% 20%, rgba(var(--accent-rgb), 0.16), transparent 55%),
-    var(--bg-elevated);
-}
-
-.project__cover-img,
-.project__cover-video {
-  position: absolute;
-  top: -8%;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 116%;
-  object-fit: cover;
-}
-
-.project__cover-content {
-  position: relative;
-  z-index: 1;
-  padding: 2.5rem;
-  /* Verlauf, damit der Titel auch auf hellen Fotos lesbar bleibt */
-  width: 100%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-}
-
-.project__cover-content h3 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-}
-
-.project__body {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-@media (max-width: 700px) {
-  .project__body { grid-template-columns: 1fr; }
-}
-
-.project__text {
-  color: var(--text-muted);
-  font-size: 1.02rem;
-  line-height: 1.75;
-  max-width: 58ch;
-}
-
-/* ---------- Bilder-Carousel (Projekte → Berlin Night Run) ---------- */
-.project__carousel { position: relative; }
-
-.carousel__viewport {
-  overflow: hidden;
-  border-radius: 1.2rem;
-}
-
-.carousel__track {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.carousel__slide {
-  position: relative;
-  flex: 0 0 100%;
-  min-width: 0;
-  height: 56vh;
-  min-height: 320px;
-  max-height: 560px;
-}
-
-/* Wie bei den Gründerkarten: Foto liegt über dem Platzhalter */
-.carousel__slide img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.carousel__arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.6);
-  color: var(--text);
-  font-size: 1.1rem;
-  cursor: pointer;
-  backdrop-filter: blur(6px);
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.carousel__arrow:hover {
-  border-color: var(--accent);
-  background: rgba(0, 0, 0, 0.85);
-}
-
-.carousel__arrow--prev { left: 1rem; }
-.carousel__arrow--next { right: 1rem; }
-
-.carousel__dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1.5rem;
-}
-
-.carousel__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--border);
-  border: none;
-  cursor: pointer;
-  transition: width 0.25s ease, background 0.25s ease;
-}
-
-.carousel__dot.is-active {
-  width: 24px;
-  background: var(--accent);
-}
-
-.gallery-item__ph {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-elevated);
-  border: 1px dashed var(--border);
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-/* ---------- Contact ---------- */
+/* ==========================================================================
+   14  Kontakt + Formular
+   ========================================================================== */
 .contact {
   max-width: 760px;
   margin: 0 auto;
@@ -1032,115 +1643,6 @@ body.menu-open .nav__cta {
   margin: 0 auto 2.5rem;
 }
 
-/* ---------- Footer ---------- */
-.footer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 2rem;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-
-.footer__links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.footer__links a {
-  position: relative;
-  transition: color 0.2s ease;
-}
-
-.footer__links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 1px;
-  background: var(--accent);
-  transition: width 0.25s ease;
-}
-
-.footer__links a:hover {
-  color: var(--text);
-}
-
-.footer__links a:hover::after {
-  width: 100%;
-}
-
-/* ---------- Scroll-Reveal-Basiszustand ----------
-   Die eigentliche Animation (Einblenden + nach oben) übernimmt GSAP
-   in js/script.js. Hier nur der "unsichtbare" Startzustand. */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-/* ---------- Rechtsseiten (Impressum / Datenschutz) ---------- */
-.nav--simple {
-  position: sticky;
-  background: rgba(0, 0, 0, 0.85);
-}
-
-.legal {
-  max-width: 740px;
-  margin: 0 auto;
-  padding: 10rem 2rem 6rem;
-}
-
-.legal h1 {
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  margin-bottom: 2.5rem;
-}
-
-.legal h2 {
-  font-size: 1.15rem;
-  margin: 2.8rem 0 0.8rem;
-  padding-top: 1.6rem;
-  border-top: 1px solid var(--border);
-  position: relative;
-}
-
-/* gleicher Akzentstrich wie in den Textblöcken auf der Startseite */
-.legal h2::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 40px;
-  height: 1px;
-  background: var(--accent);
-}
-
-.legal p {
-  color: var(--text-muted);
-  line-height: 1.8;
-  font-size: 0.97rem;
-}
-
-.legal a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-/* Noch auszufüllende Stellen — rot markiert, damit nichts übersehen wird.
-   Sobald alles eingetragen ist, einfach die <span class="todo">-Markierungen
-   entfernen (oder diese Regel löschen). */
-.todo {
-  color: #ff6b6b;
-  font-style: italic;
-}
-
-/* ---------- Kontaktformular ---------- */
 .contact-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1155,8 +1657,7 @@ body.menu-open .nav__cta {
 
 .field--full { grid-column: 1 / -1; }
 
-.field label,
-.consent span {
+.field label {
   display: block;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
@@ -1165,8 +1666,9 @@ body.menu-open .nav__cta {
   margin-bottom: 0.55rem;
 }
 
-.contact-form input[type="text"],
-.contact-form input[type="email"],
+/* Schriftgröße 16px: darunter zoomt das iPhone beim Antippen ins Feld hinein */
+.contact-form input[type='text'],
+.contact-form input[type='email'],
 .contact-form textarea {
   width: 100%;
   background: var(--bg-elevated);
@@ -1175,9 +1677,11 @@ body.menu-open .nav__cta {
   padding: 0.95rem 1.1rem;
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 0.97rem;
+  font-size: 1rem;
   line-height: 1.6;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .contact-form textarea {
@@ -1187,14 +1691,15 @@ body.menu-open .nav__cta {
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #6c757d;
+  color: #7d7567;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--accent);
-  background: #171717;
+  background: var(--bg-raised);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.12);
 }
 
 /* Spam-Falle — für Menschen unsichtbar */
@@ -1212,21 +1717,20 @@ body.menu-open .nav__cta {
   cursor: pointer;
 }
 
-.consent input[type="checkbox"] {
+.consent input[type='checkbox'] {
   margin-top: 0.15rem;
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   accent-color: var(--accent);
   flex-shrink: 0;
   cursor: pointer;
 }
 
 .consent span {
-  text-transform: none;
-  letter-spacing: 0;
+  display: block;
+  color: var(--text-muted);
   font-size: 0.85rem;
   line-height: 1.6;
-  margin-bottom: 0;
 }
 
 .consent a {
@@ -1253,10 +1757,17 @@ body.menu-open .nav__cta {
   font-size: 0.9rem;
   min-height: 1.3em;
   margin: 0;
+  text-align: center;
 }
 
 .contact-form__status.is-ok { color: var(--accent); }
-.contact-form__status.is-error { color: #ff6b6b; }
+.contact-form__status.is-error { color: #ff8a7a; }
+
+.contact-form__status a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 .contact__fallback {
   color: var(--text-muted);
@@ -1271,3 +1782,1057 @@ body.menu-open .nav__cta {
 }
 
 .contact__fallback a:hover { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .contact-form .btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   15  Footer
+   ========================================================================== */
+.footer {
+  position: relative;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.55), #000 55%);
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 2.5rem 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: clamp(2.8rem, 6vw, 4.5rem) var(--gutter) 0;
+}
+
+.footer__logo {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+}
+
+.footer__brand p {
+  max-width: 30ch;
+  line-height: 1.65;
+}
+
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.footer__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.footer__nav a,
+.footer__links a {
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color 0.2s ease;
+}
+
+.footer__nav a::after,
+.footer__links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0.15rem;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+@media (hover: hover) {
+  .footer__nav a:hover,
+  .footer__links a:hover {
+    color: var(--text);
+  }
+
+  .footer__nav a:hover::after,
+  .footer__links a:hover::after {
+    width: 100%;
+  }
+}
+
+/* Großer Schriftzug: nur Kontur, darüber wandert langsam ein Lichtstreifen */
+.footer__mark {
+  margin: clamp(1.5rem, 4vw, 3rem) 0 0;
+  padding: 0 0 0.04em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4rem, 27.5vw, 23rem);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(var(--cream-rgb), 0.3);
+  background: linear-gradient(100deg,
+    transparent 42%,
+    rgba(var(--accent-rgb), 0.55) 50%,
+    transparent 58%) 120% 0 / 260% 100% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: mark-sweep 9s linear infinite;
+}
+
+@keyframes mark-sweep {
+  0% { background-position: 120% 0; }
+  60%, 100% { background-position: -20% 0; }
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2rem;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.4rem var(--gutter) 1.8rem;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.footer__links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+@media (max-width: 700px) {
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer__bottom {
+    justify-content: flex-start;
+  }
+}
+
+/* ==========================================================================
+   16  Unterseiten
+   ========================================================================== */
+
+/* ---------- Seitenkopf ---------- */
+.page-hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + clamp(3rem, 9vw, 6.5rem)) var(--gutter) clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.page-hero h1 {
+  font-size: clamp(2.4rem, 6.4vw, 4.6rem);
+  max-width: 17ch;
+  margin-bottom: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.page-hero__lead {
+  color: var(--text-soft);
+  font-size: clamp(1.06rem, 1.7vw, 1.25rem);
+  line-height: 1.62;
+  max-width: 54ch;
+}
+
+/* Text links, Animation rechts */
+.page-hero--split {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.page-hero__viz {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 860px) {
+  .page-hero--split {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero__viz {
+    aspect-ratio: 16 / 11;
+  }
+}
+
+/* zentriert und bildschirmhoch (404-Seite) */
+.page-hero--center {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.page-hero--center h1 {
+  font-size: clamp(3.4rem, 12vw, 7rem);
+  max-width: none;
+}
+
+.page-hero--center .page-hero__lead {
+  margin: 0 auto 2.2rem;
+}
+
+/* Sprungmarken als kleine Pillen */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.chips a {
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  background: rgba(0, 0, 0, 0.35);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+@media (hover: hover) {
+  .chips a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+/* Liste mit Rauten als Aufzählungszeichen */
+.checklist {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.8rem;
+}
+
+.checklist li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--text-soft);
+  font-size: 0.97rem;
+  line-height: 1.45;
+}
+
+.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 0.42em;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+@media (max-width: 480px) {
+  .checklist { grid-template-columns: 1fr; }
+}
+
+/* Abschluss jeder Unterseite: große Frage + Buttons */
+.cta-band {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-y) var(--gutter);
+  text-align: center;
+}
+
+.cta-band h2 {
+  font-size: clamp(1.75rem, 5vw, 3.6rem);
+  max-width: 19ch;
+  margin: 0 auto clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+@media (max-width: 560px) {
+  .cta-band__actions .btn {
+    width: 100%;
+  }
+}
+
+/* ---------- Projekte-Übersicht ---------- */
+.project-list {
+  display: grid;
+  gap: clamp(1rem, 2.4vw, 2rem);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter) var(--section-y);
+}
+
+.project-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease-out), border-color 0.25s ease;
+}
+
+.project-card__media {
+  min-height: clamp(240px, 34vw, 420px);
+}
+
+.project-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.project-card__body .eyebrow {
+  margin-bottom: 0.7rem;
+}
+
+.project-card h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.project-card p:not(.eyebrow) {
+  color: var(--text-muted);
+  line-height: 1.72;
+  margin-bottom: 1.6rem;
+  max-width: 42ch;
+}
+
+/* zweite Karte gespiegelt: Text links, Animation rechts */
+.project-card--next {
+  grid-template-columns: 1fr 1.25fr;
+}
+
+.project-card--next .project-card__media {
+  order: 2;
+}
+
+.project-card--next h2 {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+}
+
+@media (hover: hover) {
+  .project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(var(--accent-rgb), 0.7);
+  }
+
+  .project-card:hover .btn {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #04141a;
+  }
+
+  .project-card:hover .btn--arrow::after {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 800px) {
+  .project-card,
+  .project-card--next {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card--next .project-card__media {
+    order: 0;
+  }
+
+  .project-card__media {
+    min-height: 0;
+    aspect-ratio: 16 / 11;
+  }
+}
+
+/* ---------- Projektseite ---------- */
+.case-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(520px, 88vh, 880px);
+  min-height: clamp(520px, 88svh, 880px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.case-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* dunkler Verlauf über Foto/Animation, damit Titel und Menü lesbar bleiben */
+.case-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0) 28%,
+    rgba(0, 0, 0, 0.18) 52%,
+    rgba(0, 0, 0, 0.94) 100%);
+}
+
+.case-hero__content {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 2rem) var(--gutter) clamp(2.2rem, 6vw, 4.5rem);
+}
+
+.case-hero h1 {
+  font-size: clamp(3.4rem, 13vw, 9rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin-bottom: clamp(1rem, 2.5vw, 1.6rem);
+}
+
+.case-hero__lead {
+  color: var(--text-soft);
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+  line-height: 1.6;
+  max-width: 50ch;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.6rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .back-link:hover { color: var(--accent); }
+  .back-link:hover i { transform: translateX(-4px); }
+}
+
+/* Eckdaten */
+.facts {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.facts__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.facts__item {
+  padding: clamp(1.2rem, 3vw, 1.8rem) clamp(1rem, 2vw, 1.5rem) clamp(1.2rem, 3vw, 1.8rem) 0;
+}
+
+.facts__item + .facts__item {
+  padding-left: clamp(1rem, 2vw, 1.5rem);
+  border-left: 1px solid var(--border);
+}
+
+.facts dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.facts dd {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+@media (max-width: 860px) {
+  .facts__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .facts__item:nth-child(odd) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .facts__item:nth-child(n + 3) {
+    border-top: 1px solid var(--border);
+  }
+}
+
+/* Textabschnitt: Überschrift links, Text rechts */
+.case-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.4rem, 5vw, 4rem);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-y) var(--gutter);
+}
+
+.case-section h2,
+.case-route h2,
+.case-gallery h2,
+.process h2 {
+  font-size: clamp(1.8rem, 3.8vw, 2.9rem);
+}
+
+.case-section__body p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.78;
+  max-width: 56ch;
+}
+
+@media (max-width: 800px) {
+  .case-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ablauf als gezeichnete Route */
+.case-route,
+.case-gallery {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.case-route h2,
+.case-gallery h2 {
+  margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+}
+
+.case-route__viz {
+  aspect-ratio: 21 / 8;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 800px) {
+  .case-route__viz { aspect-ratio: 4 / 3; }
+}
+
+@media (max-width: 480px) {
+  .case-route__viz { aspect-ratio: 1 / 1; }
+}
+
+/* Galerie: ein breites Bild oben, darunter Querformate (3:2) zu zweit und
+   Hochformate (4:5, Klasse case-gallery__item--tall) zu dritt. Das Raster hat
+   sechs Spalten: quer belegt drei, hoch zwei. "dense" füllt Lücken auf. */
+.case-gallery {
+  padding-bottom: clamp(1rem, 3vw, 2rem);
+}
+
+.case-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-flow: row dense;
+  gap: clamp(0.75rem, 1.6vw, 1.2rem);
+}
+
+.case-gallery__item {
+  position: relative;
+  grid-column: span 3;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.case-gallery__item--tall {
+  grid-column: span 2;
+  aspect-ratio: 4 / 5;
+}
+
+.case-gallery__item:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 21 / 9;
+}
+
+/* Handy: quer über die volle Breite, hoch zu zweit nebeneinander */
+@media (max-width: 640px) {
+  .case-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-gallery__item,
+  .case-gallery__item:first-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 3 / 2;
+  }
+
+  .case-gallery__item--tall {
+    grid-column: span 1;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* ---------- Leistungen-Seite ---------- */
+.service-detail {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(1.6rem, 6vw, 5rem);
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) var(--gutter);
+}
+
+.service-detail__viz {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+/* jede zweite Leistung gespiegelt */
+.service-detail--flip .service-detail__viz {
+  order: 2;
+}
+
+.service-detail__number {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+
+.service-detail h2 {
+  font-size: clamp(1.9rem, 4.2vw, 3.2rem);
+  margin-bottom: 1.2rem;
+}
+
+.service-detail__text > p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.78;
+  max-width: 54ch;
+}
+
+@media (max-width: 860px) {
+  .service-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .service-detail__viz,
+  .service-detail--flip .service-detail__viz {
+    order: 0;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Ablauf in vier Schritten */
+.process {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-y) var(--gutter) 0;
+}
+
+.process h2 {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.process__steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.2rem, 2.5vw, 2rem);
+}
+
+.process__step {
+  position: relative;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Raute auf der Linie — wie ein Punkt auf einer Strecke */
+.process__step::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+.process__num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.process__step h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.process__step p {
+  color: var(--text-muted);
+  font-size: 0.97rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .process__steps {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2.2rem;
+  }
+}
+
+/* Handy: die Schritte untereinander an einer senkrechten Linie */
+@media (max-width: 560px) {
+  .process__steps {
+    grid-template-columns: 1fr;
+    row-gap: 0;
+    border-left: 1px solid var(--border);
+  }
+
+  .process__step {
+    border-top: none;
+    padding: 0 0 2rem 1.5rem;
+  }
+
+  .process__step:last-child {
+    padding-bottom: 0.2rem;
+  }
+
+  .process__step::before {
+    top: 0.3rem;
+    left: -5px;
+  }
+}
+
+/* ---------- Kontakt-Seite ----------
+   Zwei Spalten: links Überschrift, Kontaktwege und Ablauf, rechts das
+   Formular. Es bleibt beim Scrollen stehen (position: sticky). */
+.contact-page {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  grid-template-areas:
+    'intro form'
+    'info form';
+  column-gap: clamp(2rem, 6vw, 5rem);
+  row-gap: clamp(2rem, 4vw, 3rem);
+  align-items: start;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + clamp(2.5rem, 8vw, 5.5rem)) var(--gutter) var(--section-y);
+}
+
+.contact-page__intro { grid-area: intro; }
+.contact-page__info { grid-area: info; }
+
+.contact-page__form {
+  grid-area: form;
+  position: sticky;
+  top: calc(var(--nav-height) + 1.5rem);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.3rem, 3.5vw, 2.4rem);
+}
+
+.contact-page h1 {
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  margin-bottom: clamp(1.1rem, 2.5vw, 1.6rem);
+}
+
+.contact-page__viz {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.contact-page__block + .contact-page__block {
+  margin-top: 2.2rem;
+}
+
+.contact-page h2 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.contact-list {
+  list-style: none;
+}
+
+.contact-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--border);
+  color: var(--text-soft);
+}
+
+.contact-list li:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-list span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.contact-list em {
+  font-style: normal;
+}
+
+.contact-list a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--border-strong);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .contact-list a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+}
+
+.steps-mini {
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps-mini li {
+  position: relative;
+  counter-increment: step;
+  padding: 0 0 1rem 2.4rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.steps-mini li::before {
+  content: '0' counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.contact-page__form .contact-form {
+  grid-template-columns: minmax(0, 1fr);   /* in der schmaleren Spalte: Felder untereinander */
+  margin-bottom: 0;
+}
+
+.contact-page__form .contact-form input[type='text'],
+.contact-page__form .contact-form input[type='email'],
+.contact-page__form .contact-form textarea {
+  background: #0b0a09;
+}
+
+/* Handy: Überschrift, dann gleich das Formular, danach die übrigen Infos */
+@media (max-width: 860px) {
+  .contact-page {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'intro'
+      'form'
+      'info';
+  }
+
+  .contact-page__form {
+    position: static;
+  }
+}
+
+/* Auf flachen Bildschirmen (kleine Laptops) wäre der Senden-Button sonst
+   unter dem Rand versteckt, solange das Formular stehen bleibt. */
+@media (max-height: 860px) {
+  .contact-page__form {
+    position: static;
+  }
+}
+
+/* ==========================================================================
+   17  Rechtsseiten (Impressum / Datenschutz)
+   ========================================================================== */
+.legal {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + clamp(3rem, 8vw, 5.5rem)) var(--gutter) var(--section-y);
+}
+
+.legal h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  margin-bottom: 2.5rem;
+  overflow-wrap: break-word;
+}
+
+.legal h2 {
+  font-size: 1.15rem;
+  margin: 2.8rem 0 0.8rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+/* gleicher Akzentstrich wie in den Textblöcken */
+.legal h2::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.legal p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-size: 0.97rem;
+}
+
+.legal a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal .eyebrow {
+  color: var(--accent);
+  line-height: 1.5;
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   18  Einblenden beim Scrollen
+   Die Animation selbst übernimmt GSAP in js/script.js. Hier steht nur der
+   unsichtbare Startzustand — und zwar nur, wenn JavaScript läuft (.js).
+   Ohne JavaScript ist einfach alles sofort sichtbar.
+   ========================================================================== */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Überschriften mit data-split kommen Wort für Wort von unten herein.
+   .w ist die "Maske" um jedes Wort, .w__i das Wort selbst. */
+.js [data-split] {
+  visibility: hidden;
+}
+
+.js [data-split].is-split {
+  visibility: visible;
+}
+
+.w {
+  display: inline-block;
+  -webkit-clip-path: inset(-0.25em -0.2em -0.02em -0.2em);
+  clip-path: inset(-0.25em -0.2em -0.02em -0.2em);
+}
+
+.w__i {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* fertig eingeblendet -> Maske wieder öffnen (sonst würde sie den
+   handgezeichneten Strich unter dem Wort abschneiden) */
+.is-revealed .w {
+  -webkit-clip-path: none;
+  clip-path: none;
+}
+
+.is-revealed .w__i {
+  will-change: auto;
+}
+
+/* Sicherheitsnetz, falls das Skript nicht startet (siehe <head>) */
+.no-anim .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.no-anim [data-split] {
+  visibility: visible !important;
+}
+
+/* ==========================================================================
+   Wer am Gerät "Bewegung reduzieren" eingeschaltet hat, bekommt eine ruhige
+   Seite: keine Dauerschleifen, Texte sofort sichtbar. Die Canvas-Animationen
+   zeigen dann ein Standbild (geregelt in js/visuals.js).
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  @view-transition { navigation: none; }
+
+  .hero__glow::before,
+  .hero__glow::after,
+  .statement__rings::before,
+  .statement__rings::after,
+  .btn--beat::before,
+  .scroll-cue span,
+  .next__mark,
+  .footer__mark {
+    animation: none;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js [data-split] {
+    visibility: visible;
+  }
+}

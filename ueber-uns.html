@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wer sind wir? – onside.hq</title>
+  <meta name="description" content="onside.hq ist ein Studio für Events, Marken und Content – gegründet von Julian Seibt und Malte Gerdes." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/ueber-uns" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Wer sind wir? – onside.hq" />
+  <meta property="og:description" content="onside.hq ist ein Studio für Events, Marken und Content – gegründet von Julian Seibt und Malte Gerdes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/ueber-uns" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="css/styles.css?v=5" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="ueber-uns">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – zur Startseite">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="index.html">Home</a>
+      <a href="projekte.html">Projekte</a>
+      <a href="leistungen.html">Leistungen</a>
+      <a href="ueber-uns.html" aria-current="page">Wer sind wir?</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <div class="lang-switch">
+      <button class="lang-switch__btn is-active" data-lang="de" type="button">DE</button>
+      <span class="lang-switch__divider">/</span>
+      <button class="lang-switch__btn" data-lang="en" type="button">EN</button>
+    </div>
+
+    <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menü">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projekte.html"><span class="menu-overlay__num">02</span>Projekte</a>
+      <a href="leistungen.html"><span class="menu-overlay__num">03</span>Leistungen</a>
+      <a href="ueber-uns.html" aria-current="page"><span class="menu-overlay__num">04</span>Wer sind wir?</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">05</span>Kontakt</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+    <div class="lang-switch lang-switch--overlay">
+      <button class="lang-switch__btn is-active" data-lang="de" type="button">DE</button>
+      <span class="lang-switch__divider">/</span>
+      <button class="lang-switch__btn" data-lang="en" type="button">EN</button>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ WER SIND WIR? ============ -->
+    <section class="page-hero page-hero--split">
+      <div class="page-hero__text">
+        <p class="eyebrow reveal">Wer sind wir?</p>
+        <h1 data-split>Zwei, die lieber <span class="scribble" data-scribble="underline">bauen</span> als zuschauen.</h1>
+        <p class="page-hero__lead reveal">
+          onside.hq ist ein Studio für Events, Marken und Content&nbsp;– gegründet von zwei
+          Sportmanagement-Studenten, die irgendwann gemerkt haben: Die Momente, die bleiben,
+          entstehen nicht von allein. Jemand baut sie.
+        </p>
+      </div>
+      <!-- zwei Punkte, die umeinander kreisen — ihr zwei -->
+      <div class="page-hero__viz viz reveal">
+        <canvas data-scene="orbits" data-seed="2" aria-hidden="true"></canvas>
+      </div>
+    </section>
+
+    <section class="about about--page">
+      <h2 class="sr-only">Die Gründer</h2>
+      <div class="founders">
+        <!-- BILD 7: Foto Julian → assets/team/julian.jpg
+             Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
+             dieser Stelle eine Animation mit den Initialen. -->
+        <article class="founder reveal">
+          <div class="founder__media viz">
+            <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
+            <span class="founder__initials" aria-hidden="true">JS</span>
+            <img src="assets/team/julian.jpg" alt="Julian Seibt" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="founder__body">
+            <span class="founder__role">Konzept &amp; Organisation</span>
+            <h3>Julian Seibt</h3>
+            <p class="founder__meta">24 · Sportmanagement</p>
+            <p class="founder__text">
+              Denkt Events vom Erlebnis her und baut von dort rückwärts die Struktur, die
+              es trägt. „Die Momente, die mich geprägt haben, hat irgendwer gebaut.
+              Irgendwann wollte ich auf dieser Seite stehen.“
+            </p>
+            <ul class="tags">
+              <li>Kreativität</li>
+              <li>Ideenentwicklung</li>
+              <li>Eventkonzepte</li>
+              <li>Organisation</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- BILD 8: Foto Malte → assets/team/malte.jpg
+             Datei hochladen, das Foto erscheint von selbst. -->
+        <article class="founder reveal">
+          <div class="founder__media viz">
+            <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
+            <span class="founder__initials" aria-hidden="true">MG</span>
+            <img src="assets/team/malte.jpg" alt="Malte Gerdes" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="founder__body">
+            <span class="founder__role">Content &amp; Social</span>
+            <h3>Malte Gerdes</h3>
+            <p class="founder__meta">23 · Sportmanagement</p>
+            <p class="founder__text">
+              Übersetzt ein Event in Bilder, die danach weiterlaufen&nbsp;– im Feed, im Kanal,
+              im Kopf. Schnitt, Content und die Verbindungen, aus denen das nächste Projekt
+              entsteht.
+            </p>
+            <ul class="tags">
+              <li>Content-Produktion</li>
+              <li>Videoschnitt</li>
+              <li>Social Media</li>
+              <li>Networking</li>
+              <li>Kommunikation</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <div class="story">
+        <article class="story__block reveal">
+          <h2>Unsere Geschichte</h2>
+          <p>
+            Kennengelernt haben wir uns im Sportmanagement-Studium. Verbunden hat uns aber
+            nicht der Hörsaal, sondern das, was dazwischen lag: Festivals, Konzerte,
+            Spiele, Reisen. Erlebnisse, an die man sich Jahre später noch erinnert.
+            Irgendwann reichte es uns nicht mehr, Teil dieser Momente zu sein&nbsp;– wir wollten
+            sie selbst bauen. Daraus wurde onside.hq.
+          </p>
+        </article>
+
+        <article class="story__block reveal">
+          <h2>Was uns unterscheidet</h2>
+          <p>
+            Wir gehören zur Gen Z&nbsp;– also zu der Zielgruppe, über die anderswo in Workshops
+            gesprochen wird. Wir müssen nicht recherchieren, was gerade funktioniert; wir
+            sehen es jeden Tag im eigenen Feed. Diese Perspektive verbinden wir mit
+            strategischem Denken und sauberer Umsetzung. Was dabei entstehen soll, ist
+            keine Kampagne, die man wegklickt, sondern etwas, über das gesprochen wird.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ WARUM ONSIDE ============
+         Über dem Text läuft eine kleine Taktiktafel: Ein Punkt steht im Abseits,
+         läuft zurück hinter die Linie, bekommt den Pass — und ist wieder im Spiel.
+         Gezeichnet in js/visuals.js (Szene "offside"). -->
+    <section class="statement">
+      <div class="statement__rings" aria-hidden="true"></div>
+      <div class="statement__inner">
+        <p class="eyebrow reveal">Warum onside?</p>
+        <div class="statement__board viz reveal">
+          <canvas data-scene="offside" aria-hidden="true"></canvas>
+        </div>
+        <p class="statement__text reveal">
+          Der Name kommt aus dem Sport. <em class="scribble" data-scribble="circle">Onside</em> ist das Gegenteil von Abseits.
+          Genau darin liegt unsere Aufgabe: Marken aus dem Abseits zurück ins Spiel holen&nbsp;–
+          dorthin, wo Aufmerksamkeit entsteht.
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow reveal">Und jetzt ihr</p>
+      <h2 data-split>Lust, etwas mit uns zu <span class="scribble" data-scribble="underline">bauen?</span></h2>
+      <div class="cta-band__actions reveal">
+        <a href="kontakt.html" class="btn btn--large btn--beat">Projekt anfragen</a>
+        <a href="leistungen.html" class="btn btn--large btn--ghost">Unsere Leistungen</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, Marken und Content&nbsp;– von der ersten Idee bis zum letzten Reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Seiten">
+        <span class="footer__label">Seiten</span>
+        <a href="projekte.html">Projekte</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="ueber-uns.html">Wer sind wir?</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Kontakt">
+        <span class="footer__label">Kontakt</span>
+        <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Menü, Carousel, Laufband, Formular -->
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
+  <script src="js/config.js?v=5"></script>
+  <script src="js/visuals.js?v=5"></script>
+  <script src="js/script.js?v=5"></script>
+</body>
+</html>

@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>onside.hq — Events, Marken & Content</title>
+  <title>onside.hq – Events, Marken &amp; Content</title>
   <meta name="description" content="onside.hq entwickelt Events, Marken und Content für Sport-, Lifestyle- und Eventmarken. Von der ersten Idee bis zum letzten Reel." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/" />
 
   <!-- Favicon / Browser-Tab-Icon -->
   <link rel="icon" href="favicon.ico" />
@@ -15,36 +17,54 @@
   <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird.
-       BILD 9: assets/og-image.jpg anlegen (1200 x 630 px), dann greift es automatisch. -->
-  <meta property="og:title" content="onside.hq — Events, Marken & Content" />
-  <meta property="og:description" content="Von der ersten Idee bis zum letzten Reel. Wir entwickeln Events, Marken und Content, die Menschen nicht nur sehen — sondern erleben." />
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="onside.hq – Events, Marken &amp; Content" />
+  <meta property="og:description" content="Von der ersten Idee bis zum letzten Reel. Wir entwickeln Events, Marken und Content, die Menschen nicht nur sehen – sondern erleben." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://onsidehq.de" />
+  <meta property="og:url" content="https://onsidehq.de/" />
   <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
+  <link rel="stylesheet" href="css/styles.css?v=5" />
 
-  <!-- ============ NAVIGATION ============ -->
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="home">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
   <header class="nav" id="nav">
     <div class="nav__brand">
-      <a href="#top" class="nav__logo">ONSIDE</a>
+      <a href="#top" class="nav__logo" aria-label="onside.hq – zur Startseite">ONSIDE</a>
       <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
            Beim Öffnen wird aus den Strichen ein X. -->
-      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false">
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
         <span></span><span></span><span></span>
       </button>
     </div>
 
-    <nav class="nav__links">
-      <a href="#top">Home</a>
-      <a href="#projekte">Projekte</a>
-      <a href="#leistungen">Leistungen</a>
-      <a href="#wer-sind-wir">Wer sind wir?</a>
-      <a href="#contact">Kontakt</a>
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="#top" aria-current="page">Home</a>
+      <a href="projekte.html">Projekte</a>
+      <a href="leistungen.html">Leistungen</a>
+      <a href="ueber-uns.html">Wer sind wir?</a>
+      <a href="kontakt.html">Kontakt</a>
     </nav>
 
     <div class="lang-switch">
@@ -53,18 +73,22 @@
       <button class="lang-switch__btn" data-lang="en" type="button">EN</button>
     </div>
 
-    <a href="#contact" class="btn btn--small nav__cta">Projekt anfragen</a>
+    <a href="#contact" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
   </header>
 
-  <!-- Vollbild-Menü-Overlay, wird vom Burger-Button geöffnet -->
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
   <div class="menu-overlay" id="menuOverlay">
-    <nav class="menu-overlay__links">
-      <a href="#top">Home</a>
-      <a href="#projekte">Projekte</a>
-      <a href="#leistungen">Leistungen</a>
-      <a href="#wer-sind-wir">Wer sind wir?</a>
-      <a href="#contact">Kontakt</a>
+    <nav class="menu-overlay__links" aria-label="Menü">
+      <a href="#top" aria-current="page"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projekte.html"><span class="menu-overlay__num">02</span>Projekte</a>
+      <a href="leistungen.html"><span class="menu-overlay__num">03</span>Leistungen</a>
+      <a href="ueber-uns.html"><span class="menu-overlay__num">04</span>Wer sind wir?</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">05</span>Kontakt</a>
     </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
     <div class="lang-switch lang-switch--overlay">
       <button class="lang-switch__btn is-active" data-lang="de" type="button">DE</button>
       <span class="lang-switch__divider">/</span>
@@ -72,331 +96,376 @@
     </div>
   </div>
 
-  <!-- ============ HERO ============
-       Der Hintergrund ist eine abstrakte Animation: ein Strömungsfeld, durch das
-       sich Linien bewegen, dazu rotierende Ringe und schwebende Punkte.
-       Alles live gezeichnet per Canvas in js/script.js — kein Video, kein Bild.
-       Zum Anpassen: SETTINGS ganz oben in js/script.js. -->
-  <section class="hero" id="top">
-    <div class="hero__bg"></div>
-    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
-    <div class="hero__glow" aria-hidden="true"></div>
-    <div class="hero__scrim" aria-hidden="true"></div>
-    <div class="hero__grain" aria-hidden="true"></div>
+  <main id="main">
+    <!-- ============ HERO ============
+         Der Hintergrund ist das Punktfeld "Crowd & Beat": Die Punkte sind das
+         Publikum, im Takt laufen Wellen hindurch. Es gehört nicht mehr nur zum
+         Hero, sondern liegt hinter der ganzen Seite (js/visuals.js, Abschnitt 2).
+         Der Strich unter "part of." zeichnet sich von selbst — überall, wo im
+         HTML data-scribble steht. -->
+    <section class="hero" id="top">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__scrim" aria-hidden="true"></div>
 
-    <div class="hero__content reveal">
-      <p class="eyebrow">Events · Marken · Content</p>
-      <h1>We build what people <br class="br-lg">want to be part of.</h1>
-      <p class="hero__sub">
-        Von der ersten Idee bis zum letzten Reel. Wir entwickeln Events, Marken und
-        Content, die Menschen nicht nur sehen — sondern erleben.
-      </p>
-      <div class="hero__actions">
-        <a href="#contact" class="btn">Projekt anfragen</a>
-        <a href="#projekte" class="btn btn--ghost">Projekte ansehen</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 01 — PROJEKTE ============ -->
-  <section id="projekte" class="projekte">
-    <p class="eyebrow reveal">01 — Arbeit</p>
-    <h2 class="reveal">Unsere Projekte</h2>
-
-    <article class="project">
-      <!-- BILD 1: Titelbild vom Event → assets/projects/berlin-night-run/cover.jpg
-           Am Code muss dafür nichts geändert werden: Sobald die Datei mit genau
-           diesem Namen hochgeladen ist, liegt das Foto über dem Platzhalter.
-           Fehlt sie, bleibt einfach der dunkle Platzhalter stehen. -->
-      <div class="project__cover reveal">
-        <div class="project__cover-bg"></div>
-        <img class="project__cover-img" src="assets/projects/berlin-night-run/cover.jpg" alt="Berlin Night Run" onerror="this.remove()">
-        <div class="project__cover-content">
-          <p class="eyebrow">Berlin</p>
-          <h3>Night Run</h3>
+      <div class="hero__content">
+        <p class="eyebrow reveal">Events · Marken · Content</p>
+        <h1 data-split lang="en">We build what people <br class="br-lg">want to be <span class="scribble" data-scribble="underline">part of.</span></h1>
+        <p class="hero__sub reveal">
+          Von der ersten Idee bis zum letzten Reel. Wir entwickeln Events, Marken und
+          Content, die Menschen nicht nur sehen&nbsp;– sondern erleben.
+        </p>
+        <div class="hero__actions reveal">
+          <a href="#contact" class="btn btn--beat">Projekt anfragen</a>
+          <a href="#projekte" class="btn btn--ghost">Projekte ansehen</a>
         </div>
       </div>
 
-      <div class="project__body">
-        <p class="project__text reveal">
-          Der Berlin Night Run war der Start von onside.hq. Aus einer Idee wurde
-          innerhalb weniger Wochen ein Laufevent mit DJ, Partnern, Verpflegung und
-          Afterparty. Von der Konzeption bis zur Umsetzung lag jeder Schritt in unserer
-          Hand — und genau dieser Anspruch begleitet heute jedes neue Projekt.
-        </p>
-        <a href="#contact" class="btn btn--ghost reveal">Mehr über unsere Arbeit</a>
-      </div>
+      <a href="#projekte" class="scroll-cue" aria-label="Weiter zu den Projekten"><span></span></a>
+    </section>
 
-      <!-- BILDER 2–6: die fünf Galeriebilder →
-           assets/projects/berlin-night-run/01.jpg bis 05.jpg
-           Wie beim Titelbild: Datei hochladen, das Foto erscheint von selbst
-           über dem Platzhalter. Am Code muss nichts geändert werden. -->
-      <div class="project__carousel reveal" id="carousel">
-        <div class="carousel__viewport">
-          <div class="carousel__track" id="carouselTrack">
+    <!-- ============ 01 — PROJEKTE ============ -->
+    <section id="projekte" class="projekte">
+      <p class="eyebrow reveal">01 — Arbeit</p>
+      <h2 data-split>Unsere Projekte</h2>
+
+      <article class="project">
+        <!-- BILD 1: Titelbild vom Event → assets/projects/berlin-night-run/cover.jpg
+             Zum Austauschen reicht eine neue Datei mit genau diesem Namen. Fehlt
+             sie, laufen an ihrer Stelle Lichtspuren durch die Nacht.
+             object-position bestimmt, welcher Teil des Fotos auf schmalen
+             Bildschirmen zu sehen ist: 34% heißt etwas links der Mitte, dort ist
+             der Läufer. Sitzt das Motiv in einem neuen Foto mittig: 50% 50%. -->
+        <a class="project__cover reveal" href="berlin-night-run.html" aria-label="Zum Projekt: Berlin Night Run">
+          <div class="project__cover-bg viz">
+            <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
+            <img src="assets/projects/berlin-night-run/cover.jpg" alt="Läuferinnen und Läufer beim Berlin Night Run" style="object-position: 34% 50%" onerror="this.remove()">
+          </div>
+          <div class="project__cover-content">
+            <p class="eyebrow">Berlin · 2026</p>
+            <h3>Night Run</h3>
+          </div>
+          <span class="project__cover-go" aria-hidden="true">Zum Projekt <i>→</i></span>
+        </a>
+
+        <div class="project__body">
+          <p class="project__text reveal">
+            Der Berlin Night Run war der Start von onside.hq. Aus einer Idee wurde
+            innerhalb weniger Wochen ein Laufevent mit DJ, Partnern, Verpflegung und
+            Afterparty. Von der Konzeption bis zur Umsetzung lag jeder Schritt in unserer
+            Hand&nbsp;– und genau dieser Anspruch begleitet heute jedes neue Projekt.
+          </p>
+          <a href="berlin-night-run.html" class="btn btn--ghost btn--arrow reveal">Zum Projekt</a>
+        </div>
+
+        <div class="carousel reveal" data-carousel>
+          <div class="carousel__viewport" tabindex="0" role="region" aria-label="Bilder vom Berlin Night Run">
+            <!-- BILDER 2–6: die fünf Galeriebilder →
+                 assets/projects/berlin-night-run/01.jpg bis 05.jpg
+                 Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft in jedem
+                 Feld eine eigene kleine Animation. Am Code muss nichts geändert werden. -->
             <div class="carousel__slide">
-              <div class="gallery-item__ph"><span>Bild 1</span></div>
-              <img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run" onerror="this.remove()">
+              <div class="viz">
+                <canvas data-scene="route" data-seed="3" aria-hidden="true"></canvas>
+                <span class="viz__label">01 — Start</span>
+                <img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run: die Laufgruppe unterwegs" loading="lazy" onerror="this.remove()">
+              </div>
             </div>
             <div class="carousel__slide">
-              <div class="gallery-item__ph"><span>Bild 2</span></div>
-              <img src="assets/projects/berlin-night-run/02.jpg" alt="Berlin Night Run" onerror="this.remove()">
+              <div class="viz">
+                <canvas data-scene="trails" data-seed="21" aria-hidden="true"></canvas>
+                <span class="viz__label">02 — Strecke</span>
+                <img src="assets/projects/berlin-night-run/02.jpg" alt="Berlin Night Run: Trinkpause" loading="lazy" onerror="this.remove()">
+              </div>
             </div>
             <div class="carousel__slide">
-              <div class="gallery-item__ph"><span>Bild 3</span></div>
-              <img src="assets/projects/berlin-night-run/03.jpg" alt="Berlin Night Run" onerror="this.remove()">
+              <div class="viz">
+                <canvas data-scene="eq" data-seed="5" aria-hidden="true"></canvas>
+                <span class="viz__label">03 — Beat</span>
+                <img src="assets/projects/berlin-night-run/03.jpg" alt="Berlin Night Run: der DJ am Pult" loading="lazy" onerror="this.remove()">
+              </div>
             </div>
             <div class="carousel__slide">
-              <div class="gallery-item__ph"><span>Bild 4</span></div>
-              <img src="assets/projects/berlin-night-run/04.jpg" alt="Berlin Night Run" onerror="this.remove()">
+              <div class="viz">
+                <canvas data-scene="crowd" data-seed="8" aria-hidden="true"></canvas>
+                <span class="viz__label">04 — Crowd</span>
+                <img src="assets/projects/berlin-night-run/04.jpg" alt="Berlin Night Run: die versammelte Crowd" loading="lazy" onerror="this.remove()">
+              </div>
             </div>
             <div class="carousel__slide">
-              <div class="gallery-item__ph"><span>Bild 5</span></div>
-              <img src="assets/projects/berlin-night-run/05.jpg" alt="Berlin Night Run" onerror="this.remove()">
+              <div class="viz">
+                <canvas data-scene="bokeh" data-seed="13" aria-hidden="true"></canvas>
+                <span class="viz__label">05 — Afterparty</span>
+                <img src="assets/projects/berlin-night-run/05.jpg" alt="Berlin Night Run: Anstoßen am Abend" loading="lazy" onerror="this.remove()">
+              </div>
             </div>
           </div>
+          <button class="carousel__arrow carousel__arrow--prev" type="button" aria-label="Vorheriges Bild">←</button>
+          <button class="carousel__arrow carousel__arrow--next" type="button" aria-label="Nächstes Bild">→</button>
+          <div class="carousel__dots"></div>
         </div>
-        <button class="carousel__arrow carousel__arrow--prev" id="carouselPrev" type="button" aria-label="Vorheriges Bild">←</button>
-        <button class="carousel__arrow carousel__arrow--next" id="carouselNext" type="button" aria-label="Nächstes Bild">→</button>
-        <div class="carousel__dots" id="carouselDots"></div>
-      </div>
-    </article>
-  </section>
-
-  <!-- ============ LAUFBAND — Ausblick ============
-       Zwei Zeilen, die gegeneinander laufen: oben gefüllt, unten als Outline.
-       Der Inhalt wird in js/script.js automatisch verdoppelt, damit die
-       Schleife nahtlos läuft. -->
-  <section class="next" aria-label="Ausblick">
-    <div class="next__row next__row--a" data-marquee>
-      <div class="next__group">
-        <span class="next__word">Das nächste Projekt entsteht schon</span>
-        <span class="next__mark"></span>
-        <span class="next__word next__word--outline">Das nächste Projekt entsteht schon</span>
-        <span class="next__mark"></span>
-      </div>
-    </div>
-    <div class="next__row next__row--b" data-marquee>
-      <div class="next__group">
-        <span class="next__word next__word--outline">Das nächste Projekt entsteht schon</span>
-        <span class="next__mark"></span>
-        <span class="next__word">Das nächste Projekt entsteht schon</span>
-        <span class="next__mark"></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 02 — LEISTUNGEN ============ -->
-  <section id="leistungen" class="services">
-    <p class="eyebrow reveal">02 — Was wir machen</p>
-    <h2 class="reveal">Drei Leistungen. Eine Handschrift.</h2>
-
-    <div class="services__grid">
-      <article class="service-card reveal">
-        <span class="service-card__number">01</span>
-        <h3>Event-Organisation</h3>
-        <p>
-          Wir entwickeln Events, die Menschen zusammenbringen und Marken erlebbar machen.
-          Von der ersten Idee bis zur Umsetzung: Konzeption, Planung, Partnermanagement
-          und die gesamte Organisation.
-        </p>
       </article>
+    </section>
 
-      <article class="service-card reveal">
-        <span class="service-card__number">02</span>
-        <h3>Marketing & Markenstrategie</h3>
-        <p>
-          Jede starke Marke beginnt mit einer klaren Positionierung. Wir entwickeln
-          Strategien, Markenauftritte und Konzepte, die relevant sind — nicht nur sichtbar.
-        </p>
-      </article>
-
-      <article class="service-card reveal">
-        <span class="service-card__number">03</span>
-        <h3>Social Media</h3>
-        <p>
-          Aus einem Event wird erst dann eine Geschichte, wenn Menschen sie teilen. Wir
-          produzieren Content, betreuen Kanäle und entwickeln Strategien, die Reichweite
-          in echte Community verwandeln.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============ 03 — WER SIND WIR ============ -->
-  <section id="wer-sind-wir" class="about">
-    <p class="eyebrow reveal">03 — Wer sind wir?</p>
-    <h2 class="reveal">Zwei, die lieber bauen <br class="br-lg">als zuschauen.</h2>
-    <p class="about__lead reveal">
-      onside.hq ist ein Studio für Events, Marken und Content — gegründet von zwei
-      Sportmanagement-Studenten, die irgendwann gemerkt haben: Die Momente, die bleiben,
-      entstehen nicht von allein. Jemand baut sie.
-    </p>
-
-    <div class="founders">
-      <!-- BILD 7: Foto Julian → assets/team/julian.jpg
-           Datei hochladen, das Foto erscheint von selbst. -->
-      <article class="founder reveal">
-        <div class="founder__media">
-          <div class="founder__ph"><span>Foto Julian</span></div>
-          <img src="assets/team/julian.jpg" alt="Julian Seibt" onerror="this.remove()">
+    <!-- ============ LAUFBAND — Ausblick ============
+         Zwei Zeilen, die gegeneinander laufen: oben gefüllt, unten als Outline.
+         Der Inhalt wird in js/script.js automatisch verdoppelt, damit die
+         Schleife nahtlos läuft. -->
+    <section class="next" aria-label="Ausblick">
+      <div class="next__row next__row--a" data-marquee>
+        <div class="next__group">
+          <span class="next__word">Das nächste Projekt entsteht schon</span>
+          <span class="next__mark"></span>
+          <span class="next__word next__word--outline">Das nächste Projekt entsteht schon</span>
+          <span class="next__mark"></span>
         </div>
-        <div class="founder__body">
-          <span class="founder__role">Konzept & Organisation</span>
-          <h3>Julian Seibt</h3>
-          <p class="founder__meta">24 · Sportmanagement</p>
-          <p class="founder__text">
-            Denkt Events vom Erlebnis her und baut von dort rückwärts die Struktur, die
-            es trägt. „Die Momente, die mich geprägt haben, hat irgendwer gebaut.
-            Irgendwann wollte ich auf dieser Seite stehen."
+      </div>
+      <div class="next__row next__row--b" data-marquee>
+        <div class="next__group">
+          <span class="next__word next__word--outline">Das nächste Projekt entsteht schon</span>
+          <span class="next__mark"></span>
+          <span class="next__word">Das nächste Projekt entsteht schon</span>
+          <span class="next__mark"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 — LEISTUNGEN ============
+         Jede Karte hat ihr eigenes kleines Zeichen (Szenen "rings", "focus",
+         "network" in js/visuals.js) und führt auf die Leistungen-Seite. -->
+    <section id="leistungen" class="services">
+      <p class="eyebrow reveal">02 — Was wir machen</p>
+      <h2 data-split>Drei Leistungen. Eine <span class="scribble" data-scribble="underline">Handschrift.</span></h2>
+
+      <div class="services__grid">
+        <a class="service-card reveal" href="leistungen.html#events" data-spot>
+          <div class="service-card__viz viz viz--bare"><canvas data-scene="rings" aria-hidden="true"></canvas></div>
+          <span class="service-card__number">01</span>
+          <h3>Event-Organisation</h3>
+          <p>
+            Wir entwickeln Events, die Menschen zusammenbringen und Marken erlebbar machen.
+            Von der ersten Idee bis zur Umsetzung: Konzeption, Planung, Partnermanagement
+            und die gesamte Organisation.
           </p>
-          <ul class="tags">
-            <li>Kreativität</li>
-            <li>Ideenentwicklung</li>
-            <li>Eventkonzepte</li>
-            <li>Organisation</li>
-          </ul>
-        </div>
-      </article>
+          <span class="service-card__more">Mehr dazu <i>→</i></span>
+        </a>
 
-      <!-- BILD 8: Foto Malte → assets/team/malte.jpg
-           Datei hochladen, das Foto erscheint von selbst. -->
-      <article class="founder reveal">
-        <div class="founder__media">
-          <div class="founder__ph"><span>Foto Malte</span></div>
-          <img src="assets/team/malte.jpg" alt="Malte Gerdes" onerror="this.remove()">
-        </div>
-        <div class="founder__body">
-          <span class="founder__role">Content & Social</span>
-          <h3>Malte Gerdes</h3>
-          <p class="founder__meta">23 · Sportmanagement</p>
-          <p class="founder__text">
-            Übersetzt ein Event in Bilder, die danach weiterlaufen — im Feed, im Kanal,
-            im Kopf. Schnitt, Content und die Verbindungen, aus denen das nächste Projekt
-            entsteht.
+        <a class="service-card reveal" href="leistungen.html#marke" data-spot>
+          <div class="service-card__viz viz viz--bare"><canvas data-scene="focus" data-seed="4" aria-hidden="true"></canvas></div>
+          <span class="service-card__number">02</span>
+          <h3>Marketing&nbsp;&amp; Marken&shy;strategie</h3>
+          <p>
+            Jede starke Marke beginnt mit einer klaren Positionierung. Wir entwickeln
+            Strategien, Markenauftritte und Konzepte, die relevant sind&nbsp;– nicht nur sichtbar.
           </p>
-          <ul class="tags">
-            <li>Content-Produktion</li>
-            <li>Videoschnitt</li>
-            <li>Social Media</li>
-            <li>Networking</li>
-            <li>Kommunikation</li>
-          </ul>
-        </div>
-      </article>
-    </div>
+          <span class="service-card__more">Mehr dazu <i>→</i></span>
+        </a>
 
-    <div class="story">
-      <article class="story__block reveal">
-        <h3>Unsere Geschichte</h3>
-        <p>
-          Kennengelernt haben wir uns im Sportmanagement-Studium. Verbunden hat uns aber
-          nicht der Hörsaal, sondern das, was dazwischen lag: Festivals, Konzerte,
-          Spiele, Reisen. Erlebnisse, an die man sich Jahre später noch erinnert.
-          Irgendwann reichte es uns nicht mehr, Teil dieser Momente zu sein — wir wollten
-          sie selbst bauen. Daraus wurde onside.hq.
-        </p>
-      </article>
+        <a class="service-card reveal" href="leistungen.html#social" data-spot>
+          <div class="service-card__viz viz viz--bare"><canvas data-scene="network" data-seed="6" aria-hidden="true"></canvas></div>
+          <span class="service-card__number">03</span>
+          <h3>Social Media</h3>
+          <p>
+            Aus einem Event wird erst dann eine Geschichte, wenn Menschen sie teilen. Wir
+            produzieren Content, betreuen Kanäle und entwickeln Strategien, die Reichweite
+            in echte Community verwandeln.
+          </p>
+          <span class="service-card__more">Mehr dazu <i>→</i></span>
+        </a>
+      </div>
+    </section>
 
-      <article class="story__block reveal">
-        <h3>Was uns unterscheidet</h3>
-        <p>
-          Wir gehören zur Gen Z — also zu der Zielgruppe, über die anderswo in Workshops
-          gesprochen wird. Wir müssen nicht recherchieren, was gerade funktioniert; wir
-          sehen es jeden Tag im eigenen Feed. Diese Perspektive verbinden wir mit
-          strategischem Denken und sauberer Umsetzung. Was dabei entstehen soll, ist
-          keine Kampagne, die man wegklickt, sondern etwas, über das gesprochen wird.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============ 04 — WARUM ONSIDE ============ -->
-  <section class="statement">
-    <div class="statement__rings" aria-hidden="true"></div>
-    <div class="statement__inner">
-      <p class="eyebrow reveal">04 — Warum onside?</p>
-      <p class="statement__text reveal">
-        Der Name kommt aus dem Sport. <em>Onside</em> ist das Gegenteil von Abseits.
-        Genau darin liegt unsere Aufgabe: Marken aus dem Abseits zurück ins Spiel holen —
-        dorthin, wo Aufmerksamkeit entsteht.
+    <!-- ============ 03 — WER SIND WIR ============
+         Kurzfassung. Geschichte und "Was uns unterscheidet" stehen ausführlich
+         auf der Seite ueber-uns.html. -->
+    <section id="wer-sind-wir" class="about">
+      <p class="eyebrow reveal">03 — Wer sind wir?</p>
+      <h2 data-split>Zwei, die lieber <span class="scribble" data-scribble="underline">bauen</span> <br class="br-lg">als zuschauen.</h2>
+      <p class="about__lead reveal">
+        onside.hq ist ein Studio für Events, Marken und Content&nbsp;– gegründet von zwei
+        Sportmanagement-Studenten, die irgendwann gemerkt haben: Die Momente, die bleiben,
+        entstehen nicht von allein. Jemand baut sie.
       </p>
-    </div>
-  </section>
 
-  <!-- ============ 05 — KONTAKT ============ -->
-  <section id="contact" class="contact">
-    <p class="eyebrow reveal">05 — Lass uns reden</p>
-    <h2 class="reveal">Lasst uns etwas schaffen, <br class="br-lg">worüber gesprochen wird.</h2>
-    <p class="contact__sub reveal">
-      Ob Event, Markenaufbau oder Social-Media-Betreuung — schreib uns kurz, worum's geht.
-    </p>
+      <div class="founders">
+        <!-- BILD 7: Foto Julian → assets/team/julian.jpg
+             Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
+             dieser Stelle eine Animation mit den Initialen. -->
+        <article class="founder reveal">
+          <div class="founder__media viz">
+            <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
+            <span class="founder__initials" aria-hidden="true">JS</span>
+            <img src="assets/team/julian.jpg" alt="Julian Seibt" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="founder__body">
+            <span class="founder__role">Konzept &amp; Organisation</span>
+            <h3>Julian Seibt</h3>
+            <p class="founder__meta">24 · Sportmanagement</p>
+            <p class="founder__text">
+              Denkt Events vom Erlebnis her und baut von dort rückwärts die Struktur, die
+              es trägt. „Die Momente, die mich geprägt haben, hat irgendwer gebaut.
+              Irgendwann wollte ich auf dieser Seite stehen.“
+            </p>
+            <ul class="tags">
+              <li>Kreativität</li>
+              <li>Ideenentwicklung</li>
+              <li>Eventkonzepte</li>
+              <li>Organisation</li>
+            </ul>
+          </div>
+        </article>
 
-    <!-- ================= KONTAKTFORMULAR =================
-         Das Formular verschickt die Anfrage über den Dienst Web3Forms an eure
-         Mailadresse — eine eigene Server-Programmierung braucht es dafür nicht.
-
-         EINRICHTEN (dauert zwei Minuten):
-         1. web3forms.com öffnen, eure Mailadresse eintragen
-         2. Ihr bekommt per Mail einen "Access Key"
-         3. Den Key unten bei value="..." eintragen (statt DEIN-ACCESS-KEY-HIER)
-         Danach landen alle Anfragen direkt in eurem Postfach.
-    ==================================================== -->
-    <form class="contact-form reveal" id="contactForm" novalidate>
-      <input type="hidden" name="access_key" value="DEIN-ACCESS-KEY-HIER">
-      <input type="hidden" name="subject" value="Neue Anfrage über onsidehq.de">
-      <input type="hidden" name="from_name" value="onside.hq Website">
-      <!-- Spam-Falle: für Menschen unsichtbar, Bots füllen sie aus -->
-      <input type="checkbox" name="botcheck" class="contact-form__trap" tabindex="-1" autocomplete="off">
-
-      <div class="field">
-        <label for="cf-name">Name</label>
-        <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Wie heißt du?">
+        <!-- BILD 8: Foto Malte → assets/team/malte.jpg
+             Datei hochladen, das Foto erscheint von selbst. -->
+        <article class="founder reveal">
+          <div class="founder__media viz">
+            <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
+            <span class="founder__initials" aria-hidden="true">MG</span>
+            <img src="assets/team/malte.jpg" alt="Malte Gerdes" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="founder__body">
+            <span class="founder__role">Content &amp; Social</span>
+            <h3>Malte Gerdes</h3>
+            <p class="founder__meta">23 · Sportmanagement</p>
+            <p class="founder__text">
+              Übersetzt ein Event in Bilder, die danach weiterlaufen&nbsp;– im Feed, im Kanal,
+              im Kopf. Schnitt, Content und die Verbindungen, aus denen das nächste Projekt
+              entsteht.
+            </p>
+            <ul class="tags">
+              <li>Content-Produktion</li>
+              <li>Videoschnitt</li>
+              <li>Social Media</li>
+              <li>Networking</li>
+              <li>Kommunikation</li>
+            </ul>
+          </div>
+        </article>
       </div>
 
-      <div class="field">
-        <label for="cf-mail">E-Mail</label>
-        <input id="cf-mail" name="email" type="email" required autocomplete="email" placeholder="Damit wir antworten können">
+      <div class="section-more reveal">
+        <a href="ueber-uns.html" class="btn btn--ghost btn--arrow">Unsere Geschichte</a>
       </div>
+    </section>
 
-      <div class="field field--full">
-        <label for="cf-msg">Worum geht's?</label>
-        <textarea id="cf-msg" name="message" rows="5" required placeholder="Event, Markenaufbau, Social Media — erzähl kurz, was ihr vorhabt."></textarea>
+    <!-- ============ WARUM ONSIDE ============
+         Über dem Text läuft eine kleine Taktiktafel: Ein Punkt steht im Abseits,
+         läuft zurück hinter die Linie, bekommt den Pass — und ist wieder im Spiel.
+         Gezeichnet in js/visuals.js (Szene "offside"). -->
+    <section class="statement">
+      <div class="statement__rings" aria-hidden="true"></div>
+      <div class="statement__inner">
+        <p class="eyebrow reveal">04 — Warum onside?</p>
+        <div class="statement__board viz reveal">
+          <canvas data-scene="offside" aria-hidden="true"></canvas>
+        </div>
+        <p class="statement__text reveal">
+          Der Name kommt aus dem Sport. <em class="scribble" data-scribble="circle">Onside</em> ist das Gegenteil von Abseits.
+          Genau darin liegt unsere Aufgabe: Marken aus dem Abseits zurück ins Spiel holen&nbsp;–
+          dorthin, wo Aufmerksamkeit entsteht.
+        </p>
       </div>
+    </section>
 
-      <label class="consent field--full">
-        <input type="checkbox" id="cf-consent" required>
-        <span>
-          Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage
-          verarbeitet werden. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.
-        </span>
-      </label>
+    <!-- ============ 05 — KONTAKT ============ -->
+    <section id="contact" class="contact">
+      <p class="eyebrow reveal">05 — Lasst uns reden</p>
+      <h2 data-split>Lasst uns etwas schaffen, <br class="br-lg">worüber gesprochen wird.</h2>
+      <p class="contact__sub reveal">
+        Ob Event, Markenaufbau oder <span class="nowrap">Social-Media-Betreuung</span>&nbsp;– schreib uns kurz, worum’s geht.
+      </p>
 
-      <div class="field--full contact-form__actions">
-        <button type="submit" class="btn btn--large" id="formSubmit">Anfrage senden</button>
-        <p class="contact-form__status" id="formStatus" role="status" aria-live="polite"></p>
-      </div>
-    </form>
+      <!-- ================= KONTAKTFORMULAR =================
+           Das Formular verschickt die Anfrage über den Dienst Web3Forms an eure
+           Mailadresse — eine eigene Server-Programmierung braucht es dafür nicht.
 
-    <p class="contact__fallback reveal">
-      Lieber direkt? <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
-      · <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
-    </p>
-  </section>
+           EINRICHTEN: Der "Access Key" von web3forms.com wird an genau EINER
+           Stelle eingetragen, nämlich in js/config.js. Er gilt dann für das
+           Formular auf der Startseite und auf der Kontaktseite.
+      ==================================================== -->
+      <form class="contact-form reveal" id="formular" data-contact-form novalidate>
+        <input type="hidden" name="subject" value="Neue Anfrage über onsidehq.de">
+        <input type="hidden" name="from_name" value="onside.hq Website">
+        <!-- Spam-Falle: für Menschen unsichtbar, Bots füllen sie aus -->
+        <input type="checkbox" name="botcheck" class="contact-form__trap" tabindex="-1" aria-hidden="true">
 
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Wie heißt du?">
+        </div>
+
+        <div class="field">
+          <label for="cf-mail">E-Mail</label>
+          <input id="cf-mail" name="email" type="email" required autocomplete="email" placeholder="Damit wir antworten können">
+        </div>
+
+        <div class="field field--full">
+          <label for="cf-msg">Worum geht’s?</label>
+          <textarea id="cf-msg" name="message" rows="5" required placeholder="Event, Markenaufbau, Social Media&nbsp;– erzähl kurz, was ihr vorhabt."></textarea>
+        </div>
+
+        <label class="consent field--full">
+          <input type="checkbox" id="cf-consent" required>
+          <span>
+            Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage
+            verarbeitet werden. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.
+          </span>
+        </label>
+
+        <div class="field--full contact-form__actions">
+          <button type="submit" class="btn btn--large" data-form-submit>Anfrage senden</button>
+          <p class="contact-form__status" data-form-status role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <p class="contact__fallback reveal">
+        Lieber direkt? <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+        · <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
   <footer class="footer">
-    <span>© <span id="year"></span> onside.hq</span>
-    <nav class="footer__links">
-      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </nav>
-    <span>Potsdam · Innsbruck</span>
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, Marken und Content&nbsp;– von der ersten Idee bis zum letzten Reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Seiten">
+        <span class="footer__label">Seiten</span>
+        <a href="projekte.html">Projekte</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="ueber-uns.html">Wer sind wir?</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Kontakt">
+        <span class="footer__label">Kontakt</span>
+        <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
   </footer>
 
-  <!-- GSAP + ScrollTrigger — ebenfalls lokal, nicht über ein fremdes CDN -->
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Menü, Carousel, Laufband, Formular -->
   <script src="js/gsap.min.js"></script>
   <script src="js/ScrollTrigger.min.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/config.js?v=5"></script>
+  <script src="js/visuals.js?v=5"></script>
+  <script src="js/script.js?v=5"></script>
 </body>
 </html>

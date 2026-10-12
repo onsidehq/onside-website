@@ -1,0 +1,8 @@
+Hier liegen die Gründerfotos.
+
+  julian.jpg   Foto Julian (quadratisch 1:1)
+  malte.jpg    Foto Malte  (quadratisch 1:1)
+
+Zum Austauschen eine neue Datei mit demselben Namen hochladen (klein
+geschrieben, Endung .jpg). Sie erscheint auf der Website von selbst.
+Mehr dazu in BILDER.md.

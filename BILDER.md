@@ -1,32 +1,69 @@
-# Bilder, die noch fehlen
+# Bilder
 
-Alle Bilder kommen in einen Ordner `assets/` im Projekt. Am Code musst du dafür
-nichts ändern: Sobald eine Datei mit genau dem richtigen Namen am richtigen Ort
-liegt, erscheint sie auf der Seite automatisch über dem Platzhalter. Fehlt sie,
-bleibt der Platzhalter stehen.
+Alle Bilder liegen im Ordner `assets/`. Zum Austauschen müsst ihr am Code nichts
+ändern: Eine neue Datei mit genau demselben Namen am selben Ort ersetzt die alte.
+Fehlt eine Datei, läuft an ihrer Stelle eine Animation.
 
-| # | Datei | Wo auf der Seite | Format / Hinweis |
-|---|-------|------------------|------------------|
-| 1 | `assets/projects/berlin-night-run/cover.jpg` | Großes Titelbild über "Night Run" | quer, mind. 1600 px breit — das stärkste Bild vom Event |
-| 2 | `assets/projects/berlin-night-run/01.jpg` | Carousel, Bild 1 | quer, mind. 1600 px breit |
-| 3 | `assets/projects/berlin-night-run/02.jpg` | Carousel, Bild 2 | quer |
-| 4 | `assets/projects/berlin-night-run/03.jpg` | Carousel, Bild 3 | quer |
-| 5 | `assets/projects/berlin-night-run/04.jpg` | Carousel, Bild 4 | quer |
-| 6 | `assets/projects/berlin-night-run/05.jpg` | Carousel, Bild 5 | quer |
-| 7 | `assets/team/julian.jpg` | Gründerkarte Julian | Seitenverhältnis 4:3, Gesicht nicht ganz am Rand |
-| 8 | `assets/team/malte.jpg` | Gründerkarte Malte | Seitenverhältnis 4:3, am besten gleiche Bildsprache wie Julians Foto |
-| 9 | `assets/og-image.jpg` | Vorschaubild beim Teilen des Links (WhatsApp, Instagram, LinkedIn) | genau 1200 × 630 px, Logo/Claim mittig, Rand frei lassen |
+## Night Run (`assets/projects/berlin-night-run/`)
+
+| Datei | Wo auf der Seite | Format | Motiv |
+|-------|------------------|--------|-------|
+| `cover.jpg` | Titelbild: Projekt-Kasten auf der Startseite, Projekte-Übersicht, oben auf der Projektseite | quer 3:2 | Läufer bei Nacht mit Lichtspuren (aus „Bild4“) |
+| `01.jpg` | Carousel Startseite + großes, breites Galeriebild | quer 3:2 | Die Laufgruppe unterwegs (aus „Bild3“) |
+| `02.jpg` | Carousel + Galerie | quer 3:2 | Trinkpause (aus „Bild7“) |
+| `03.jpg` | Carousel + Galerie | quer 3:2 | Der DJ am Pult (aus „Bild6“) |
+| `04.jpg` | Carousel + Galerie | quer 3:2 | Die Crowd (aus „Bild 11“) |
+| `05.jpg` | Carousel + Galerie | quer 3:2 | Anstoßen am Abend (aus „Bild9“) |
+| `06.jpg` | Galerie | hoch 4:5 | DJ auf dem Lastenrad (aus „Bild10“) |
+| `07.jpg` | Galerie | hoch 4:5 | Hände am DJ-Pult (aus „Bild12“) |
+| `08.jpg` | Galerie | hoch 4:5 | Erfrischung unterwegs (aus „Bild2“) |
+| `09.jpg` | Galerie | hoch 4:5 | Getränkespender (aus „Bild13“) |
+| `10.jpg` | Galerie | hoch 4:5 | Becher (aus „Bild5“) |
+| `11.jpg` | Galerie | hoch 4:5 | Stimmung vor der Bar (aus „Bild1“) |
+| `12.jpg` | Galerie | quer 3:2 | Drinks an der Straßenecke (aus „Bild8“) |
+| `13.jpg` | Galerie | quer 3:2 | Gute Laune bei Nacht (aus „Bild 14“) |
+
+## Team (`assets/team/`)
+
+| Datei | Wo auf der Seite | Format |
+|-------|------------------|--------|
+| `julian.jpg` | Gründerkarte Julian (Startseite und „Wer sind wir?“) | quadratisch 1:1 |
+| `malte.jpg` | Gründerkarte Malte | quadratisch 1:1 |
+
+## Sonstiges
+
+| Datei | Wofür |
+|-------|-------|
+| `assets/og-image.jpg` | Vorschaubild, wenn der Link bei WhatsApp, Instagram oder LinkedIn geteilt wird (1200 × 630 px), Schriftzug „We build what people want to be part of.“ |
+
+## Ein Foto austauschen
+
+- Neue Datei mit demselben Namen hochladen, sie ersetzt die alte. Das Format aus
+  der Tabelle beibehalten (quer, hoch oder quadratisch), sonst schneidet die Seite
+  mehr ab als nötig.
+- Mindestens 1800 px breit bei Querformat, 1080 px bei Hochformat und Team-Fotos.
+- Das Wichtige gehört in die Bildmitte. Je nach Bildschirm schneidet die Seite
+  oben und unten oder links und rechts etwas ab: Das Carousel zeigt die Bilder
+  am Handy im Hochformat (4:5), das große Galeriebild ist sehr breit.
+- Titelbild: In `index.html`, `projekte.html` und `berlin-night-run.html` steht
+  beim Titelbild `object-position: 34% 50%`. Das rückt den Ausschnitt am Handy
+  etwas nach links, weil der Läufer im aktuellen Foto links der Mitte ist. Bei
+  einem neuen Titelbild mit mittigem Motiv dort `50% 50%` eintragen.
+- Ein zusätzliches Galeriebild: in `berlin-night-run.html` im Abschnitt „Galerie“
+  ein Feld kopieren und die Dateinummer anpassen. Hochformat-Felder tragen die
+  Klasse `case-gallery__item--tall`.
 
 ## Worauf es ankommt
 
 - Dateinamen exakt so schreiben, alles klein, Endung `.jpg`. Also nicht `01.JPG`,
-  nicht `01.jpeg` und kein `.heic` vom iPhone. Der Server nimmt Groß- und
-  Kleinschreibung genau.
-- Die Ordner genau so verschachteln wie in der Tabelle.
+  nicht `01.jpeg` und kein `.heic` vom iPhone (umbenennen reicht nicht, das Foto
+  muss als JPG exportiert werden). Der Server nimmt Groß- und Kleinschreibung genau.
+- Die Ordner genau so verschachteln wie oben.
 
 ## Vor dem Hochladen komprimieren
 
-Fotos direkt aus der Kamera sind schnell 5–10 MB groß, das macht die Seite
+Fotos direkt aus der Kamera sind schnell 5–20 MB groß, das macht die Seite
 langsam. Vorher durch [squoosh.app](https://squoosh.app) schicken (kostenlos,
-läuft im Browser) und auf grob 200–400 KB pro Bild runterdrücken. Qualität
-sieht man bei diesen Größen nicht.
+läuft im Browser) und auf grob 150–400 KB pro Bild bringen. Bei diesen Größen
+sieht man keinen Qualitätsunterschied. Alle Fotos oben sind bereits so
+aufbereitet, Standortdaten sind entfernt.

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Liste aller Seiten für Suchmaschinen. Kommt eine neue Seite dazu
+     (z. B. ein weiteres Projekt), hier einen <url>-Eintrag ergänzen. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://onsidehq.de/</loc></url>
+  <url><loc>https://onsidehq.de/projekte</loc></url>
+  <url><loc>https://onsidehq.de/berlin-night-run</loc></url>
+  <url><loc>https://onsidehq.de/leistungen</loc></url>
+  <url><loc>https://onsidehq.de/ueber-uns</loc></url>
+  <url><loc>https://onsidehq.de/kontakt</loc></url>
+  <url><loc>https://onsidehq.de/impressum</loc></url>
+  <url><loc>https://onsidehq.de/datenschutz</loc></url>
+</urlset>

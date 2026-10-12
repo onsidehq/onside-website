@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Berlin Night Run – onside.hq</title>
+  <meta name="description" content="Der Berlin Night Run: ein Lauf durch die Nacht mit DJ, Partnern, Verpflegung und Afterparty. Konzept und Umsetzung von onside.hq." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/berlin-night-run" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Berlin Night Run – onside.hq" />
+  <meta property="og:description" content="Der Berlin Night Run: ein Lauf durch die Nacht mit DJ, Partnern, Verpflegung und Afterparty. Konzept und Umsetzung von onside.hq." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/berlin-night-run" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="css/styles.css?v=5" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="night-run">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – zur Startseite">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="index.html">Home</a>
+      <a href="projekte.html" aria-current="page">Projekte</a>
+      <a href="leistungen.html">Leistungen</a>
+      <a href="ueber-uns.html">Wer sind wir?</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <div class="lang-switch">
+      <button class="lang-switch__btn is-active" data-lang="de" type="button">DE</button>
+      <span class="lang-switch__divider">/</span>
+      <button class="lang-switch__btn" data-lang="en" type="button">EN</button>
+    </div>
+
+    <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menü">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projekte.html" aria-current="page"><span class="menu-overlay__num">02</span>Projekte</a>
+      <a href="leistungen.html"><span class="menu-overlay__num">03</span>Leistungen</a>
+      <a href="ueber-uns.html"><span class="menu-overlay__num">04</span>Wer sind wir?</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">05</span>Kontakt</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+    <div class="lang-switch lang-switch--overlay">
+      <button class="lang-switch__btn is-active" data-lang="de" type="button">DE</button>
+      <span class="lang-switch__divider">/</span>
+      <button class="lang-switch__btn" data-lang="en" type="button">EN</button>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ PROJEKTSEITE: BERLIN NIGHT RUN ============
+         Diese Seite ist gleichzeitig die Vorlage für jedes weitere Projekt:
+         Datei kopieren, umbenennen, Texte und Bildpfade austauschen. -->
+
+    <!-- BILD 1: Titelbild → assets/projects/berlin-night-run/cover.jpg
+         (dieselbe Datei wie auf der Startseite). Fehlt sie, laufen Lichtspuren.
+         object-position: welcher Teil des Fotos auf dem Handy zu sehen ist
+         (34% = etwas links der Mitte; bei mittigem Motiv 50% 50%). -->
+    <section class="case-hero">
+      <div class="case-hero__media viz">
+        <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
+        <img src="assets/projects/berlin-night-run/cover.jpg" alt="Läuferinnen und Läufer beim Berlin Night Run" style="object-position: 34% 50%" onerror="this.remove()">
+      </div>
+      <div class="case-hero__content">
+        <a class="back-link reveal" href="projekte.html"><i>←</i> Alle Projekte</a>
+        <p class="eyebrow reveal">Projekt 01 · Berlin · 2026</p>
+        <h1 data-split>Night Run</h1>
+        <p class="case-hero__lead reveal">
+          Ein Lauf durch die Berliner Nacht&nbsp;– mit DJ, Partnern, Verpflegung und
+          Afterparty. Unser erstes eigenes Event und der Start von onside.hq.
+        </p>
+      </div>
+    </section>
+
+    <!-- Eckdaten: hier einfach die Texte zwischen <dd> und </dd> ändern -->
+    <section class="facts">
+      <dl class="facts__grid">
+        <div class="facts__item reveal"><dt>Wann</dt><dd>19.&nbsp;September 2026</dd></div>
+        <div class="facts__item reveal"><dt>Wo</dt><dd>Berlin</dd></div>
+        <div class="facts__item reveal"><dt>Strecke</dt><dd>8&nbsp;km · 3&nbsp;Stopps</dd></div>
+        <div class="facts__item reveal"><dt>Unsere Rolle</dt><dd>Konzept, Organisation, Partner, Content</dd></div>
+      </dl>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Die Idee</p>
+        <h2 data-split>Laufen ist der Anlass.<br>Das <span class="scribble" data-scribble="underline">Erlebnis</span> der Grund.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Der Night Run war von Anfang an als Abend gedacht, an den man sich erinnert:
+          die Stadt bei Nacht, ein DJ, gemeinsame Stopps und ein Ziel, an dem der Abend
+          weitergeht. Ein Lauf, bei dem die Zeit auf der Uhr egal ist und das Gefühl
+          danach zählt.
+        </p>
+      </div>
+    </section>
+
+    <!-- Der Ablauf als gezeichnete Route. Die Beschriftung der Punkte steht im
+         Attribut data-labels (mit | getrennt) und lässt sich dort ändern. -->
+    <section class="case-route">
+      <p class="eyebrow reveal">Der Ablauf</p>
+      <h2 data-split>Vom Start bis zur Afterparty.</h2>
+      <div class="case-route__viz viz reveal">
+        <canvas data-scene="route" data-seed="5" data-labels="Start|Stopp 1|Stopp 2|Stopp 3|Afterparty" aria-hidden="true"></canvas>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Die Umsetzung</p>
+        <h2 data-split>In wenigen Wochen zum Startschuss.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          In dieser Zeit ist alles entstanden, was ein Event trägt. Jeder Schritt lag in
+          unserer Hand&nbsp;– genau so wollen wir weiterarbeiten.
+        </p>
+        <ul class="checklist reveal">
+          <li>Idee &amp; Konzept</li>
+          <li>Route &amp; Ablauf</li>
+          <li>Partner &amp; Sponsoren</li>
+          <li>Verpflegung</li>
+          <li>DJ &amp; Afterparty</li>
+          <li>Content vor Ort</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-gallery">
+      <p class="eyebrow reveal">Eindrücke</p>
+      <h2 data-split>Der Abend in Bildern.</h2>
+      <div class="case-gallery__grid">
+        <!-- GALERIE: 13 Fotos aus assets/projects/berlin-night-run/
+             01.jpg ist das breite Bild oben. 01 bis 05 laufen auch im Carousel der
+             Startseite (dort mit kleiner Animation, falls ein Foto fehlt).
+             Querformat-Felder (3:2) stehen zu zweit nebeneinander, Hochformat-Felder
+             (Klasse case-gallery__item--tall, 4:5) zu dritt. Zum Austauschen eine
+             neue Datei mit demselben Namen hochladen. -->
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="rings" data-seed="3" aria-hidden="true"></canvas>
+            <span class="viz__label">01 — Start</span>
+            <img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run: die Laufgruppe unterwegs" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="trails" data-seed="21" aria-hidden="true"></canvas>
+            <span class="viz__label">02 — Strecke</span>
+            <img src="assets/projects/berlin-night-run/02.jpg" alt="Berlin Night Run: Trinkpause" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="eq" data-seed="5" aria-hidden="true"></canvas>
+            <span class="viz__label">03 — Beat</span>
+            <img src="assets/projects/berlin-night-run/03.jpg" alt="Berlin Night Run: der DJ am Pult" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/06.jpg" alt="Berlin Night Run: der DJ auf dem Lastenrad" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/07.jpg" alt="Berlin Night Run: Hände am DJ-Pult" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/08.jpg" alt="Berlin Night Run: Erfrischung unterwegs" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="crowd" data-seed="8" aria-hidden="true"></canvas>
+            <span class="viz__label">04 — Crowd</span>
+            <img src="assets/projects/berlin-night-run/04.jpg" alt="Berlin Night Run: die versammelte Crowd" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="bokeh" data-seed="13" aria-hidden="true"></canvas>
+            <span class="viz__label">05 — Afterparty</span>
+            <img src="assets/projects/berlin-night-run/05.jpg" alt="Berlin Night Run: Anstoßen am Abend" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/09.jpg" alt="Berlin Night Run: Getränke an einem Stopp" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/10.jpg" alt="Berlin Night Run: Becher für die Verpflegung" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/11.jpg" alt="Berlin Night Run: Stimmung vor der Bar" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/12.jpg" alt="Berlin Night Run: Drinks an der Straßenecke" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/13.jpg" alt="Berlin Night Run: gute Laune bei Nacht" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow reveal">Euer Projekt</p>
+      <h2 data-split>Ihr plant etwas, das Menschen <span class="scribble" data-scribble="underline">zusammenbringt?</span></h2>
+      <div class="cta-band__actions reveal">
+        <a href="kontakt.html" class="btn btn--large btn--beat">Projekt anfragen</a>
+        <a href="leistungen.html" class="btn btn--large btn--ghost">Unsere Leistungen</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, Marken und Content&nbsp;– von der ersten Idee bis zum letzten Reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Seiten">
+        <span class="footer__label">Seiten</span>
+        <a href="projekte.html">Projekte</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="ueber-uns.html">Wer sind wir?</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Kontakt">
+        <span class="footer__label">Kontakt</span>
+        <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Menü, Carousel, Laufband, Formular -->
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
+  <script src="js/config.js?v=5"></script>
+  <script src="js/visuals.js?v=5"></script>
+  <script src="js/script.js?v=5"></script>
+</body>
+</html>

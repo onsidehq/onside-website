@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abseits – onside.hq</title>
+  <meta name="description" content="Diese Seite gibt es nicht." />
+  <meta name="theme-color" content="#000000" />
+  <meta name="robots" content="noindex" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Abseits – onside.hq" />
+  <meta property="og:description" content="Diese Seite gibt es nicht." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/404" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="/css/styles.css?v=5" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="notfound">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="/index.html" class="nav__logo" aria-label="onside.hq – zur Startseite">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="/index.html">Home</a>
+      <a href="/projekte.html">Projekte</a>
+      <a href="/leistungen.html">Leistungen</a>
+      <a href="/ueber-uns.html">Wer sind wir?</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+
+    <div class="lang-switch">
+      <button class="lang-switch__btn is-active" data-lang="de" type="button">DE</button>
+      <span class="lang-switch__divider">/</span>
+      <button class="lang-switch__btn" data-lang="en" type="button">EN</button>
+    </div>
+
+    <a href="/kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menü">
+      <a href="/index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="/projekte.html"><span class="menu-overlay__num">02</span>Projekte</a>
+      <a href="/leistungen.html"><span class="menu-overlay__num">03</span>Leistungen</a>
+      <a href="/ueber-uns.html"><span class="menu-overlay__num">04</span>Wer sind wir?</a>
+      <a href="/kontakt.html"><span class="menu-overlay__num">05</span>Kontakt</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+    <div class="lang-switch lang-switch--overlay">
+      <button class="lang-switch__btn is-active" data-lang="de" type="button">DE</button>
+      <span class="lang-switch__divider">/</span>
+      <button class="lang-switch__btn" data-lang="en" type="button">EN</button>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ 404 — Seite nicht gefunden ============
+         Erscheint automatisch, wenn jemand eine Adresse aufruft, die es nicht gibt. -->
+    <section class="page-hero page-hero--center">
+      <div class="page-hero__text">
+        <div class="statement__board viz reveal">
+          <canvas data-scene="offside" aria-hidden="true"></canvas>
+        </div>
+        <p class="eyebrow reveal">Fehler 404</p>
+        <h1 data-split>Abseits.</h1>
+        <p class="page-hero__lead reveal">
+          Diese Seite gibt es nicht&nbsp;– oder nicht mehr. Hier geht’s zurück ins Spiel.
+        </p>
+        <div class="cta-band__actions reveal">
+          <a href="/index.html" class="btn btn--large">Zur Startseite</a>
+          <a href="/projekte.html" class="btn btn--large btn--ghost">Projekte ansehen</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="/index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, Marken und Content&nbsp;– von der ersten Idee bis zum letzten Reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Seiten">
+        <span class="footer__label">Seiten</span>
+        <a href="/projekte.html">Projekte</a>
+        <a href="/leistungen.html">Leistungen</a>
+        <a href="/ueber-uns.html">Wer sind wir?</a>
+        <a href="/kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Kontakt">
+        <span class="footer__label">Kontakt</span>
+        <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Rechtliches">
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Menü, Carousel, Laufband, Formular -->
+  <script src="/js/gsap.min.js"></script>
+  <script src="/js/ScrollTrigger.min.js"></script>
+  <script src="/js/config.js?v=5"></script>
+  <script src="/js/visuals.js?v=5"></script>
+  <script src="/js/script.js?v=5"></script>
+</body>
+</html>
