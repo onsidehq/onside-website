@@ -1,0 +1,23 @@
+# Einstellungen für Cloudflare Pages (wird beim Hochladen automatisch gelesen).
+# Oben: Sicherheitsregeln für alle Seiten. Darunter: wie lange Browser Dateien
+# zwischenspeichern dürfen. Fotos höchstens eine Woche, damit ein ausgetauschtes
+# Bild (gleicher Dateiname) spätestens dann überall zu sehen ist.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/css/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/js/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

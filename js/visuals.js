@@ -368,10 +368,23 @@
     let targetLevel = level;
     const pointer = { x: 0, y: 0, radius: 150, active: false };
 
+    let running = false;
+
     function measureLevel() {
       const span = (hero ? hero.offsetHeight : window.innerHeight * 0.6) * 0.85;
       const p = clamp(window.scrollY / Math.max(1, span), 0, 1);
       targetLevel = lerp(topLevel(), calmLevel(), p);
+      // Weit unterhalb des Seitenkopfs bleibt das Feld als ruhiges Standbild
+      // stehen. Man sieht dort kaum einen Unterschied, es spart aber Akku.
+      if (reducedMotion) return;
+      const far = window.scrollY > span * 1.8;
+      if (far && running) {
+        running = false;
+        ticker.remove(item);
+      } else if (!far && !running) {
+        running = true;
+        ticker.add(item);
+      }
     }
 
     function resize(force) {
@@ -477,7 +490,8 @@
     if (reducedMotion) {
       paintStill();
     } else {
-      ticker.add(item);
+      // Seite wurde weit unten geöffnet: einmal zeichnen, dann ruht das Feld
+      if (!running) paint(performance.now() / 1000);
       window.addEventListener('scroll', measureLevel, { passive: true });
 
       window.addEventListener('pointermove', (e) => {

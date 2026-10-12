@@ -1,13 +1,16 @@
 /* ==========================================================================
    onside.hq — JavaScript (Bedienung)
    Was hier passiert:
-   1) Einblenden beim Scrollen (GSAP + ScrollTrigger), Überschriften Wort für Wort
+   1) Einblenden beim Scrollen, Überschriften Wort für Wort
    2) Nav: Menü-Button + Vollbild-Menü
-   3) Sprachauswahl (aktuell nur optisch)
-   4) Bilder-Carousel
-   5) Laufband-Ticker (zwei Zeilen, gegenläufig)
-   6) Lichtfleck auf Karten, der der Maus folgt
-   7) Kontaktformular
+   3) Bilder-Carousel
+   4) Laufband-Ticker (zwei Zeilen, gegenläufig)
+   5) Lichtfleck auf Karten, der der Maus folgt
+   6) Kontaktformular
+   7) Startbildschirm "Blitzlicht" (Fotos aus js/config.js)
+   8) Projektseite: Regler "Der Plan dahinter"
+   9) Startseite: "Für wen?" (Zielgruppen zum Aufklappen)
+   10) Direkte Links ohne Umleitung (nur online)
 
    Alles, was gezeichnet und animiert wird (Hintergrund, Szenen, Striche),
    steht in js/visuals.js. Eure Einstellungen stehen in js/config.js.
@@ -34,10 +37,10 @@ document.querySelectorAll('[data-year], #year').forEach((el) => {
    1) Einblenden beim Scrollen
    - Elemente mit der Klasse "reveal" blenden ein und rutschen nach oben.
    - Überschriften mit data-split kommen Wort für Wort von unten herein.
-   GSAP liegt lokal im Projekt. Sollte es trotzdem einmal nicht laden,
-   wird einfach alles sofort angezeigt.
+   Die Bewegung selbst steht im CSS (Abschnitt 18). Hier wird nur beobachtet,
+   wann etwas ins Bild kommt, und dann die Klasse "is-in" gesetzt. Dafür
+   braucht es keine Bibliothek: Das kann jeder Browser selbst.
 --------------------------------------------------------------------- */
-const gsapReady = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
 
 // Zerlegt eine Überschrift in einzelne Wörter. Jedes Wort bekommt eine
 // "Maske" (.w), hinter der es hervorkommt (.w__i). Zeilenumbrüche (<br>)
@@ -50,6 +53,7 @@ function splitWords(el) {
     const inner = document.createElement('span');
     mask.className = 'w';
     inner.className = 'w__i';
+    inner.style.setProperty('--i', units.length);
     mask.appendChild(inner);
     units.push(inner);
     return { mask, inner };
@@ -60,20 +64,28 @@ function splitWords(el) {
   const GAP = /([ \t\n\r]+)/;
   const ONLY_GAP = /^[ \t\n\r]+$/;
 
+  const splitText = (text, className) => {
+    const frag = document.createDocumentFragment();
+    text.split(GAP).forEach((part) => {
+      if (!part) return;
+      if (ONLY_GAP.test(part)) {
+        frag.appendChild(document.createTextNode(' '));
+        return;
+      }
+      const unit = makeUnit();
+      unit.inner.textContent = part;
+      if (className) unit.inner.classList.add(className);
+      frag.appendChild(unit.mask);
+    });
+    return frag;
+  };
+
   Array.from(el.childNodes).forEach((node) => {
     if (node.nodeType === Node.TEXT_NODE) {
-      const frag = document.createDocumentFragment();
-      node.textContent.split(GAP).forEach((part) => {
-        if (!part) return;
-        if (ONLY_GAP.test(part)) {
-          frag.appendChild(document.createTextNode(' '));
-          return;
-        }
-        const unit = makeUnit();
-        unit.inner.textContent = part;
-        frag.appendChild(unit.mask);
-      });
-      el.replaceChild(frag, node);
+      el.replaceChild(splitText(node.textContent), node);
+    } else if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('dim')) {
+      // gedämpfter Satzteil (<span class="dim">): Wörter einzeln, Farbe bleibt
+      el.replaceChild(splitText(node.textContent, 'dim'), node);
     } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
       const unit = makeUnit();
       el.insertBefore(unit.mask, node);
@@ -83,74 +95,77 @@ function splitWords(el) {
   return units;
 }
 
+// Überschrift ist fertig eingeblendet: Maske öffnen und den
+// handgezeichneten Strich in js/visuals.js starten lassen
+function markRevealed(el) {
+  el.classList.add('is-revealed');
+  el.dispatchEvent(new CustomEvent('onside:revealed'));
+}
+
 function showEverything() {
-  document.querySelectorAll('.reveal').forEach((el) => {
-    el.style.opacity = '1';
-    el.style.transform = 'none';
-  });
+  document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-in'));
   document.querySelectorAll('[data-split]').forEach((el) => {
-    el.classList.add('is-split', 'is-revealed');
-    el.dispatchEvent(new CustomEvent('onside:revealed'));
+    el.classList.add('is-split', 'is-in');
+    markRevealed(el);
   });
 }
 
 try {
-  if (gsapReady && !reducedMotion && !lateStart) {
-    gsap.registerPlugin(ScrollTrigger);
+  if (!reducedMotion && !lateStart && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        io.unobserve(el);
+        el.classList.add('is-in');
+        if (el.hasAttribute('data-split')) {
+          const words = el.querySelectorAll('.w__i').length;
+          setTimeout(() => markRevealed(el), 950 + words * 50);
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px' }); // "oben bei 88 % der Bildschirmhöhe"
 
     document.querySelectorAll('[data-split]').forEach((el) => {
-      const words = splitWords(el);
-      gsap.set(words, { yPercent: 118 });
+      splitWords(el);
       el.classList.add('is-split');
-      gsap.to(words, {
-        yPercent: 0,
-        duration: 0.95,
-        ease: 'power3.out',
-        stagger: 0.05,
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-        onComplete() {
-          gsap.set(words, { clearProps: 'transform' });
-          el.classList.add('is-revealed');
-          // Signal für die handgezeichneten Striche in js/visuals.js
-          el.dispatchEvent(new CustomEvent('onside:revealed'));
-        },
-      });
+      io.observe(el);
     });
 
     document.querySelectorAll('.reveal').forEach((el, index) => {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        delay: (index % 3) * 0.1, // leichte Staffelung
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-      });
+      el.style.setProperty('--d', ((index % 3) * 0.1) + 's'); // leichte Staffelung
+      io.observe(el);
     });
 
     // Leichter Versatz beim Scrollen auf dem Projekt-Titelbild
-    gsap.utils.toArray('.project__cover-bg').forEach((bg) => {
+    document.querySelectorAll('.project__cover-bg').forEach((bg) => {
       const section = bg.closest('.project__cover');
       if (!section) return;
-      gsap.to(bg, {
-        yPercent: 8,
-        ease: 'none',
-        scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true },
-      });
+      let visible = false;
+      let queued = false;
+      const update = () => {
+        queued = false;
+        const r = section.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (window.innerHeight - r.top) / (window.innerHeight + r.height)));
+        bg.style.transform = 'translate3d(0,' + (p * 8).toFixed(2) + '%,0)';
+      };
+      const onScroll = () => {
+        if (visible && !queued) {
+          queued = true;
+          requestAnimationFrame(update);
+        }
+      };
+      new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        if (visible) onScroll();
+      }).observe(section);
+      window.addEventListener('scroll', onScroll, { passive: true });
     });
-
-    // Positionen neu messen, sobald Schrift und Bilder geladen sind
-    window.addEventListener('load', () => ScrollTrigger.refresh());
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
   } else {
     showEverything();
-    if (!gsapReady) {
-      console.warn('onside.hq: GSAP konnte nicht geladen werden — Scroll-Animationen sind aus, der Rest läuft normal.');
-    }
   }
 } catch (err) {
   showEverything();
-  console.warn('onside.hq: Scroll-Animationen konnten nicht starten —', err);
+  console.warn('onside.hq: Einblenden beim Scrollen konnte nicht starten —', err);
 }
 
 /* ---------------------------------------------------------------------
@@ -192,60 +207,7 @@ if (navBurger && menuOverlay) {
 }
 
 /* ---------------------------------------------------------------------
-   3) Sprachauswahl — aktuell nur optisch (DE aktiv, EN zeigt einen Hinweis).
-   Für eine echte Übersetzung müssten alle Texte zweisprachig vorliegen.
---------------------------------------------------------------------- */
-document.querySelectorAll('.lang-switch__btn').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    if (btn.dataset.lang === 'en') {
-      showToast('English version coming soon');
-      return; // DE bleibt aktiv, solange es keine englische Fassung gibt
-    }
-    const group = btn.closest('.lang-switch');
-    group.querySelectorAll('.lang-switch__btn').forEach((b) => b.classList.remove('is-active'));
-    btn.classList.add('is-active');
-  });
-});
-
-function showToast(message) {
-  let toast = document.getElementById('toast');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'toast';
-    toast.setAttribute('role', 'status');
-    Object.assign(toast.style, {
-      position: 'fixed',
-      bottom: '2rem',
-      left: '50%',
-      transform: 'translateX(-50%) translateY(20px)',
-      background: 'rgba(18, 17, 15, 0.96)',
-      border: '1px solid rgba(247, 242, 232, 0.16)',
-      color: '#f7f2e8',
-      padding: '0.8rem 1.4rem',
-      borderRadius: '999px',
-      fontSize: '0.85rem',
-      whiteSpace: 'nowrap',
-      zIndex: '500',
-      opacity: '0',
-      transition: 'opacity 0.3s ease, transform 0.3s ease',
-      pointerEvents: 'none',
-    });
-    document.body.appendChild(toast);
-  }
-  toast.textContent = message;
-  requestAnimationFrame(() => {
-    toast.style.opacity = '1';
-    toast.style.transform = 'translateX(-50%) translateY(0)';
-  });
-  clearTimeout(toast._hideTimeout);
-  toast._hideTimeout = setTimeout(() => {
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateX(-50%) translateY(20px)';
-  }, 2200);
-}
-
-/* ---------------------------------------------------------------------
-   4) Bilder-Carousel
+   3) Bilder-Carousel
    Das Verschieben übernimmt der Browser selbst (scroll-snap im CSS): Auf dem
    Handy folgt das Bild direkt dem Finger. Dieses Skript ergänzt Pfeile,
    Punkte und die Pfeiltasten.
@@ -330,7 +292,7 @@ document.querySelectorAll('[data-carousel]').forEach((root) => {
 });
 
 /* ---------------------------------------------------------------------
-   5) Laufband
+   4) Laufband
    Ein Durchlauf ist ein .next__group (gefülltes Wort + Outline-Wort).
    Das Skript misst dessen echte Breite in Pixeln, hängt so viele Kopien an,
    dass die Zeile immer über den ganzen Bildschirm reicht, und schiebt sie
@@ -474,7 +436,7 @@ if (marqueeSection && marquees.length) {
 }
 
 /* ---------------------------------------------------------------------
-   6) Lichtfleck auf Karten (alle Elemente mit data-spot)
+   5) Lichtfleck auf Karten (alle Elemente mit data-spot)
    Die Mausposition wird als CSS-Variable an die Karte gegeben; den Rest
    macht das CSS. Auf Touch-Geräten gibt es keinen Mauszeiger — dort aus.
 --------------------------------------------------------------------- */
@@ -489,7 +451,7 @@ if (window.matchMedia('(hover: hover)').matches) {
 }
 
 /* ---------------------------------------------------------------------
-   7) Kontaktformular
+   6) Kontaktformular
    Schickt die Anfrage an Web3Forms, die daraus eine Mail an euer Postfach
    machen. Läuft ohne Seitenwechsel: Die Rückmeldung erscheint direkt unter
    dem Button. Den Access Key tragt ihr in js/config.js ein.
@@ -498,19 +460,42 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   const statusEl = form.querySelector('[data-form-status]');
   const submitBtn = form.querySelector('[data-form-submit]');
 
-  const MAIL = 'onside.hq@gmail.com';
+  const MAIL = 'team@onsidehq.de';
 
   const setStatus = (text, kind) => {
     statusEl.textContent = text;
     statusEl.className = 'contact-form__status' + (kind ? ' is-' + kind : '');
   };
 
+  // Die angeklickten Interessen ("Was braucht ihr?") als eine Zeile
+  const interests = () => new FormData(form).getAll('interesse').join(', ');
+
+  // Nach dem Absenden erscheint statt der Felder ein Dankeschön. Mit
+  // "Noch eine Anfrage" kommt das (leere) Formular zurück.
+  const done = document.createElement('div');
+  done.className = 'contact-form__done';
+  done.innerHTML =
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><path d="m15 24.5 6 6 12-12.5"/></svg>' +
+    '<p class="contact-form__done-title" tabindex="-1"></p>' +
+    '<p class="contact-form__done-text">Wir melden uns innerhalb von 48\u00a0Stunden. Bis dahin findest du uns auf ' +
+    '<a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>.</p>' +
+    '<button type="button" class="btn btn--ghost btn--small">Noch eine Anfrage</button>';
+  form.appendChild(done);
+  const doneTitle = done.querySelector('.contact-form__done-title');
+  done.querySelector('button').addEventListener('click', () => {
+    form.classList.remove('is-sent');
+    setStatus('');
+    const first = form.querySelector('.chip input, #cf-name');
+    if (first) first.focus();
+  });
+
   // Klappt das Senden nicht, soll nichts verloren gehen: Die Meldung enthält
   // einen Mail-Link, der das schon Geschriebene gleich in die Mail übernimmt.
   const setFailed = (text) => {
     setStatus(text + ' Schreib uns gern direkt an ', 'error');
     const data = new FormData(form);
-    const body = [data.get('message'), data.get('name')].filter(Boolean).join('\n\n').slice(0, 1500);
+    const topic = interests() ? 'Interesse: ' + interests() : '';
+    const body = [topic, data.get('message'), data.get('name')].filter(Boolean).join('\n\n').slice(0, 1500);
     const link = document.createElement('a');
     link.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('Anfrage über onsidehq.de') + '&body=' + encodeURIComponent(body);
     link.textContent = MAIL;
@@ -537,7 +522,16 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
     setStatus('Wird gesendet …');
 
     try {
-      const payload = Object.fromEntries(new FormData(form));
+      const data = new FormData(form);
+      const payload = {};
+      data.forEach((value, name) => {
+        if (name !== 'interesse') payload[name] = value;
+      });
+      // Betreff mit Name und Interessen, damit man im Postfach sofort sieht,
+      // worum es geht: "Neue Anfrage von Lea (Event, Social Media)"
+      const picked = interests();
+      payload.Interesse = picked || 'nicht angegeben';
+      payload.subject = 'Neue Anfrage von ' + (String(data.get('name') || '').trim() || 'onsidehq.de') + (picked ? ' (' + picked + ')' : '');
       payload.access_key = key;
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -547,8 +541,13 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
       const result = await response.json();
 
       if (response.ok && result.success) {
+        const firstName = String(data.get('name') || '').trim().split(/\s+/)[0];
         form.reset();
-        setStatus('Danke! Deine Anfrage ist da – wir melden uns.', 'ok');
+        setStatus('Danke! Deine Anfrage ist da. Wir melden uns innerhalb von 48 Stunden.', 'ok');
+        doneTitle.textContent = 'Danke' + (firstName ? ', ' + firstName : '') + '! Deine Anfrage ist da.';
+        form.classList.add('is-sent');
+        done.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+        doneTitle.focus({ preventScroll: true });
       } else {
         setFailed('Das hat gerade nicht geklappt.');
       }
@@ -561,12 +560,355 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
 });
 
 /* ---------------------------------------------------------------------
+   7) Startbildschirm "Blitzlicht"
+   Die Fotos stehen in js/config.js (startbild). Alle paar Sekunden blitzt es
+   und das nächste Foto erscheint; ein Klick ins Bild löst den Blitz selbst
+   aus. Läuft nur, solange der Startbildschirm zu sehen ist.
+--------------------------------------------------------------------- */
+(function () {
+  const hero = document.querySelector('[data-flash]');
+  const nav = document.getElementById('nav');
+
+  // Navigation oben durchsichtig auf dem Foto, beim Scrollen wieder dunkel
+  if (hero && nav) {
+    const onScroll = () => nav.classList.toggle('nav--over', window.scrollY < 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  const cfg = (window.ONSIDE && window.ONSIDE.startbild) || {};
+  if (!hero || !Array.isArray(cfg.breit) || !cfg.breit.length) return;
+
+  const small = window.matchMedia('(max-width: 720px)');
+  const pickList = () => (small.matches && Array.isArray(cfg.handy) && cfg.handy.length ? cfg.handy : cfg.breit);
+  const DUR = Math.max(1.5, cfg.sekunden || 3.4) * 1000 * (reducedMotion ? 2 : 1);
+  const pad = (n) => String(n).padStart(2, '0');
+
+  const stage = hero.querySelector('.hero__stage');
+  const burst = hero.querySelector('.hero__burst');
+  const countEl = hero.querySelector('.hero__count');
+  const capEl = hero.querySelector('.hero__caption');
+  const bar = hero.querySelector('.hero__bar i');
+  let list = pickList();
+  let index = 0;
+  let current = stage.querySelector('.hero__img');
+  let timer = null;
+  let running = false;
+  let busy = false;
+
+  const warm = (k) => { const im = new Image(); im.src = list[k % list.length].bild; };
+
+  function label(k) {
+    if (countEl) countEl.textContent = pad(k + 1) + ' / ' + pad(list.length);
+    if (capEl) capEl.textContent = list[k].text || '';
+    if (!bar) return;
+    bar.classList.remove('is-running');
+    void bar.offsetWidth; // Animation neu starten
+    bar.style.setProperty('--dur', DUR + 'ms');
+    if (running) bar.classList.add('is-running');
+  }
+
+  function show(k, bx, by) {
+    if (busy) return;
+    busy = true;
+    const slide = list[k];
+    const img = document.createElement('img');
+    img.className = 'hero__img';
+    img.alt = '';
+    img.decoding = 'async';
+    img.src = slide.bild;
+    img.style.setProperty('--pos', slide.ausschnitt || '50% 50%');
+    const go = () => {
+      stage.appendChild(img);
+      if (!reducedMotion && burst) {
+        burst.style.setProperty('--bx', bx || '50%');
+        burst.style.setProperty('--by', by || '45%');
+        burst.classList.remove('is-firing');
+        void burst.offsetWidth;
+        burst.classList.add('is-firing');
+      }
+      img.classList.add('is-on');
+      if (current) {
+        const old = current;
+        old.classList.remove('is-on');
+        old.classList.add('is-off');
+        setTimeout(() => old.remove(), 600);
+      }
+      current = img;
+      index = k;
+      label(k);
+      warm(k + 1);
+      busy = false;
+    };
+    // erst zeigen, wenn das Foto fertig geladen ist (sonst blitzt es ins Leere)
+    (img.decode ? img.decode() : Promise.resolve()).then(go, () => { busy = false; });
+  }
+
+  function schedule() {
+    clearTimeout(timer);
+    if (running) timer = setTimeout(() => { show((index + 1) % list.length); schedule(); }, DUR);
+  }
+
+  hero.addEventListener('click', (e) => {
+    if (e.target.closest('.hero__text')) return;
+    hero.classList.add('was-used');
+    const r = hero.getBoundingClientRect();
+    show((index + 1) % list.length, (e.clientX - r.left) + 'px', (e.clientY - r.top) + 'px');
+    schedule();
+  });
+
+  small.addEventListener('change', () => {
+    list = pickList();
+    show(0);
+    schedule();
+  });
+
+  current.style.setProperty('--pos', list[0].ausschnitt || '50% 50%');
+  label(0);
+  // das nächste Foto erst vorladen, wenn die Seite fertig ist (das erste hat Vorrang)
+  if (document.readyState === 'complete') warm(1);
+  else window.addEventListener('load', () => setTimeout(() => warm(1), 400), { once: true });
+
+  let inView = true;
+  const sync = () => {
+    const should = inView && !document.hidden;
+    if (should && !running) {
+      running = true;
+      label(index);
+      schedule();
+    } else if (!should && running) {
+      running = false;
+      clearTimeout(timer);
+      if (bar) bar.classList.remove('is-running');
+    }
+  };
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => { inView = entries[0].isIntersecting; sync(); }, { threshold: 0.15 }).observe(hero);
+  }
+  document.addEventListener('visibilitychange', sync);
+  sync();
+})();
+
+/* ---------------------------------------------------------------------
+   8) Projektseite: Regler "Der Plan dahinter"
+   Links das Foto, rechts dieselbe Szene als Planskizze. Die Markierungen
+   (Kreis + Beschriftung) hängen an Punkten im Foto und rutschen mit, wenn
+   sich der Bildausschnitt ändert. Ein Punkt steht als Anteil der Bildbreite
+   und -höhe in NOTES (x: 0.5 = Mitte).
+--------------------------------------------------------------------- */
+(function () {
+  const box = document.querySelector('[data-backstage]');
+  if (!box) return;
+
+  const handle = box.querySelector('.backstage__handle');
+  const plan = box.querySelector('.backstage__plan');
+  const planImg = plan.querySelector('img');
+  const svg = box.querySelector('.backstage__marks');
+  const small = window.matchMedia('(max-width: 720px)');
+  const SVGNS = 'http://www.w3.org/2000/svg';
+
+  const NOTES = [
+    { x: 0.721, y: 0.50, rx: 0.03, ry: 0.06, k: '01 · Ziel', t: 'Genau diese Gesichter', lx: 0.078, ly: 0.075,
+      handy: { lx: -0.128, ly: -0.27 } },
+    { x: 0.638, y: 0.525, rx: 0.03, ry: 0.06, k: '02 · Content', t: 'Momente, die man filmen will', lx: -0.055, ly: 0.15,
+      handy: { hide: true } },
+    { x: 0.385, y: 0.75, rx: 0.085, ry: 0.11, k: '03 · Sound', t: 'DJ fährt vorneweg', lx: 0.0, ly: -0.37,
+      handy: { hide: true } },
+  ];
+
+  let x = 100;
+  function setX(v, byUser) {
+    x = Math.max(0, Math.min(100, v));
+    box.style.setProperty('--x', x + '%');
+    handle.setAttribute('aria-valuenow', Math.round(x));
+    if (byUser) box.classList.add('was-used');
+  }
+
+  // Wo landet ein Punkt des Fotos, wenn es den Rahmen per "cover" füllt?
+  function mapper() {
+    const W = box.clientWidth;
+    const H = box.clientHeight;
+    const nw = planImg.naturalWidth || 2400;
+    const nh = planImg.naturalHeight || 1600;
+    const s = Math.max(W / nw, H / nh);
+    const dw = nw * s;
+    const dh = nh * s;
+    const pos = (getComputedStyle(planImg).objectPosition || '50% 50%').split(' ').map((p) => parseFloat(p) / 100);
+    const ox = (W - dw) * pos[0];
+    const oy = (H - dh) * pos[1];
+    return { W, H, dw, dh, pt: (fx, fy) => [ox + fx * dw, oy + fy * dh] };
+  }
+
+  const labels = NOTES.map(() => {
+    const el = document.createElement('div');
+    el.className = 'backstage__note';
+    plan.appendChild(el);
+    return el;
+  });
+
+  function draw(name, attrs) {
+    const n = document.createElementNS(SVGNS, name);
+    Object.keys(attrs).forEach((k) => n.setAttribute(k, attrs[k]));
+    svg.appendChild(n);
+  }
+
+  function layout() {
+    const m = mapper();
+    svg.setAttribute('viewBox', '0 0 ' + m.W + ' ' + m.H);
+    svg.textContent = '';
+    NOTES.forEach((base, i) => {
+      const n = small.matches && base.handy ? Object.assign({}, base, base.handy) : base;
+      const el = labels[i];
+      el.hidden = !!n.hide;
+      if (n.hide) return;
+      el.innerHTML = '<span class="backstage__label">' + n.k + '</span><strong>' + n.t + '</strong>';
+      const [cx, cy] = m.pt(n.x, n.y);
+      const rx = n.rx * m.dw;
+      const ry = n.ry * m.dh;
+      const ax = cx + n.lx * m.dw;
+      const ay = cy + n.ly * m.dh;
+      el.style.left = ax + 'px';
+      el.style.top = ay + 'px';
+      el.style.transform = 'translate(0, -0.55em)';
+      // Linie: vom Kreis schräg zum Knick, dann waagerecht bis zur Beschriftung
+      const ex = ax - 8;
+      const kx = ax - 34;
+      const ang = Math.atan2(ay - cy, kx - cx);
+      const sx = cx + Math.cos(ang) * rx;
+      const sy = cy + Math.sin(ang) * ry;
+      draw('ellipse', { cx: cx.toFixed(1), cy: cy.toFixed(1), rx: rx.toFixed(1), ry: ry.toFixed(1) });
+      draw('path', { d: 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) + ' L' + kx.toFixed(1) + ' ' + ay.toFixed(1) + ' L' + ex.toFixed(1) + ' ' + ay.toFixed(1) });
+      draw('circle', { cx: ex.toFixed(1), cy: ay.toFixed(1), r: 2.6 });
+    });
+  }
+
+  // Ziehen mit Maus, Finger oder Stift
+  let dragging = false;
+  const fromEvent = (e) => {
+    const r = box.getBoundingClientRect();
+    setX(((e.clientX - r.left) / r.width) * 100, true);
+  };
+  box.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    box.classList.add('is-dragging');
+    box.setPointerCapture(e.pointerId);
+    fromEvent(e);
+  });
+  box.addEventListener('pointermove', (e) => { if (dragging) fromEvent(e); });
+  const end = () => { dragging = false; box.classList.remove('is-dragging'); };
+  box.addEventListener('pointerup', end);
+  box.addEventListener('pointercancel', end);
+  handle.addEventListener('keydown', (e) => {
+    const step = e.shiftKey ? 20 : 5;
+    if (e.key === 'ArrowLeft') setX(x - step, true);
+    else if (e.key === 'ArrowRight') setX(x + step, true);
+    else if (e.key === 'Home') setX(0, true);
+    else if (e.key === 'End') setX(100, true);
+    else return;
+    e.preventDefault();
+  });
+
+  // Einstieg, sobald der Regler ins Bild kommt: erst das Foto, dann schiebt sich der Plan herein
+  function tween(from, to, ms, done) {
+    const t0 = performance.now();
+    const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    (function step(now) {
+      if (box.classList.contains('was-used')) return;
+      const t = Math.min(1, (now - t0) / ms);
+      setX(from + (to - from) * ease(t));
+      if (t < 1) requestAnimationFrame(step);
+      else if (done) done();
+    })(t0);
+  }
+
+  const rest = () => (small.matches ? 40 : 56);
+  if (planImg.complete) layout(); else planImg.addEventListener('load', layout, { once: true });
+  window.addEventListener('resize', layout);
+
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    setX(rest());
+  } else {
+    setX(100);
+    const io = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      setTimeout(() => tween(100, rest(), 1500, () => setTimeout(() => tween(rest(), rest() + 8, 500, () => tween(rest() + 8, rest(), 600)), 1400)), 300);
+    }, { threshold: 0.5 });
+    io.observe(box);
+  }
+})();
+
+/* ---------------------------------------------------------------------
+   9) Startseite: "Für wen?"
+   Am Laptop: links die vier Zielgruppen, rechts der passende Text. Ein
+   Klick (oder die Pfeiltasten) wechselt, es ist immer genau einer offen.
+   Auf dem Handy klappt jeder Punkt unter sich auf, mehrere dürfen offen
+   sein – so springt beim Antippen nichts nach oben weg.
+--------------------------------------------------------------------- */
+document.querySelectorAll('[data-audience]').forEach((box) => {
+  const tabs = Array.from(box.querySelectorAll('.aud__tab'));
+  const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')));
+  const wide = window.matchMedia('(min-width: 901px)');
+  const isOpen = (i) => tabs[i].getAttribute('aria-expanded') === 'true';
+  if (!tabs.length || panels.some((p) => !p)) return;
+  box.classList.add('is-ready'); // ab jetzt Auswahl bzw. Aufklappen (CSS)
+
+  const setOpen = (i, open) => {
+    tabs[i].setAttribute('aria-expanded', String(open));
+    panels[i].classList.toggle('is-open', open);
+  };
+  const select = (i) => tabs.forEach((_, j) => setOpen(j, j === i));
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      if (wide.matches) select(i);
+      else setOpen(i, !isOpen(i));
+    });
+    tab.addEventListener('keydown', (e) => {
+      if (!wide.matches) return;
+      const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (!step) return;
+      e.preventDefault();
+      const next = (i + step + tabs.length) % tabs.length;
+      tabs[next].focus();
+      select(next);
+    });
+  });
+
+  // Vom Handy- ins Laptop-Format gewechselt (Fenster breiter, Tablet
+  // gedreht): Es bleibt nur der erste offene Punkt offen.
+  const sync = () => {
+    if (!wide.matches) return;
+    const first = tabs.findIndex((_, i) => isOpen(i));
+    select(first < 0 ? 0 : first);
+  };
+  if (wide.addEventListener) wide.addEventListener('change', sync);
+  else if (wide.addListener) wide.addListener(sync);
+});
+
+/* ---------------------------------------------------------------------
+   10) Direkte Links
+   Cloudflare zeigt jede Seite unter ihrer kurzen Adresse (onsidehq.de/kontakt)
+   und leitet "kontakt.html" dorthin um. Damit ein Klick nicht erst über diese
+   Umleitung läuft, zeigen die Links online gleich auf die kurze Adresse.
+   In den HTML-Dateien bleibt "kontakt.html" stehen: So funktionieren die Links
+   auch, wenn man die Dateien lokal per Doppelklick öffnet.
+--------------------------------------------------------------------- */
+if (window.location.protocol === 'https:') {
+  document.querySelectorAll('a[href*=".html"]').forEach((link) => {
+    const url = new URL(link.getAttribute('href'), window.location.href);
+    if (url.origin !== window.location.origin || !/\.html$/.test(url.pathname)) return;
+    url.pathname = url.pathname.replace(/(^|\/)index\.html$/, '$1').replace(/\.html$/, '');
+    link.setAttribute('href', url.pathname + url.search + url.hash);
+  });
+}
+
+/* ---------------------------------------------------------------------
    Wenn du hier weiterbauen willst:
 
    - Animationen anpassen: die SETTINGS ganz oben in js/visuals.js.
-   - Echte Fotos einsetzen: Im HTML stehen an jeder Stelle Kommentare mit
-     dem passenden Dateipfad (BILD 1 bis BILD 8). Liegt die Datei dort,
-     ersetzt sie die Animation von selbst.
+   - Fotos austauschen: welches Foto wo liegt, steht in BILDER.md. Die Fotos
+     des Startbildschirms stehen als Liste in js/config.js.
    - Eigene Farben: die Variablen ganz oben in css/styles.css —
      wichtig: --accent UND --accent-rgb gemeinsam ändern.
 --------------------------------------------------------------------- */

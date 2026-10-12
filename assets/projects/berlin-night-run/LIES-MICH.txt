@@ -4,6 +4,11 @@ Hier liegen die Fotos vom Berlin Night Run.
   01.jpg – 05.jpg  Carousel auf der Startseite + Galerie (quer 3:2)
   06.jpg – 11.jpg  Galerie, Hochformat (4:5)
   12.jpg – 13.jpg  Galerie, Querformat (3:2)
+  hoch-01.jpg, hoch-cover.jpg, hoch-13.jpg
+                   Hochformat-Ausschnitte für den Startbildschirm am Handy
+  plan.jpg         Planskizze für den Regler auf der Projektseite (passt nur zu 01.jpg)
+
+Welche Fotos im Startbildschirm laufen, steht in js/config.js.
 
 Zum Austauschen eine neue Datei mit demselben Namen hochladen (klein
 geschrieben, Endung .jpg). Sie erscheint auf der Website von selbst.

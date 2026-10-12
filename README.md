@@ -1,15 +1,15 @@
 # onside.hq – Website
 
-Gebaut mit purem HTML, CSS und JavaScript (plus GSAP für das Einblenden beim
-Scrollen). Kein Baukasten, nichts muss umgewandelt werden: Was im Ordner liegt, ist die Seite.
+Gebaut mit purem HTML, CSS und JavaScript, ganz ohne Bibliotheken. Kein Baukasten,
+nichts muss umgewandelt werden: Was im Ordner liegt, ist die Seite.
 
 ## Die Seiten
 
 | Datei | Was drauf ist |
 |-------|---------------|
-| `index.html` | Startseite: Hero, Projekt-Teaser, Laufband, Leistungen, Wer sind wir, Warum onside, Kontakt |
+| `index.html` | Startseite: Startbildschirm mit Fotos, Projekt-Teaser, Laufband, Leistungen, Für wen?, Wer sind wir, Warum onside, Fragen (FAQ), Kontakt |
 | `projekte.html` | Übersicht aller Projekte |
-| `berlin-night-run.html` | Projektseite Night Run – zugleich die Vorlage für jedes weitere Projekt |
+| `berlin-night-run.html` | Projektseite Night Run mit dem Regler „Der Plan dahinter“ – zugleich die Vorlage für jedes weitere Projekt |
 | `leistungen.html` | Die drei Leistungen ausführlich + Ablauf einer Zusammenarbeit |
 | `ueber-uns.html` | Wer sind wir?, Geschichte, Warum onside |
 | `kontakt.html` | Formular und Kontaktwege |
@@ -23,14 +23,14 @@ Scrollen). Kein Baukasten, nichts muss umgewandelt werden: Was im Ordner liegt, 
 ├── css/
 │   └── styles.css      ← alles Visuelle. Farben stehen ganz oben als Variablen.
 ├── js/
-│   ├── config.js       ← eure Einstellungen (Formular-Key). Die eine Datei zum Eintragen.
+│   ├── config.js       ← eure Einstellungen: Formular-Key und Fotos des Startbildschirms
 │   ├── visuals.js      ← alles, was gezeichnet und animiert wird
-│   ├── script.js       ← Bedienung: Menü, Carousel, Laufband, Formular
-│   ├── gsap.min.js, ScrollTrigger.min.js   ← Animationsbibliothek, lokal
-├── fonts/              ← selbst gehostete Schriften (nicht löschen)
+│   └── script.js       ← Bedienung: Einblenden, Menü, Carousel, Laufband, Formular, Startbildschirm, Regler, „Für wen?“
+├── fonts/              ← selbst gehostete Schriften, auf das Nötige verkleinert (nicht löschen)
 ├── assets/             ← eure Bilder (siehe BILDER.md)
 ├── favicon.ico, favicon-512.png, apple-touch-icon.png   ← müssen ganz oben im Ordner liegen
 ├── robots.txt, sitemap.xml   ← helfen Suchmaschinen, alle Seiten zu finden
+├── _headers           ← Sicherheits- und Cache-Regeln für Cloudflare (nicht löschen)
 ├── BILDER.md           ← welches Foto wo auf der Seite liegt
 └── README.md
 ```
@@ -39,19 +39,26 @@ Navigation und Footer stehen in jeder HTML-Datei gleich. Wenn ihr dort etwas
 ändert (z. B. einen neuen Menüpunkt), muss das in allen neun HTML-Dateien
 passieren – jeweils in der Navigationsleiste, im Vollbild-Menü und im Footer.
 
-## Kontaktformular scharf schalten
+## Kontaktformular
 
-Das Formular verschickt Anfragen über den Dienst Web3Forms an eure Mailadresse.
-Dafür braucht es einmalig einen "Access Key":
+Das Formular verschickt Anfragen über den Dienst Web3Forms an die Mailadresse,
+mit der ihr den "Access Key" angelegt habt. Der Key steht bereits in
+`js/config.js` und gilt für das Formular auf der Startseite und auf der
+Kontaktseite.
 
-1. [web3forms.com](https://web3forms.com) öffnen und eure Mailadresse eintragen
-2. Ihr bekommt per Mail einen Access Key
-3. `js/config.js` öffnen und den Key statt `DEIN-ACCESS-KEY-HIER` eintragen
-   (die Anführungszeichen davor und dahinter bleiben stehen), speichern, hochladen
+- Im Betreff der Mail stehen Name und Auswahl, z. B. "Neue Anfrage von Lea
+  (Event, Social Media)". Auf "Antworten" klicken schreibt direkt an die Person.
+- Die Auswahl "Was braucht ihr?" steht in beiden HTML-Dateien im Formular
+  (Suche nach `class="chip"`). Eine Option ändern: Text in `value="..."` und im
+  `<span>` gleich ändern.
+- Andere Empfänger-Adresse: auf [web3forms.com](https://web3forms.com) mit der
+  neuen Adresse einen neuen Key anlegen und in `js/config.js` austauschen.
+- Klappt das Senden einmal nicht, zeigt das Formular einen Mail-Link an
+  team@onsidehq.de, in dem das schon Geschriebene steht. Es geht also nichts
+  verloren.
 
-Der Key gilt dann für das Formular auf der Startseite und auf der Kontaktseite.
-Solange er fehlt, zeigt das Formular beim Absenden einen Hinweis mit eurer
-Mailadresse. Ein Klick darauf öffnet eine Mail, in der das schon Geschriebene steht.
+Testen: Nach dem Hochladen einmal selbst eine Anfrage schicken. Die erste Mail
+von Web3Forms landet manchmal im Spam-Ordner, dann als "Kein Spam" markieren.
 
 ## Bilder
 
@@ -59,22 +66,37 @@ Mailadresse. Ein Klick darauf öffnet eine Mail, in der das schon Geschriebene s
 Ordner `assets/` liegt, ersetzt das Foto die Animation von selbst – am Code
 muss nichts geändert werden. Welche Datei wohin gehört, steht in `BILDER.md`.
 
+## Der Startbildschirm
+
+Auf der Startseite erscheinen Fotos vom Night Run nacheinander, jedes mit einem
+kurzen Blitz. Ein Klick ins Bild löst den Blitz selbst aus. Die Fotos stehen als
+Liste in `js/config.js` unter `startbild`:
+
+- `breit` für Laptop und Tablet, `handy` fürs Handy
+- pro Foto: Datei, Bildunterschrift, Bildausschnitt
+- `sekunden`: wie lange ein Foto stehen bleibt
+
+Das erste Foto steht zusätzlich in `index.html` im Abschnitt HERO (`data-src`
+und `data-srcset`). Wer das erste Foto tauscht, ändert es an beiden Stellen.
+
 ## Die Animationen
 
-Alles wird live im Browser gezeichnet, es gibt keine Videos.
+Fast alles wird live im Browser gezeichnet, es gibt keine Videos.
 
-- **Hintergrund (ganze Seite):** das Punktfeld "Crowd & Beat". Es reagiert auf
-  die Maus, und jeder Klick oder jedes Tippen schickt eine Welle los.
-- **Szenen:** in jeder Fläche, in der später ein Foto liegt (Lichtspuren, Route,
-  Balken, Lichter …), auf den Leistungskarten und in der Taktiktafel bei
-  "Warum onside?".
+- **Hintergrund der Unterseiten:** das Punktfeld "Crowd & Beat" im Seitenkopf.
+  Es reagiert auf die Maus. Weiter unten auf der Seite bleibt es als ruhiges
+  Standbild stehen, das schont den Akku. Auf der Startseite gibt es kein
+  Punktfeld, dort sind die Fotos der Hintergrund.
+- **Szenen:** Flächen, in denen ein Foto fehlt, zeigen eine Animation
+  (Lichtspuren, Route, Balken, Lichter …), außerdem die Taktiktafel bei
+  "Warum onside?" und die gezeichnete Route auf der Projektseite.
 - **Handgezeichnete Striche:** unter bzw. um einzelne Wörter in Überschriften.
 
 Anpassen:
 
 - Tempo und Stärke: `SETTINGS` ganz oben in `js/visuals.js`
   (`bpm` = Takt, `spacing` = Dichte der Punkte, `calm` = Stärke des Hintergrunds
-  unterhalb des Heros).
+  unterhalb des Seitenkopfs).
 - Eine Szene irgendwo einsetzen: `<canvas data-scene="trails"></canvas>` in ein
   Element mit der Klasse `viz`. Verfügbar: `trails`, `route`, `eq`, `crowd`,
   `bokeh`, `rings`, `focus`, `network`, `orbits`, `signal`, `contour`, `offside`.
@@ -84,8 +106,8 @@ Anpassen:
   (oder `data-scribble="circle"` für einen Kringel).
 
 Wer am Gerät "Bewegung reduzieren" eingeschaltet hat, sieht Standbilder statt
-Animationen. Auf schwächeren Geräten schalten die Animationen automatisch auf
-eine niedrigere Bildrate, damit die Seite flüssig bleibt.
+Animationen und keine Blitze. Auf schwächeren Geräten schalten die Animationen
+automatisch auf eine niedrigere Bildrate, damit die Seite flüssig bleibt.
 
 ## Was zuerst anpassen
 
@@ -93,9 +115,13 @@ eine niedrigere Bildrate, damit die Seite flüssig bleibt.
    `--accent-rgb` gemeinsam ändern, für die Textfarben `--text`, `--text-soft`,
    `--text-muted`.
 2. **Texte:** direkt in der jeweiligen HTML-Datei ändern.
-3. **Eckdaten Night Run:** in `berlin-night-run.html` im Abschnitt "Eckdaten".
-   Die Namen der Stopps auf der gezeichneten Route stehen dort im Attribut
-   `data-labels` (aktuell "Start | Stopp 1 | Stopp 2 | Stopp 3 | Afterparty").
+3. **Eckdaten Night Run:** in `berlin-night-run.html` im Abschnitt "Eckdaten"
+   und auf der Startseite unter dem Projekttext (`project__facts`).
+4. **Für wen? und Fragen (FAQ):** direkt in `index.html` in den Abschnitten
+   "03 — FÜR WEN" und "06 — FRAGEN". Ändert ihr eine Antwort im FAQ, bitte auch
+   oben im `<head>` im Block "FAQPage" ändern (für Suchmaschinen).
+   Die Namen der Stopps auf der gezeichneten Route stehen in `berlin-night-run.html`
+   im Attribut `data-labels` (aktuell "Start | Stopp 1 | Stopp 2 | Stopp 3 | Afterparty").
 
 ## Ein neues Projekt anlegen
 
@@ -122,8 +148,12 @@ GitHub-Repository veröffentlicht: Alles, was ihr dort hochladet, ist kurz darau
 die Ordnerstruktur beibehalten (also `css/`, `js/`, `fonts/`, `assets/` als
 Ordner, nicht die Dateien einzeln ins Hauptverzeichnis).
 
+Wer `css/styles.css` oder eine Datei in `js/` ändert, zählt in allen HTML-Dateien
+die Versionsnummer hinter dem Dateinamen eins hoch (`styles.css?v=6` → `?v=7`).
+Sonst zeigen manche Browser noch einen Tag lang die alte Fassung.
+
 ## Weiterlernen
 
 - HTML/CSS-Grundlagen: [freeCodeCamp – Responsive Web Design](https://www.freecodecamp.org/learn/2022/responsive-web-design/)
-- Scroll-Animationen: [GSAP ScrollTrigger Docs](https://gsap.com/docs/v3/Plugins/ScrollTrigger/)
+- Einblenden beim Scrollen: [Intersection Observer (MDN)](https://developer.mozilla.org/de/docs/Web/API/Intersection_Observer_API)
 - Nachschlagewerk: [MDN Web Docs](https://developer.mozilla.org/de/)

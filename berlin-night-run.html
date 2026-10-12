@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Berlin Night Run – onside.hq</title>
-  <meta name="description" content="Der Berlin Night Run: ein Lauf durch die Nacht mit DJ, Partnern, Verpflegung und Afterparty. Konzept und Umsetzung von onside.hq." />
+  <title>Berlin Night Run: Laufevent mit DJ &amp; Afterparty – onside.hq</title>
+  <meta name="description" content="Der Berlin Night Run: 8 km durch die Nacht mit DJ, Verpflegung, Afterparty und Partnern wie Red Bull und HEJ Natural. Konzept und Umsetzung: onside.hq." />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://onsidehq.de/berlin-night-run" />
 
@@ -19,18 +19,30 @@
 
   <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
   <meta property="og:title" content="Berlin Night Run – onside.hq" />
-  <meta property="og:description" content="Der Berlin Night Run: ein Lauf durch die Nacht mit DJ, Partnern, Verpflegung und Afterparty. Konzept und Umsetzung von onside.hq." />
+  <meta property="og:description" content="Der Berlin Night Run: 8 km durch die Nacht mit DJ, Verpflegung, Afterparty und Partnern wie Red Bull und HEJ Natural. Konzept und Umsetzung: onside.hq." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://onsidehq.de/berlin-night-run" />
-  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-night-run.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=5" />
+  <link rel="stylesheet" href="css/styles.css?v=6" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
   <script>
     document.documentElement.classList.add('js');
+    // Fehlt ein Foto, verschwindet das <img> und die Animation darunter bleibt
+    // sichtbar. Liegt es in einem <picture> mit Handy-Version (hoch-...), wird
+    // zuerst die Handy-Version weggelassen und das große Foto genommen.
+    window.onsideBildFehlt = function (img) {
+      if (!img.getAttribute('src')) return; // lädt erst später (data-src)
+      var s = img.parentNode && img.parentNode.querySelector('source');
+      if (s) { s.remove(); img.src = img.getAttribute('src'); } else { img.remove(); }
+    };
     setTimeout(function () {
       if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
     }, 3000);
@@ -67,11 +79,6 @@
       <a href="kontakt.html">Kontakt</a>
     </nav>
 
-    <div class="lang-switch">
-      <button class="lang-switch__btn is-active" data-lang="de" type="button">DE</button>
-      <span class="lang-switch__divider">/</span>
-      <button class="lang-switch__btn" data-lang="en" type="button">EN</button>
-    </div>
 
     <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
   </header>
@@ -86,13 +93,8 @@
       <a href="kontakt.html"><span class="menu-overlay__num">05</span>Kontakt</a>
     </nav>
     <div class="menu-overlay__meta">
-      <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
       <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
-    </div>
-    <div class="lang-switch lang-switch--overlay">
-      <button class="lang-switch__btn is-active" data-lang="de" type="button">DE</button>
-      <span class="lang-switch__divider">/</span>
-      <button class="lang-switch__btn" data-lang="en" type="button">EN</button>
     </div>
   </div>
 
@@ -108,13 +110,16 @@
     <section class="case-hero">
       <div class="case-hero__media viz">
         <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
-        <img src="assets/projects/berlin-night-run/cover.jpg" alt="Läuferinnen und Läufer beim Berlin Night Run" style="object-position: 34% 50%" onerror="this.remove()">
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/projects/berlin-night-run/hoch-cover.jpg">
+          <img src="assets/projects/berlin-night-run/cover.jpg" alt="Läuferinnen und Läufer beim Berlin Night Run" fetchpriority="high" style="object-position: 34% 50%" onerror="onsideBildFehlt(this)">
+        </picture>
       </div>
       <div class="case-hero__content">
-        <a class="back-link reveal" href="projekte.html"><i>←</i> Alle Projekte</a>
-        <p class="eyebrow reveal">Projekt 01 · Berlin · 2026</p>
+        <a class="back-link intro" href="projekte.html"><i>←</i> Alle Projekte</a>
+        <p class="eyebrow intro">Projekt 01 · Berlin · 2026</p>
         <h1 data-split>Night Run</h1>
-        <p class="case-hero__lead reveal">
+        <p class="case-hero__lead intro intro--2">
           Ein Lauf durch die Berliner Nacht&nbsp;– mit DJ, Partnern, Verpflegung und
           Afterparty. Unser erstes eigenes Event und der Start von onside.hq.
         </p>
@@ -127,6 +132,7 @@
         <div class="facts__item reveal"><dt>Wann</dt><dd>19.&nbsp;September 2026</dd></div>
         <div class="facts__item reveal"><dt>Wo</dt><dd>Berlin</dd></div>
         <div class="facts__item reveal"><dt>Strecke</dt><dd>8&nbsp;km · 3&nbsp;Stopps</dd></div>
+        <div class="facts__item reveal"><dt>Partner</dt><dd>Red&nbsp;Bull, HEJ&nbsp;Natural</dd></div>
         <div class="facts__item reveal"><dt>Unsere Rolle</dt><dd>Konzept, Organisation, Partner, Content</dd></div>
       </dl>
     </section>
@@ -174,6 +180,45 @@
           <li>DJ &amp; Afterparty</li>
           <li>Content vor Ort</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ============ DER PLAN DAHINTER ============
+         Regler zwischen Foto (01.jpg) und Planskizze (plan.jpg, beide in
+         assets/projects/berlin-night-run/). Die Markierungen im Plan stehen
+         in js/script.js, Abschnitt 8. -->
+    <section class="case-backstage">
+      <p class="eyebrow reveal">Hinter den Kulissen</p>
+      <h2 data-split>Der Moment und der Plan dahinter.</h2>
+      <p class="case-backstage__lead reveal">
+        Zieh den Regler: links der Abend, wie ihn alle erlebt haben, rechts unsere
+        Planskizze dazu.
+      </p>
+      <div class="backstage reveal" data-backstage>
+        <div class="backstage__layer backstage__plan" aria-hidden="true">
+          <img src="assets/projects/berlin-night-run/plan.jpg" alt="" loading="lazy">
+          <div class="backstage__grid"></div>
+          <svg class="backstage__marks" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div class="backstage__sheet">
+            <span class="backstage__label">Ablaufplan</span>
+            <h3>Night Run · 19.09.2026</h3>
+            <ul>
+              <li>Route: 8&nbsp;km, 3&nbsp;Stopps</li>
+              <li>DJ auf dem Lastenrad</li>
+              <li>Partner: Red&nbsp;Bull &amp; HEJ&nbsp;Natural</li>
+              <li>Afterparty</li>
+              <li>Content vor Ort</li>
+            </ul>
+          </div>
+        </div>
+        <div class="backstage__layer backstage__photo">
+          <img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run: die Laufgruppe unterwegs, vorne der DJ auf dem Lastenrad" loading="lazy">
+        </div>
+        <div class="backstage__tags backstage__label" aria-hidden="true"><span>Der Moment</span><span>Der Plan dahinter</span></div>
+        <div class="backstage__handle" role="slider" tabindex="0" aria-label="Regler: links das Foto, rechts der Plan dahinter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="56">
+          <span class="backstage__knob" aria-hidden="true"><svg viewBox="0 0 24 14"><path d="M7 1 1 7l6 6M17 1l6 6-6 6"/></svg></span>
+          <span class="backstage__try backstage__label" aria-hidden="true">Ziehen</span>
+        </div>
       </div>
     </section>
 
@@ -291,7 +336,7 @@
       </nav>
       <nav class="footer__nav" aria-label="Kontakt">
         <span class="footer__label">Kontakt</span>
-        <a href="mailto:onside.hq@gmail.com">onside.hq@gmail.com</a>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
         <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
       </nav>
     </div>
@@ -310,13 +355,11 @@
   </footer>
 
   <!-- Skripte — alles lokal, nichts von fremden Servern.
-       config.js  = die eine Stelle für eure Einstellungen (Formular-Key)
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
-       script.js  = Bedienung: Menü, Carousel, Laufband, Formular -->
-  <script src="js/gsap.min.js"></script>
-  <script src="js/ScrollTrigger.min.js"></script>
-  <script src="js/config.js?v=5"></script>
-  <script src="js/visuals.js?v=5"></script>
-  <script src="js/script.js?v=5"></script>
+       script.js  = Bedienung: Einblenden, Menü, Carousel, Laufband, Formular -->
+  <script src="js/config.js?v=6"></script>
+  <script src="js/visuals.js?v=6"></script>
+  <script src="js/script.js?v=6"></script>
 </body>
 </html>
