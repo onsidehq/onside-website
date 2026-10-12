@@ -21,25 +21,28 @@ window.ONSIDE = {
      "breit" gilt für Bildschirme im Querformat (Laptop, Tablet quer), dafür
      sind die Dateien "start-quer-..." (3:2). "handy" gilt für Bildschirme im
      Hochformat (Handy, Tablet hochkant), dafür sind die Dateien
-     "start-hoch-..." (4:5).
+     "start-hoch-..." (4:5). Die Nummer im Dateinamen ist das Originalfoto
+     (dsc = Ordner BNR BILDER 1, ld = Ordner BNR BILDER 2 bis 5).
+     Ein neues Foto bekommt immer einen neuen Dateinamen, dann zeigen auch
+     Browser, die die Seite schon kennen, sofort das neue Bild.
      Das erste Foto jeder Liste steht zusätzlich in index.html (Abschnitt HERO),
      damit es sofort lädt. Wer es tauscht, tauscht es an beiden Stellen.
      Bitte keine Fotos nehmen, die auf der Startseite schon woanders stehen
      (cover.jpg ist das Titelbild im Projekt-Kasten). */
   startbild: {
     breit: [
-      { bild: 'assets/projects/berlin-night-run/start-quer-1.jpg', text: 'Gute Laune auf der Strecke', ausschnitt: '50% 40%' },
-      { bild: 'assets/projects/berlin-night-run/start-quer-2.jpg', text: 'Durch den Kiez', ausschnitt: '50% 45%' },
-      { bild: 'assets/projects/berlin-night-run/start-quer-3.jpg', text: 'Quer durch Berlin', ausschnitt: '50% 50%' },
-      { bild: 'assets/projects/berlin-night-run/start-quer-4.jpg', text: 'Rein in die Nacht', ausschnitt: '50% 50%' },
-      { bild: 'assets/projects/berlin-night-run/start-quer-5.jpg', text: 'Alle Lichter an', ausschnitt: '50% 45%' },
+      { bild: 'assets/projects/berlin-night-run/start-quer-dsc5668.jpg', text: 'Gute Laune auf der Strecke', ausschnitt: '50% 40%' },
+      { bild: 'assets/projects/berlin-night-run/start-quer-ld3717.jpg', text: 'Malte gibt den Takt vor', ausschnitt: '50% 0%' },
+      { bild: 'assets/projects/berlin-night-run/start-quer-ld3921.jpg', text: 'Der DJ fährt mit', ausschnitt: '50% 50%' },
+      { bild: 'assets/projects/berlin-night-run/start-quer-ld5222.jpg', text: 'Rein in die Nacht', ausschnitt: '50% 35%' },
+      { bild: 'assets/projects/berlin-night-run/start-quer-dsc6089.jpg', text: 'Alle Lichter an', ausschnitt: '50% 45%' },
     ],
     handy: [
-      { bild: 'assets/projects/berlin-night-run/start-hoch-1.jpg', text: 'Gute Laune auf der Strecke', ausschnitt: '50% 50%' },
-      { bild: 'assets/projects/berlin-night-run/start-hoch-2.jpg', text: 'Volle Energie', ausschnitt: '50% 50%' },
-      { bild: 'assets/projects/berlin-night-run/start-hoch-3.jpg', text: 'Hier kommt die Crowd', ausschnitt: '50% 50%' },
-      { bild: 'assets/projects/berlin-night-run/start-hoch-4.jpg', text: 'Warm-up vor dem Start', ausschnitt: '50% 50%' },
-      { bild: 'assets/projects/berlin-night-run/start-hoch-5.jpg', text: 'Snackpause mit HEJ Natural', ausschnitt: '50% 50%' },
+      { bild: 'assets/projects/berlin-night-run/start-hoch-dsc5658.jpg', text: 'Gute Laune auf der Strecke', ausschnitt: '50% 50%' },
+      { bild: 'assets/projects/berlin-night-run/start-hoch-dsc5433.jpg', text: 'Warm-up vor dem Start', ausschnitt: '50% 50%' },
+      { bild: 'assets/projects/berlin-night-run/start-hoch-dsc5534.jpg', text: 'Volle Energie', ausschnitt: '50% 50%' },
+      { bild: 'assets/projects/berlin-night-run/start-hoch-ld3913.jpg', text: 'Der DJ fährt mit', ausschnitt: '50% 50%' },
+      { bild: 'assets/projects/berlin-night-run/start-hoch-dsc6846.jpg', text: 'Snackpause mit HEJ Natural', ausschnitt: '50% 50%' },
     ],
     sekunden: 6,   // wie lange jedes Foto stehen bleibt
   },

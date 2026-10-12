@@ -1,22 +1,20 @@
 Hier liegen die Fotos vom Berlin Night Run.
 
-  start-quer-1.jpg – start-quer-5.jpg
-                   Startbildschirm der Startseite auf Laptop und Tablet quer (3:2)
-  start-hoch-1.jpg – start-hoch-5.jpg
-                   Startbildschirm der Startseite auf Handy und Tablet hochkant (4:5)
-                   (Liste mit Bildunterschriften: js/config.js)
-  galerie-01.jpg – galerie-15.jpg
-                   Galerie "Der Abend in Bildern" auf der Projektseite
-  cover.jpg        Titelbild (quer 3:2): Startseite (Projekt-Kasten) und ganz oben
-                   auf der Projektseite
-  01.jpg           Projekte-Übersicht und Regler "Der Plan dahinter" (quer 3:2)
+  start-quer-....jpg  Startbildschirm der Startseite auf Laptop und Tablet quer (3:2)
+  start-hoch-....jpg  Startbildschirm der Startseite auf Handy und Tablet hochkant (4:5)
+                      (Liste mit Bildunterschriften: js/config.js)
+  galerie-....jpg     Galerie "Der Abend in Bildern" auf der Projektseite
+  cover.jpg           Titelbild (quer 3:2): Startseite (Projekt-Kasten) und ganz oben
+                      auf der Projektseite
+  01.jpg              Projekte-Übersicht und Regler "Der Plan dahinter" (quer 3:2)
   hoch-01.jpg, hoch-cover.jpg
-                   Hochformat-Ausschnitte fürs Handy
-  plan.jpg         Planskizze für den Regler auf der Projektseite (passt nur zu 01.jpg)
+                      Hochformat-Ausschnitte fürs Handy
+  plan.jpg            Planskizze für den Regler auf der Projektseite (passt nur zu 01.jpg)
+
+Die Nummer im Dateinamen ist das Originalfoto: dsc = Ordner "BNR BILDER 1",
+ld = Ordner "BNR BILDER 2" bis "5".
 
 Jedes Foto steht höchstens zweimal auf der ganzen Website und nie zweimal auf
-derselben Seite. Wer Fotos austauscht oder neue einbaut, hält es am besten so.
-
-Zum Austauschen eine neue Datei mit demselben Namen hochladen (klein
-geschrieben, Endung .jpg). Sie erscheint auf der Website von selbst.
-Welches Foto wo steht und aus welchem Original es kommt: BILDER.md.
+derselben Seite. Ein neues Foto bekommt einen neuen Dateinamen, dann sehen auch
+Besucher, die schon mal da waren, sofort das neue Bild.
+Welches Foto wo steht: BILDER.md.

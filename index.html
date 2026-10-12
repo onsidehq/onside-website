@@ -14,9 +14,9 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
   <!-- erstes Foto des Startbildschirms so früh wie möglich laden
-       (Querformat-Bildschirme: start-quer-1.jpg, Hochformat: start-hoch-1.jpg) -->
-  <link rel="preload" href="assets/projects/berlin-night-run/start-quer-1.jpg" as="image" fetchpriority="high" media="(orientation: landscape)">
-  <link rel="preload" href="assets/projects/berlin-night-run/start-hoch-1.jpg" as="image" fetchpriority="high" media="(orientation: portrait)">
+       (Querformat-Bildschirme: start-quer-dsc5668.jpg, Hochformat: start-hoch-dsc5658.jpg) -->
+  <link rel="preload" href="assets/projects/berlin-night-run/start-quer-dsc5668.jpg" as="image" fetchpriority="high" media="(orientation: landscape)">
+  <link rel="preload" href="assets/projects/berlin-night-run/start-hoch-dsc5658.jpg" as="image" fetchpriority="high" media="(orientation: portrait)">
   <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
   <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
@@ -138,7 +138,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=8" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -210,15 +210,15 @@
   <main id="main">
     <!-- ============ HERO: Fotos vom Night Run ============
          Die Fotos laufen nacheinander durch und blenden ruhig ineinander über.
-         Das erste Foto steht hier im HTML, damit es sofort lädt (start-quer-1.jpg
-         für Laptop und Tablet quer, start-hoch-1.jpg für Handy und Tablet hochkant).
+         Das erste Foto steht hier im HTML, damit es sofort lädt (start-quer-dsc5668.jpg
+         für Laptop und Tablet quer, start-hoch-dsc5658.jpg für Handy und Tablet hochkant).
          Die ganze Liste mit Bildunterschriften und Bildausschnitten steht in
          js/config.js unter "startbild". -->
     <section class="hero" id="top" data-slides aria-label="Start">
       <div class="hero__stage" aria-hidden="true">
         <picture>
-          <source media="(orientation: portrait)" srcset="assets/projects/berlin-night-run/start-hoch-1.jpg">
-          <img class="hero__img is-on is-first" src="assets/projects/berlin-night-run/start-quer-1.jpg" alt="" fetchpriority="high" style="--pos: 50% 40%; --pos-m: 50% 50%" onerror="onsideBildFehlt(this)">
+          <source media="(orientation: portrait)" srcset="assets/projects/berlin-night-run/start-hoch-dsc5658.jpg">
+          <img class="hero__img is-on is-first" src="assets/projects/berlin-night-run/start-quer-dsc5668.jpg" alt="" fetchpriority="high" style="--pos: 50% 40%; --pos-m: 50% 50%" onerror="onsideBildFehlt(this)">
         </picture>
       </div>
       <div class="hero__shade" aria-hidden="true"></div>
@@ -430,15 +430,15 @@
           </div>
         </article>
 
-        <!-- BILD 8: Foto Malte → assets/team/malte.jpg (Malte mit Megafon beim
-             Night Run). Datei hochladen, das Foto erscheint von selbst. Das ?v=2
+        <!-- BILD 8: Foto Malte → assets/team/malte.jpg (Malte auf dem Rad beim
+             Night Run). Datei hochladen, das Foto erscheint von selbst. Das ?v=3
              sorgt dafür, dass Browser das neue Foto sofort laden; beim nächsten
-             Austausch auf ?v=3 erhöhen. -->
+             Austausch auf ?v=4 erhöhen. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">MG</span>
-            <img src="assets/team/malte.jpg?v=2" alt="Malte Gerdes mit dem Megafon beim Berlin Night Run" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/malte.jpg?v=3" alt="Malte Gerdes auf dem Rad beim Berlin Night Run" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Content &amp; Social</span>
@@ -660,8 +660,8 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=8"></script>
-  <script src="js/visuals.js?v=8"></script>
-  <script src="js/script.js?v=8"></script>
+  <script src="js/config.js?v=9"></script>
+  <script src="js/visuals.js?v=9"></script>
+  <script src="js/script.js?v=9"></script>
 </body>
 </html>

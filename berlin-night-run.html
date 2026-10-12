@@ -29,7 +29,7 @@
   <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=8" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -228,10 +228,11 @@
       <p class="eyebrow reveal">Eindrücke</p>
       <h2 data-split>Der Abend in Bildern.</h2>
       <div class="case-gallery__grid">
-        <!-- GALERIE: 15 Fotos, galerie-01.jpg bis galerie-15.jpg aus
-             assets/projects/berlin-night-run/ (01.jpg steht schon oben im Regler,
-             cover.jpg ganz oben auf der Seite). Die Reihenfolge erzählt den Abend:
-             Treffpunkt, Start, Strecke, Stationen, Nacht, Ziel.
+        <!-- GALERIE: 17 Fotos aus assets/projects/berlin-night-run/, Dateien
+             galerie-....jpg (die Nummer ist das Originalfoto: dsc = Ordner
+             BNR BILDER 1, ld = Ordner BNR BILDER 2 bis 5). 01.jpg steht schon oben
+             im Regler, cover.jpg ganz oben auf der Seite. Die Reihenfolge erzählt
+             den Abend: Treffpunkt, Start, Strecke, Stationen, Nacht, Ziel.
              - Breite Felder (Klasse case-gallery__item--wide, Datei quer 3:2) gehen
                über die ganze Breite. object-position legt fest, welcher Streifen
                des Fotos zu sehen ist (zweite Zahl: 0% = oben, 100% = unten).
@@ -240,86 +241,99 @@
                zu dritt. Am Handy stehen sie zu zweit; das dritte jeder Dreiergruppe
                trägt zusätzlich case-gallery__item--solo und geht dort über die
                ganze Breite, damit keine Lücke entsteht.
-             Zum Austauschen eine neue Datei mit demselben Namen hochladen. -->
+             Ein neues Foto bekommt einen neuen Dateinamen, dann sehen auch
+             wiederkehrende Besucher sofort das neue Bild. -->
         <div class="case-gallery__item case-gallery__item--wide reveal">
           <div class="viz">
             <canvas data-scene="crowd" data-seed="8" aria-hidden="true"></canvas>
-            <img src="assets/projects/berlin-night-run/galerie-01.jpg" alt="Berlin Night Run: Treffpunkt unter der Brücke, die Gruppe sammelt sich" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5594.jpg" alt="Berlin Night Run: Treffpunkt unter der Brücke, die Gruppe sammelt sich" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item case-gallery__item--tall reveal">
           <div class="viz">
-            <img src="assets/projects/berlin-night-run/galerie-02.jpg" alt="Berlin Night Run: Malte gibt mit dem Megafon das Briefing vor dem Start" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5412.jpg" alt="Berlin Night Run: Malte gibt mit dem Megafon das Briefing vor dem Start" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item case-gallery__item--tall reveal">
           <div class="viz">
-            <img src="assets/projects/berlin-night-run/galerie-03.jpg" alt="Berlin Night Run: Red-Bull-Dosen zwischen Laufschuhen" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5390.jpg" alt="Berlin Night Run: Red-Bull-Dosen zwischen Laufschuhen" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item case-gallery__item--tall case-gallery__item--solo reveal">
           <div class="viz">
-            <img src="assets/projects/berlin-night-run/galerie-04.jpg" alt="Berlin Night Run: die Gruppe läuft durch den Kiez" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5712.jpg" alt="Berlin Night Run: die Gruppe läuft durch den Kiez" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item reveal">
           <div class="viz">
             <canvas data-scene="trails" data-seed="21" aria-hidden="true"></canvas>
-            <img src="assets/projects/berlin-night-run/galerie-05.jpg" alt="Berlin Night Run: drei Läufer mit Red Bull vor dem Start" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5339.jpg" alt="Berlin Night Run: drei Läufer mit Red Bull vor dem Start" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item reveal">
           <div class="viz">
             <canvas data-scene="eq" data-seed="5" aria-hidden="true"></canvas>
-            <img src="assets/projects/berlin-night-run/galerie-06.jpg" alt="Berlin Night Run: das Red-Bull-Lastenrad mit DJ fährt mit" loading="lazy" onerror="this.remove()">
-          </div>
-        </div>
-        <div class="case-gallery__item case-gallery__item--tall reveal">
-          <div class="viz">
-            <img src="assets/projects/berlin-night-run/galerie-07.jpg" alt="Berlin Night Run: Tempo an der Graffitiwand" loading="lazy" onerror="this.remove()">
-          </div>
-        </div>
-        <div class="case-gallery__item case-gallery__item--tall reveal">
-          <div class="viz">
-            <img src="assets/projects/berlin-night-run/galerie-08.jpg" alt="Berlin Night Run: Verpflegung an einer Station" loading="lazy" onerror="this.remove()">
-          </div>
-        </div>
-        <div class="case-gallery__item case-gallery__item--tall case-gallery__item--solo reveal">
-          <div class="viz">
-            <img src="assets/projects/berlin-night-run/galerie-09.jpg" alt="Berlin Night Run: Zwischenstopp vor einer Bar" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5687.jpg" alt="Berlin Night Run: das Red-Bull-Lastenrad mit DJ fährt mit" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item reveal">
           <div class="viz">
             <canvas data-scene="rings" data-seed="3" aria-hidden="true"></canvas>
-            <img src="assets/projects/berlin-night-run/galerie-10.jpg" alt="Berlin Night Run: die Kamera läuft mit" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-ld3490.jpg" alt="Berlin Night Run: die Crowd läuft los" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="trails" data-seed="34" aria-hidden="true"></canvas>
+            <img src="assets/projects/berlin-night-run/galerie-dsc5820.jpg" alt="Berlin Night Run: die Kamera läuft mit" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5624.jpg" alt="Berlin Night Run: Tempo an der Graffitiwand" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5785.jpg" alt="Berlin Night Run: Verpflegung an einer Station" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall case-gallery__item--solo reveal">
+          <div class="viz">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5806.jpg" alt="Berlin Night Run: Zwischenstopp vor einer Bar" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="bokeh" data-seed="7" aria-hidden="true"></canvas>
+            <img src="assets/projects/berlin-night-run/galerie-ld4166.jpg" alt="Berlin Night Run: Laufen zur blauen Stunde" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item reveal">
           <div class="viz">
             <canvas data-scene="bokeh" data-seed="11" aria-hidden="true"></canvas>
-            <img src="assets/projects/berlin-night-run/galerie-11.jpg" alt="Berlin Night Run: Malte mit dem Megafon im Ziel" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-ld4060.jpg" alt="Berlin Night Run: die ganze Crowd im Nachtlauf" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item case-gallery__item--tall reveal">
           <div class="viz">
-            <img src="assets/projects/berlin-night-run/galerie-12.jpg" alt="Berlin Night Run: Läuferin mit Reflektoren in der Nacht" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc6039.jpg" alt="Berlin Night Run: Läuferin mit Reflektoren in der Nacht" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item case-gallery__item--tall reveal">
           <div class="viz">
-            <img src="assets/projects/berlin-night-run/galerie-13.jpg" alt="Berlin Night Run: Malte mit den Riegeln von HEJ Natural" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc6841.jpg" alt="Berlin Night Run: Malte mit den Riegeln von HEJ Natural" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item case-gallery__item--tall case-gallery__item--solo reveal">
           <div class="viz">
-            <img src="assets/projects/berlin-night-run/galerie-14.jpg" alt="Berlin Night Run: Afterparty mit Sonnenbrillen" loading="lazy" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc6472.jpg" alt="Berlin Night Run: Afterparty mit Sonnenbrillen" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item case-gallery__item--wide reveal">
           <div class="viz">
             <canvas data-scene="bokeh" data-seed="13" aria-hidden="true"></canvas>
-            <img src="assets/projects/berlin-night-run/galerie-15.jpg" alt="Berlin Night Run: Gruppenfoto am Ende der Nacht" loading="lazy" style="object-position: 50% 40%" onerror="this.remove()">
+            <img src="assets/projects/berlin-night-run/galerie-dsc6716.jpg" alt="Berlin Night Run: Gruppenfoto am Ende der Nacht" loading="lazy" style="object-position: 50% 40%" onerror="this.remove()">
           </div>
         </div>
       </div>
@@ -374,8 +388,8 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=8"></script>
-  <script src="js/visuals.js?v=8"></script>
-  <script src="js/script.js?v=8"></script>
+  <script src="js/config.js?v=9"></script>
+  <script src="js/visuals.js?v=9"></script>
+  <script src="js/script.js?v=9"></script>
 </body>
 </html>

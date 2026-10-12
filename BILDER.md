@@ -16,51 +16,59 @@ Bildschirme im Hochformat (Handy, Tablet hochkant). Ein Foto tauschen oder
 ergänzen: in der Liste den Dateipfad und den Text ändern.
 
 Das erste Foto steht zusätzlich in `index.html` (im Kopf und im Abschnitt HERO),
-damit es sofort lädt: `start-quer-1.jpg` für Querformat, `start-hoch-1.jpg` für
-Hochformat.
+damit es sofort lädt: `start-quer-dsc5668.jpg` für Querformat,
+`start-hoch-dsc5658.jpg` für Hochformat.
 
 Auf dem Startbildschirm liegt der Text links unten. Gute Fotos dafür haben das
 Wichtige in der Mitte oder rechts und in der oberen Hälfte.
 
 ## Night Run (`assets/projects/berlin-night-run/`)
 
-Alle Fotos stammen vom Shooting beim Berlin Night Run (Ordner „Bilder Basti“).
-In der letzten Spalte steht das Original, aus dem der Ausschnitt gemacht ist.
+Die Fotos stammen von zwei Fotografen: `dsc...` aus dem Ordner „BNR BILDER 1“
+(Originale `DSC0....jpg`), `ld...` aus den Ordnern „BNR BILDER 2“ bis „5“
+(Originale `LD20....jpeg`). Die Nummer im Dateinamen ist das Original. Ein
+neues Foto bekommt immer einen neuen Dateinamen: Dann sehen auch Besucher, die
+schon mal da waren, sofort das neue Bild statt des alten aus dem Zwischenspeicher.
 
-| Datei | Wo auf der Seite | Format | Motiv | Original |
-|-------|------------------|--------|-------|----------|
-| `cover.jpg` | Projekt-Kasten auf der Startseite, ganz oben auf der Projektseite | quer 3:2 | Läufer bei Nacht mit Lichtspuren | – |
-| `01.jpg` | Projekte-Übersicht, Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Die Laufgruppe unterwegs | – |
-| `hoch-01.jpg`, `hoch-cover.jpg` | dieselben Stellen wie `01.jpg` und `cover.jpg`, aber am Handy | hoch 4:5 | Hochformat-Ausschnitte (laden am Handy schneller) | – |
-| `plan.jpg` | Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Planskizze, aus `01.jpg` erzeugt | – |
-| `start-quer-1.jpg` | Startbildschirm quer, erstes Foto | quer 3:2 | Gute Laune auf der Strecke | DSC05668 |
-| `start-quer-2.jpg` | Startbildschirm quer | quer 3:2 | Durch den Kiez | DSC05531 |
-| `start-quer-3.jpg` | Startbildschirm quer | quer 3:2 | Quer durch Berlin | DSC05576 |
-| `start-quer-4.jpg` | Startbildschirm quer | quer 3:2 | Rein in die Nacht (etwas aufgehellt) | DSC06523 |
-| `start-quer-5.jpg` | Startbildschirm quer | quer 3:2 | Alle Lichter an (etwas aufgehellt) | DSC06089 |
-| `start-hoch-1.jpg` | Startbildschirm hochkant, erstes Foto | hoch 4:5 | Gute Laune auf der Strecke | DSC05658 |
-| `start-hoch-2.jpg` | Startbildschirm hochkant | hoch 4:5 | Volle Energie | DSC05534 |
-| `start-hoch-3.jpg` | Startbildschirm hochkant | hoch 4:5 | Hier kommt die Crowd | DSC05697 |
-| `start-hoch-4.jpg` | Startbildschirm hochkant | hoch 4:5 | Warm-up vor dem Start | DSC05433 |
-| `start-hoch-5.jpg` | Startbildschirm hochkant | hoch 4:5 | Snackpause mit HEJ Natural | DSC06846 |
-| `galerie-01.jpg` | Galerie, breites Bild oben | quer 3:2 | Treffpunkt unter der Brücke | DSC05594 |
-| `galerie-02.jpg` | Galerie | hoch 4:5 | Malte gibt das Briefing vor dem Start | DSC05412 |
-| `galerie-03.jpg` | Galerie | hoch 4:5 | Red-Bull-Dosen zwischen Laufschuhen | DSC05390 |
-| `galerie-04.jpg` | Galerie | hoch 4:5 | Die Gruppe läuft durch den Kiez | DSC05712 |
-| `galerie-05.jpg` | Galerie | quer 3:2 | Drei Läufer mit Red Bull vor dem Start | DSC05339 |
-| `galerie-06.jpg` | Galerie | quer 3:2 | Das Red-Bull-Lastenrad mit DJ | DSC05687 |
-| `galerie-07.jpg` | Galerie | hoch 4:5 | Tempo an der Graffitiwand | DSC05624 |
-| `galerie-08.jpg` | Galerie | hoch 4:5 | Verpflegung an einer Station | DSC05785 |
-| `galerie-09.jpg` | Galerie | hoch 4:5 | Zwischenstopp vor einer Bar | DSC05806 |
-| `galerie-10.jpg` | Galerie | quer 3:2 | Die Kamera läuft mit | DSC05820 |
-| `galerie-11.jpg` | Galerie | quer 3:2 | Malte mit dem Megafon im Ziel | DSC06726 |
-| `galerie-12.jpg` | Galerie | hoch 4:5 | Läuferin mit Reflektoren in der Nacht | DSC06039 |
-| `galerie-13.jpg` | Galerie | hoch 4:5 | Malte mit den Riegeln von HEJ Natural | DSC06841 |
-| `galerie-14.jpg` | Galerie | hoch 4:5 | Afterparty mit Sonnenbrillen | DSC06472 |
-| `galerie-15.jpg` | Galerie, breites Bild unten | quer 3:2 | Gruppenfoto am Ende der Nacht | DSC06716 |
+| Datei | Wo auf der Seite | Format | Motiv |
+|-------|------------------|--------|-------|
+| `cover.jpg` | Projekt-Kasten auf der Startseite, ganz oben auf der Projektseite | quer 3:2 | Läufer bei Nacht mit Lichtspuren |
+| `01.jpg` | Projekte-Übersicht, Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Die Laufgruppe unterwegs |
+| `hoch-01.jpg`, `hoch-cover.jpg` | dieselben Stellen wie `01.jpg` und `cover.jpg`, aber am Handy | hoch 4:5 | Hochformat-Ausschnitte (laden am Handy schneller) |
+| `plan.jpg` | Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Planskizze, aus `01.jpg` erzeugt |
+| `start-quer-dsc5668.jpg` | Startbildschirm quer, erstes Foto | quer 3:2 | Gute Laune auf der Strecke |
+| `start-quer-ld3717.jpg` | Startbildschirm quer | quer 3:2 | Malte gibt mit dem Megafon den Takt vor |
+| `start-quer-ld3921.jpg` | Startbildschirm quer | quer 3:2 | Der DJ fährt mit |
+| `start-quer-ld5222.jpg` | Startbildschirm quer | quer 3:2 | Rein in die Nacht |
+| `start-quer-dsc6089.jpg` | Startbildschirm quer | quer 3:2 | Alle Lichter an (etwas aufgehellt) |
+| `start-hoch-dsc5658.jpg` | Startbildschirm hochkant, erstes Foto | hoch 4:5 | Gute Laune auf der Strecke |
+| `start-hoch-dsc5433.jpg` | Startbildschirm hochkant | hoch 4:5 | Warm-up vor dem Start |
+| `start-hoch-dsc5534.jpg` | Startbildschirm hochkant | hoch 4:5 | Volle Energie |
+| `start-hoch-ld3913.jpg` | Startbildschirm hochkant | hoch 4:5 | Der DJ fährt mit |
+| `start-hoch-dsc6846.jpg` | Startbildschirm hochkant | hoch 4:5 | Snackpause mit HEJ Natural |
+| `galerie-dsc5594.jpg` | Galerie, breites Bild oben | quer 3:2 | Treffpunkt unter der Brücke |
+| `galerie-dsc5412.jpg` | Galerie | hoch 4:5 | Malte gibt das Briefing vor dem Start |
+| `galerie-dsc5390.jpg` | Galerie | hoch 4:5 | Red-Bull-Dosen zwischen Laufschuhen |
+| `galerie-dsc5712.jpg` | Galerie | hoch 4:5 | Die Gruppe läuft durch den Kiez |
+| `galerie-dsc5339.jpg` | Galerie | quer 3:2 | Drei Läufer mit Red Bull vor dem Start |
+| `galerie-dsc5687.jpg` | Galerie | quer 3:2 | Das Red-Bull-Lastenrad mit DJ |
+| `galerie-ld3490.jpg` | Galerie | quer 3:2 | Die Crowd läuft los |
+| `galerie-dsc5820.jpg` | Galerie | quer 3:2 | Die Kamera läuft mit |
+| `galerie-dsc5624.jpg` | Galerie | hoch 4:5 | Tempo an der Graffitiwand |
+| `galerie-dsc5785.jpg` | Galerie | hoch 4:5 | Verpflegung an einer Station |
+| `galerie-dsc5806.jpg` | Galerie | hoch 4:5 | Zwischenstopp vor einer Bar |
+| `galerie-ld4166.jpg` | Galerie | quer 3:2 | Laufen zur blauen Stunde |
+| `galerie-ld4060.jpg` | Galerie | quer 3:2 | Die ganze Crowd im Nachtlauf |
+| `galerie-dsc6039.jpg` | Galerie | hoch 4:5 | Läuferin mit Reflektoren in der Nacht |
+| `galerie-dsc6841.jpg` | Galerie | hoch 4:5 | Malte mit den Riegeln von HEJ Natural |
+| `galerie-dsc6472.jpg` | Galerie | hoch 4:5 | Afterparty mit Sonnenbrillen |
+| `galerie-dsc6716.jpg` | Galerie, breites Bild unten | quer 3:2 | Gruppenfoto am Ende der Nacht |
 
 `plan.jpg` passt nur zu `01.jpg`: Die Linien zeichnen genau die Personen auf
 diesem Foto nach. Wer `01.jpg` austauscht, braucht auch eine neue Planskizze.
+
+Startbild quer und Startbild hochkant sind zwei getrennte Listen. Jeder
+Bildschirm zeigt nur eine davon.
 
 ## Leistungen
 
@@ -75,11 +83,11 @@ zu jedem Projekt. Die Texte darin stehen direkt in `index.html` und
 | Datei | Wo auf der Seite | Format |
 |-------|------------------|--------|
 | `julian.jpg` | Gründerkarte Julian (Startseite und „Wer sind wir?“) | quadratisch 1:1 |
-| `malte.jpg` | Gründerkarte Malte (Startseite und „Wer sind wir?“): Malte mit Megafon beim Night Run (DSC06699) | quadratisch 1:1 |
+| `malte.jpg` | Gründerkarte Malte (Startseite und „Wer sind wir?“): Malte auf dem Rad beim Night Run (LD203503) | quadratisch 1:1 |
 
-Im HTML steht `malte.jpg?v=2`. Die Zahl sorgt dafür, dass Browser ein neues Foto
+Im HTML steht `malte.jpg?v=3`. Die Zahl sorgt dafür, dass Browser ein neues Foto
 sofort laden statt das alte aus dem Zwischenspeicher. Wer das Foto wieder
-austauscht, erhöht sie in `index.html` und `ueber-uns.html` auf `?v=3`.
+austauscht, erhöht sie in `index.html` und `ueber-uns.html` auf `?v=4`.
 
 ## Vorschaubilder beim Teilen
 

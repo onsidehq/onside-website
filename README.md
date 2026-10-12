@@ -73,9 +73,8 @@ Auf der Startseite laufen Fotos vom Night Run nacheinander durch und blenden
 ruhig ineinander über. Die Fotos stehen als Liste in `js/config.js` unter
 `startbild`:
 
-- `breit` für Bildschirme im Querformat (Dateien `start-quer-1.jpg` bis
-  `start-quer-5.jpg`), `handy` für Hochformat wie Handy und Tablet hochkant
-  (`start-hoch-1.jpg` bis `start-hoch-5.jpg`)
+- `breit` für Bildschirme im Querformat (Dateien `start-quer-....jpg`),
+  `handy` für Hochformat wie Handy und Tablet hochkant (`start-hoch-....jpg`)
 - pro Foto: Datei, Bildunterschrift, Bildausschnitt
 - `sekunden`: wie lange ein Foto stehen bleibt
 
@@ -154,7 +153,7 @@ die Ordnerstruktur beibehalten (also `css/`, `js/`, `fonts/`, `assets/` als
 Ordner, nicht die Dateien einzeln ins Hauptverzeichnis).
 
 Wer `css/styles.css` oder eine Datei in `js/` ändert, zählt in allen HTML-Dateien
-die Versionsnummer hinter dem Dateinamen eins hoch (`styles.css?v=8` → `?v=9`).
+die Versionsnummer hinter dem Dateinamen eins hoch (`styles.css?v=9` → `?v=10`).
 Sonst zeigen manche Browser noch einen Tag lang die alte Fassung.
 
 ## Weiterlernen
