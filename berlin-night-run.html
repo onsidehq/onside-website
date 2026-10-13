@@ -29,7 +29,7 @@
   <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=9" />
+  <link rel="stylesheet" href="css/styles.css?v=10" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -233,14 +233,14 @@
              BNR BILDER 1, ld = Ordner BNR BILDER 2 bis 5). 01.jpg steht schon oben
              im Regler, cover.jpg ganz oben auf der Seite. Die Reihenfolge erzählt
              den Abend: Treffpunkt, Start, Strecke, Stationen, Nacht, Ziel.
-             - Breite Felder (Klasse case-gallery__item--wide, Datei quer 3:2) gehen
-               über die ganze Breite. object-position legt fest, welcher Streifen
+             - Breite Felder (Zusatzklasse "wide", Datei quer 3:2) gehen über die
+               ganze Breite. object-position legt fest, welcher Streifen
                des Fotos zu sehen ist (zweite Zahl: 0% = oben, 100% = unten).
              - Querformate (3:2) ohne Zusatzklasse stehen zu zweit.
-             - Hochformate (Klasse case-gallery__item--tall, Datei hoch 4:5) stehen
-               zu dritt. Am Handy stehen sie zu zweit; das dritte jeder Dreiergruppe
-               trägt zusätzlich case-gallery__item--solo und geht dort über die
-               ganze Breite, damit keine Lücke entsteht.
+             - Hochformate (Zusatzklasse "tall", Datei hoch 4:5) stehen zu dritt.
+               Am Handy stehen sie zu zweit; das dritte jeder Dreiergruppe trägt
+               zusätzlich "solo" und geht dort über die ganze Breite, damit keine
+               Lücke entsteht. Am einfachsten ein passendes Feld unten kopieren.
              Ein neues Foto bekommt einen neuen Dateinamen, dann sehen auch
              wiederkehrende Besucher sofort das neue Bild. -->
         <div class="case-gallery__item case-gallery__item--wide reveal">
@@ -388,8 +388,8 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=9"></script>
-  <script src="js/visuals.js?v=9"></script>
-  <script src="js/script.js?v=9"></script>
+  <script src="js/config.js?v=10"></script>
+  <script src="js/visuals.js?v=10"></script>
+  <script src="js/script.js?v=10"></script>
 </body>
 </html>

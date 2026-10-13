@@ -3109,10 +3109,12 @@ body.menu-open .nav__cta {
    Ein Foto, darunter dieselbe Szene als Planskizze. Der Regler (in
    js/script.js) zeigt links das Foto, rechts den Plan. Die Markierungen im
    Plan werden passend zum Bildausschnitt gesetzt. */
+/* Abstand nach unten wie bei den anderen Abschnitten, sonst klebt die
+   Galerie-Überschrift direkt am Regler */
 .case-backstage {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--gutter);
+  padding: 0 var(--gutter) var(--section-y);
 }
 
 .case-backstage h2 {

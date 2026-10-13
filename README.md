@@ -153,7 +153,7 @@ die Ordnerstruktur beibehalten (also `css/`, `js/`, `fonts/`, `assets/` als
 Ordner, nicht die Dateien einzeln ins Hauptverzeichnis).
 
 Wer `css/styles.css` oder eine Datei in `js/` ändert, zählt in allen HTML-Dateien
-die Versionsnummer hinter dem Dateinamen eins hoch (`styles.css?v=9` → `?v=10`).
+die Versionsnummer hinter dem Dateinamen eins hoch (`styles.css?v=10` → `?v=11`).
 Sonst zeigen manche Browser noch einen Tag lang die alte Fassung.
 
 ## Weiterlernen
