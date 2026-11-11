@@ -4879,3 +4879,82 @@ body.lightbox-open .assistent,
 body.menu-open .assistent {
   display: none;
 }
+
+/* Partner-Block auf Projektseiten (berlin-night-run.html) */
+.case-partners {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter) var(--section-y);
+}
+
+/* Der Regler-Hinweis ragt am Handy minimal über den Rand */
+.case-backstage {
+  overflow-x: clip;
+}
+
+.case-partners h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  line-height: 1.08;
+  color: var(--text);
+}
+
+.case-partners__list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  margin: clamp(1.8rem, 4vw, 2.6rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-partners__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 11rem;
+  padding: 1.6rem 1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  text-align: center;
+}
+
+.case-partners__item img {
+  flex: 1;
+  width: auto;
+  max-width: 7rem;
+  max-height: 4.6rem;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+.case-partners__name {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.case-partners__item p {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--text-dim);
+}
+
+@media (max-width: 900px) {
+  .case-partners__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case-partners__item:first-child { grid-column: 1 / -1; }
+}
+
+.case-gallery__more {
+  margin-top: 1.6rem;
+  text-align: center;
+}
