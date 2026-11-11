@@ -4254,3 +4254,217 @@ body.menu-open .nav__cta {
     linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 45%, rgba(0, 0, 0, 0) 70%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.2) 55%, rgba(0, 0, 0, 0.9) 100%);
 }
+
+/* =========================================================================
+   GALERIE (galerie.html)
+   Fotos in Spalten wie eine Pinnwand, Filter nach Projekt, Großansicht.
+   ========================================================================= */
+.gallery {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter) var(--section-y);
+}
+
+.gallery__filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.gallery__btn {
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  background: rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.gallery__btn[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #000;
+}
+
+@media (hover: hover) {
+  .gallery__btn[aria-pressed="false"]:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+.gallery__btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.gallery__grid {
+  columns: 3 280px;
+  column-gap: 1rem;
+}
+
+.gallery__item {
+  break-inside: avoid;
+  margin: 0 0 1rem;
+}
+
+.gallery__item[hidden] {
+  display: none;
+}
+
+.gallery__link {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+}
+
+.gallery__link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.6s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .gallery__link:hover img {
+    transform: scale(1.03);
+  }
+}
+
+.gallery__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.gallery__item figcaption {
+  padding: 0.55rem 0.2rem 0;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.gallery__item figcaption a {
+  color: var(--text-muted);
+}
+
+@media (hover: hover) {
+  .gallery__item figcaption a:hover {
+    color: var(--accent);
+  }
+}
+
+.gallery-cta {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter) var(--section-y);
+  text-align: center;
+}
+
+.gallery-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.05;
+  color: var(--text);
+}
+
+.gallery-cta p {
+  margin-top: 0.9rem;
+  color: var(--text-muted);
+}
+
+.gallery-cta__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+
+/* Großansicht */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(0, 0, 0, 0.97);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox__figure {
+  margin: 0;
+  max-width: 100%;
+  text-align: center;
+}
+
+.lightbox__img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 7rem);
+  max-height: calc(100dvh - 7rem);
+  margin: 0 auto;
+  border-radius: var(--radius);
+}
+
+.lightbox__caption {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--text);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox__close {
+  top: 1rem;
+  right: 1rem;
+}
+
+.lightbox__nav--prev {
+  left: 1rem;
+}
+
+.lightbox__nav--next {
+  right: 1rem;
+}
+
+@media (hover: hover) {
+  .lightbox__close:hover,
+  .lightbox__nav:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+@media (max-width: 720px) {
+  .lightbox__nav {
+    top: auto;
+    bottom: 1rem;
+  }
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}

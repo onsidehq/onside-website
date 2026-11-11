@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Liste aller Seiten für Suchmaschinen. Kommt eine neue Seite dazu
      (z. B. ein weiteres Projekt), hier einen <url>-Eintrag ergänzen. -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url><loc>https://onsidehq.de/</loc></url>
   <url><loc>https://onsidehq.de/projekte</loc></url>
   <url><loc>https://onsidehq.de/berlin-night-run</loc></url>
   <url><loc>https://onsidehq.de/dagen-yachtcharter</loc></url>
   <url><loc>https://onsidehq.de/snowside</loc></url>
+  <url>
+    <loc>https://onsidehq.de/galerie</loc>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/galerie-dsc6716.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/start-hoch-dsc5433.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/dagen-yachtcharter/galerie-abendlicht.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/galerie-dsc5624.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/start-quer-ld5222.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/galerie-dsc5339.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/03.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/galerie-ld4166.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/dagen-yachtcharter/galerie-haengematte.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/galerie-dsc6472.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/start-quer-ld3717.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/galerie-dsc5687.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/galerie-dsc6039.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/start-hoch-dsc5534.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/galerie-11.jpg</image:loc></image:image>
+    <image:image><image:loc>https://onsidehq.de/assets/projects/berlin-night-run/galerie-dsc5594.jpg</image:loc></image:image>
+  </url>
   <url><loc>https://onsidehq.de/leistungen</loc></url>
   <url><loc>https://onsidehq.de/ueber-uns</loc></url>
   <url><loc>https://onsidehq.de/kontakt</loc></url>

@@ -790,6 +790,83 @@ document.querySelectorAll('[data-embed]').forEach((btn) => {
 });
 
 /* ---------------------------------------------------------------------
+   10) Galerie: Filter nach Projekt und Großansicht (galerie.html)
+   Tippen öffnet das Foto groß. Pfeiltasten oder Wischen blättern,
+   Esc oder Tippen daneben schließt. Ohne JavaScript öffnet der Link
+   einfach das Foto.
+--------------------------------------------------------------------- */
+(() => {
+  const grid = document.querySelector('.gallery__grid');
+  if (!grid) return;
+  const items = () => [...grid.querySelectorAll('.gallery__item')];
+
+  document.querySelectorAll('.gallery__btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.gallery__btn').forEach((b) =>
+        b.setAttribute('aria-pressed', String(b === btn)));
+      items().forEach((it) => { it.hidden = f !== 'alle' && it.dataset.project !== f; });
+    });
+  });
+
+  const box = document.getElementById('lightbox');
+  if (!box) return;
+  const img = box.querySelector('.lightbox__img');
+  const cap = box.querySelector('.lightbox__caption');
+  let list = [];
+  let idx = 0;
+  let lastFocus = null;
+
+  const show = (i) => {
+    idx = (i + list.length) % list.length;
+    const fig = list[idx];
+    const pic = fig.querySelector('img');
+    img.src = fig.querySelector('a').getAttribute('href');
+    img.alt = pic.alt;
+    cap.textContent = fig.querySelector('figcaption').textContent;
+  };
+  const open = (fig) => {
+    list = items().filter((it) => !it.hidden);
+    lastFocus = document.activeElement;
+    box.hidden = false;
+    document.body.classList.add('lightbox-open');
+    show(list.indexOf(fig));
+    box.querySelector('.lightbox__close').focus();
+  };
+  const close = () => {
+    box.hidden = true;
+    document.body.classList.remove('lightbox-open');
+    img.removeAttribute('src');
+    if (lastFocus) lastFocus.focus();
+  };
+
+  grid.addEventListener('click', (e) => {
+    const link = e.target.closest('[data-lightbox]');
+    if (!link) return;
+    e.preventDefault();
+    open(link.closest('.gallery__item'));
+  });
+  box.querySelector('.lightbox__close').addEventListener('click', close);
+  box.querySelector('.lightbox__nav--prev').addEventListener('click', () => show(idx - 1));
+  box.querySelector('.lightbox__nav--next').addEventListener('click', () => show(idx + 1));
+  box.addEventListener('click', (e) => { if (e.target === box) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+  let x0 = null;
+  box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+})();
+
+/* ---------------------------------------------------------------------
    Wenn du hier weiterbauen willst:
 
    - Animationen anpassen: die SETTINGS ganz oben in js/visuals.js.

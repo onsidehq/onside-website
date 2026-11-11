@@ -156,3 +156,11 @@ Alle von Pexels.com (Pexels-Lizenz: kommerziell frei, keine Namensnennung nötig
 | konzept-abend.jpg | 7357325 | snowside |
 | konzept-dinner.jpg | 5847904 | snowside |
 | konzept-innsbruck.jpg | 6128188 | snowside |
+
+## Galerie (`galerie.html`)
+
+Zeigt eine Auswahl aus den Projektordnern, es gibt keine eigenen Dateien.
+Jedes Foto dort steht sonst höchstens noch an einer anderen Stelle
+(Night-Run-Seite oder Startbild in js/config.js), damit bleibt es bei
+maximal zweimal pro Foto. Neue Galerie-Fotos auch in sitemap.xml
+(Eintrag /galerie) und im Bilderblock oben in galerie.html ergänzen.
