@@ -1529,8 +1529,12 @@
 
     const lineX = w * 0.62;
     const defenders = [P(0.592, 0.2), P(0.62, 0.5), P(0.585, 0.8)];
-    const J = personal ? P(0.11, 0.62) : P(0.15, 0.66);   // Julian (bzw. Passgeber)
-    const M = P(0.35, 0.3);                                // Malte
+    // Laufwege: Julian und Malte laufen sich frei, spielen sich an und rücken
+    // nach dem Pass mit auf (0 = Start, 1 = beim Pass, 2 = danach)
+    const J0 = P(0.07, 0.72), J1 = P(0.13, 0.6), J2 = P(0.25, 0.55);
+    const M0 = P(0.26, 0.42), M1 = P(0.35, 0.3), M2 = P(0.47, 0.37);
+    const J = personal ? J1 : P(0.15, 0.66);   // Julian (bzw. Passgeber)
+    const M = M1;                              // Malte
     const passer = personal ? M : J;
     const A0 = P(0.74, 0.33);   // steht im Abseits
     const A1 = P(0.555, 0.36);  // zurück hinter der Linie
@@ -1660,8 +1664,12 @@
 
       // Spieler: Köpfe mit Namen, sonst ein Punkt
       if (personal) {
-        [J, M].forEach((pt, i) => {
-          const bob = Math.sin(t * 1.1 + i * 1.7) * 1.2;
+        const approach = easeInOut(clamp(u / 0.9, 0, 1));
+        const follow = easeInOut(clamp((u - passStart) / 1.6, 0, 1));
+        const walk = (a, b, c) => (follow > 0 ? [lerp(b[0], c[0], follow), lerp(b[1], c[1], follow)] : [lerp(a[0], b[0], approach), lerp(a[1], b[1], approach)]);
+        [walk(J0, J1, J2), walk(M0, M1, M2)].forEach((pt, i) => {
+          const moving = (approach > 0 && approach < 1) || (follow > 0 && follow < 1);
+          const bob = Math.sin(t * (moving ? 9 : 1.1) + i * 1.7) * (moving ? 2 : 1.2);
           roundPic(ctx, players[i], pt[0], pt[1] + bob, head, rgba(CREAM, 0.55));
           if (names[i]) {
             ctx.textAlign = 'center';
