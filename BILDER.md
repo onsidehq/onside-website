@@ -169,4 +169,5 @@ maximal zweimal pro Foto. Neue Galerie-Fotos auch in sitemap.xml
 
 Für das Laufband auf der Startseite. PNG mit transparentem Hintergrund oder
 SVG, Dateiname = Partnername (z. B. `red-bull.png`). Werden per CSS weiß
-eingefärbt. Nur mit OK des Partners einbauen (bisher: Dagen).
+eingefärbt. Drin: Dagen, Myxa, Redrum Art Bar, Dietrich (Logos), Red Bull und
+HEJ Natural bewusst nur als Schriftzug (kein Logo-OK).
