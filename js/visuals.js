@@ -1463,24 +1463,109 @@
     return draw;
   };
 
-  /* --- offside: die Taktiktafel hinter dem Namen ----------------------- */
-  SCENES.offside = function (w, h) {
+  /* --- offside: die Taktiktafel hinter dem Namen -----------------------
+     Ein Spielzug, der beim Scrollen abläuft: Julian spielt zu Malte, "Eure
+     Marke" steht erst im Abseits, läuft zurück hinter die Linie, Malte spielt
+     den Pass in die Tiefe, Tor: Eure Marke ist onside. Danach leuchten unten
+     die Projekte auf, die schon onside sind.
+     Alles über Attribute am <canvas> steuerbar (fehlt eins, gibt es Punkte):
+       data-players  = "Bild Julian|Bild Malte"       (runde Köpfe)
+       data-names    = "Julian|Malte"
+       data-target   = "Eure Marke"                   (Beschriftung Angreifer)
+       data-projects = "Bild 1|Bild 2"                (runde Projektbilder)
+       data-project-names = "Night Run|Dagen"
+     Ohne data-players (z. B. auf der 404-Seite) läuft der Spielzug als
+     Endlosschleife wie bisher. */
+  const imgCache = {};
+  function loadImg(src) {
+    if (!src) return null;
+    if (!imgCache[src]) {
+      const im = new Image();
+      im.decoding = 'async';
+      im.src = src;
+      imgCache[src] = im;
+    }
+    return imgCache[src];
+  }
+  function roundPic(ctx, im, x, y, r, ring, alpha) {
+    ctx.save();
+    ctx.globalAlpha *= alpha === undefined ? 1 : alpha;
+    if (im && im.complete && im.naturalWidth) {
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, TAU);
+      ctx.clip();
+      ctx.drawImage(im, x - r, y - r, r * 2, r * 2);
+      ctx.restore();
+      ctx.save();
+      ctx.globalAlpha *= alpha === undefined ? 1 : alpha;
+    } else {
+      ctx.fillStyle = rgba(CREAM, 0.85);
+      ctx.beginPath();
+      ctx.arc(x, y, r * 0.55, 0, TAU);
+      ctx.fill();
+    }
+    if (ring) {
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = ring;
+      ctx.beginPath();
+      ctx.arc(x, y, r + 2, 0, TAU);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  SCENES.offside = function (w, h, rnd, data, canvas) {
+    data = data || {};
     const P = (fx, fy) => [w * fx, h * fy];
+    const split = (v) => (v ? String(v).split('|') : []);
+    const playerSrc = split(data.players);
+    const names = split(data.names);
+    const projSrc = split(data.projects);
+    const projNames = split(data.projectNames);
+    const personal = playerSrc.length >= 2;
+    const players = playerSrc.map(loadImg);
+    const projects = projSrc.map(loadImg);
+    const target = data.target || '';
+
     const lineX = w * 0.62;
     const defenders = [P(0.592, 0.2), P(0.62, 0.5), P(0.585, 0.8)];
-    const passer = P(0.15, 0.66);
+    const J = personal ? P(0.11, 0.62) : P(0.15, 0.66);   // Julian (bzw. Passgeber)
+    const M = P(0.35, 0.3);                                // Malte
+    const passer = personal ? M : J;
     const A0 = P(0.74, 0.33);   // steht im Abseits
-    const A1 = P(0.555, 0.33);  // zurück hinter der Linie
-    const A2 = P(0.86, 0.42);   // läuft in den freien Raum
-    const C = P(0.52, 0.82);    // Kurve des Passes
+    const A1 = P(0.555, 0.36);  // zurück hinter der Linie
+    const A2 = P(0.86, 0.45);   // läuft in den freien Raum
+    const C = personal ? P(0.5, 0.78) : P(0.52, 0.82);   // Kurve des Passes
     const small = w < 420;
     const r = small ? 4.5 : 5.5;
+    const head = clamp(h * 0.075, 13, 24);
     const fontPx = small ? 9 : 10.5;
     const T = BEAT * 14;
 
+    // Fortschritt beim Scrollen: 0 = Tafel kommt unten ins Bild,
+    // 1 = Tafel steht im oberen Drittel. Weich nachgezogen.
+    let shown = 0;
+    function scrollProgress() {
+      if (!canvas) return 1;
+      const rect = canvas.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      return clamp((vh * 0.92 - rect.top) / (vh * 0.62), 0, 1);
+    }
+
     const draw = function (ctx, t) {
-      const u = t % T;
-      const fadeAll = u > T - 0.8 ? (T - u) / 0.8 : u < 0.5 ? u / 0.5 : 1;
+      let u;
+      let fadeAll = 1;
+      if (t < 0) {
+        u = 7;                                   // Standbild: Endzustand
+      } else if (personal) {
+        const goal = scrollProgress() * 7;
+        shown += (goal - shown) * 0.12;
+        if (Math.abs(goal - shown) < 0.002) shown = goal;
+        u = shown;
+      } else {
+        u = t % T;
+        fadeAll = u > T - 0.8 ? (T - u) / 0.8 : u < 0.5 ? u / 0.5 : 1;
+      }
       ctx.globalAlpha = fadeAll;
       ctx.lineCap = 'round';
 
@@ -1499,13 +1584,17 @@
       ctx.lineTo(w, h * 0.64);
       ctx.stroke();
 
+      // Zeitplan (in "Sekunden" des alten Spielzugs)
+      const passStart = 3.4;
+      const prePass = personal ? easeInOut(clamp((u - 0.9) / 1.0, 0, 1)) : 1; // Julian -> Malte
       const back = easeInOut(clamp((u - 1.5) / 1.3, 0, 1));    // Rücklauf hinter die Linie
-      const played = u >= 3.4;                                 // der Pass ist gespielt
-      const run = easeInOut(clamp((u - 3.4) / 1.25, 0, 1));    // Lauf in die Tiefe
-      const pass = easeOut(clamp((u - 3.4) / 1.15, 0, 1));
+      const played = u >= passStart;                           // der Pass ist gespielt
+      const run = easeInOut(clamp((u - passStart) / 1.25, 0, 1));
+      const pass = easeOut(clamp((u - passStart) / 1.15, 0, 1));
       const ax = played ? lerp(A1[0], A2[0], run) : lerp(A0[0], A1[0], back);
       const ay = played ? lerp(A1[1], A2[1], run) : lerp(A0[1], A1[1], back);
       const onside = played || ax <= lineX;
+      const scored = u > 4.6;
 
       // die Abseitslinie
       ctx.setLineDash([4, 6]);
@@ -1526,18 +1615,33 @@
         ctx.stroke();
       });
 
-      // Passgeber
-      ctx.fillStyle = rgba(CREAM, 0.85);
-      ctx.beginPath();
-      ctx.arc(passer[0], passer[1], r, 0, TAU);
-      ctx.fill();
+      ctx.font = labelFont(fontPx);
+      ctx.textBaseline = 'middle';
 
-      // Ball und Passweg (eine gebogene Linie durch die Lücke)
+      // Ball
+      let ball;
+      if (personal) {
+        // erster Pass: Julian -> Malte (gerade, gestrichelt)
+        if (prePass > 0) {
+          ctx.setLineDash([2, 6]);
+          ctx.lineWidth = 1.2;
+          ctx.strokeStyle = rgba(CREAM, 0.3);
+          ctx.beginPath();
+          ctx.moveTo(J[0] + head * 0.8, J[1] - head * 0.5);
+          ctx.lineTo(lerp(J[0] + head * 0.8, M[0] - head, prePass), lerp(J[1] - head * 0.5, M[1] + head * 0.4, prePass));
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+        ball = prePass < 1
+          ? [lerp(J[0] + head + 4, M[0] - head - 4, prePass), lerp(J[1] - 2, M[1] + 2, prePass)]
+          : [M[0] + head + 4, M[1] + 2];
+      } else {
+        ball = [passer[0] + r + 5, passer[1] - 1];
+      }
       const bez = (q) => {
         const k = 1 - q;
         return [k * k * passer[0] + 2 * k * q * C[0] + q * q * A2[0], k * k * passer[1] + 2 * k * q * C[1] + q * q * A2[1]];
       };
-      let ball = [passer[0] + r + 5, passer[1] - 1];
       if (played) {
         ctx.setLineDash([2, 6]);
         ctx.lineWidth = 1.2;
@@ -1551,60 +1655,108 @@
         ctx.stroke();
         ctx.setLineDash([]);
         ball = bez(pass);
-        if (pass >= 1) ball = [ax - r - 4, ay + 2];
+        if (pass >= 1) ball = [ax - (personal ? head : r) - 4, ay + 2];
       }
+
+      // Spieler: Köpfe mit Namen, sonst ein Punkt
+      if (personal) {
+        [J, M].forEach((pt, i) => {
+          const bob = Math.sin(t * 1.1 + i * 1.7) * 1.2;
+          roundPic(ctx, players[i], pt[0], pt[1] + bob, head, rgba(CREAM, 0.55));
+          if (names[i]) {
+            ctx.textAlign = 'center';
+            ctx.fillStyle = rgba(CREAM, 0.6);
+            ctx.fillText(track(names[i]), pt[0], pt[1] + head + fontPx + 4);
+          }
+        });
+      } else {
+        ctx.fillStyle = rgba(CREAM, 0.85);
+        ctx.beginPath();
+        ctx.arc(passer[0], passer[1], r, 0, TAU);
+        ctx.fill();
+      }
+
       ctx.fillStyle = rgba(CREAM, 1);
       ctx.beginPath();
       ctx.arc(ball[0], ball[1], 2.6, 0, TAU);
       ctx.fill();
 
-      // Jubel: Ringe, sobald der Ball angekommen ist
-      if (u > 4.6) {
+      // Jubel: Ringe, sobald der Ball angekommen ist (beim Scrollen einmal)
+      if (scored) {
         for (let k = 0; k < 2; k++) {
-          const q = (u - 4.6 - k * 0.35) / 1.5;
+          const q = personal ? ((t * 0.55 + k * 0.5) % 1) : (u - 4.6 - k * 0.35) / 1.5;
           if (q <= 0 || q >= 1) continue;
+          const fade = personal ? clamp((u - 4.6) / 0.6, 0, 1) * 0.45 : 0.7;
           ctx.lineWidth = 1.4;
-          ctx.strokeStyle = rgba(ACCENT, (1 - q) * 0.7);
+          ctx.strokeStyle = rgba(ACCENT, (1 - q) * fade);
           ctx.beginPath();
-          ctx.arc(ax, ay, r + easeOut(q) * h * 0.42, 0, TAU);
+          ctx.arc(ax, ay, r + easeOut(q) * h * (personal ? 0.3 : 0.42), 0, TAU);
           ctx.stroke();
         }
       }
 
       // der Angreifer: im Abseits hohl und blinkend, onside gefüllt
+      const ar = target ? head * 0.85 : r;
       if (onside) {
-        stamp(ctx, 'glow', ACCENT, ax, ay, r * 4.5, 0.5);
+        stamp(ctx, 'glow', ACCENT, ax, ay, ar * 4, 0.5);
         ctx.fillStyle = rgba(ACCENT, 1);
         ctx.beginPath();
-        ctx.arc(ax, ay, r + 0.5, 0, TAU);
+        ctx.arc(ax, ay, ar + 0.5, 0, TAU);
         ctx.fill();
       } else {
         ctx.lineWidth = 1.6;
+        ctx.setLineDash(target ? [3, 3] : []);
         ctx.strokeStyle = rgba(ACCENT, 0.45 + 0.45 * Math.abs(Math.sin(t * 5)));
         ctx.beginPath();
-        ctx.arc(ax, ay, r, 0, TAU);
+        ctx.arc(ax, ay, ar, 0, TAU);
         ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      if (target) {
+        // "EURE MARKE" steht im Kreis bzw. darunter
+        ctx.textAlign = 'center';
+        ctx.fillStyle = onside ? rgba(CREAM, 0.95) : rgba(CREAM, 0.7);
+        ctx.fillText(track(target), ax, ay + ar + fontPx + 4);
       }
 
-      // Beschriftung neben dem Angreifer — im Abseits rechts von ihm,
-      // onside links oben, damit sie keinem Verteidiger in die Quere kommt
-      ctx.font = labelFont(fontPx);
-      ctx.textBaseline = 'middle';
+      // Beschriftung: im Abseits rechts vom Angreifer, onside darüber
       const off = clamp(1 - back * 2.2, 0, 1);
       if (off > 0) {
         ctx.textAlign = 'left';
         ctx.fillStyle = rgba(CREAM, 0.7 * off);
-        ctx.fillText(track('Abseits'), ax + r + 8, ay);
+        ctx.fillText(track('Abseits'), ax + ar + 8, ay);
       }
       const on = clamp((u - 2.5) / 0.4, 0, 1);
       if (on > 0) {
-        ctx.textAlign = 'right';
+        ctx.textAlign = target ? 'center' : 'right';
         ctx.fillStyle = rgba(ACCENT, on);
-        ctx.fillText(track('Onside'), ax - r - 7, ay - r - 5);
+        if (target) ctx.fillText(track('Onside'), ax, ay - ar - fontPx);
+        else ctx.fillText(track('Onside'), ax - r - 7, ay - r - 5);
+      }
+
+      // "Schon onside": Projekte unten links, leuchten nach dem Tor auf
+      if (projects.length) {
+        const pr = clamp(h * 0.05, 10, 16);
+        const appear = clamp((u - 4.8) / 0.8, 0, 1);
+        const y = h - pr - 12;
+        let x = 14;
+        ctx.textAlign = 'left';
+        ctx.fillStyle = rgba(CREAM, 0.35 + 0.35 * appear);
+        ctx.fillText(track('Schon onside'), x, y);
+        x += ctx.measureText(track('Schon onside')).width + 12 + pr;
+        projects.forEach((im, i) => {
+          roundPic(ctx, im, x, y, pr, rgba(ACCENT, 0.25 + 0.6 * appear), 0.25 + 0.75 * appear);
+          if (projNames[i] && !small) {
+            ctx.fillStyle = rgba(CREAM, 0.6 * appear);
+            ctx.fillText(projNames[i], x + pr + 7, y);
+            x += ctx.measureText(projNames[i]).width + 7;
+          }
+          x += pr * 2 + 12;
+        });
       }
       ctx.globalAlpha = 1;
     };
-    draw.still = 5.2;
+    draw.still = personal ? -1 : 5.2;
     return draw;
   };
 

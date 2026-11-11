@@ -485,7 +485,14 @@
       <div class="statement__inner">
         <p class="eyebrow reveal">04 — Warum onside?</p>
         <div class="statement__board viz reveal">
-          <canvas data-scene="offside" aria-hidden="true"></canvas>
+          <!-- Spielzug beim Scrollen: Köpfe, Namen und Projekte über die data-Attribute,
+               Zeichnung in js/visuals.js (Szene "offside") -->
+          <canvas data-scene="offside" aria-hidden="true"
+            data-players="assets/team/kopf-julian.jpg|assets/team/kopf-malte.jpg"
+            data-names="Julian|Malte"
+            data-target="Eure Marke"
+            data-projects="assets/projects/berlin-night-run/kreis.jpg|assets/projects/dagen-yachtcharter/kreis.jpg"
+            data-project-names="Night Run|Dagen"></canvas>
         </div>
         <p class="statement__text reveal">
           Der Name kommt aus dem Sport. <em class="scribble" data-scribble="circle">Onside</em> ist das Gegenteil von Abseits.
