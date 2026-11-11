@@ -3988,3 +3988,32 @@ body.menu-open .nav__cta {
   font-size: 0.85rem;
   color: var(--text-dim);
 }
+
+/* Karte "Das Revier" (SVG im HTML, z. B. dagen-yachtcharter.html) */
+.case-section__note {
+  margin-top: 1rem;
+  max-width: 28rem;
+  color: var(--text-dim);
+}
+.seamap-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+.seamap { display: block; width: 100%; height: auto; }
+.seamap__grid line { stroke: rgba(var(--cream-rgb), 0.06); stroke-width: 1; stroke-dasharray: 2 6; }
+.seamap__land {
+  fill: rgba(var(--cream-rgb), 0.06);
+  stroke: rgba(var(--cream-rgb), 0.55);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+.seamap__land--main { fill: rgba(var(--cream-rgb), 0.025); stroke: rgba(var(--cream-rgb), 0.22); }
+.seamap__route { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 6 8; }
+.seamap text { font-family: var(--font-body, Inter, system-ui, sans-serif); fill: rgba(var(--cream-rgb), 0.85); letter-spacing: 0.18em; }
+.seamap__name { font-family: var(--font-display); font-size: 30px; font-weight: 600; letter-spacing: 0.3em; fill: var(--text); }
+.seamap__small { font-size: 15px; font-weight: 600; }
+.seamap__small--dim { fill: rgba(var(--cream-rgb), 0.4); }
+.seamap__dot { fill: var(--accent); }
+.seamap__ring { fill: none; stroke: var(--accent); stroke-opacity: 0.5; }
