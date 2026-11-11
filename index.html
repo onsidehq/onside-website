@@ -138,7 +138,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=10" />
+  <link rel="stylesheet" href="css/styles.css?v=11" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -286,6 +286,39 @@
           <div><dt>Partner</dt><dd>Red&nbsp;Bull, HEJ&nbsp;Natural</dd></div>
         </dl>
 
+      <article class="project">
+        <!-- Titelbild Dagen → assets/projects/dagen-yachtcharter/cover.jpg (quer 3:2,
+             Handy: hoch-cover.jpg). Fehlt es, läuft eine Animation. -->
+        <a class="project__cover reveal" href="dagen-yachtcharter.html" aria-label="Zum Projekt: Dagen Yachtcharter">
+          <div class="project__cover-bg viz">
+            <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
+            <picture>
+              <source media="(max-width: 720px)" srcset="assets/projects/dagen-yachtcharter/hoch-cover.jpg">
+              <img src="assets/projects/dagen-yachtcharter/cover.jpg" alt="Segelboot von Dagen Yachtcharter auf dem Wasser" loading="lazy" decoding="async" onerror="onsideBildFehlt(this)">
+            </picture>
+          </div>
+          <div class="project__cover-content">
+            <p class="eyebrow">Social Media · 2026</p>
+            <h3>Dagen Yachtcharter</h3>
+          </div>
+          <span class="project__cover-go" aria-hidden="true">Zum Projekt <i>→</i></span>
+        </a>
+
+        <div class="project__body">
+          <p class="project__text reveal">
+            Eine Woche an Bord mit Kamera: Für Dagen Yachtcharter haben wir 10&nbsp;Reels
+            und tägliche Stories produziert, um Segeln für eine jüngere Zielgruppe
+            attraktiv zu machen. Ergebnis: rund 250.000&nbsp;Views in einer Woche.
+          </p>
+          <a href="dagen-yachtcharter.html" class="btn btn--ghost btn--arrow reveal">Zum Projekt</a>
+        </div>
+
+        <dl class="project__facts reveal">
+          <div><dt>Wann</dt><dd>September 2026</dd></div>
+          <div><dt>Leistung</dt><dd>Social Media</dd></div>
+          <div><dt>Content</dt><dd>10&nbsp;Reels · Stories</dd></div>
+          <div><dt>Views</dt><dd>~250.000</dd></div>
+        </dl>
       </article>
     </section>
 
@@ -383,14 +416,14 @@
       </p>
 
       <div class="founders">
-        <!-- BILD 7: Foto Julian → assets/team/julian.jpg
+        <!-- BILD 7: Foto Julian → assets/team/julian-2026.jpg (Tirol Hackathon, Nov. 2026)
              Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
              dieser Stelle eine Animation mit den Initialen. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">JS</span>
-            <img src="assets/team/julian.jpg" alt="Julian Seibt" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/julian-2026.jpg" alt="Julian Seibt, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Konzept &amp; Organisation</span>
@@ -410,15 +443,13 @@
           </div>
         </article>
 
-        <!-- BILD 8: Foto Malte → assets/team/malte.jpg (Malte auf dem Rad beim
-             Night Run). Datei hochladen, das Foto erscheint von selbst. Das ?v=3
-             sorgt dafür, dass Browser das neue Foto sofort laden; beim nächsten
-             Austausch auf ?v=4 erhöhen. -->
+        <!-- BILD 8: Foto Malte → assets/team/malte-2026.jpg (Tirol Hackathon, Nov. 2026).
+             Neues Foto = neuer Dateiname, dann sehen alle sofort das neue Bild. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">MG</span>
-            <img src="assets/team/malte.jpg?v=3" alt="Malte Gerdes auf dem Rad beim Berlin Night Run" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/malte-2026.jpg" alt="Malte Gerdes, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Content &amp; Social</span>
@@ -640,8 +671,8 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=10"></script>
-  <script src="js/visuals.js?v=10"></script>
-  <script src="js/script.js?v=10"></script>
+  <script src="js/config.js?v=11"></script>
+  <script src="js/visuals.js?v=11"></script>
+  <script src="js/script.js?v=11"></script>
 </body>
 </html>

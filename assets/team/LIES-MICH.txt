@@ -1,8 +1,7 @@
 Hier liegen die Gründerfotos.
 
-  julian.jpg   Foto Julian (quadratisch 1:1)
-  malte.jpg    Foto Malte  (quadratisch 1:1): Malte auf dem Rad beim Night Run
+  julian-2026.jpg   Foto Julian (quadratisch 1:1), Tirol Hackathon Nov. 2026
+  malte-2026.jpg    Foto Malte  (quadratisch 1:1), Tirol Hackathon Nov. 2026
 
-Zum Austauschen eine neue Datei mit demselben Namen hochladen (klein
-geschrieben, Endung .jpg). Sie erscheint auf der Website von selbst.
-Mehr dazu in BILDER.md.
+Zum Austauschen: neue Datei mit neuem Namen hochladen und in index.html und
+ueber-uns.html eintragen. Mehr dazu in BILDER.md.

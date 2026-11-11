@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dagen Yachtcharter: Social-Media-Content vom Segeltrip – onside.hq</title>
+  <meta name="description" content="Eine Woche an Bord, 10 Reels, tägliche Stories und rund 250.000 Views: Für Dagen Yachtcharter hat onside.hq Segeln für eine jüngere Zielgruppe in Szene gesetzt." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/dagen-yachtcharter" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Dagen Yachtcharter – onside.hq" />
+  <meta property="og:description" content="Eine Woche an Bord, 10 Reels, tägliche Stories und rund 250.000 Views: Für Dagen Yachtcharter hat onside.hq Segeln für eine jüngere Zielgruppe in Szene gesetzt." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/dagen-yachtcharter" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen-Pfad Start > Projekte > Dagen Yachtcharter -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://onsidehq.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Projekte", "item": "https://onsidehq.de/projekte" },
+      { "@type": "ListItem", "position": 3, "name": "Dagen Yachtcharter", "item": "https://onsidehq.de/dagen-yachtcharter" }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=11" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    // Fehlt ein Foto, verschwindet das <img> und die Animation darunter bleibt
+    // sichtbar. Liegt es in einem <picture> mit Handy-Version (hoch-...), wird
+    // zuerst die Handy-Version weggelassen und das große Foto genommen.
+    window.onsideBildFehlt = function (img) {
+      if (!img.getAttribute('src')) return; // ohne Bildadresse nichts zu tun
+      var s = img.parentNode && img.parentNode.querySelector('source');
+      if (s) { s.remove(); img.src = img.getAttribute('src'); } else { img.remove(); }
+    };
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="dagen">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – zur Startseite">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="index.html">Home</a>
+      <a href="projekte.html" aria-current="page">Projekte</a>
+      <a href="leistungen.html">Leistungen</a>
+      <a href="ueber-uns.html">Wer sind wir?</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+
+    <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menü">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projekte.html" aria-current="page"><span class="menu-overlay__num">02</span>Projekte</a>
+      <a href="leistungen.html"><span class="menu-overlay__num">03</span>Leistungen</a>
+      <a href="ueber-uns.html"><span class="menu-overlay__num">04</span>Wer sind wir?</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">05</span>FAQ</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">06</span>Kontakt</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ PROJEKTSEITE: DAGEN YACHTCHARTER ============
+         Aufgebaut nach dem Muster von berlin-night-run.html.
+         Bilder liegen in assets/projects/dagen-yachtcharter/ (siehe BILDER.md).
+         Fehlt ein Foto, läuft an seiner Stelle eine Animation. -->
+
+    <!-- BILD 1: Titelbild → assets/projects/dagen-yachtcharter/cover.jpg (quer 3:2,
+         Handy: hoch-cover.jpg, hoch 4:5) -->
+    <section class="case-hero">
+      <div class="case-hero__media viz">
+        <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/projects/dagen-yachtcharter/hoch-cover.jpg">
+          <img src="assets/projects/dagen-yachtcharter/cover.jpg" alt="Segelboot von Dagen Yachtcharter auf dem Wasser" fetchpriority="high" onerror="onsideBildFehlt(this)">
+        </picture>
+      </div>
+      <div class="case-hero__content">
+        <a class="back-link intro" href="projekte.html"><i>←</i> Alle Projekte</a>
+        <p class="eyebrow intro">Projekt 02 · Social Media · 2026</p>
+        <h1 data-split>Dagen Yachtcharter</h1>
+        <p class="case-hero__lead intro intro--2">
+          Eine Woche an Bord, eine Kamera dabei: Wir haben Segeln so erzählt, dass es
+          eine jüngere Zielgruppe sehen will.
+        </p>
+      </div>
+    </section>
+
+    <!-- Eckdaten: hier einfach die Texte zwischen <dd> und </dd> ändern -->
+    <section class="facts">
+      <dl class="facts__grid">
+        <div class="facts__item reveal"><dt>Kunde</dt><dd>Dagen Yachtcharter</dd></div>
+        <div class="facts__item reveal"><dt>Wann</dt><dd>September 2026</dd></div>
+        <div class="facts__item reveal"><dt>Umfang</dt><dd>1&nbsp;Woche an Bord</dd></div>
+        <div class="facts__item reveal"><dt>Content</dt><dd>10&nbsp;Reels · tägliche Stories</dd></div>
+        <div class="facts__item reveal"><dt>Unsere Rolle</dt><dd>Konzept, Dreh, Schnitt, Posting</dd></div>
+      </dl>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Die Aufgabe</p>
+        <h2 data-split>Segeln kann jeder buchen.<br>Man muss es nur <span class="scribble" data-scribble="underline">wollen.</span></h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Dagen Yachtcharter vermietet Segelboote. Der Instagram-Kanal stand noch ganz am
+          Anfang. Das Ziel: Chartern für eine jüngere Zielgruppe attraktiv machen und
+          zeigen, dass ein Segeltörn genau das Erlebnis ist, das sie suchen.
+        </p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Die Umsetzung</p>
+        <h2 data-split>Eine Woche an Bord, jeden Tag Content.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Statt Werbefilm haben wir gezeigt, wie sich eine Woche auf dem Boot wirklich
+          anfühlt. Gedreht haben wir an Bord, die Stories liefen jeden Tag live mit,
+          dazu zehn Reels für den Kanal.
+        </p>
+        <ul class="checklist reveal">
+          <li>Content-Konzept</li>
+          <li>Dreh an Bord</li>
+          <li>10 Reels</li>
+          <li>Tägliche Stories</li>
+          <li>Schnitt &amp; Posting</li>
+          <li>Auswertung</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Ergebnis: große Zahlen. Werte zwischen <dd> und </dd> ändern. -->
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Das Ergebnis</p>
+        <h2 data-split>Rund <span class="scribble" data-scribble="underline">250.000 Views</span> in einer Woche.</h2>
+      </div>
+      <div class="case-section__body">
+        <dl class="case-stats reveal">
+          <div><dt>Views über alle Formate</dt><dd>~250.000</dd></div>
+          <div><dt>Reels in einer Woche</dt><dd>10</dd></div>
+          <div><dt>Stories</dt><dd>täglich</dd></div>
+        </dl>
+        <p class="reveal">
+          Für einen Kanal, der vorher kaum gesehen wurde, ein echter Sprung. Und der
+          Beweis, dass Segeln auf Social Media funktioniert, wenn man es richtig erzählt.
+        </p>
+        <!-- ZITAT: kommt, sobald Dagen eine kurze Referenz geschickt hat.
+        <blockquote class="case-quote reveal">
+          <p>„…“</p>
+          <footer>Name, Dagen Yachtcharter</footer>
+        </blockquote>
+        -->
+        <div class="client-logo reveal">
+          <img src="assets/projects/dagen-yachtcharter/logo-dagen.png" alt="Logo Dagen Yachtcharter" width="318" height="106" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIE: Fotos/Standbilder aus den Reels nach dem Muster der Night-Run-Seite
+         (Dateien galerie-....jpg in assets/projects/dagen-yachtcharter/).
+         Fehlt ein Foto, verschwindet das Feld (onerror) und die Animation bleibt. -->
+    <section class="case-gallery">
+      <p class="eyebrow reveal">Eindrücke</p>
+      <h2 data-split>Die Woche in Bildern.</h2>
+      <div class="case-gallery__grid">
+        <div class="case-gallery__item case-gallery__item--wide reveal">
+          <div class="viz">
+            <canvas data-scene="contour" data-seed="5" aria-hidden="true"></canvas>
+            <img src="assets/projects/dagen-yachtcharter/galerie-01.jpg" alt="Dagen Yachtcharter: Segelboot unter vollen Segeln" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <canvas data-scene="bokeh" data-seed="4" aria-hidden="true"></canvas>
+            <img src="assets/projects/dagen-yachtcharter/galerie-02.jpg" alt="Dagen Yachtcharter: Crew an Deck" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <canvas data-scene="rings" data-seed="6" aria-hidden="true"></canvas>
+            <img src="assets/projects/dagen-yachtcharter/galerie-03.jpg" alt="Dagen Yachtcharter: Dreh für ein Reel an Bord" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall case-gallery__item--solo reveal">
+          <div class="viz">
+            <canvas data-scene="bokeh" data-seed="9" aria-hidden="true"></canvas>
+            <img src="assets/projects/dagen-yachtcharter/galerie-04.jpg" alt="Dagen Yachtcharter: Sonnenuntergang auf dem Wasser" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow reveal">Euer Projekt</p>
+      <h2 data-split>Eure Marke braucht <span class="scribble" data-scribble="underline">Content,</span> den man sehen will?</h2>
+      <div class="cta-band__actions reveal">
+        <a href="kontakt.html" class="btn btn--large btn--beat">Projekt anfragen</a>
+        <a href="leistungen.html#social" class="btn btn--large btn--ghost">Social Media bei uns</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, Marken und Content&nbsp;– von der ersten Idee bis zum letzten Reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Seiten">
+        <span class="footer__label">Seiten</span>
+        <a href="projekte.html">Projekte</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="ueber-uns.html">Wer sind wir?</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Kontakt">
+        <span class="footer__label">Kontakt</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="js/config.js?v=11"></script>
+  <script src="js/visuals.js?v=11"></script>
+  <script src="js/script.js?v=11"></script>
+</body>
+</html>

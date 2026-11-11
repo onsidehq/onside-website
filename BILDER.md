@@ -82,12 +82,11 @@ zu jedem Projekt. Die Texte darin stehen direkt in `index.html` und
 
 | Datei | Wo auf der Seite | Format |
 |-------|------------------|--------|
-| `julian.jpg` | Gründerkarte Julian (Startseite und „Wer sind wir?“) | quadratisch 1:1 |
-| `malte.jpg` | Gründerkarte Malte (Startseite und „Wer sind wir?“): Malte auf dem Rad beim Night Run (LD203503) | quadratisch 1:1 |
+| `julian-2026.jpg` | Gründerkarte Julian (Startseite und „Wer sind wir?“): Tirol Hackathon, Nov. 2026 | quadratisch 1:1 |
+| `malte-2026.jpg` | Gründerkarte Malte (Startseite und „Wer sind wir?“): Tirol Hackathon, Nov. 2026 | quadratisch 1:1 |
 
-Im HTML steht `malte.jpg?v=3`. Die Zahl sorgt dafür, dass Browser ein neues Foto
-sofort laden statt das alte aus dem Zwischenspeicher. Wer das Foto wieder
-austauscht, erhöht sie in `index.html` und `ueber-uns.html` auf `?v=4`.
+Ein neues Foto bekommt einen neuen Dateinamen (z. B. `malte-2027.jpg`) und wird in
+`index.html` und `ueber-uns.html` eingetragen. So sehen alle sofort das neue Bild.
 
 ## Vorschaubilder beim Teilen
 
