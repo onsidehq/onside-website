@@ -140,3 +140,19 @@ langsam. Vorher durch [squoosh.app](https://squoosh.app) schicken (kostenlos,
 läuft im Browser) und auf grob 150–400 KB pro Bild bringen. Bei diesen Größen
 sieht man keinen Qualitätsunterschied. Alle Fotos oben sind bereits so
 aufbereitet, Standortdaten sind entfernt.
+
+## SNOWSIDE-Konzeptbilder (`assets/projects/snowside/`)
+
+Platzhalter bis nach dem Event, auf der Seite als "Konzeptbild" markiert.
+Alle von Pexels.com (Pexels-Lizenz: kommerziell frei, keine Namensnennung nötig).
+
+| Datei | Pexels-ID | Verwendet auf |
+|---|---|---|
+| konzept-drei-piste.jpg / hoch-… | 848594 | snowside (Hero), og-snowside.jpg |
+| konzept-lift.jpg | 373111 | projekte (Karte 03) |
+| konzept-freestyle.jpg | 2433356 | snowside |
+| konzept-spielplatz.jpg | 31299012 | snowside |
+| konzept-picknick.jpg | 30463153 | snowside |
+| konzept-abend.jpg | 7357325 | snowside |
+| konzept-dinner.jpg | 5847904 | snowside |
+| konzept-innsbruck.jpg | 6128188 | snowside |
