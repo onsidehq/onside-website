@@ -138,7 +138,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=14" />
+  <link rel="stylesheet" href="css/styles.css?v=15" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -331,7 +331,24 @@
     </section>
 
     <!-- ============ PARTNER-LAUFBAND ============
-         Platz für das Laufband mit den Logos bisheriger Partner (kommt noch). -->
+         Logos bisheriger Partner. Logos liegen in assets/partner/ (PNG mit
+         transparentem Hintergrund oder SVG), sie werden automatisch weiß
+         eingefärbt. Ein Logo an- oder abschalten: die <li>-Zeile ein- oder
+         auskommentieren. Logos nur mit OK des Partners einbauen.
+         Ab 4 Logos läuft das Band, bei weniger stehen sie ruhig in einer Reihe. -->
+    <section class="partners" aria-labelledby="partners-title">
+      <p class="eyebrow partners__title" id="partners-title">Mit wem wir schon gearbeitet haben</p>
+      <div class="partners__band" data-partners>
+        <ul class="partners__track">
+          <li><img src="assets/partner/dagen-yachtcharter.png" alt="Dagen Yachtcharter" width="318" height="106" loading="lazy"></li>
+          <!-- <li><img src="assets/partner/red-bull.png" alt="Red Bull" loading="lazy"></li> -->
+          <!-- <li><img src="assets/partner/hej-natural.png" alt="HEJ Natural" loading="lazy"></li> -->
+          <!-- <li><img src="assets/partner/myxa.png" alt="Myxa Bar Berlin" loading="lazy"></li> -->
+          <!-- <li><img src="assets/partner/redrum-bar.png" alt="Redrum Bar Berlin" loading="lazy"></li> -->
+          <!-- <li><img src="assets/partner/dietrich-bar.png" alt="Dietrich Bar Berlin" loading="lazy"></li> -->
+        </ul>
+      </div>
+    </section>
 
     <!-- ============ 02 — LEISTUNGEN ============
          Jede Karte zeigt oben eine kleine, gebaute "Arbeitsprobe" (reines
@@ -687,8 +704,8 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=14"></script>
-  <script src="js/visuals.js?v=14"></script>
-  <script src="js/script.js?v=14"></script>
+  <script src="js/config.js?v=15"></script>
+  <script src="js/visuals.js?v=15"></script>
+  <script src="js/script.js?v=15"></script>
 </body>
 </html>

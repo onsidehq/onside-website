@@ -867,6 +867,40 @@ document.querySelectorAll('[data-embed]').forEach((btn) => {
 })();
 
 /* ---------------------------------------------------------------------
+   11) Partner-Laufband (Startseite)
+   Ab 4 Logos wird die Reihe so oft kopiert, dass das Band lückenlos
+   durchläuft. Bei weniger Logos bleibt sie ruhig stehen.
+--------------------------------------------------------------------- */
+document.querySelectorAll('[data-partners]').forEach((band) => {
+  const track = band.querySelector('.partners__track');
+  const logos = [...track.children];
+  if (logos.length < 4) { band.classList.add('is-static'); return; }
+  const fill = () => {
+    track.querySelectorAll('[data-copy]').forEach((c) => c.remove());
+    const one = track.scrollWidth;
+    const copies = Math.ceil(band.clientWidth / one) + 1;
+    // Eine Runde = einmal alle Logos; kopiert wird so oft, dass immer Logos sichtbar sind
+    for (let i = 0; i < copies; i++) {
+      logos.forEach((li) => {
+        const c = li.cloneNode(true);
+        c.setAttribute('data-copy', '');
+        c.setAttribute('aria-hidden', 'true');
+        track.appendChild(c);
+      });
+    }
+    const first = track.querySelector('[data-copy]');
+    const round = first.offsetLeft - logos[0].offsetLeft;
+    track.style.setProperty('--loop', -round + 'px');
+    track.style.setProperty('--dauer', Math.max(12, round / 40) + 's');
+    band.classList.add('is-running');
+  };
+  const imgs = [...track.querySelectorAll('img')];
+  Promise.all(imgs.map((im) => im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; }))).then(fill);
+  let t;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fill, 200); });
+});
+
+/* ---------------------------------------------------------------------
    Wenn du hier weiterbauen willst:
 
    - Animationen anpassen: die SETTINGS ganz oben in js/visuals.js.

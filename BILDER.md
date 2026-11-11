@@ -164,3 +164,9 @@ Jedes Foto dort steht sonst höchstens noch an einer anderen Stelle
 (Night-Run-Seite oder Startbild in js/config.js), damit bleibt es bei
 maximal zweimal pro Foto. Neue Galerie-Fotos auch in sitemap.xml
 (Eintrag /galerie) und im Bilderblock oben in galerie.html ergänzen.
+
+## Partner-Logos (`assets/partner/`)
+
+Für das Laufband auf der Startseite. PNG mit transparentem Hintergrund oder
+SVG, Dateiname = Partnername (z. B. `red-bull.png`). Werden per CSS weiß
+eingefärbt. Nur mit OK des Partners einbauen (bisher: Dagen).
