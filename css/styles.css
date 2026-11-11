@@ -4080,13 +4080,12 @@ body.menu-open .nav__cta {
   text-transform: uppercase;
   color: var(--accent);
 }
-.embed__play {
+.embed__play {   /* unten links, damit Text im Titelbild frei bleibt */
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4rem;
-  height: 4rem;
-  margin: -2rem 0 0 -2rem;
+  bottom: 2.6rem;
+  left: 1rem;
+  width: 3.2rem;
+  height: 3.2rem;
   border-radius: 50%;
   background: var(--accent);
   transition: transform 0.3s ease;
@@ -4105,9 +4104,9 @@ body.menu-open .nav__cta {
 .embed__hint {
   position: absolute;
   bottom: 1rem;
-  left: 0;
-  right: 0;
-  text-align: center;
+  left: 1rem;
+  right: 1rem;
+  text-align: left;
   font-size: 0.75rem;
   color: var(--text-dim);
 }
@@ -4115,3 +4114,21 @@ body.menu-open .nav__cta {
 .embed figcaption a { color: var(--text-dim); }
 .embed figcaption a:hover { color: var(--text); }
 .case-media__lead { margin: -1rem 0 clamp(1.4rem, 3vw, 2rem); color: var(--text-dim); }
+.embed__thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.embed__poster::after {   /* leichte Abdunklung, damit Schrift und Button lesbar bleiben */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+.embed__poster:hover .embed__thumb { transform: scale(1.03); }
+.embed__tag, .embed__play, .embed__hint { z-index: 1; }
+.embed__hint { color: rgba(var(--cream-rgb), 0.85); }
