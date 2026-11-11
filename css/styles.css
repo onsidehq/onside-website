@@ -4576,3 +4576,306 @@ body.lightbox-open {
     opacity: 1;
   }
 }
+
+/* =========================================================================
+   ASSISTENT unten rechts (js/assistent.js)
+   ========================================================================= */
+.assistent {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 1.6rem);
+  bottom: clamp(1rem, 2.5vw, 1.6rem);
+  z-index: 650;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.8rem;
+  font-family: var(--font-body);
+}
+
+.assistent__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  height: 3.3rem;
+  padding: 0 1.2rem 0 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #000;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 0 0 rgba(var(--accent-rgb), 0.5);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.3s ease;
+}
+
+.assistent__toggle svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.assistent__icon-close,
+.assistent.is-open .assistent__icon-chat,
+.assistent.is-open .assistent__toggle-text {
+  display: none;
+}
+
+.assistent.is-open .assistent__icon-close {
+  display: block;
+}
+
+.assistent.is-open .assistent__toggle {
+  width: 3.3rem;
+  padding: 0;
+  justify-content: center;
+}
+
+@media (hover: hover) {
+  .assistent__toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5), 0 0 0 6px rgba(var(--accent-rgb), 0.18);
+  }
+}
+
+.assistent__toggle:focus-visible,
+.assistent__close:focus-visible,
+.assistent__send:focus-visible,
+.assistent__chip:focus-visible,
+.assistent__action:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.assistent__panel {
+  display: flex;
+  flex-direction: column;
+  width: min(23rem, calc(100vw - 2rem));
+  height: min(34rem, calc(100vh - 8rem));
+  height: min(34rem, calc(100dvh - 8rem));
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  animation: assistent-auf 0.25s var(--ease-out);
+}
+
+.assistent__panel[hidden] {
+  display: none;
+}
+
+@keyframes assistent-auf {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assistent__panel { animation: none; }
+}
+
+.assistent__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1rem 0.95rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.assistent__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.assistent__title strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.assistent__title span {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.assistent__close {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.assistent__close svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.assistent__log {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.assistent__msg {
+  max-width: 88%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.assistent__msg--bot {
+  align-self: flex-start;
+  background: var(--bg-raised);
+  color: var(--text-soft);
+  border-bottom-left-radius: 0.3rem;
+}
+
+.assistent__msg--du {
+  align-self: flex-end;
+  background: var(--accent);
+  color: #000;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.assistent__actions,
+.assistent__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+
+.assistent__action,
+.assistent__chip {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.assistent__action {
+  border-color: rgba(var(--accent-rgb), 0.6);
+  color: var(--accent);
+}
+
+@media (hover: hover) {
+  .assistent__action:hover,
+  .assistent__chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+.assistent__typing {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.assistent__typing span {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--text-dim);
+  animation: assistent-tippt 1s infinite ease-in-out;
+}
+
+.assistent__typing span:nth-child(2) { animation-delay: 0.15s; }
+.assistent__typing span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes assistent-tippt {
+  0%, 80%, 100% { opacity: 0.3; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-3px); }
+}
+
+.assistent__form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 0.75rem 0.4rem;
+  border-top: 1px solid var(--border);
+}
+
+.assistent__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px; /* verhindert Zoom auf dem iPhone */
+}
+
+.assistent__input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.assistent__send {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #000;
+  cursor: pointer;
+}
+
+.assistent__send svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.assistent__foot {
+  padding: 0.2rem 1rem 0.8rem;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.assistent__foot a {
+  color: var(--text-muted);
+}
+
+/* Handy: kleiner Knopf, Chat als Fläche von unten */
+@media (max-width: 720px) {
+  .assistent__toggle-text { display: none; }
+  .assistent__toggle {
+    width: 3.3rem;
+    padding: 0;
+    justify-content: center;
+  }
+  .assistent.is-open {
+    left: 0.6rem;
+    right: 0.6rem;
+    bottom: 0.6rem;
+  }
+  .assistent__panel {
+    width: 100%;
+    height: calc(100dvh - 5.5rem);
+  }
+}
+
+body.lightbox-open .assistent,
+body.menu-open .assistent {
+  display: none;
+}
