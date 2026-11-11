@@ -764,6 +764,32 @@ if (window.location.protocol === 'https:') {
 }
 
 /* ---------------------------------------------------------------------
+   9) Videos erst beim Antippen laden (Instagram-Reels, YouTube)
+   Bis zum Klick steht nur eine Vorschau-Fläche da: Die Seite bleibt schnell,
+   und es geht vorher keine Anfrage an Instagram oder YouTube.
+--------------------------------------------------------------------- */
+document.querySelectorAll('[data-embed]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const id = encodeURIComponent(btn.dataset.id || '');
+    if (!id) return;
+    const frame = document.createElement('iframe');
+    frame.loading = 'lazy';
+    frame.allowFullscreen = true;
+    frame.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+    if (btn.dataset.embed === 'youtube') {
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+      frame.title = 'YouTube-Video';
+    } else {
+      frame.src = 'https://www.instagram.com/reel/' + id + '/embed/';
+      frame.title = 'Instagram-Reel';
+      frame.setAttribute('scrolling', 'no');
+    }
+    frame.className = 'embed__frame';
+    btn.replaceWith(frame);
+  });
+});
+
+/* ---------------------------------------------------------------------
    Wenn du hier weiterbauen willst:
 
    - Animationen anpassen: die SETTINGS ganz oben in js/visuals.js.
