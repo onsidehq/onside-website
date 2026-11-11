@@ -24,6 +24,7 @@
     grow: 3.2,         // wie stark ein getroffener Punkt wächst
     lift: 9,           // wie weit ein getroffener Punkt weggeschoben wird
     showFronts: true,  // die Wellenfront zusätzlich als feiner Ring
+    waves: false,      // blaue Taktwellen im Hintergrund (aus: nur Punktfeld + Mauszeiger-Licht)
     calm: 0.36,        // Stärke des Hintergrunds unterhalb des Heros (0 = aus, 1 = wie im Hero)
   };
 
@@ -418,6 +419,7 @@
     }
 
     function beat(t0) {
+      if (!SETTINGS.waves) return;
       // unterhalb des Heros startet nur jeder zweite Schlag eine Welle
       if (level < 0.6 && beatIndex % 2 !== 0) return;
       // Ursprung irgendwo auf der Fläche, etwas zur Mitte hin gewichtet
@@ -480,6 +482,7 @@
         { x: width * 0.32, y: height * 0.38, strength: 1, r: width * 0.22 },
         { x: width * 0.74, y: height * 0.66, strength: 0.8, r: width * 0.3 },
       ];
+      if (!SETTINGS.waves) waves = [];
       paint(0);
     }
 
@@ -503,7 +506,7 @@
       document.documentElement.addEventListener('mouseleave', () => { pointer.active = false; });
 
       // Klick oder Tippen: eine Welle genau von dieser Stelle
-      window.addEventListener('pointerdown', (e) => {
+      if (SETTINGS.waves) window.addEventListener('pointerdown', (e) => {
         spawn(performance.now() / 1000, e.clientX, e.clientY, 1.1, SETTINGS.waveSpeed * 1.15);
       }, { passive: true });
     }
