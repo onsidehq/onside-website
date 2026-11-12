@@ -624,9 +624,20 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
       handy: { hide: true } },
   ];
 
+  // Planungsschritte: je mehr vom Plan zu sehen ist, desto mehr Schritte stehen da
+  const steps = Array.from(box.querySelectorAll('.backstage__steps li'));
+  function showSteps() {
+    const shown = (100 - x) / 100;                 // 0 = nur Foto, 1 = nur Plan
+    steps.forEach((li, i) => {
+      const need = 0.08 + (i / steps.length) * 0.8;
+      li.classList.toggle('is-on', shown >= need);
+    });
+  }
+
   let x = 100;
   function setX(v, byUser) {
     x = Math.max(0, Math.min(100, v));
+    showSteps();
     box.style.setProperty('--x', x + '%');
     handle.setAttribute('aria-valuenow', Math.round(x));
     if (byUser) box.classList.add('was-used');

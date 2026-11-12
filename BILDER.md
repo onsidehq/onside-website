@@ -35,7 +35,8 @@ schon mal da waren, sofort das neue Bild statt des alten aus dem Zwischenspeiche
 | `cover.jpg` | Projekt-Kasten auf der Startseite, ganz oben auf der Projektseite | quer 3:2 | Läufer bei Nacht mit Lichtspuren |
 | `01.jpg` | Projekte-Übersicht, Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Die Laufgruppe unterwegs |
 | `hoch-01.jpg`, `hoch-cover.jpg` | dieselben Stellen wie `01.jpg` und `cover.jpg`, aber am Handy | hoch 4:5 | Hochformat-Ausschnitte (laden am Handy schneller) |
-| `plan.jpg` | Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Planskizze, aus `01.jpg` erzeugt |
+| `plan-skizze.jpg` | Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Planskizze, aus `01.jpg` erzeugt |
+| `reel-<ID>.jpg` | Vorschaubilder der Night-Run-Reels | hoch 9:16 | vorerst aus eigenen Fotos (dsc5820, dsc5712), später echtes Reel-Titelbild |
 | `start-quer-dsc5668.jpg` | Startbildschirm quer, erstes Foto | quer 3:2 | Gute Laune auf der Strecke |
 | `start-quer-ld3717.jpg` | Startbildschirm quer | quer 3:2 | Malte gibt mit dem Megafon den Takt vor |
 | `start-quer-ld3921.jpg` | Startbildschirm quer | quer 3:2 | Der DJ fährt mit |
@@ -64,7 +65,7 @@ schon mal da waren, sofort das neue Bild statt des alten aus dem Zwischenspeiche
 | `galerie-dsc6472.jpg` | Galerie | hoch 4:5 | Afterparty mit Sonnenbrillen |
 | `galerie-dsc6716.jpg` | Galerie, breites Bild unten | quer 3:2 | Gruppenfoto am Ende der Nacht |
 
-`plan.jpg` passt nur zu `01.jpg`: Die Linien zeichnen genau die Personen auf
+`plan-skizze.jpg` passt nur zu `01.jpg`: Die Linien zeichnen genau die Personen auf
 diesem Foto nach. Wer `01.jpg` austauscht, braucht auch eine neue Planskizze.
 
 Startbild quer und Startbild hochkant sind zwei getrennte Listen. Jeder

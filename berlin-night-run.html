@@ -29,7 +29,7 @@
   <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=18" />
+  <link rel="stylesheet" href="css/styles.css?v=20" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -188,39 +188,21 @@
     </section>
 
     <!-- ============ PARTNER ============
-         Logos aus assets/partner/ (werden weiß eingefärbt). Red Bull und
-         HEJ Natural stehen bewusst nur als Schriftzug drin. -->
+         Kurz gehalten: nur Logos bzw. Namen. Logos aus assets/partner/ (werden
+         weiß eingefärbt), Red Bull und HEJ Natural bewusst nur als Schriftzug. -->
     <section class="case-partners">
-      <div class="case-section__head">
-        <p class="eyebrow reveal">Die Partner</p>
-        <h2 data-split>Mit diesen Partnern lief der Abend.</h2>
-      </div>
-      <ul class="case-partners__list reveal">
-        <li class="case-partners__item">
-          <span class="case-partners__name">Red Bull</span>
-          <p>Drinks für die Strecke und das Lastenrad mit DJ</p>
-        </li>
-        <li class="case-partners__item">
-          <span class="case-partners__name">HEJ Natural</span>
-          <p>Riegel als Verpflegung unterwegs</p>
-        </li>
-        <li class="case-partners__item">
-          <img src="assets/partner/myxa.png" alt="Myxa Bar Berlin" width="360" height="339" loading="lazy">
-          <p>Bar-Stopp auf der Strecke</p>
-        </li>
-        <li class="case-partners__item">
-          <img src="assets/partner/redrum-art-bar.png" alt="Redrum Art Bar Berlin" width="279" height="307" loading="lazy">
-          <p>Bar-Stopp auf der Strecke</p>
-        </li>
-        <li class="case-partners__item">
-          <img src="assets/partner/dietrich-bar.png" alt="Dietrich Bar Berlin" width="165" height="291" loading="lazy">
-          <p>Bar-Stopp auf der Strecke</p>
-        </li>
+      <p class="eyebrow reveal">Mit dabei</p>
+      <ul class="case-partners__row reveal" aria-label="Partner des Night Run">
+        <li><span class="case-partners__name">Red Bull</span></li>
+        <li><span class="case-partners__name">HEJ Natural</span></li>
+        <li><img src="assets/partner/myxa.png" alt="Myxa Bar Berlin" width="360" height="339" loading="lazy"></li>
+        <li><img src="assets/partner/redrum-art-bar.png" alt="Redrum Art Bar Berlin" width="279" height="307" loading="lazy"></li>
+        <li><img src="assets/partner/dietrich-bar.png" alt="Dietrich Bar Berlin" width="165" height="291" loading="lazy"></li>
       </ul>
     </section>
 
     <!-- ============ DER PLAN DAHINTER ============
-         Regler zwischen Foto (01.jpg) und Planskizze (plan.jpg, beide in
+         Regler zwischen Foto (01.jpg) und Planskizze (plan-skizze.jpg, beide in
          assets/projects/berlin-night-run/). Die Markierungen im Plan stehen
          in js/script.js, Abschnitt 7. -->
     <section class="case-backstage">
@@ -228,23 +210,26 @@
       <h2 data-split>Der Moment und der Plan dahinter.</h2>
       <p class="case-backstage__lead reveal">
         Zieh den Regler: links der Abend, wie ihn alle erlebt haben, rechts unsere
-        Planskizze dazu.
+        Planung dahinter, Schritt für Schritt.
       </p>
       <div class="backstage reveal" data-backstage>
         <div class="backstage__layer backstage__plan" aria-hidden="true">
-          <img src="assets/projects/berlin-night-run/plan.jpg" alt="" loading="lazy">
+          <img src="assets/projects/berlin-night-run/plan-skizze.jpg" alt="" loading="lazy">
           <div class="backstage__grid"></div>
           <svg class="backstage__marks" xmlns="http://www.w3.org/2000/svg"></svg>
           <div class="backstage__sheet">
             <span class="backstage__label">Ablaufplan</span>
             <h3>Night Run · 19.09.2026</h3>
-            <ul>
-              <li>Route: 8&nbsp;km, 3&nbsp;Stopps</li>
-              <li>DJ auf dem Lastenrad</li>
-              <li>Partner: Red&nbsp;Bull &amp; HEJ&nbsp;Natural</li>
-              <li>Afterparty</li>
-              <li>Content vor Ort</li>
-            </ul>
+            <!-- Die Planungsschritte erscheinen nacheinander, je weiter der
+                 Regler nach links gezogen wird (js/script.js, Abschnitt 7). -->
+            <ol class="backstage__steps">
+              <li>Idee: Lauf, Bars, DJ</li>
+              <li>Route: 8&nbsp;km, zweimal getestet</li>
+              <li>Stopps: Myxa, Redrum, Dietrich</li>
+              <li>Partner: Red&nbsp;Bull, HEJ&nbsp;Natural</li>
+              <li>DJ-Bike: selbst gebaut</li>
+              <li>Start 18:30, Afterparty 20:00</li>
+            </ol>
           </div>
         </div>
         <div class="backstage__layer backstage__photo">
@@ -255,6 +240,35 @@
           <span class="backstage__knob" aria-hidden="true"><svg viewBox="0 0 24 14"><path d="M7 1 1 7l6 6M17 1l6 6-6 6"/></svg></span>
           <span class="backstage__try backstage__label" aria-hidden="true">Ziehen</span>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ DER CONTENT ============
+         Reels laden erst beim Antippen (vorher gehen keine Daten an Instagram).
+         Vorschaubilder reel-<ID>.jpg in assets/projects/berlin-night-run/.
+         Abspielen steuert js/script.js, Abschnitt 9. -->
+    <section class="case-media">
+      <p class="eyebrow reveal">Der Content</p>
+      <h2 data-split>Der Abend als Reel.</h2>
+      <div class="case-media__reels case-media__reels--zwei">
+          <figure class="embed embed--reel reveal">
+            <button class="embed__poster" type="button" data-embed="instagram" data-id="Ddjl-VWNMh0" aria-label="Reel 1 vom Berlin Night Run abspielen (lädt Instagram)">
+              <img class="embed__thumb" src="assets/projects/berlin-night-run/reel-Ddjl-VWNMh0.jpg" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <span class="embed__tag">Reel 01 · Night Run</span>
+              <span class="embed__play" aria-hidden="true"></span>
+              <span class="embed__hint">Antippen lädt Instagram</span>
+            </button>
+            <figcaption><a href="https://www.instagram.com/reel/Ddjl-VWNMh0/" target="_blank" rel="noopener">Auf Instagram ansehen ↗</a></figcaption>
+          </figure>
+          <figure class="embed embed--reel reveal">
+            <button class="embed__poster" type="button" data-embed="instagram" data-id="DdmJPQysUQV" aria-label="Reel 2 vom Berlin Night Run abspielen (lädt Instagram)">
+              <img class="embed__thumb" src="assets/projects/berlin-night-run/reel-DdmJPQysUQV.jpg" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <span class="embed__tag">Reel 02 · Night Run</span>
+              <span class="embed__play" aria-hidden="true"></span>
+              <span class="embed__hint">Antippen lädt Instagram</span>
+            </button>
+            <figcaption><a href="https://www.instagram.com/reel/DdmJPQysUQV/" target="_blank" rel="noopener">Auf Instagram ansehen ↗</a></figcaption>
+          </figure>
       </div>
     </section>
 
@@ -385,9 +399,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=18"></script>
-  <script src="js/visuals.js?v=18"></script>
-  <script src="js/script.js?v=18"></script>
-  <script src="js/assistent.js?v=18" defer></script>
+  <script src="js/config.js?v=20"></script>
+  <script src="js/visuals.js?v=20"></script>
+  <script src="js/script.js?v=20"></script>
+  <script src="js/assistent.js?v=20" defer></script>
 </body>
 </html>
