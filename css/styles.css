@@ -5169,3 +5169,12 @@ body.menu-open .assistent {
 @media (max-width: 720px) {
   .citymap__replay { top: 0.6rem; bottom: auto; }
 }
+.seamap-wrap[data-citymap] { position: relative; }
+.legal ul {
+  margin: 0.4rem 0 1rem;
+  padding-left: 1.2rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+.legal li + li { margin-top: 0.4rem; }
+.legal p + p { margin-top: 0.8rem; }
