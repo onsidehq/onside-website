@@ -10,12 +10,13 @@
    Antworten ändern: einfach den Text bei "antwort" anpassen.
    Neues Thema: einen Block in THEMEN kopieren, Stichwörter und Antwort ändern.
 
-   Später mit echter KI: bei KI_ADRESSE die Adresse des Cloudflare-Workers
-   eintragen. Dann gehen Fragen, zu denen kein Thema passt, an die KI.
-   Solange das Feld leer ist, verlässt keine Frage den Browser.
+   Echte KI: Fragen, zu denen kein Thema passt, gehen an KI_ADRESSE
+   (functions/api/assistent.js, Claude Haiku 5.5). Ist dort noch kein
+   API-Schlüssel hinterlegt oder klappt etwas nicht, erscheint wie bisher
+   die "Weiß ich nicht"-Antwort mit den Kontaktwegen.
    ========================================================================== */
 (() => {
-  const KI_ADRESSE = '';   // z. B. '/api/assistent' (kommt später)
+  const KI_ADRESSE = '/api/assistent';   // Pages Function in functions/api/assistent.js; leer lassen = keine KI
 
   const KONTAKT = {
     mail: 'team@onsidehq.de',
