@@ -36,7 +36,7 @@ schon mal da waren, sofort das neue Bild statt des alten aus dem Zwischenspeiche
 | `01.jpg` | Projekte-Übersicht, Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Die Laufgruppe unterwegs |
 | `hoch-01.jpg`, `hoch-cover.jpg` | dieselben Stellen wie `01.jpg` und `cover.jpg`, aber am Handy | hoch 4:5 | Hochformat-Ausschnitte (laden am Handy schneller) |
 | `plan-skizze.jpg` | Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Planskizze, aus `01.jpg` erzeugt |
-| `reel-<ID>.jpg` | Vorschaubilder der Night-Run-Reels | hoch 9:16 | vorerst aus eigenen Fotos (dsc5820, dsc5712), später echtes Reel-Titelbild |
+| `reel-<ID>.jpg` | Vorschaubilder der Night-Run-Reels | hoch 9:16 | echte Instagram-Titelbilder (Ddjl-VWNMh0, DdmJPQysUQV), 540x960 |
 | `start-quer-dsc5668.jpg` | Startbildschirm quer, erstes Foto | quer 3:2 | Gute Laune auf der Strecke |
 | `start-quer-ld3717.jpg` | Startbildschirm quer | quer 3:2 | Malte gibt mit dem Megafon den Takt vor |
 | `start-quer-ld3921.jpg` | Startbildschirm quer | quer 3:2 | Der DJ fährt mit |

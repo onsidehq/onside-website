@@ -3400,10 +3400,12 @@ body.menu-open .nav__cta {
     top: auto;
     bottom: 0.8rem;
     right: 0.8rem;
-    width: min(50%, 200px);
-    padding: 0.7rem 0.8rem 0.75rem;
+    left: 0.8rem;
+    width: auto;
+    padding: 0.65rem 0.8rem 0.7rem;
   }
-  .backstage__sheet h3 { font-size: 0.85rem; margin-bottom: 0.5rem; }
+  .backstage__sheet h3 { display: none; }
+  .backstage__sheet ol { grid-template-columns: 1fr 1fr; gap: 0.35rem 0.6rem; margin-top: 0.45rem; }
   .backstage__sheet li { font-size: 0.66rem; padding-left: 1.3rem; }
   .backstage__sheet li::before { width: 0.85rem; height: 0.85rem; }
   .backstage__sheet li::after { left: 0.29rem; height: 0.48rem; }
@@ -4914,13 +4916,37 @@ body.menu-open .assistent {
 
 /* Partner-Block auf Projektseiten (berlin-night-run.html): kurze Logo-Reihe */
 .case-partners__row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: clamp(1.6rem, 5vw, 3.6rem);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  align-items: start;
+  gap: clamp(1.4rem, 3vw, 2.4rem);
   margin: 1.2rem 0 0;
   padding: 0;
   list-style: none;
+}
+
+.case-partners__row li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.case-partners__row li > img {
+  object-position: left center;
+}
+
+.case-partners__row li > .case-partners__name {
+  height: clamp(2.8rem, 6vw, 3.8rem);
+  display: flex;
+  align-items: center;
+}
+
+.case-partners__row p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  max-width: 16rem;
 }
 
 .case-partners__row img {

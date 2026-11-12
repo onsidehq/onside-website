@@ -616,11 +616,11 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   const SVGNS = 'http://www.w3.org/2000/svg';
 
   const NOTES = [
-    { x: 0.721, y: 0.50, rx: 0.03, ry: 0.06, k: '01 · Ziel', t: 'Genau diese Gesichter', lx: 0.078, ly: 0.075,
+    { x: 0.717, y: 0.512, rx: 0.028, ry: 0.052, k: '01 · Ziel', t: 'Genau diese Gesichter', lx: 0.082, ly: 0.063,
       handy: { lx: -0.128, ly: -0.27 } },
     { x: 0.638, y: 0.525, rx: 0.03, ry: 0.06, k: '02 · Content', t: 'Momente, die man filmen will', lx: -0.055, ly: 0.15,
       handy: { hide: true } },
-    { x: 0.385, y: 0.75, rx: 0.085, ry: 0.11, k: '03 · Sound', t: 'DJ fährt vorneweg', lx: 0.0, ly: -0.37,
+    { x: 0.392, y: 0.594, rx: 0.042, ry: 0.06, k: '03 · Sound', t: 'DJ fährt vorneweg', lx: -0.02, ly: -0.25,
       handy: { hide: true } },
   ];
 
