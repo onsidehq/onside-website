@@ -185,3 +185,14 @@ HEJ Natural bewusst nur als Schriftzug (kein Logo-OK).
 | `route-ziel.jpg` | Ziel/Afterparty (Ciao Ciao Bar) | quer 4:3 | aus 13.jpg: Afterparty |
 
 Die Strecke im SVG stammt aus der Strava-Aufzeichnung der Testrunde (BNR Route).
+
+### Leistungen: Fotos in den Karten 01–03 (index.html, leistungen.html)
+
+Ordner `assets/leistungen/`, alles eigene Night-Run-Fotos.
+
+| Datei | Wofür | Format | Inhalt |
+|---|---|---|---|
+| `leistung-event.jpg` | Karte 01 Events, Hintergrund hinter dem Ablaufplan | quer | aus 05.jpg |
+| `leistung-bildwelt.jpg` | Karte 02 Marke, Kachel „Bildwelt“ | hoch | aus 08.jpg: Läufer mit Red-Bull-Dose |
+| `leistung-moodboard.jpg` | Karte 02 Marke, Kachel „Moodboard“ | quer 720×240 | Streifen aus 07.jpg, 09.jpg, 06.jpg |
+| `leistung-reel.jpg` | Karte 03 Social Media, Bild im Handy | hoch | aus start-hoch-ld3913: Läufer filmt am DJ-Bike |
