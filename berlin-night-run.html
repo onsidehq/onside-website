@@ -29,7 +29,7 @@
   <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=21" />
+  <link rel="stylesheet" href="css/styles.css?v=22" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -156,14 +156,77 @@
       </div>
     </section>
 
-    <!-- Der Ablauf als gezeichnete Route. Die Beschriftung der Punkte steht im
-         Attribut data-labels (mit | getrennt) und lässt sich dort ändern. -->
+    <!-- Die Route als animierte Karte im Look der Korfu-Karte (dagen-yachtcharter.html).
+         Strecke: Strava-Aufzeichnung der Testrunde, Kartengrund aus OpenStreetMap
+         (route-karte.jpg, © OpenStreetMap-Mitwirkende). Stationsfotos: route-*.jpg.
+         data-at = Anteil der Strecke (0 bis 1), an dem Punkt und Foto erscheinen. -->
     <section class="case-route">
-      <p class="eyebrow reveal">Der Ablauf</p>
-      <h2 data-split>Vom Start bis zur Afterparty.</h2>
-      <div class="case-route__viz viz reveal">
-        <canvas data-scene="route" data-seed="5" data-labels="Start|Stopp 1|Stopp 2|Stopp 3|Afterparty" aria-hidden="true"></canvas>
+      <p class="eyebrow reveal">Die Route</p>
+      <h2 data-split>8 Kilometer durch Kreuzberg und Neukölln.</h2>
+      <div class="citymap reveal" data-citymap>
+        <img class="citymap__base" src="assets/projects/berlin-night-run/route-karte.jpg" alt="" width="1800" height="1276" loading="lazy">
+        <svg class="citymap__svg" viewBox="0 0 1000 709" role="img" aria-labelledby="citymap-title">
+          <title id="citymap-title">Karte: Route des Berlin Night Run von der Ciao Ciao Bar über Myxa, Redrum Art Bar und Dietrich Bar zurück zur Ciao Ciao Bar</title>
+          <g class="citymap__grid"><line x1="250" y1="0" x2="250" y2="709"/><line x1="500" y1="0" x2="500" y2="709"/><line x1="750" y1="0" x2="750" y2="709"/><line x1="0" y1="236" x2="1000" y2="236"/><line x1="0" y1="472" x2="1000" y2="472"/></g>
+          <g class="citymap__areas">
+            <text x="330" y="215">KREUZBERG</text>
+            <text x="290" y="672">NEUKÖLLN</text>
+            <text x="905" y="70" transform="rotate(31 905 70)">SPREE</text>
+            <text x="250" y="317" transform="rotate(-6 250 317)">LANDWEHRKANAL</text>
+          </g>
+          <path class="citymap__track" d="M834 142L828 149L822 159L814 161L806 154L798 148L790 141L783 134L774 127L767 120L759 125L752 133L743 136L733 138L723 140L713 142L702 145L692 147L683 152L672 154L662 156L652 158L641 160L630 164L620 165L610 168L600 170L589 172L580 177L569 180L559 181L549 184L538 187L528 189L528 198L528 208L531 217L526 226L521 235L518 244L526 250L535 256L544 262L543 272L538 282L532 291L527 300L521 308L516 317L510 326L506 335L500 345L494 354L489 363L483 372L477 382L472 391L466 399L461 408L457 419L456 430L455 440L454 451L454 461L453 472L452 482L451 493L450 504L448 515L447 526L441 530L431 532L421 533L411 535L401 536L390 538L380 539L370 542L363 536L360 526L356 516L353 507L350 498L346 488L342 477L338 468L334 458L330 447L326 437L318 431L308 428L299 424L289 418L279 415L269 411L260 408L251 403L242 399L232 396L223 390L214 386L204 383L195 380L186 375L177 370L168 371L163 382L159 390L156 398L158 391L160 381L158 371L150 375L143 383L138 393L134 402L130 411L126 421L122 430L118 440L113 449L109 459L104 468L100 478L106 485L115 486L121 478L130 482L139 487L149 492L158 497L167 501L177 505L187 509L197 514L206 519L216 523L227 527L237 532L246 536L256 541L265 545L274 552L283 558L292 563L301 569L310 574L319 580L329 586L338 592L347 598L356 605L365 610L374 616L383 621L391 626L399 627L396 617L394 608L404 607L414 605L424 603L434 604L445 602L455 602L465 602L476 602L485 607L494 612L504 617L513 623L523 629L531 633L541 632L547 622L552 614L558 605L562 595L568 585L572 576L577 567L584 558L589 549L594 540L599 533L603 524L609 514L614 505L620 496L625 488L631 478L636 470L640 463L646 453L650 445L654 435L658 426L663 417L672 413L674 406L679 397L685 387L690 378L695 368L701 360L711 364L720 369L729 374L738 379L748 383L758 388L767 393L776 395L787 400L797 401L806 394L813 385L822 376L829 367L836 358L842 350L848 341L854 333L862 326L861 317L857 307L856 297L857 287L862 278L868 270L874 261L880 252L886 243L893 235L889 227L881 221L873 213L864 205L857 198L849 191L841 184L832 176L824 169L818 161L823 152L829 145L831 143"/>
+          <path class="citymap__route" d="M834 142L828 149L822 159L814 161L806 154L798 148L790 141L783 134L774 127L767 120L759 125L752 133L743 136L733 138L723 140L713 142L702 145L692 147L683 152L672 154L662 156L652 158L641 160L630 164L620 165L610 168L600 170L589 172L580 177L569 180L559 181L549 184L538 187L528 189L528 198L528 208L531 217L526 226L521 235L518 244L526 250L535 256L544 262L543 272L538 282L532 291L527 300L521 308L516 317L510 326L506 335L500 345L494 354L489 363L483 372L477 382L472 391L466 399L461 408L457 419L456 430L455 440L454 451L454 461L453 472L452 482L451 493L450 504L448 515L447 526L441 530L431 532L421 533L411 535L401 536L390 538L380 539L370 542L363 536L360 526L356 516L353 507L350 498L346 488L342 477L338 468L334 458L330 447L326 437L318 431L308 428L299 424L289 418L279 415L269 411L260 408L251 403L242 399L232 396L223 390L214 386L204 383L195 380L186 375L177 370L168 371L163 382L159 390L156 398L158 391L160 381L158 371L150 375L143 383L138 393L134 402L130 411L126 421L122 430L118 440L113 449L109 459L104 468L100 478L106 485L115 486L121 478L130 482L139 487L149 492L158 497L167 501L177 505L187 509L197 514L206 519L216 523L227 527L237 532L246 536L256 541L265 545L274 552L283 558L292 563L301 569L310 574L319 580L329 586L338 592L347 598L356 605L365 610L374 616L383 621L391 626L399 627L396 617L394 608L404 607L414 605L424 603L434 604L445 602L455 602L465 602L476 602L485 607L494 612L504 617L513 623L523 629L531 633L541 632L547 622L552 614L558 605L562 595L568 585L572 576L577 567L584 558L589 549L594 540L599 533L603 524L609 514L614 505L620 496L625 488L631 478L636 470L640 463L646 453L650 445L654 435L658 426L663 417L672 413L674 406L679 397L685 387L690 378L695 368L701 360L711 364L720 369L729 374L738 379L748 383L758 388L767 393L776 395L787 400L797 401L806 394L813 385L822 376L829 367L836 358L842 350L848 341L854 333L862 326L861 317L857 307L856 297L857 287L862 278L868 270L874 261L880 252L886 243L893 235L889 227L881 221L873 213L864 205L857 198L849 191L841 184L832 176L824 169L818 161L823 152L829 145L831 143"/>
+          <g class="citymap__pins">
+              <g class="citymap__pin" data-at="0.0" transform="translate(832 144)">
+                <circle r="20" class="citymap__ring"/>
+                <circle r="6" class="citymap__dot"/>
+                <text x="140" y="44" text-anchor="end" class="citymap__label">CIAO CIAO · START &amp; ZIEL</text>
+              </g>
+              <g class="citymap__pin" data-at="0.294" transform="translate(425 531)">
+                <circle r="20" class="citymap__ring"/>
+                <circle r="6" class="citymap__dot"/>
+                <text x="16" y="-14" text-anchor="start" class="citymap__label">MYXA</text>
+              </g>
+              <g class="citymap__pin" data-at="0.439" transform="translate(160 399)">
+                <circle r="20" class="citymap__ring"/>
+                <circle r="6" class="citymap__dot"/>
+                <text x="16" y="-14" text-anchor="start" class="citymap__label">REDRUM</text>
+              </g>
+              <g class="citymap__pin" data-at="0.807" transform="translate(678 410)">
+                <circle r="20" class="citymap__ring"/>
+                <circle r="6" class="citymap__dot"/>
+                <text x="16" y="-14" text-anchor="start" class="citymap__label">DIETRICH</text>
+              </g>
+          </g>
+          <circle class="citymap__runner" r="7" cx="834" cy="142"/>
+          <text x="980" y="694" text-anchor="end" class="citymap__coords">52.49° N · 13.43° E</text>
+        </svg>
+        <div class="citymap__cards" aria-hidden="true">
+          <figure class="citymap__card citymap__card--start" data-at="0.0" style="left:60.0%;top:3.1%">
+            <img src="assets/projects/berlin-night-run/route-start.jpg" alt="Die Läufer starten an der Ciao Ciao Bar in Kreuzberg" width="640" height="480" loading="lazy">
+          </figure>
+          <figure class="citymap__card citymap__card--myxa" data-at="0.294" style="left:45.0%;top:76.9%">
+            <img src="assets/projects/berlin-night-run/route-myxa.jpg" alt="Erster Stopp vor der Myxa Bar in der Lenaustraße" width="640" height="480" loading="lazy">
+          </figure>
+          <figure class="citymap__card citymap__card--redrum" data-at="0.439" style="left:3.0%;top:59.9%">
+            <img src="assets/projects/berlin-night-run/route-redrum.jpg" alt="Mocktail-Becher der Redrum Art Bar" width="640" height="480" loading="lazy">
+          </figure>
+          <figure class="citymap__card citymap__card--dietrich" data-at="0.807" style="left:70.5%;top:59.9%">
+            <img src="assets/projects/berlin-night-run/route-dietrich.jpg" alt="Alkoholfreier Spritz am Stand vor der Dietrich Bar" width="640" height="480" loading="lazy">
+          </figure>
+          <figure class="citymap__card citymap__card--ziel" data-at="1.0" style="left:60.0%;top:3.1%">
+            <img src="assets/projects/berlin-night-run/route-ziel.jpg" alt="Afterparty an der Ciao Ciao Bar nach dem Lauf" width="640" height="480" loading="lazy">
+          </figure>
+        </div>
+        <button class="citymap__replay" type="button" hidden>Nochmal laufen</button>
       </div>
+      <ol class="citymap__stops reveal">
+        <li><span>18:30</span> Start an der Ciao Ciao Bar</li>
+        <li><span>18:40</span> Myxa: Kuchen und Tee</li>
+        <li><span>19:05</span> Redrum Art Bar: Mocktails</li>
+        <li><span>19:35</span> Dietrich Bar: alkoholfreier Spritz</li>
+        <li><span>20:00</span> Zurück zur Ciao Ciao Bar, Afterparty</li>
+      </ol>
     </section>
 
     <section class="case-section">
@@ -212,26 +275,26 @@
         Zieh den Regler: links der Abend, wie ihn alle erlebt haben, rechts unsere
         Planung dahinter, Schritt für Schritt.
       </p>
+      <div class="backstage__sheet" aria-label="Ablaufplan der Planung">
+        <span class="backstage__label">Ablaufplan</span>
+        <h3>Night Run · 19.09.2026</h3>
+        <!-- Die Planungsschritte erscheinen nacheinander, je weiter der
+             Regler nach links gezogen wird (js/script.js, Abschnitt 7). -->
+        <ol class="backstage__steps">
+          <li>Idee: Lauf, Bars, DJ</li>
+          <li>Route &amp; Zeitplan festgelegt</li>
+          <li>Bars als Stationen gewonnen</li>
+          <li>DJ + Red&nbsp;Bull SoundBoks</li>
+          <li>Run-Logo &amp; Anmeldeformular</li>
+          <li>Armbänder &amp; Funk vor Ort</li>
+          <li>18:30 Startschuss</li>
+        </ol>
+      </div>
       <div class="backstage reveal" data-backstage>
         <div class="backstage__layer backstage__plan" aria-hidden="true">
           <img src="assets/projects/berlin-night-run/plan-skizze.jpg" alt="" loading="lazy">
           <div class="backstage__grid"></div>
           <svg class="backstage__marks" xmlns="http://www.w3.org/2000/svg"></svg>
-          <div class="backstage__sheet">
-            <span class="backstage__label">Ablaufplan</span>
-            <h3>Night Run · 19.09.2026</h3>
-            <!-- Die Planungsschritte erscheinen nacheinander, je weiter der
-                 Regler nach links gezogen wird (js/script.js, Abschnitt 7). -->
-            <ol class="backstage__steps">
-              <li>Idee: Lauf, Bars, DJ</li>
-              <li>Route &amp; Zeitplan festgelegt</li>
-              <li>Bars als Stationen gewonnen</li>
-              <li>DJ + Red&nbsp;Bull SoundBoks</li>
-              <li>Run-Logo &amp; Anmeldeformular</li>
-              <li>Armbänder &amp; Funk vor Ort</li>
-              <li>18:30 Startschuss</li>
-            </ol>
-          </div>
         </div>
         <div class="backstage__layer backstage__photo">
           <img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run: die Laufgruppe unterwegs, vorne der DJ auf dem Lastenrad" loading="lazy">
@@ -400,9 +463,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=21"></script>
-  <script src="js/visuals.js?v=21"></script>
-  <script src="js/script.js?v=21"></script>
-  <script src="js/assistent.js?v=21" defer></script>
+  <script src="js/config.js?v=22"></script>
+  <script src="js/visuals.js?v=22"></script>
+  <script src="js/script.js?v=22"></script>
+  <script src="js/assistent.js?v=22" defer></script>
 </body>
 </html>

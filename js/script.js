@@ -625,7 +625,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   ];
 
   // Planungsschritte: je mehr vom Plan zu sehen ist, desto mehr Schritte stehen da
-  const steps = Array.from(box.querySelectorAll('.backstage__steps li'));
+  const steps = Array.from((box.closest('section') || box).querySelectorAll('.backstage__steps li'));
   function showSteps() {
     const shown = (100 - x) / 100;                 // 0 = nur Foto, 1 = nur Plan
     steps.forEach((li, i) => {
@@ -920,3 +920,52 @@ document.querySelectorAll('[data-partners]').forEach((band) => {
    - Eigene Farben: die Variablen ganz oben in css/styles.css —
      wichtig: --accent UND --accent-rgb gemeinsam ändern.
 --------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------
+   12) Night-Run-Route (berlin-night-run.html)
+   Die Strecke zeichnet sich, sobald die Karte im Bild ist. An jeder Station
+   (data-at = Anteil der Strecke) erscheinen Punkt und Foto.
+--------------------------------------------------------------------- */
+document.querySelectorAll('[data-citymap]').forEach((map) => {
+  const route = map.querySelector('.citymap__route');
+  const runner = map.querySelector('.citymap__runner');
+  const items = [...map.querySelectorAll('[data-at]')];
+  const replay = map.querySelector('.citymap__replay');
+  const start = map.querySelector('.citymap__card--start');
+  const len = route.getTotalLength();
+  const DAUER = 9000;
+  route.style.strokeDasharray = len;
+
+  function show(p) {
+    route.style.strokeDashoffset = len * (1 - p);
+    const pt = route.getPointAtLength(len * p);
+    runner.setAttribute('cx', pt.x);
+    runner.setAttribute('cy', pt.y);
+    items.forEach((el) => el.classList.toggle('is-on', p >= parseFloat(el.dataset.at)));
+    // Am Ziel ersetzt das Afterparty-Foto das Startfoto (gleicher Ort)
+    if (start) start.classList.toggle('is-off', p >= 1);
+  }
+
+  let raf;
+  function run() {
+    cancelAnimationFrame(raf);
+    replay.hidden = true;
+    const t0 = performance.now();
+    const tick = (now) => {
+      const k = Math.min(1, (now - t0) / DAUER);
+      const p = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; // weich an und aus
+      show(Math.max(0.0001, p));
+      if (k < 1) raf = requestAnimationFrame(tick);
+      else replay.hidden = false;
+    };
+    raf = requestAnimationFrame(tick);
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { show(1); return; }
+  show(0.0001);
+  const io = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { io.disconnect(); run(); }
+  }, { threshold: 0.45 });
+  io.observe(map);
+  replay.addEventListener('click', run);
+});

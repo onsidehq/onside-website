@@ -5006,3 +5006,166 @@ body.menu-open .assistent {
 @media (max-width: 720px) {
   .case-media__reels--zwei { grid-template-columns: repeat(2, 72%); max-width: none; }
 }
+
+/* Night Run: Route als animierte Stadtkarte (Look wie .seamap auf der Dagen-Seite) */
+.citymap {
+  position: relative;
+  aspect-ratio: 1000 / 709;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+.citymap__base,
+.citymap__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.citymap__base { object-fit: cover; }
+.citymap__grid line { stroke: rgba(var(--cream-rgb), 0.06); stroke-width: 1; stroke-dasharray: 2 6; }
+.citymap__areas text {
+  font-family: var(--font-body, Inter, system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  fill: rgba(var(--cream-rgb), 0.32);
+}
+.citymap__track {
+  fill: none;
+  stroke: rgba(var(--accent-rgb), 0.28);
+  stroke-width: 2;
+  stroke-dasharray: 5 7;
+  stroke-linejoin: round;
+}
+.citymap__route {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(var(--accent-rgb), 0.6));
+}
+.citymap__runner { fill: #fff; stroke: var(--accent); stroke-width: 3; }
+.citymap__dot { fill: var(--accent); }
+.citymap__ring { fill: rgba(var(--accent-rgb), 0.08); stroke: var(--accent); stroke-opacity: 0.6; }
+.citymap__label {
+  font-family: var(--font-body, Inter, system-ui, sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  fill: var(--text);
+  paint-order: stroke;
+  stroke: rgba(18, 17, 15, 0.85);
+  stroke-width: 4px;
+}
+.citymap__coords {
+  font-family: var(--font-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  fill: rgba(var(--cream-rgb), 0.4);
+}
+.citymap__pin { opacity: 0; transition: opacity 0.4s ease; }
+.citymap__pin.is-on { opacity: 1; }
+.citymap__pin .citymap__ring { transform-box: fill-box; transform-origin: center; }
+.citymap__pin.is-on .citymap__ring { animation: citymap-ping 1.2s var(--ease-out) 1; }
+@keyframes citymap-ping {
+  from { transform: scale(0.3); stroke-opacity: 1; }
+  to { transform: scale(1); stroke-opacity: 0.6; }
+}
+
+.citymap__cards { position: absolute; inset: 0; pointer-events: none; }
+.citymap__card {
+  position: absolute;
+  width: 20%;
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(var(--cream-rgb), 0.9);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transform: translateY(10px) scale(0.92) rotate(-2deg);
+  transition: opacity 0.45s ease, transform 0.6s var(--ease-out);
+}
+.citymap__card:nth-child(even) { transform: translateY(10px) scale(0.92) rotate(2deg); }
+.citymap__card img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.citymap__card.is-on { opacity: 1; transform: rotate(-2deg); }
+.citymap__card:nth-child(even).is-on { transform: rotate(2deg); }
+.citymap__card.is-off { opacity: 0; }
+
+.citymap__replay {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid rgba(var(--accent-rgb), 0.5);
+  border-radius: 999px;
+  background: rgba(2, 12, 18, 0.75);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.citymap__replay:hover { border-color: var(--accent); }
+
+.citymap__stops {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.6rem 1.6rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.citymap__stops span {
+  display: block;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 720px) {
+  .citymap__card { width: 27%; border-width: 1.5px; border-radius: 6px; }
+  .citymap__label { font-size: 22px; }
+  .citymap__areas text, .citymap__coords { display: none; }
+  .citymap__replay { left: 0.6rem; bottom: 0.6rem; font-size: 0.7rem; padding: 0.35rem 0.7rem; }
+}
+
+/* Ablaufplan steht über dem Regler, nicht mehr auf dem Bild */
+.case-backstage > .backstage__sheet {
+  position: static;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1.4rem;
+  margin: 0 0 1rem;
+  padding: 0.9rem 1.15rem;
+  pointer-events: auto;
+}
+.case-backstage > .backstage__sheet h3 { margin: 0; font-size: 0.95rem; }
+.case-backstage > .backstage__sheet ol {
+  flex: 1 1 100%;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 0.35rem 0 0;
+  padding: 0;
+}
+@media (max-width: 720px) {
+  .case-backstage > .backstage__sheet { padding: 0.75rem 0.85rem; }
+  .case-backstage > .backstage__sheet h3 { display: block; font-size: 0.8rem; }
+  .case-backstage > .backstage__sheet ol { grid-template-columns: 1fr 1fr; }
+  .case-backstage > .backstage__sheet li { font-size: 0.72rem; }
+}
+@media (min-width: 1000px) {
+  .case-backstage > .backstage__sheet ol { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .citymap__replay { top: 0.6rem; bottom: auto; }
+}

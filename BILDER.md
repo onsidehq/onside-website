@@ -172,3 +172,16 @@ Für das Laufband auf der Startseite. PNG mit transparentem Hintergrund oder
 SVG, Dateiname = Partnername (z. B. `red-bull.png`). Werden per CSS weiß
 eingefärbt. Drin: Dagen, Myxa, Redrum Art Bar, Dietrich (Logos), Red Bull und
 HEJ Natural bewusst nur als Schriftzug (kein Logo-OK).
+
+### Night Run: Routenkarte (berlin-night-run.html, Abschnitt „Die Route“)
+
+| Datei | Wofür | Format | Inhalt |
+|---|---|---|---|
+| `route-karte.jpg` | Kartengrund der Routenanimation | quer 1800×1276 | Straßen, Spree, Landwehrkanal und Parks aus OpenStreetMap (© OpenStreetMap-Mitwirkende, ODbL), eingefärbt im Look der Korfu-Karte |
+| `route-start.jpg` | Station Start (Ciao Ciao Bar) | quer 4:3 | aus galerie-ld3490: die Crowd läuft los |
+| `route-myxa.jpg` | Station 1 Myxa | quer 4:3 | aus 04.jpg: Stopp vor der Myxa Bar |
+| `route-redrum.jpg` | Station 2 Redrum | quer 4:3 | aus 10.jpg: Mocktail-Becher der Redrum Art Bar |
+| `route-dietrich.jpg` | Station 3 Dietrich | quer 4:3 | aus 12.jpg: Spritz-Stand vor der Dietrich Bar |
+| `route-ziel.jpg` | Ziel/Afterparty (Ciao Ciao Bar) | quer 4:3 | aus 13.jpg: Afterparty |
+
+Die Strecke im SVG stammt aus der Strava-Aufzeichnung der Testrunde (BNR Route).
