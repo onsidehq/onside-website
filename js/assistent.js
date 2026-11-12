@@ -47,6 +47,11 @@
       vorschlaege: true,
     },
     {
+      woerter: ['passt zu', 'zu unserer marke', 'zu uns passt', 'markenidentitat', 'identitat', 'unsere marke', 'markenwerte', 'werte', 'reindenken'],
+      antwort: 'Wir fangen immer bei deiner Marke an, nicht bei unseren Ideen: Wofür steht sie, wen willst du erreichen, was soll hängen bleiben? Daraus bauen wir ein Konzept, in dem ihre Identität sichtbar und erlebbar wird, im Ablauf, bei Partnern und im Content.',
+      knoepfe: ['anfrage', 'leistungen'],
+    },
+    {
       woerter: ['kost', 'kostet', 'preis', 'budget', 'teuer', 'euro', '€', 'geld', 'bezahl', 'honorar', 'tagessatz'],
       antwort: 'Eine feste Preisliste gibt es bei uns nicht, weil ein Content-Paket etwas anderes ist als ein Event mit Partnern und Afterparty. Nach einem kurzen Gespräch bekommst du ein konkretes Angebot. Wenn du dein Budget schon kennst, sag es uns gleich, dann wissen wir, was drin ist.',
       knoepfe: ['anfrage', 'anrufen'],

@@ -5178,3 +5178,51 @@ body.menu-open .assistent {
 }
 .legal li + li { margin-top: 0.4rem; }
 .legal p + p { margin-top: 0.8rem; }
+
+/* Startseite: "Erst eure Marke" unter "Drei Leistungen" */
+.brandflow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.2rem, 3vw, 1.8rem);
+  margin: 0 0 clamp(2.4rem, 5vw, 3.6rem);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+}
+.brandflow__lead {
+  margin: 0;
+  max-width: 44rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--text);
+}
+.brandflow__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+.brandflow__steps span {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+@media (max-width: 900px) {
+  .brandflow { grid-template-columns: 1fr; }
+  .brandflow__steps { grid-template-columns: 1fr; }
+}
+.case-partners__lead {
+  margin: 0.6rem 0 0;
+  color: var(--text-muted);
+  max-width: 40rem;
+}
