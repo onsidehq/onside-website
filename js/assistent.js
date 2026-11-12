@@ -153,7 +153,7 @@
   ];
 
   const WEISS_NICHT = 'Das kann ich dir hier leider nicht sicher beantworten. Schreib uns am besten kurz oder ruf an, dann klären wir das direkt.';
-  const BEGRUESSUNG = 'Hey! Ich bin der Assistent von onside.hq. Frag mich alles zu Events, Content, unseren Projekten oder SNOWSIDE.';
+  const BEGRUESSUNG = 'Hey! Ich bin der digitale Assistent von onside.hq, also kein Mensch: Manche Antworten schreibt eine KI. Frag mich alles zu Events, Content, unseren Projekten oder SNOWSIDE. Bitte gib hier keine persönlichen Daten ein.';
   const VORSCHLAEGE = ['Was macht ihr?', 'Was kostet ein Projekt?', 'Wie läuft das ab?', 'SNOWSIDE', 'Kontakt'];
 
   /* ---------------- ab hier Technik ---------------- */
@@ -205,7 +205,7 @@
 
   const head = el('header', 'assistent__head');
   const title = el('div', 'assistent__title');
-  title.append(el('strong', '', 'onside Assistent'), el('span', '', 'Schnelle Antworten · alles Weitere direkt mit uns'));
+  title.append(el('strong', '', 'onside Assistent'), el('span', '', 'KI-gestützt · alles Weitere direkt mit uns'));
   const close = el('button', 'assistent__close');
   close.type = 'button';
   close.setAttribute('aria-label', 'Chat schließen');
@@ -299,7 +299,7 @@
     }
     t.remove();
     if (thema) nachricht(thema.antwort, 'bot', thema.knoepfe, thema.vorschlaege);
-    else if (antwort) nachricht(antwort, 'bot', ['mail', 'anrufen']);
+    else if (antwort) nachricht(antwort + ' (KI-Antwort, ohne Gewähr)', 'bot', ['mail', 'anrufen']);
     else nachricht(WEISS_NICHT, 'bot', ['mail', 'anrufen', 'insta']);
   }
 

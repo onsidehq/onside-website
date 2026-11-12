@@ -5226,3 +5226,9 @@ body.menu-open .assistent {
   color: var(--text-muted);
   max-width: 40rem;
 }
+.citymap__credit {
+  margin: 0.5rem 0 0;
+  font-size: 0.72rem;
+  color: var(--text-dim, rgba(247, 242, 232, 0.5));
+}
+.citymap__credit a { color: inherit; text-decoration: underline; }
