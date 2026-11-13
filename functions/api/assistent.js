@@ -46,11 +46,11 @@ const json = (daten, status = 200) =>
 export async function onRequestPost({ request, env }) {
   if (!env.ANTHROPIC_API_KEY) return json({ fehler: 'nicht eingerichtet' }, 503);
 
-  // Nur Anfragen von der eigenen Website (Vorschau-Adressen von Pages erlaubt)
+  // Nur Anfragen von der eigenen Website (Vorschau-Adressen von Pages und Workers erlaubt)
   const herkunft = request.headers.get('Origin') || '';
   let host = '';
   try { host = new URL(herkunft).hostname; } catch (e) { /* leer */ }
-  if (!ERLAUBTE_HOSTS.includes(host) && !host.endsWith('.pages.dev')) return json({ fehler: 'nicht erlaubt' }, 403);
+  if (!ERLAUBTE_HOSTS.includes(host) && !host.endsWith('.pages.dev') && !host.endsWith('.workers.dev')) return json({ fehler: 'nicht erlaubt' }, 403);
 
   let eingabe;
   try { eingabe = await request.json(); } catch (e) { return json({ fehler: 'ungültig' }, 400); }
