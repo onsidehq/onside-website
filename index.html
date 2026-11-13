@@ -15,8 +15,8 @@
 
   <!-- erstes Foto des Startbildschirms so früh wie möglich laden
        (Querformat-Bildschirme: start-quer-dsc5668.jpg, Hochformat: start-hoch-dsc5658.jpg) -->
-  <link rel="preload" href="assets/projects/berlin-night-run/start-quer-dsc5668.jpg" as="image" fetchpriority="high" media="(orientation: landscape)">
-  <link rel="preload" href="assets/projects/berlin-night-run/start-hoch-dsc5658.jpg" as="image" fetchpriority="high" media="(orientation: portrait)">
+  <link rel="preload" href="assets/projects/berlin-night-run/start-quer-dsc5668.webp" as="image" fetchpriority="high" media="(orientation: landscape)">
+  <link rel="preload" href="assets/projects/berlin-night-run/start-hoch-dsc5658.webp" as="image" fetchpriority="high" media="(orientation: portrait)">
   <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
   <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
@@ -38,14 +38,20 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": [
+      "Organization",
+      "ProfessionalService"
+    ],
+    "@id": "https://onsidehq.de/#organisation",
     "name": "onside.hq",
     "legalName": "onside.hq GbR",
     "url": "https://onsidehq.de/",
     "logo": "https://onsidehq.de/favicon-512.png",
     "image": "https://onsidehq.de/assets/og-image.jpg",
     "email": "team@onsidehq.de",
+    "telephone": "+49 178 8519859",
     "description": "Event- und Content-Studio aus Potsdam und Innsbruck: Events, Markenstrategie und Social Media für Marken, Clubs und Communities.",
+    "slogan": "We build what people want to be part of.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Forststraße 44/46",
@@ -54,12 +60,81 @@
       "addressCountry": "DE"
     },
     "founder": [
-      { "@type": "Person", "name": "Julian Seibt" },
-      { "@type": "Person", "name": "Malte Gerdes" }
+      {
+        "@type": "Person",
+        "@id": "https://onsidehq.de/ueber-uns#julian",
+        "name": "Julian Seibt"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onsidehq.de/ueber-uns#malte",
+        "name": "Malte Gerdes"
+      }
     ],
-    "areaServed": ["Potsdam", "Berlin", "Innsbruck"],
-    "knowsAbout": ["Event-Organisation", "Markenstrategie", "Social Media", "Content-Produktion"],
-    "sameAs": ["https://instagram.com/onside.hq"]
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Potsdam"
+      },
+      {
+        "@type": "City",
+        "name": "Berlin"
+      },
+      {
+        "@type": "City",
+        "name": "Innsbruck"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Tirol"
+      },
+      {
+        "@type": "Country",
+        "name": "Deutschland"
+      },
+      {
+        "@type": "Country",
+        "name": "Österreich"
+      }
+    ],
+    "knowsAbout": [
+      "Event-Organisation",
+      "Eventmarketing",
+      "Markenstrategie",
+      "Markenaktivierung",
+      "Sponsoring",
+      "Social Media",
+      "Content-Produktion",
+      "Reels",
+      "Creator-Events"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Leistungen",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@id": "https://onsidehq.de/leistungen#events"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@id": "https://onsidehq.de/leistungen#marke"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@id": "https://onsidehq.de/leistungen#social"
+          }
+        }
+      ]
+    },
+    "sameAs": [
+      "https://instagram.com/onside.hq"
+    ]
   }
   </script>
 
@@ -146,7 +221,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=27" />
+  <link rel="stylesheet" href="css/styles.css?v=28" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -227,8 +302,8 @@
     <section class="hero" id="top" data-slides aria-label="Start">
       <div class="hero__stage" aria-hidden="true">
         <picture>
-          <source media="(orientation: portrait)" srcset="assets/projects/berlin-night-run/start-hoch-dsc5658.jpg">
-          <img class="hero__img is-on is-first" src="assets/projects/berlin-night-run/start-quer-dsc5668.jpg" alt="" fetchpriority="high" style="--pos: 50% 40%; --pos-m: 50% 50%" onerror="onsideBildFehlt(this)">
+          <source media="(orientation: portrait)" srcset="assets/projects/berlin-night-run/start-hoch-dsc5658.webp">
+          <img width="2000" height="1333" class="hero__img is-on is-first" src="assets/projects/berlin-night-run/start-quer-dsc5668.webp" alt="" fetchpriority="high" style="--pos: 50% 40%; --pos-m: 50% 50%" onerror="onsideBildFehlt(this)">
         </picture>
       </div>
       <div class="hero__shade" aria-hidden="true"></div>
@@ -258,7 +333,7 @@
       <h2 data-split>Unsere Projekte</h2>
 
       <article class="project">
-        <!-- Titelbild vom Event → assets/projects/berlin-night-run/cover.jpg
+        <!-- Titelbild vom Event → assets/projects/berlin-night-run/cover.webp
              (Handy: hoch-cover.jpg). Zum Austauschen reicht eine neue Datei mit
              genau diesem Namen. Fehlt sie, laufen Lichtspuren durch die Nacht.
              object-position = Bildausschnitt: erste Zahl links/rechts, zweite
@@ -267,8 +342,8 @@
           <div class="project__cover-bg viz">
             <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
             <picture>
-              <source media="(max-width: 720px)" srcset="assets/projects/berlin-night-run/hoch-cover.jpg">
-              <img src="assets/projects/berlin-night-run/cover.jpg" alt="Läuferinnen und Läufer beim Berlin Night Run" loading="lazy" decoding="async" style="object-position: 55% 30%" onerror="onsideBildFehlt(this)">
+              <source media="(max-width: 720px)" srcset="assets/projects/berlin-night-run/hoch-cover.webp">
+              <img width="2400" height="1600" src="assets/projects/berlin-night-run/cover.webp" alt="Läuferinnen und Läufer beim Berlin Night Run" loading="lazy" decoding="async" style="object-position: 55% 30%" onerror="onsideBildFehlt(this)">
             </picture>
           </div>
           <div class="project__cover-content">
@@ -297,14 +372,14 @@
         </dl>
 
       <article class="project">
-        <!-- Titelbild Dagen → assets/projects/dagen-yachtcharter/cover.jpg (quer 3:2,
+        <!-- Titelbild Dagen → assets/projects/dagen-yachtcharter/cover.webp (quer 3:2,
              Handy: hoch-cover.jpg). Fehlt es, läuft eine Animation. -->
         <a class="project__cover reveal" href="dagen-yachtcharter.html" aria-label="Zum Projekt: Dagen Yachtcharter">
           <div class="project__cover-bg viz">
             <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
             <picture>
-              <source media="(max-width: 720px)" srcset="assets/projects/dagen-yachtcharter/hoch-cover.jpg">
-              <img src="assets/projects/dagen-yachtcharter/cover.jpg" alt="Segelboot von Dagen Yachtcharter vor Anker in einer Bucht bei Korfu" loading="lazy" decoding="async" onerror="onsideBildFehlt(this)">
+              <source media="(max-width: 720px)" srcset="assets/projects/dagen-yachtcharter/hoch-cover.webp">
+              <img width="1800" height="1200" src="assets/projects/dagen-yachtcharter/cover.webp" alt="Segelboot von Dagen Yachtcharter vor Anker in einer Bucht bei Korfu" loading="lazy" decoding="async" onerror="onsideBildFehlt(this)">
             </picture>
           </div>
           <div class="project__cover-content">
@@ -383,7 +458,7 @@
       <div class="services__grid">
         <a class="service-card reveal" href="leistungen.html#events" data-spot>
           <div class="vg" aria-hidden="true">
-            <img class="vg-bg" src="assets/leistungen/leistung-event.jpg" alt="" loading="lazy">
+            <img width="1000" height="625" class="vg-bg" src="assets/leistungen/leistung-event.webp" alt="" loading="lazy">
             <div class="vg-tile vg-plan">
               <div class="vg-plan__head"><span class="vg-label">Ablaufplan</span><span class="vg-live">Live</span></div>
               <ol class="vg-steps">
@@ -407,8 +482,8 @@
         <a class="service-card reveal" href="leistungen.html#marke" data-spot>
           <div class="vg" aria-hidden="true">
             <div class="vg-brand">
-              <div class="vg-tile vg-type vg-photo"><img src="assets/leistungen/leistung-bildwelt.jpg" alt="" loading="lazy"><span class="vg-label">Bildwelt</span></div>
-              <div class="vg-tile vg-swatches vg-mood"><span class="vg-label">Moodboard</span><img src="assets/leistungen/leistung-moodboard.jpg" alt="" loading="lazy"></div>
+              <div class="vg-tile vg-type vg-photo"><img src="assets/leistungen/leistung-bildwelt.webp" alt="" loading="lazy"><span class="vg-label">Bildwelt</span></div>
+              <div class="vg-tile vg-swatches vg-mood"><span class="vg-label">Moodboard</span><img src="assets/leistungen/leistung-moodboard.webp" alt="" loading="lazy"></div>
               <div class="vg-tile vg-pos"><span class="vg-label">Positionierung</span><ul><li>Für wen?</li><li>Warum ihr?</li><li>Wie klingt ihr?</li></ul></div>
             </div>
           </div>
@@ -427,7 +502,7 @@
             <div class="vg-social">
               <div class="vg-phone">
                 <div class="vg-reel">
-                  <img class="vg-reel__img" src="assets/leistungen/leistung-reel.jpg" alt="" loading="lazy">
+                  <img width="400" height="822" class="vg-reel__img" src="assets/leistungen/leistung-reel.webp" alt="" loading="lazy">
                   <div class="vg-bars"><i></i><i></i><i></i></div>
                   <span class="vg-play"></span>
                   <div class="vg-actions"><i></i><i></i><i></i></div>
@@ -466,14 +541,14 @@
       </p>
 
       <div class="founders">
-        <!-- BILD 7: Foto Julian → assets/team/julian-2026.jpg (Tirol Hackathon, Nov. 2026)
+        <!-- BILD 7: Foto Julian → assets/team/julian-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt)
              Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
              dieser Stelle eine Animation mit den Initialen. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">JS</span>
-            <img src="assets/team/julian-2026.jpg" alt="Julian Seibt, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/julian-onside.webp" alt="Julian Seibt, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Konzept &amp; Organisation</span>
@@ -493,13 +568,13 @@
           </div>
         </article>
 
-        <!-- BILD 8: Foto Malte → assets/team/malte-2026.jpg (Tirol Hackathon, Nov. 2026).
+        <!-- BILD 8: Foto Malte → assets/team/malte-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt).
              Neues Foto = neuer Dateiname, dann sehen alle sofort das neue Bild. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">MG</span>
-            <img src="assets/team/malte-2026.jpg" alt="Malte Gerdes, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/malte-onside.webp" alt="Malte Gerdes, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Content &amp; Social</span>
@@ -538,10 +613,10 @@
           <!-- Spielzug beim Scrollen: Köpfe, Namen und Projekte über die data-Attribute,
                Zeichnung in js/visuals.js (Szene "offside") -->
           <canvas data-scene="offside" aria-hidden="true"
-            data-players="assets/team/kopf-julian.jpg|assets/team/kopf-malte.jpg"
+            data-players="assets/team/kopf-julian.webp|assets/team/kopf-malte.webp"
             data-names="Julian|Malte"
             data-target="Eure Marke"
-            data-projects="assets/projects/berlin-night-run/kreis.jpg|assets/projects/dagen-yachtcharter/kreis.jpg"
+            data-projects="assets/projects/berlin-night-run/kreis.webp|assets/projects/dagen-yachtcharter/kreis.webp"
             data-project-names="Night Run|Dagen"></canvas>
         </div>
         <p class="statement__text reveal">
@@ -711,6 +786,12 @@
         <a href="#fragen">FAQ</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
+      <nav class="footer__nav" aria-label="Schwerpunkte">
+        <span class="footer__label">Schwerpunkte</span>
+        <a href="eventagentur.html">Eventagentur</a>
+        <a href="social-media-agentur.html">Social-Media-Agentur</a>
+        <a href="creator-events.html">Creator-Events</a>
+      </nav>
       <nav class="footer__nav" aria-label="Kontakt">
         <span class="footer__label">Kontakt</span>
         <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -735,9 +816,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=27"></script>
-  <script src="js/visuals.js?v=27"></script>
-  <script src="js/script.js?v=27"></script>
-  <script src="js/assistent.js?v=27" defer></script>
+  <script src="js/config.js?v=28"></script>
+  <script src="js/visuals.js?v=28"></script>
+  <script src="js/script.js?v=28"></script>
+  <script src="js/assistent.js?v=28" defer></script>
 </body>
 </html>

@@ -29,7 +29,81 @@
   <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=27" />
+  <!-- Für Suchmaschinen: Brotkrumen und die drei Leistungen -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Start",
+            "item": "https://onsidehq.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Leistungen",
+            "item": "https://onsidehq.de/leistungen"
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://onsidehq.de/leistungen#events",
+        "name": "Event-Organisation",
+        "serviceType": "Eventagentur",
+        "description": "Events von der Idee bis zur Umsetzung: Konzept, Ablauf, Location, Partner und Organisation vor Ort, gebaut um die Identität eurer Marke.",
+        "provider": {
+          "@id": "https://onsidehq.de/#organisation"
+        },
+        "areaServed": [
+          "Potsdam",
+          "Berlin",
+          "Innsbruck",
+          "Tirol"
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://onsidehq.de/leistungen#marke",
+        "name": "Marketing & Markenstrategie",
+        "serviceType": "Markenstrategie und Markenaktivierung",
+        "description": "Positionierung, Markenauftritt, Kampagnen, Aktivierungen und Sponsoring: Wir verstehen erst eure Marke und machen sie dann erlebbar.",
+        "provider": {
+          "@id": "https://onsidehq.de/#organisation"
+        },
+        "areaServed": [
+          "Potsdam",
+          "Berlin",
+          "Innsbruck",
+          "Tirol"
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://onsidehq.de/leistungen#social",
+        "name": "Social Media & Content",
+        "serviceType": "Social-Media-Agentur und Content-Produktion",
+        "description": "Fotos, Videos, Reels, Schnitt und Kanalbetreuung: Content, der eure Sprache spricht und Reichweite in Community verwandelt.",
+        "provider": {
+          "@id": "https://onsidehq.de/#organisation"
+        },
+        "areaServed": [
+          "Potsdam",
+          "Berlin",
+          "Innsbruck",
+          "Tirol"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=28" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -120,7 +194,7 @@
          ("Was dazugehört") lassen sich frei ergänzen oder kürzen. -->
     <section class="service-detail" id="events">
       <div class="service-detail__viz vg reveal" aria-hidden="true">
-        <img class="vg-bg" src="assets/leistungen/leistung-event.jpg" alt="" loading="lazy">
+        <img width="1000" height="625" class="vg-bg" src="assets/leistungen/leistung-event.webp" alt="" loading="lazy">
             <div class="vg-tile vg-plan">
           <div class="vg-plan__head"><span class="vg-label">Ablaufplan</span><span class="vg-live">Live</span></div>
           <ol class="vg-steps">
@@ -147,14 +221,15 @@
           <li>Teilnehmermanagement</li>
           <li>Umsetzung vor Ort</li>
         </ul>
+        <p class="service-detail__more"><a href="eventagentur.html">Mehr zur Eventagentur →</a> · <a href="creator-events.html">Creator-Events →</a></p>
       </div>
     </section>
 
     <section class="service-detail service-detail--flip" id="marke">
       <div class="service-detail__viz vg reveal" aria-hidden="true">
         <div class="vg-brand">
-          <div class="vg-tile vg-type vg-photo"><img src="assets/leistungen/leistung-bildwelt.jpg" alt="" loading="lazy"><span class="vg-label">Bildwelt</span></div>
-          <div class="vg-tile vg-swatches vg-mood"><span class="vg-label">Moodboard</span><img src="assets/leistungen/leistung-moodboard.jpg" alt="" loading="lazy"></div>
+          <div class="vg-tile vg-type vg-photo"><img src="assets/leistungen/leistung-bildwelt.webp" alt="" loading="lazy"><span class="vg-label">Bildwelt</span></div>
+          <div class="vg-tile vg-swatches vg-mood"><span class="vg-label">Moodboard</span><img src="assets/leistungen/leistung-moodboard.webp" alt="" loading="lazy"></div>
           <div class="vg-tile vg-pos"><span class="vg-label">Positionierung</span><ul><li>Für wen?</li><li>Warum ihr?</li><li>Wie klingt ihr?</li></ul></div>
         </div>
       </div>
@@ -181,7 +256,7 @@
         <div class="vg-social">
           <div class="vg-phone">
             <div class="vg-reel">
-                  <img class="vg-reel__img" src="assets/leistungen/leistung-reel.jpg" alt="" loading="lazy">
+                  <img width="400" height="822" class="vg-reel__img" src="assets/leistungen/leistung-reel.webp" alt="" loading="lazy">
               <div class="vg-bars"><i></i><i></i><i></i></div>
               <span class="vg-play"></span>
               <div class="vg-actions"><i></i><i></i><i></i></div>
@@ -211,6 +286,7 @@
           <li>Community-Aufbau</li>
           <li>Event-Begleitung</li>
         </ul>
+        <p class="service-detail__more"><a href="social-media-agentur.html">Mehr zur Social-Media-Agentur →</a></p>
       </div>
     </section>
 
@@ -269,6 +345,12 @@
         <a href="index.html#fragen">FAQ</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
+      <nav class="footer__nav" aria-label="Schwerpunkte">
+        <span class="footer__label">Schwerpunkte</span>
+        <a href="eventagentur.html">Eventagentur</a>
+        <a href="social-media-agentur.html">Social-Media-Agentur</a>
+        <a href="creator-events.html">Creator-Events</a>
+      </nav>
       <nav class="footer__nav" aria-label="Kontakt">
         <span class="footer__label">Kontakt</span>
         <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -293,9 +375,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=27"></script>
-  <script src="js/visuals.js?v=27"></script>
-  <script src="js/script.js?v=27"></script>
-  <script src="js/assistent.js?v=27" defer></script>
+  <script src="js/config.js?v=28"></script>
+  <script src="js/visuals.js?v=28"></script>
+  <script src="js/script.js?v=28"></script>
+  <script src="js/assistent.js?v=28" defer></script>
 </body>
 </html>

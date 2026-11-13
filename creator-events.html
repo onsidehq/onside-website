@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator-Events &amp; Content-Reisen organisieren – onside.hq</title>
+  <meta name="description" content="Wir organisieren Creator-Events und Content-Reisen für Marken: Creator-Auswahl, Ablauf, Partner und Content-Plan. Aktuell: SNOWSIDE, die Creator Ski Week in Tirol." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/creator-events" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Creator-Events organisieren – onside.hq" />
+  <meta property="og:description" content="Wir organisieren Creator-Events und Content-Reisen für Marken: Creator-Auswahl, Ablauf, Partner und Content-Plan. Aktuell: SNOWSIDE, die Creator Ski Week in Tirol." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/creator-events" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen, Leistung und Fragen -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Start",
+            "item": "https://onsidehq.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Leistungen",
+            "item": "https://onsidehq.de/leistungen"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Creator-Events",
+            "item": "https://onsidehq.de/creator-events"
+          }
+        ]
+      },
+      {
+        "name": "Creator-Events und Content-Reisen",
+        "serviceType": "Organisation von Creator- und Influencer-Events",
+        "description": "Planung und Umsetzung von Creator-Events und Content-Reisen: Creator-Auswahl, Ort, Ablauf, Partner-Integration und Content-Plan.",
+        "areaServed": [
+          "Deutschland",
+          "Österreich",
+          "Tirol"
+        ],
+        "@type": "Service",
+        "provider": {
+          "@id": "https://onsidehq.de/#organisation"
+        },
+        "url": "https://onsidehq.de/creator-events"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Wie bewerbe ich mich als Creator für SNOWSIDE?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Die Bewerbung läuft über Instagram bei @onside.hq. Alle Infos stehen auf der SNOWSIDE-Seite."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Können wir als Marke Partner werden?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja. Schreibt uns kurz, wer ihr seid und was ihr euch vorstellt, dann überlegen wir gemeinsam, wie eure Marke zum Event passt."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Organisiert ihr auch Creator-Events nur für unsere Marke?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja. Neben eigenen Formaten wie SNOWSIDE planen wir auch Creator-Events und Content-Reisen exklusiv für eine Marke."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=28" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="leistungen">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – zur Startseite">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="index.html">Home</a>
+      <a href="projekte.html">Projekte</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="leistungen.html" aria-current="page">Leistungen</a>
+      <a href="ueber-uns.html">Wer sind wir?</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+
+    <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menü">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projekte.html"><span class="menu-overlay__num">02</span>Projekte</a>
+      <a href="galerie.html"><span class="menu-overlay__num">03</span>Galerie</a>
+      <a href="leistungen.html" aria-current="page"><span class="menu-overlay__num">04</span>Leistungen</a>
+      <a href="ueber-uns.html"><span class="menu-overlay__num">05</span>Wer sind wir?</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">07</span>Kontakt</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ CREATOR-EVENTS ============
+         Eigene Seite für Google-Suchen wie "Creator-Events". Texte frei anpassen,
+         aber nichts versprechen, was wir nicht machen. -->
+    <section class="page-hero">
+      <div class="page-hero__text">
+        <p class="eyebrow intro"><a href="leistungen.html">Leistungen</a> · Creator-Events</p>
+        <h1 data-split>Creator-Events, bei denen <span class="scribble" data-scribble="underline">Content</span> von selbst entsteht.</h1>
+        <p class="page-hero__lead intro intro--2">
+          Ein paar Tage, ein besonderer Ort und die richtigen Creator: So entsteht Content, der nicht nach Werbung aussieht. Wir planen solche Events und Content-Reisen und bauen eure Marke so ein, dass sie natürlich dazugehört.
+        </p>
+        <nav class="chips intro intro--3" aria-label="Mehr dazu">
+          <a href="#was">So läuft es</a>
+          <a href="#snowside">SNOWSIDE</a>
+          <a href="#marken">Für Marken</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="case-section" id="was">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">So läuft es</p>
+        <h2 data-split>Wir kümmern uns um alles drumherum.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Wir suchen Creator, die zu eurer Marke und eurer Zielgruppe passen, planen Ort, Ablauf und Programm und legen vorher fest, welcher Content entstehen soll. Vor Ort sind wir dabei und halten die Fäden zusammen.
+        </p>
+        <ul class="checklist reveal">
+          <li>Creator-Auswahl</li>
+          <li>Ort, Unterkunft &amp; Ablauf</li>
+          <li>Programm &amp; Erlebnisse</li>
+          <li>Partner &amp; Marken-Integration</li>
+          <li>Content-Plan</li>
+          <li>Begleitung vor Ort</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-section" id="snowside">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Aktuell</p>
+        <h2 data-split>SNOWSIDE: die Creator Ski Week in Tirol.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Im März 2027 fahren wir mit 8 bis 10 Creatorn eine Woche nach Tirol: Skifahren, gemeinsame Abende und jede Menge Content. Für SNOWSIDE suchen wir noch Partner, die sich dort zeigen wollen, und Creator, die mitkommen möchten.
+        </p>
+        <p class="reveal"><a href="snowside.html" class="btn btn--ghost btn--arrow">Zu SNOWSIDE</a></p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Content-Reise</p>
+        <h2 data-split>Eine Woche Segeln rund um Korfu.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Wie gut das funktioniert, hat die Woche mit Dagen Yachtcharter gezeigt: zehn Reels und tägliche Stories von Bord, über 270.000&nbsp;Views und rund 130-mal so viel wie die Reels davor.
+        </p>
+        <p class="reveal"><a href="dagen-yachtcharter.html" class="btn btn--ghost btn--arrow">Zum Projekt Dagen</a></p>
+      </div>
+    </section>
+
+    <section class="case-section" id="marken">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Für Marken</p>
+        <h2 data-split>Eure Marke mittendrin statt am Rand.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Als Partner eines Creator-Events seid ihr nicht nur mit dem Logo dabei. Wir überlegen gemeinsam, welche Rolle eure Marke im Ablauf spielt, damit sie im Content echt wirkt und zu dem passt, wofür ihr steht.
+        </p>
+      </div>
+    </section>
+
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Kurz gefragt</p>
+        <h2 data-split>Was ihr noch wissen wollt.</h2>
+      </div>
+      <div class="case-section__body">
+        <details class="faq-mini reveal">
+          <summary>Wie bewerbe ich mich als Creator für SNOWSIDE?</summary>
+          <p>Die Bewerbung läuft über Instagram bei @onside.hq. Alle Infos stehen auf der SNOWSIDE-Seite.</p>
+        </details>
+        <details class="faq-mini reveal">
+          <summary>Können wir als Marke Partner werden?</summary>
+          <p>Ja. Schreibt uns kurz, wer ihr seid und was ihr euch vorstellt, dann überlegen wir gemeinsam, wie eure Marke zum Event passt.</p>
+        </details>
+        <details class="faq-mini reveal">
+          <summary>Organisiert ihr auch Creator-Events nur für unsere Marke?</summary>
+          <p>Ja. Neben eigenen Formaten wie SNOWSIDE planen wir auch Creator-Events und Content-Reisen exklusiv für eine Marke.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow reveal">Euer Vorhaben</p>
+      <h2 data-split>Lust auf ein Creator-Event?<br>Lasst uns <span class="scribble" data-scribble="underline">planen.</span></h2>
+      <div class="cta-band__actions reveal">
+        <a href="kontakt.html" class="btn btn--large btn--beat">Projekt anfragen</a>
+        <a href="projekte.html" class="btn btn--large btn--ghost">Projekte ansehen</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, Marken und Content&nbsp;– von der ersten Idee bis zum letzten Reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Seiten">
+        <span class="footer__label">Seiten</span>
+        <a href="projekte.html">Projekte</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="ueber-uns.html">Wer sind wir?</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Schwerpunkte">
+        <span class="footer__label">Schwerpunkte</span>
+        <a href="eventagentur.html">Eventagentur</a>
+        <a href="social-media-agentur.html">Social-Media-Agentur</a>
+        <a href="creator-events.html">Creator-Events</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Kontakt">
+        <span class="footer__label">Kontakt</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="js/config.js?v=28"></script>
+  <script src="js/visuals.js?v=28"></script>
+  <script src="js/script.js?v=28"></script>
+  <script src="js/assistent.js?v=28" defer></script>
+</body>
+</html>
