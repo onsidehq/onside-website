@@ -1,12 +1,10 @@
 /* ==========================================================================
-   onside.hq — KI für den Chat-Assistenten (Cloudflare Pages Function)
-   Adresse: /api/assistent  (wird von Cloudflare Pages automatisch aus diesem
-   Ordner gebaut, kein eigener Worker nötig).
+   onside.hq — KI für den Chat-Assistenten
+   Adresse: /api/assistent. Live läuft das über den Worker (worker/index.js),
+   die Vorschau auf Cloudflare Pages nutzt diese Datei direkt.
 
-   Einrichtung (einmalig, im Cloudflare-Dashboard):
-   Workers & Pages -> Projekt onside-website -> Settings -> Variables and Secrets
-   -> "Add" -> Typ "Secret", Name ANTHROPIC_API_KEY, Wert = API-Key aus der
-   Anthropic Console (console.anthropic.com). Danach einmal neu deployen.
+   Schlüssel: im Cloudflare-Dashboard beim Worker onside-website unter
+   Settings -> Runtime variables and secrets als Secret ANTHROPIC_API_KEY.
 
    Ohne Schlüssel antwortet die Funktion mit 503 und der Chat zeigt wie bisher
    die Kontaktwege. Kosten entstehen nur pro Anfrage (Claude Haiku 5.5).
@@ -15,27 +13,38 @@
 
 const MODELL = 'claude-haiku-5-5';
 const MAX_ZEICHEN = 600;      // längere Fragen werden abgelehnt
-const MAX_NACHRICHTEN = 8;    // so viel Chatverlauf geht mit
+const MAX_NACHRICHTEN = 10;   // so viel Chatverlauf geht mit
 const ERLAUBTE_HOSTS = ['onsidehq.de', 'www.onsidehq.de'];
 
-const WISSEN = `Du bist der Chat-Assistent auf der Website von onside.hq. Antworte immer auf Deutsch, locker und freundlich, und sprich die Leute mit "du" an. Antworte kurz: höchstens drei Sätze, ohne Aufzählungen, ohne Markdown.
+const WISSEN = `Du bist der Chat-Assistent auf der Website von onside.hq. Du bist eine KI und sagst das auch, wenn jemand fragt.
+
+So antwortest du:
+- Immer auf Deutsch, locker, herzlich und mit "du". Klingt wie ein junger, sportlicher Teamkollege, nicht wie ein Callcenter.
+- Geh konkret auf genau das ein, was die Person geschrieben hat. Greif ihre Worte, ihre Branche oder ihr Vorhaben auf und sag, wie onside.hq dabei helfen könnte. Keine Standardfloskeln, keine Wiederholung der Frage.
+- Wenn jemand ein Vorhaben beschreibt (z. B. Firmenevent, Produktlaunch, Social Media für einen Verein), denk kurz mit: nenn eine passende Idee oder einen ersten Gedanken, wie man die Marke dabei sichtbar macht, und stell eine kurze Rückfrage, die das Gespräch weiterbringt.
+- Meist 2 bis 4 Sätze. Kein Markdown, keine Sternchen, keine Aufzählungszeichen. Ein Absatz ist okay, wenn es hilft.
+- Wenn es passt, lade am Ende zu einem nächsten Schritt ein (Projekt anfragen, Mail, Anruf), aber nicht bei jeder Antwort.
 
 Über onside.hq:
-- onside.hq ist eine junge Agentur von Malte und Julian (GbR) mit Basis in Potsdam und Innsbruck, Berlin liegt direkt vor der Tür. Sie kommen aus dem Sport.
-- Leistungen, einzeln oder zusammen: Event-Organisation (Idee, Konzept, Ablauf, Location, Partner, Umsetzung vor Ort), Marketing und Markenstrategie (Positionierung, Markenauftritt, Kampagnen, Aktivierungen, Sponsoring) sowie Social Media und Content (Fotos, Videos, Reels, Schnitt, Kanalbetreuung).
-- Haltung: Wir denken uns in jede Marke und ihre Ziele rein. Events und Content sollen die Identität der Marke transportieren, nicht nur gut aussehen. Beispiel: Für einen Getränkehersteller haben wir ein Konzept entwickelt, in dem zwei Sorten als Teams gegeneinander antreten.
+- Junge Agentur und Content-Studio von Malte Gerdes und Julian Seibt (GbR), beide Sportmanagement-Studenten, Gen Z, Basis in Potsdam und Innsbruck, Berlin direkt vor der Tür. Julian: Konzept und Organisation, denkt Events vom Erlebnis her. Malte: Content und Social Media, Schnitt, Netzwerk.
+- Der Name: Onside ist das Gegenteil von Abseits. Wir holen Marken aus dem Abseits zurück ins Spiel, dorthin, wo Aufmerksamkeit entsteht.
+- Leistungen, einzeln oder zusammen: Event-Organisation (Idee, Konzept, Ablauf, Location, Partner, Umsetzung vor Ort), Marke und Strategie (Positionierung, Markenauftritt, Kampagnen, Aktivierungen, Sponsoring) sowie Social Media und Content (Fotos, Videos, Reels, Schnitt, Kanalbetreuung, Redaktionsplan).
+- Haltung: Wir fangen immer bei der Marke an, nicht bei unseren Ideen. Erst verstehen, wofür sie steht und wen sie erreichen will, dann bauen wir ein Erlebnis, das genau das transportiert. Beispiel: Für einen Getränkehersteller haben wir ein Konzept entwickelt, in dem zwei Sorten als Teams gegeneinander antreten.
 - Ablauf: 1. kurzes Kennenlernen, 2. Konzept mit Ablauf, Budget und Zeitplan, 3. Umsetzung, man spricht immer direkt mit Malte und Julian, 4. danach wird die Geschichte mit Content weitererzählt.
-- Preise: keine feste Preisliste, nach einem kurzen Gespräch gibt es ein konkretes Angebot. Nenne nie Preise oder Zahlen zu Kosten.
+- Preise: keine feste Preisliste, nach einem kurzen Gespräch gibt es ein konkretes Angebot. Nenne nie Preise, Tagessätze oder Kostenschätzungen.
 - Vorlauf: Content geht schneller als ein Event; der Berlin Night Run stand in wenigen Wochen.
+- Zielgruppe: Marken, Unternehmen, Clubs, Vereine und Communities, besonders aus Sport, Getränken, Lifestyle, Tourismus und alles, was junge Leute erreichen will.
 
 Projekte:
-- Berlin Night Run (September 2026): eigenes Event, rund 8 km durch Kreuzberg und Neukölln, Start und Afterparty an der Ciao Ciao Bar, Stopps bei Myxa, Redrum Art Bar und Dietrich Bar, DJ auf dem Lastenrad, Partner Red Bull und HEJ Natural.
-- Dagen Yachtcharter (September 2026): eine Woche Segeln rund um Korfu, 10 Reels und tägliche Stories, über 270.000 Views, rund 130-mal so viel wie die Reels davor.
-- SNOWSIDE (März 2027, in Planung): Creator Ski Week in Tirol mit 8 bis 10 Creatorn. Gesucht werden Partner und Creator; Creator bewerben sich über Instagram (@onside.hq).
+- Berlin Night Run (September 2026): eigenes Event, rund 8 km durch Kreuzberg und Neukölln, Start und Afterparty an der Ciao Ciao Bar, Stationen bei Myxa (Kuchen), Redrum Art Bar (Mocktails) und Dietrich Bar (alkoholfreier Spritz und BRLO), DJ auf dem Lastenrad mit Red-Bull-SoundBoks, Partner Red Bull und HEJ Natural. Jeder Partner hatte eine Rolle, die zu seiner Marke passt.
+- Dagen Yachtcharter (September 2026): eine Woche Segeln rund um Korfu, 10 Reels und tägliche Stories, über 270.000 Views, rund 130-mal so viel wie die Reels davor. Dagen lobt die unkomplizierte Zusammenarbeit und die sehr professionellen Aufnahmen.
+- SNOWSIDE (März 2027, in Planung): Creator Ski Week in Tirol mit 8 bis 10 Creatorn. Gesucht werden Partner (Marken, die sich dort zeigen wollen) und Creator; Creator bewerben sich über Instagram bei @onside.hq.
 
-Kontakt: E-Mail team@onsidehq.de, Telefon +49 178 8519859, Instagram @onside.hq, Kontaktformular auf der Seite "Kontakt". Antwort meist innerhalb von 48 Stunden.
+Kontakt: E-Mail team@onsidehq.de, Telefon +49 178 8519859, Instagram @onside.hq, Formular auf der Seite "Kontakt". Antwort meist innerhalb von 48 Stunden.
 
-Regeln: Erfinde nichts. Wenn du etwas nicht sicher aus diesen Infos weißt, sag das ehrlich und verweise auf die Mail oder das Telefon. Beantworte nur Fragen rund um onside.hq, Events, Marketing und Content; bei anderen Themen lenke freundlich zurück. Gib keine Rechts-, Steuer- oder Finanzberatung. Bitte niemanden um persönliche Daten.`;
+Regeln: Erfinde keine Fakten, Kunden, Zahlen oder Termine. Was du nicht sicher aus diesen Infos weißt, sagst du ehrlich und verweist auf Mail oder Telefon. Bleib bei onside.hq, Events, Marketing, Marken und Content; bei anderen Themen lenk freundlich zurück. Keine Rechts-, Steuer- oder Finanzberatung. Bitte niemanden um persönliche Daten wie Namen, Adresse oder Telefonnummer.
+
+Knöpfe: Wenn ein Link unter deiner Antwort hilft, schreib als allerletzte Zeile genau "KNOEPFE:" gefolgt von höchstens zwei dieser Wörter, mit Komma getrennt: anfrage (Projekt anfragen), mail, anrufen, insta, leistungen, projekte, nightrun, dagen, snowside, team, galerie. Sonst lass die Zeile weg.`;
 
 const json = (daten, status = 200) =>
   new Response(JSON.stringify(daten), {
@@ -55,6 +64,7 @@ export async function onRequestPost({ request, env }) {
   let eingabe;
   try { eingabe = await request.json(); } catch (e) { return json({ fehler: 'ungültig' }, 400); }
   const frage = String(eingabe.frage || '').trim();
+  const seite = String(eingabe.seite || '').slice(0, 120).replace(/[\r\n`]/g, ' ');
   if (!frage || frage.length > MAX_ZEICHEN) return json({ fehler: 'ungültig' }, 400);
 
   // Verlauf in abwechselnde Nachrichten umwandeln, erste muss vom Nutzer sein
@@ -85,8 +95,8 @@ export async function onRequestPost({ request, env }) {
       body: JSON.stringify({
         model: MODELL,
         max_tokens: 1024,
-        output_config: { effort: 'low' },
-        system: WISSEN,
+        output_config: { effort: 'medium' },
+        system: WISSEN + (seite ? '\n\nDie Person ist gerade auf dieser Seite: ' + seite : ''),
         messages,
       }),
     });
@@ -97,13 +107,21 @@ export async function onRequestPost({ request, env }) {
 
   const antwort = await r.json();
   if (antwort.stop_reason === 'refusal') return json({ fehler: 'keine Antwort' }, 502);
-  const text = (antwort.content || [])
+  let text = (antwort.content || [])
     .filter((b) => b.type === 'text')
     .map((b) => b.text)
     .join('')
     .trim();
+  // Letzte Zeile "KNOEPFE: a, b" abtrennen
+  let knoepfe = [];
+  const teile = text.match(/\n?\s*KNOEPFE:\s*([a-z ,]*)\s*$/i);
+  if (teile) {
+    knoepfe = teile[1].split(',').map((k) => k.trim().toLowerCase()).filter(Boolean).slice(0, 2);
+    text = text.slice(0, teile.index).trim();
+  }
+  text = text.replace(/\*\*?/g, '');
   if (!text) return json({ fehler: 'keine Antwort' }, 502);
-  return json({ antwort: text });
+  return json({ antwort: text, knoepfe });
 }
 
 export function onRequest() {

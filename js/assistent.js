@@ -3,20 +3,20 @@
    Ein kleiner Chat, der die häufigsten Fragen beantwortet und bei allem
    anderen auf Mail, Telefon und Instagram verweist.
 
-   So funktioniert es: Jede Frage wird mit den Stichwörtern unten verglichen.
-   Das Thema mit den meisten Treffern gewinnt und seine Antwort erscheint.
-   Passt nichts, kommt die "Weiß ich nicht"-Antwort mit den Kontaktwegen.
+   So funktioniert es: Getippte Fragen beantwortet die KI (siehe unten).
+   Die festen Antworten in THEMEN erscheinen, wenn jemand einen Vorschlag
+   antippt oder die KI gerade nicht erreichbar ist. Passt dann auch kein
+   Thema, kommt die "Weiß ich nicht"-Antwort mit den Kontaktwegen.
 
    Antworten ändern: einfach den Text bei "antwort" anpassen.
    Neues Thema: einen Block in THEMEN kopieren, Stichwörter und Antwort ändern.
 
-   Echte KI: Fragen, zu denen kein Thema passt, gehen an KI_ADRESSE
-   (functions/api/assistent.js, Claude Haiku 5.5). Ist dort noch kein
-   API-Schlüssel hinterlegt oder klappt etwas nicht, erscheint wie bisher
-   die "Weiß ich nicht"-Antwort mit den Kontaktwegen.
+   Echte KI: KI_ADRESSE zeigt auf den Worker (worker/index.js ruft
+   functions/api/assistent.js auf, Claude Haiku 5.5). Dort steht auch das
+   Wissen der KI.
    ========================================================================== */
 (() => {
-  const KI_ADRESSE = '/api/assistent';   // Pages Function in functions/api/assistent.js; leer lassen = keine KI
+  const KI_ADRESSE = '/api/assistent';   // leer lassen = keine KI, nur feste Antworten
 
   const KONTAKT = {
     mail: 'team@onsidehq.de',
@@ -217,12 +217,22 @@
   log.setAttribute('aria-live', 'polite');
 
   const form = el('form', 'assistent__form');
-  const input = el('input', 'assistent__input');
-  input.type = 'text';
+  const input = el('textarea', 'assistent__input');
+  input.rows = 1;
   input.placeholder = 'Deine Frage …';
   input.setAttribute('aria-label', 'Deine Frage');
-  input.maxLength = 300;
+  input.maxLength = 500;
   input.autocomplete = 'off';
+  // Eingabefeld wächst mit dem Text (bis etwa 6 Zeilen, danach scrollt es)
+  const passeHoeheAn = () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 150) + 'px';
+  };
+  input.addEventListener('input', passeHoeheAn);
+  // Enter schickt ab, Shift+Enter macht eine neue Zeile
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); }
+  });
   const send = el('button', 'assistent__send');
   send.type = 'submit';
   send.setAttribute('aria-label', 'Senden');
@@ -239,9 +249,10 @@
   const verlauf = [];
   const scrollDown = () => { log.scrollTop = log.scrollHeight; };
 
-  function nachricht(text, wer, knoepfe, vorschlaege) {
+  function nachricht(text, wer, knoepfe, vorschlaege, vonKi) {
     const m = el('div', 'assistent__msg assistent__msg--' + wer);
-    m.append(el('p', '', text));
+    text.split(/\n{2,}/).forEach((absatz) => m.append(el('p', '', absatz)));
+    if (vonKi) m.append(el('span', 'assistent__ki', 'KI-Antwort · ohne Gewähr'));
     if (knoepfe && knoepfe.length) {
       const row = el('div', 'assistent__actions');
       knoepfe.forEach((k) => {
@@ -259,7 +270,7 @@
       VORSCHLAEGE.forEach((v) => {
         const b = el('button', 'assistent__chip', v);
         b.type = 'button';
-        b.addEventListener('click', () => frag(v));
+        b.addEventListener('click', () => frag(v, true));
         row.append(b);
       });
       m.append(row);
@@ -277,29 +288,34 @@
     return t;
   }
 
-  async function frag(text) {
+  // Getippte Fragen beantwortet die KI. Die festen Antworten oben springen ein,
+  // wenn ein Vorschlag angetippt wird oder die KI nicht erreichbar ist.
+  async function frag(text, vorschlag) {
     text = text.trim();
     if (!text) return;
     nachricht(text, 'du');
     input.value = '';
+    passeHoeheAn();
     const t = tippt();
     const thema = finde(text);
-    let antwort = null;
-    if (!thema && KI_ADRESSE) {
+    let ki = null;
+    if (!vorschlag && KI_ADRESSE) {
       try {
         const r = await fetch(KI_ADRESSE, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ frage: text, verlauf: verlauf.slice(-8) }),
+          body: JSON.stringify({ frage: text, verlauf: verlauf.slice(-10), seite: document.title }),
         });
-        if (r.ok) antwort = (await r.json()).antwort || null;
-      } catch (e) { /* dann eben die Standardantwort */ }
+        if (r.ok) ki = await r.json();
+      } catch (e) { /* dann eben die feste Antwort */ }
     } else {
       await new Promise((r) => setTimeout(r, 450));
     }
     t.remove();
-    if (thema) nachricht(thema.antwort, 'bot', thema.knoepfe, thema.vorschlaege);
-    else if (antwort) nachricht(antwort + ' (KI-Antwort, ohne Gewähr)', 'bot', ['mail', 'anrufen']);
+    if (ki && ki.antwort) {
+      const knoepfe = (ki.knoepfe || []).filter((k) => KNOEPFE[k]).slice(0, 2);
+      nachricht(ki.antwort, 'bot', knoepfe, false, true);
+    } else if (thema) nachricht(thema.antwort, 'bot', thema.knoepfe, thema.vorschlaege);
     else nachricht(WEISS_NICHT, 'bot', ['mail', 'anrufen', 'insta']);
   }
 

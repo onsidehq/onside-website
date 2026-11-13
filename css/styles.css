@@ -4060,6 +4060,8 @@ body.menu-open .nav__cta {
   padding: clamp(4rem, 9vw, 7rem) var(--gutter);
 }
 .case-media h2 { margin: 0.6rem 0 clamp(1.6rem, 4vw, 2.4rem); }
+.case-media--film { padding-top: 0; }
+.case-media--film .case-media__sub { margin-top: 0; }
 .case-media__sub {
   margin: clamp(2.4rem, 6vw, 3.6rem) 0 1rem;
   font-family: var(--font-display);
@@ -4839,6 +4841,7 @@ body.lightbox-open {
 
 .assistent__form {
   display: flex;
+  align-items: flex-end;
   gap: 0.5rem;
   padding: 0.75rem 0.75rem 0.4rem;
   border-top: 1px solid var(--border);
@@ -4847,9 +4850,15 @@ body.lightbox-open {
 .assistent__input {
   flex: 1;
   min-width: 0;
-  padding: 0.7rem 0.95rem;
+  height: 2.75rem;
+  max-height: 150px;
+  padding: 0.62rem 0.95rem;
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
+  border-radius: 1.375rem;
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.4;
+  scrollbar-width: thin;
   background: rgba(0, 0, 0, 0.35);
   color: var(--text);
   font: inherit;
@@ -4877,6 +4886,18 @@ body.lightbox-open {
 .assistent__send svg {
   width: 1.2rem;
   height: 1.2rem;
+}
+
+.assistent__ki {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+}
+
+.assistent__msg p + p {
+  margin-top: 0.5em;
 }
 
 .assistent__foot {
@@ -5290,3 +5311,25 @@ body.menu-open .assistent {
   inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,0.25), transparent 30%, transparent 65%, rgba(0,0,0,0.55));
 }
+
+/* Fotocredits klein in der Bildecke (Night Run) */
+.foto-credit {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.45rem;
+  z-index: 3;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(11, 11, 10, 0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: rgba(var(--cream-rgb), 0.85);
+  white-space: nowrap;
+}
+.foto-credit a { color: inherit; text-decoration: none; }
+.foto-credit a:hover { color: var(--accent); }
+.foto-credit--links { right: auto; left: 0.5rem; }
