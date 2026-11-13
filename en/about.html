@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us: Julian Seibt &amp; Malte Gerdes – onside.hq</title>
+  <meta name="description" content="onside.hq is a studio for events, brands and content from Potsdam and Innsbruck – founded by Julian Seibt and Malte Gerdes." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/en/about" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/ueber-uns" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/about" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/ueber-uns" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="About us – onside.hq" />
+  <meta property="og:description" content="onside.hq is a studio for events, brands and content from Potsdam and Innsbruck – founded by Julian Seibt and Malte Gerdes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/en/about" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen und die Gründer -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Start",
+            "item": "https://onsidehq.de/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About us",
+            "item": "https://onsidehq.de/en/about"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onsidehq.de/en/about#julian",
+        "name": "Julian Seibt",
+        "jobTitle": "Co-founder · Concept & organisation",
+        "worksFor": {
+          "@id": "https://onsidehq.de/en/#organisation"
+        },
+        "image": "https://onsidehq.de/assets/team/julian-onside.jpg",
+        "knowsAbout": [
+          "Event concepts",
+          "Organisation",
+          "Idea development"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onsidehq.de/en/about#malte",
+        "name": "Malte Gerdes",
+        "jobTitle": "Co-founder · Content & social media",
+        "worksFor": {
+          "@id": "https://onsidehq.de/en/#organisation"
+        },
+        "image": "https://onsidehq.de/assets/team/malte-onside.jpg",
+        "knowsAbout": [
+          "Content production",
+          "Video editing",
+          "Social media"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="../css/styles.css?v=31" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="ueber-uns">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – home">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="services.html">Services</a>
+      <a href="about.html" aria-current="page">About us</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Language">
+        <a class="lang-switch__item" href="../ueber-uns.html" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a>
+        <span class="lang-switch__item is-active" lang="en" aria-current="true">EN</span>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
+    <a href="contact.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Start a project</span><span class="nav__cta-short">Contact</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menu">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projects.html"><span class="menu-overlay__num">02</span>Projects</a>
+      <a href="gallery.html"><span class="menu-overlay__num">03</span>Gallery</a>
+      <a href="services.html"><span class="menu-overlay__num">04</span>Services</a>
+      <a href="about.html" aria-current="page"><span class="menu-overlay__num">05</span>About us</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="contact.html"><span class="menu-overlay__num">07</span>Contact</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ WER SIND WIR? ============ -->
+    <section class="page-hero page-hero--split">
+      <div class="page-hero__text">
+        <p class="eyebrow intro">About us</p>
+        <h1 data-split>Two people who would rather <span class="scribble" data-scribble="underline">build</span> than watch.</h1>
+        <p class="page-hero__lead intro intro--2">
+          onside.hq is a studio for events, brands and content&nbsp;– founded by two sports management students who realised at some point: the moments that last don’t just happen. Someone builds them.
+        </p>
+      </div>
+      <!-- Foto: Julian und Malte stellen SNOWSIDE auf der Bühne beim Tirol Hackathon vor
+           (assets/team/gruender-snowside.webp, 5:4) -->
+      <div class="page-hero__viz page-hero__viz--foto viz reveal">
+        <img src="../assets/team/gruender-snowside.webp" alt="Julian Seibt and Malte Gerdes presenting SNOWSIDE on stage at the Tirol Hackathon" width="1600" height="1280" fetchpriority="high" style="object-position: 30% 50%">
+      </div>
+    </section>
+
+    <section class="about about--page">
+      <h2 class="sr-only">The founders</h2>
+      <div class="founders">
+        <!-- BILD 7: Foto Julian → assets/team/julian-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt)
+             Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
+             dieser Stelle eine Animation mit den Initialen. -->
+        <article class="founder reveal">
+          <div class="founder__media viz">
+            <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
+            <span class="founder__initials" aria-hidden="true">JS</span>
+            <img src="../assets/team/julian-onside.webp" alt="Julian Seibt, co-founder of onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="founder__body">
+            <span class="founder__role">Concept &amp; organisation</span>
+            <h3>Julian Seibt</h3>
+            <p class="founder__meta">Sports management</p>
+            <p class="founder__text">
+              Thinks about events from the experience first and then works backwards to build the structure behind it. “The moments that shaped me were built by someone. At some point I wanted to be on that side.”
+            </p>
+            <ul class="tags">
+              <li>Creativity</li>
+              <li>Idea development</li>
+              <li>Event concepts</li>
+              <li>Organisation</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- BILD 8: Foto Malte → assets/team/malte-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt).
+             Neues Foto = neuer Dateiname, dann sehen alle sofort das neue Bild. -->
+        <article class="founder reveal">
+          <div class="founder__media viz">
+            <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
+            <span class="founder__initials" aria-hidden="true">MG</span>
+            <img src="../assets/team/malte-onside.webp" alt="Malte Gerdes, co-founder of onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="founder__body">
+            <span class="founder__role">Content &amp; social</span>
+            <h3>Malte Gerdes</h3>
+            <p class="founder__meta">Sports management</p>
+            <p class="founder__text">
+              Turns an event into images that keep going afterwards&nbsp;– in the feed, on the channel, in people’s heads. Editing, content and the connections that lead to the next project.
+            </p>
+            <ul class="tags">
+              <li>Content production</li>
+              <li>Video editing</li>
+              <li>Social media</li>
+              <li>Networking</li>
+              <li>Communication</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <div class="story">
+        <article class="story__block reveal">
+          <h2>Our story</h2>
+          <p>
+            We met studying sports management. But what connected us wasn’t the lecture hall, it was everything in between: festivals, concerts, games, trips. Experiences you still remember years later. At some point, being part of those moments wasn’t enough&nbsp;– we wanted to build them ourselves. That became onside.hq.
+          </p>
+        </article>
+
+        <article class="story__block reveal">
+          <h2>What makes us different</h2>
+          <p>
+            We are Gen Z&nbsp;– the very audience other agencies hold workshops about. We don’t need to research what works right now; we see it in our own feed every day. We combine that perspective with strategic thinking and clean execution. The goal isn’t a campaign people scroll past, but something people talk about. And we never start with ourselves, we start with you: every project begins with understanding your brand, your audience and your goals. Only then do we build an experience that carries exactly that.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ WARUM ONSIDE ============
+         Über dem Text läuft eine kleine Taktiktafel: Ein Punkt steht im Abseits,
+         läuft zurück hinter die Linie, bekommt den Pass — und ist wieder im Spiel.
+         Gezeichnet in js/visuals.js (Szene "offside"). -->
+    <section class="statement">
+      <div class="statement__rings" aria-hidden="true"></div>
+      <div class="statement__inner">
+        <p class="eyebrow reveal">Why onside?</p>
+        <div class="statement__board viz reveal">
+          <canvas data-scene="offside" aria-hidden="true"></canvas>
+        </div>
+        <p class="statement__text reveal">
+          The name comes from sport. <em class="scribble" data-scribble="circle">Onside</em> is the opposite of offside. That is exactly our job: bringing brands back from offside into the game&nbsp;– to where attention happens.
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow reveal">Your turn</p>
+      <h2 data-split>Want to build something <span class="scribble" data-scribble="underline">with us?</span></h2>
+      <div class="cta-band__actions reveal">
+        <a href="contact.html" class="btn btn--large btn--beat">Start a project</a>
+        <a href="services.html" class="btn btn--large btn--ghost">Our services</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, brands and content&nbsp;– from the first idea to the final reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pages">
+        <span class="footer__label">Pages</span>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About us</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Focus">
+        <span class="footer__label">Focus</span>
+        <a href="event-agency.html">Event agency</a>
+        <a href="social-media-agency.html">Social media agency</a>
+        <a href="creator-events.html">Creator events</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Contact">
+        <span class="footer__label">Contact</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Legal">
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="../js/config.js?v=31"></script>
+  <script src="../js/visuals.js?v=31"></script>
+  <script src="../js/script.js?v=31"></script>
+  <script src="../js/assistent.js?v=31" defer></script>
+</body>
+</html>

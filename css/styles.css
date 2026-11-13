@@ -5638,3 +5638,7 @@ body.menu-open .assistent {
 :root[data-theme='light'] .contact-form :is(input, textarea)::placeholder {
   color: #8a8275;
 }
+
+/* Hinweis auf englischen Rechtsseiten: nur die deutsche Fassung gilt */
+.legal-note { margin: 1rem 0 2rem; padding: .9rem 1.1rem; border: 1px solid var(--line, rgba(255,255,255,.15)); border-radius: 12px; color: var(--muted, inherit); font-size: .95rem; }
+.legal-note a { color: inherit; text-decoration: underline; }

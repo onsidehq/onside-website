@@ -37,11 +37,11 @@
     anfrage: { text: tr('Projekt anfragen', 'Start a project'), link: tr('/kontakt', '/en/contact') },
     leistungen: { text: tr('Leistungen ansehen', 'See services'), link: tr('/leistungen', '/en/services') },
     projekte: { text: tr('Projekte ansehen', 'See projects'), link: tr('/projekte', '/en/projects') },
-    nightrun: { text: tr('Zum Night Run', 'Night Run (German)'), link: '/berlin-night-run' },
-    dagen: { text: tr('Zu Dagen', 'Dagen (German)'), link: '/dagen-yachtcharter' },
+    nightrun: { text: tr('Zum Night Run', 'See Night Run'), link: tr('/berlin-night-run', '/en/berlin-night-run') },
+    dagen: { text: tr('Zu Dagen', 'See Dagen'), link: tr('/dagen-yachtcharter', '/en/dagen-yachtcharter') },
     snowside: { text: tr('Zu SNOWSIDE', 'See SNOWSIDE'), link: tr('/snowside', '/en/snowside') },
-    team: { text: tr('Wer wir sind', 'About us (German)'), link: '/ueber-uns' },
-    galerie: { text: tr('Zur Galerie', 'See gallery'), link: '/galerie' },
+    team: { text: tr('Wer wir sind', 'About us'), link: tr('/ueber-uns', '/en/about') },
+    galerie: { text: tr('Zur Galerie', 'See gallery'), link: tr('/galerie', '/en/gallery') },
   };
 
   const THEMEN_DE = [

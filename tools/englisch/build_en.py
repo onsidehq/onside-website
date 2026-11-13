@@ -1,11 +1,9 @@
 """Baut die englischen Seiten unter en/ aus den deutschen Seiten.
-Aufruf (im Projektordner): python3 tools/englisch/build_en.py .
-Übersetzungen stehen in tr.py. Neue oder geänderte deutsche Texte dort ergänzen, dann neu bauen.
-Das Skript meldet mit FEHLT jeden Text, für den noch keine Übersetzung da ist.
+Aufruf: python3 build_en.py /home/user/onside-website
 """
 import re, json, sys, os
 sys.path.insert(0, os.path.dirname(__file__))
-from tr import T, SAME
+from tr import T, SAME, PRE, LEGAL_NOTE
 
 ROOT = sys.argv[1]
 os.chdir(ROOT)
@@ -18,7 +16,17 @@ PAGES = {
     'projekte.html': ('en/projects.html', '/projekte', '/en/projects'),
     'snowside.html': ('en/snowside.html', '/snowside', '/en/snowside'),
     'kontakt.html': ('en/contact.html', '/kontakt', '/en/contact'),
+    'berlin-night-run.html': ('en/berlin-night-run.html', '/berlin-night-run', '/en/berlin-night-run'),
+    'dagen-yachtcharter.html': ('en/dagen-yachtcharter.html', '/dagen-yachtcharter', '/en/dagen-yachtcharter'),
+    'galerie.html': ('en/gallery.html', '/galerie', '/en/gallery'),
+    'ueber-uns.html': ('en/about.html', '/ueber-uns', '/en/about'),
+    'eventagentur.html': ('en/event-agency.html', '/eventagentur', '/en/event-agency'),
+    'social-media-agentur.html': ('en/social-media-agency.html', '/social-media-agentur', '/en/social-media-agency'),
+    'creator-events.html': ('en/creator-events.html', '/creator-events', '/en/creator-events'),
+    'impressum.html': ('en/imprint.html', '/impressum', '/en/imprint'),
+    'datenschutz.html': ('en/privacy.html', '/datenschutz', '/en/privacy'),
 }
+LEGAL = {'impressum.html', 'datenschutz.html'}
 # Links innerhalb der englischen Seiten
 LINKMAP = {de: os.path.basename(en) for de, (en, _, _) in PAGES.items()}
 URLMAP = {SITE + d: SITE + e for _, (_, d, e) in PAGES.items()}
@@ -125,6 +133,8 @@ def hreflang_block(de_path, en_path):
 def build(de_file):
     en_file, de_path, en_path = PAGES[de_file]
     src = open(de_file, encoding='utf-8').read()
+    for k, v in PRE.items():
+        src = src.replace(k, v)
     src = re.sub(r'  <link rel="alternate" hreflang="[^"]*" href="[^"]*" />\n', '', src)
     out = []
     parts = re.split(r'(<!--.*?-->|<script\b[^>]*>.*?</script>|<style\b[^>]*>.*?</style>|<[^>]+>)', src, flags=re.S)
@@ -159,6 +169,8 @@ def build(de_file):
         f'<a class="lang-switch__item" href="{de_link}" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a>\n        <span class="lang-switch__item is-active" lang="en" aria-current="true">EN</span>',
         html, count=1)
     html = html.replace('<div class="vg-days"><span>M</span><span>D</span><span>M</span><span>D</span>', '<div class="vg-days"><span>M</span><span>T</span><span>W</span><span>T</span>')
+    if de_file in LEGAL:
+        html = re.sub(r'(<h1\b[^>]*>.*?</h1>)', lambda m: m.group(1) + '\n      ' + LEGAL_NOTE.format(de='../' + de_file), html, count=1, flags=re.S)
     os.makedirs(os.path.dirname(en_file), exist_ok=True)
     open(en_file, 'w', encoding='utf-8').write(html)
 

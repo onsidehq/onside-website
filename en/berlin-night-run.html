@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Berlin Night Run: Running Event with DJ &amp; Afterparty – onside.hq</title>
+  <meta name="description" content="The Berlin Night Run: 8 km through the night with a DJ, food and drinks, an afterparty and partners like Red Bull and HEJ Natural. Concept and execution: onside.hq." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/en/berlin-night-run" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/berlin-night-run" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/berlin-night-run" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/berlin-night-run" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Berlin Night Run – onside.hq" />
+  <meta property="og:description" content="The Berlin Night Run: 8 km through the night with a DJ, food and drinks, an afterparty and partners like Red Bull and HEJ Natural. Concept and execution: onside.hq." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/en/berlin-night-run" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-night-run.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen und das Event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Start",
+            "item": "https://onsidehq.de/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://onsidehq.de/en/projects"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Berlin Night Run",
+            "item": "https://onsidehq.de/en/berlin-night-run"
+          }
+        ]
+      },
+      {
+        "@type": "SportsEvent",
+        "name": "Berlin Night Run",
+        "description": "8 km through Berlin at night across Kreuzberg and Neukölln, with a DJ on a cargo bike, three bar stations and an afterparty. Partners: Red Bull, HEJ Natural, Myxa, Redrum Art Bar, Dietrich Bar.",
+        "startDate": "2026-09-19T18:30:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "isAccessibleForFree": true,
+        "image": [
+          "https://onsidehq.de/assets/og-night-run.jpg"
+        ],
+        "location": {
+          "@type": "Place",
+          "name": "Ciao Ciao Bar",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Berlin",
+            "addressRegion": "Berlin",
+            "addressCountry": "DE"
+          }
+        },
+        "organizer": {
+          "@id": "https://onsidehq.de/en/#organisation"
+        },
+        "sponsor": [
+          {
+            "@type": "Organization",
+            "name": "Red Bull"
+          },
+          {
+            "@type": "Organization",
+            "name": "HEJ Natural"
+          }
+        ],
+        "url": "https://onsidehq.de/en/berlin-night-run"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="../css/styles.css?v=31" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    // Fehlt ein Foto, verschwindet das <img> und die Animation darunter bleibt
+    // sichtbar. Liegt es in einem <picture> mit Handy-Version (hoch-...), wird
+    // zuerst die Handy-Version weggelassen und das große Foto genommen.
+    window.onsideBildFehlt = function (img) {
+      if (!img.getAttribute('src')) return; // ohne Bildadresse nichts zu tun
+      var s = img.parentNode && img.parentNode.querySelector('source');
+      if (s) { s.remove(); img.src = img.getAttribute('src'); } else { img.remove(); }
+    };
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="night-run">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – home">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About us</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Language">
+        <a class="lang-switch__item" href="../berlin-night-run.html" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a>
+        <span class="lang-switch__item is-active" lang="en" aria-current="true">EN</span>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
+    <a href="contact.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Start a project</span><span class="nav__cta-short">Contact</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menu">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projects.html" aria-current="page"><span class="menu-overlay__num">02</span>Projects</a>
+      <a href="gallery.html"><span class="menu-overlay__num">03</span>Gallery</a>
+      <a href="services.html"><span class="menu-overlay__num">04</span>Services</a>
+      <a href="about.html"><span class="menu-overlay__num">05</span>About us</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="contact.html"><span class="menu-overlay__num">07</span>Contact</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ PROJEKTSEITE: BERLIN NIGHT RUN ============
+         Diese Seite ist gleichzeitig die Vorlage für jedes weitere Projekt:
+         Datei kopieren, umbenennen, Texte und Bildpfade austauschen. -->
+
+    <!-- BILD 1: Titelbild → assets/projects/berlin-night-run/cover.webp (Handy:
+         hoch-cover.jpg). Fehlt es, laufen Lichtspuren. object-position = Bild-
+         ausschnitt: "60% 35%" hält am Laptop den Kopf des Läufers im Bild und
+         rückt am Handy den Hochformat-Ausschnitt etwas nach rechts zu ihm. -->
+    <section class="case-hero">
+      <div class="case-hero__media viz">
+        <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
+        <picture>
+          <source media="(max-width: 720px)" srcset="../assets/projects/berlin-night-run/hoch-cover.webp">
+          <img width="2400" height="1600" src="../assets/projects/berlin-night-run/cover.webp" alt="Runners at the Berlin Night Run" fetchpriority="high" style="object-position: 60% 35%" onerror="onsideBildFehlt(this)">
+        </picture>
+      </div>
+      <div class="case-hero__content">
+        <a class="back-link intro" href="projects.html"><i>←</i> All projects</a>
+        <p class="eyebrow intro">Project 01 · Berlin · 2026</p>
+        <h1 data-split>Night Run</h1>
+        <p class="case-hero__lead intro intro--2">
+          A run through Berlin at night&nbsp;– with a DJ, partners, food and drinks and an afterparty. Our first own event and the start of onside.hq.
+        </p>
+      </div>
+    </section>
+
+    <!-- Eckdaten: hier einfach die Texte zwischen <dd> und </dd> ändern -->
+    <section class="facts">
+      <dl class="facts__grid">
+        <div class="facts__item reveal"><dt>When</dt><dd>19&nbsp;September 2026</dd></div>
+        <div class="facts__item reveal"><dt>Where</dt><dd>Berlin</dd></div>
+        <div class="facts__item reveal"><dt>Route</dt><dd>8&nbsp;km · 3&nbsp;stops</dd></div>
+        <div class="facts__item reveal"><dt>Partners</dt><dd>Red&nbsp;Bull, HEJ&nbsp;Natural</dd></div>
+        <div class="facts__item reveal"><dt>Our role</dt><dd>Concept, organisation, partners, content</dd></div>
+      </dl>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">The idea</p>
+        <h2 data-split>Running is the occasion.<br>The <span class="scribble" data-scribble="underline">experience</span> is the reason.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          From the start, the Night Run was meant to be a night to remember: the city after dark, a DJ, shared stops and a finish line where the night goes on. A run where the time on the clock doesn’t matter and the feeling afterwards does.
+        </p>
+      </div>
+    </section>
+
+    <!-- Die Route als animierte Karte im Look der Korfu-Karte (dagen-yachtcharter.html).
+         Strecke: Strava-Aufzeichnung der Testrunde, Kartengrund aus OpenStreetMap
+         (route-karte.jpg, © OpenStreetMap-Mitwirkende). Stationsfotos: route-*.jpg.
+         data-at = Anteil der Strecke (0 bis 1), an dem Punkt und Foto erscheinen. -->
+    <section class="case-route">
+      <p class="eyebrow reveal">The route</p>
+      <h2 data-split>8 kilometres through Kreuzberg and Neukölln.</h2>
+      <div class="citymap reveal" data-citymap>
+        <img class="citymap__base" src="../assets/projects/berlin-night-run/route-karte.webp" alt="" width="1800" height="1276" loading="lazy">
+        <svg class="citymap__svg" viewBox="0 0 1000 709" role="img" aria-labelledby="citymap-title">
+          <title id="citymap-title">Map: route of the Berlin Night Run from Ciao Ciao Bar via Myxa, Redrum Art Bar and Dietrich Bar back to Ciao Ciao Bar</title>
+          <g class="citymap__grid"><line x1="250" y1="0" x2="250" y2="709"/><line x1="500" y1="0" x2="500" y2="709"/><line x1="750" y1="0" x2="750" y2="709"/><line x1="0" y1="236" x2="1000" y2="236"/><line x1="0" y1="472" x2="1000" y2="472"/></g>
+          <g class="citymap__areas">
+            <text x="330" y="215">KREUZBERG</text>
+            <text x="290" y="672">NEUKÖLLN</text>
+            <text x="905" y="70" transform="rotate(31 905 70)">SPREE</text>
+            <text x="250" y="317" transform="rotate(-6 250 317)">LANDWEHRKANAL</text>
+          </g>
+          <path class="citymap__track" d="M834 142L828 149L822 159L814 161L806 154L798 148L790 141L783 134L774 127L767 120L759 125L752 133L743 136L733 138L723 140L713 142L702 145L692 147L683 152L672 154L662 156L652 158L641 160L630 164L620 165L610 168L600 170L589 172L580 177L569 180L559 181L549 184L538 187L528 189L528 198L528 208L531 217L526 226L521 235L518 244L526 250L535 256L544 262L543 272L538 282L532 291L527 300L521 308L516 317L510 326L506 335L500 345L494 354L489 363L483 372L477 382L472 391L466 399L461 408L457 419L456 430L455 440L454 451L454 461L453 472L452 482L451 493L450 504L448 515L447 526L441 530L431 532L421 533L411 535L401 536L390 538L380 539L370 542L363 536L360 526L356 516L353 507L350 498L346 488L342 477L338 468L334 458L330 447L326 437L318 431L308 428L299 424L289 418L279 415L269 411L260 408L251 403L242 399L232 396L223 390L214 386L204 383L195 380L186 375L177 370L168 371L163 382L159 390L156 398L158 391L160 381L158 371L150 375L143 383L138 393L134 402L130 411L126 421L122 430L118 440L113 449L109 459L104 468L100 478L106 485L115 486L121 478L130 482L139 487L149 492L158 497L167 501L177 505L187 509L197 514L206 519L216 523L227 527L237 532L246 536L256 541L265 545L274 552L283 558L292 563L301 569L310 574L319 580L329 586L338 592L347 598L356 605L365 610L374 616L383 621L391 626L399 627L396 617L394 608L404 607L414 605L424 603L434 604L445 602L455 602L465 602L476 602L485 607L494 612L504 617L513 623L523 629L531 633L541 632L547 622L552 614L558 605L562 595L568 585L572 576L577 567L584 558L589 549L594 540L599 533L603 524L609 514L614 505L620 496L625 488L631 478L636 470L640 463L646 453L650 445L654 435L658 426L663 417L672 413L674 406L679 397L685 387L690 378L695 368L701 360L711 364L720 369L729 374L738 379L748 383L758 388L767 393L776 395L787 400L797 401L806 394L813 385L822 376L829 367L836 358L842 350L848 341L854 333L862 326L861 317L857 307L856 297L857 287L862 278L868 270L874 261L880 252L886 243L893 235L889 227L881 221L873 213L864 205L857 198L849 191L841 184L832 176L824 169L818 161L823 152L829 145L831 143"/>
+          <path class="citymap__route" d="M834 142L828 149L822 159L814 161L806 154L798 148L790 141L783 134L774 127L767 120L759 125L752 133L743 136L733 138L723 140L713 142L702 145L692 147L683 152L672 154L662 156L652 158L641 160L630 164L620 165L610 168L600 170L589 172L580 177L569 180L559 181L549 184L538 187L528 189L528 198L528 208L531 217L526 226L521 235L518 244L526 250L535 256L544 262L543 272L538 282L532 291L527 300L521 308L516 317L510 326L506 335L500 345L494 354L489 363L483 372L477 382L472 391L466 399L461 408L457 419L456 430L455 440L454 451L454 461L453 472L452 482L451 493L450 504L448 515L447 526L441 530L431 532L421 533L411 535L401 536L390 538L380 539L370 542L363 536L360 526L356 516L353 507L350 498L346 488L342 477L338 468L334 458L330 447L326 437L318 431L308 428L299 424L289 418L279 415L269 411L260 408L251 403L242 399L232 396L223 390L214 386L204 383L195 380L186 375L177 370L168 371L163 382L159 390L156 398L158 391L160 381L158 371L150 375L143 383L138 393L134 402L130 411L126 421L122 430L118 440L113 449L109 459L104 468L100 478L106 485L115 486L121 478L130 482L139 487L149 492L158 497L167 501L177 505L187 509L197 514L206 519L216 523L227 527L237 532L246 536L256 541L265 545L274 552L283 558L292 563L301 569L310 574L319 580L329 586L338 592L347 598L356 605L365 610L374 616L383 621L391 626L399 627L396 617L394 608L404 607L414 605L424 603L434 604L445 602L455 602L465 602L476 602L485 607L494 612L504 617L513 623L523 629L531 633L541 632L547 622L552 614L558 605L562 595L568 585L572 576L577 567L584 558L589 549L594 540L599 533L603 524L609 514L614 505L620 496L625 488L631 478L636 470L640 463L646 453L650 445L654 435L658 426L663 417L672 413L674 406L679 397L685 387L690 378L695 368L701 360L711 364L720 369L729 374L738 379L748 383L758 388L767 393L776 395L787 400L797 401L806 394L813 385L822 376L829 367L836 358L842 350L848 341L854 333L862 326L861 317L857 307L856 297L857 287L862 278L868 270L874 261L880 252L886 243L893 235L889 227L881 221L873 213L864 205L857 198L849 191L841 184L832 176L824 169L818 161L823 152L829 145L831 143"/>
+          <g class="citymap__pins">
+              <g class="citymap__pin" data-at="0.0" transform="translate(832 144)">
+                <circle r="20" class="citymap__ring"/>
+                <circle r="6" class="citymap__dot"/>
+                <text x="140" y="44" text-anchor="end" class="citymap__label">CIAO CIAO · START &amp; FINISH</text>
+              </g>
+              <g class="citymap__pin" data-at="0.294" transform="translate(425 531)">
+                <circle r="20" class="citymap__ring"/>
+                <circle r="6" class="citymap__dot"/>
+                <text x="16" y="-14" text-anchor="start" class="citymap__label">MYXA</text>
+              </g>
+              <g class="citymap__pin" data-at="0.439" transform="translate(160 399)">
+                <circle r="20" class="citymap__ring"/>
+                <circle r="6" class="citymap__dot"/>
+                <text x="16" y="-14" text-anchor="start" class="citymap__label">REDRUM</text>
+              </g>
+              <g class="citymap__pin" data-at="0.807" transform="translate(678 410)">
+                <circle r="20" class="citymap__ring"/>
+                <circle r="6" class="citymap__dot"/>
+                <text x="16" y="-14" text-anchor="start" class="citymap__label">DIETRICH</text>
+              </g>
+          </g>
+          <circle class="citymap__runner" r="7" cx="834" cy="142"/>
+          <text x="980" y="694" text-anchor="end" class="citymap__coords">52.49° N · 13.43° E</text>
+        </svg>
+        <div class="citymap__cards" aria-hidden="true">
+          <figure class="citymap__card citymap__card--start" data-at="0.0" style="left:60.0%;top:3.1%">
+            <img src="../assets/projects/berlin-night-run/route-start.webp" alt="The runners start at Ciao Ciao Bar in Kreuzberg" width="640" height="480" loading="lazy">
+          </figure>
+          <figure class="citymap__card citymap__card--myxa" data-at="0.294" style="left:45.0%;top:76.9%">
+            <img src="../assets/projects/berlin-night-run/route-myxa.webp" alt="First stop outside Myxa Bar on Lenaustraße" width="640" height="480" loading="lazy">
+          </figure>
+          <figure class="citymap__card citymap__card--redrum" data-at="0.439" style="left:3.0%;top:59.9%">
+            <img src="../assets/projects/berlin-night-run/route-redrum.webp" alt="Mocktail cups from Redrum Art Bar" width="640" height="480" loading="lazy">
+          </figure>
+          <figure class="citymap__card citymap__card--dietrich" data-at="0.807" style="left:70.5%;top:59.9%">
+            <img src="../assets/projects/berlin-night-run/route-dietrich.webp" alt="Alcohol-free spritz at the stand outside Dietrich Bar" width="640" height="480" loading="lazy">
+          </figure>
+          <figure class="citymap__card citymap__card--ziel" data-at="1.0" style="left:60.0%;top:3.1%">
+            <img src="../assets/projects/berlin-night-run/route-ziel.webp" alt="Afterparty at Ciao Ciao Bar after the run" width="640" height="480" loading="lazy">
+          </figure>
+        </div>
+        <button class="citymap__replay" type="button" hidden>Run it again</button>
+      </div>
+      <p class="citymap__credit">Map data: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL)</p>
+      <ol class="citymap__stops reveal">
+        <li><span>18:30</span> Start at Ciao Ciao Bar</li>
+        <li><span>18:40</span> Myxa: cake and tea</li>
+        <li><span>19:05</span> Redrum Art Bar: mocktails</li>
+        <li><span>19:35</span> Dietrich Bar: alcohol-free spritz</li>
+        <li><span>20:00</span> Back to Ciao Ciao Bar, afterparty</li>
+      </ol>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">The execution</p>
+        <h2 data-split>From idea to starting gun in a few weeks.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          In that time we built everything an event needs. Every step was in our hands&nbsp;– and that is how we want to keep working. From the first thought to the route, the partners and the run sheet, all the way to wristbands and radios on the night itself, we organised everything ourselves and produced the content along the way.
+        </p>
+        <ul class="checklist reveal">
+          <li>Idea &amp; concept</li>
+          <li>Route &amp; schedule</li>
+          <li>Partners &amp; sponsors</li>
+          <li>Food &amp; drinks</li>
+          <li>DJ &amp; afterparty</li>
+          <li>On-site content</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PARTNER ============
+         Kurz gehalten: nur Logos bzw. Namen. Logos aus assets/partner/ (werden
+         weiß eingefärbt), Red Bull und HEJ Natural bewusst nur als Schriftzug. -->
+    <section class="case-partners">
+      <p class="eyebrow reveal">On board</p>
+      <p class="case-partners__lead reveal">Every partner had a role that matched their brand. That way the brands weren’t just on a banner but part of the night: Red Bull supplied the sound for the DJ bike, the bars became stations along the route. That is exactly how we think about partnerships for <a href="event-agency.html">other events</a>.</p>
+      <ul class="case-partners__row reveal" aria-label="Night Run partners">
+        <li><span class="case-partners__name">Red Bull</span><p>Cans for everyone and the SoundBoks for the DJ bike.</p></li>
+        <li><span class="case-partners__name">HEJ Natural</span><p>Protein bars for the road.</p></li>
+        <li><img src="../assets/partner/myxa.png" alt="Myxa Bar Berlin" width="360" height="339" loading="lazy"><p>Station 1 with lemon and banana cake.</p></li>
+        <li><img src="../assets/partner/redrum-art-bar.png" alt="Redrum Art Bar Berlin" width="279" height="307" loading="lazy"><p>Station 2 with mocktails.</p></li>
+        <li><img src="../assets/partner/dietrich-bar.png" alt="Dietrich Bar Berlin" width="165" height="291" loading="lazy"><p>Station 3 with alcohol-free spritz and BRLO.</p></li>
+      </ul>
+    </section>
+
+    <!-- ============ DER PLAN DAHINTER ============
+         Regler zwischen Foto (01.jpg) und Planskizze (plan-skizze.jpg, beide in
+         assets/projects/berlin-night-run/). Die Markierungen im Plan stehen
+         in js/script.js, Abschnitt 7. -->
+    <section class="case-backstage">
+      <p class="eyebrow reveal">Behind the scenes</p>
+      <h2 data-split>The moment and the plan behind it.</h2>
+      <p class="case-backstage__lead reveal">
+        Drag the slider: on the left the night as everyone experienced it, on the right our planning behind it, step by step.
+      </p>
+      <div class="backstage__sheet" aria-label="Planning run sheet">
+        <span class="backstage__label">Run sheet</span>
+        <h3>Night Run · 19 Sept 2026</h3>
+        <!-- Die Planungsschritte erscheinen nacheinander, je weiter der
+             Regler nach links gezogen wird (js/script.js, Abschnitt 7). -->
+        <ol class="backstage__steps">
+          <li>Idea: run, bars, DJ</li>
+          <li>Route &amp; timing set</li>
+          <li>Bars signed up as stations</li>
+          <li>DJ + Red&nbsp;Bull SoundBoks</li>
+          <li>Run logo &amp; sign-up form</li>
+          <li>Wristbands &amp; radios on site</li>
+          <li>18:30 starting gun</li>
+        </ol>
+      </div>
+      <div class="backstage reveal" data-backstage>
+        <div class="backstage__layer backstage__plan" aria-hidden="true">
+          <img width="2400" height="1600" src="../assets/projects/berlin-night-run/plan-skizze.webp" alt="" loading="lazy">
+          <div class="backstage__grid"></div>
+          <svg class="backstage__marks" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="backstage__layer backstage__photo">
+          <img width="2400" height="1600" src="../assets/projects/berlin-night-run/01.webp" alt="Berlin Night Run: the running group on the move, the DJ on the cargo bike up front" loading="lazy">
+          <span class="foto-credit foto-credit--links">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a> <span class="foto-credit__dj">· DJ <a href="https://www.instagram.com/ochser.wav/" target="_blank" rel="noopener">@ochser.wav</a></span></span>
+        </div>
+        <div class="backstage__tags backstage__label" aria-hidden="true"><span>The moment</span><span>The plan behind it</span></div>
+        <div class="backstage__handle" role="slider" tabindex="0" aria-label="Slider: photo on the left, the plan behind it on the right" aria-valuemin="0" aria-valuemax="100" aria-valuenow="56">
+          <span class="backstage__knob" aria-hidden="true"><svg viewBox="0 0 24 14"><path d="M7 1 1 7l6 6M17 1l6 6-6 6"/></svg></span>
+          <span class="backstage__try backstage__label" aria-hidden="true">Drag</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DER CONTENT ============
+         Reels laden erst beim Antippen (vorher gehen keine Daten an Instagram).
+         Vorschaubilder reel-<ID>.jpg in assets/projects/berlin-night-run/.
+         Abspielen steuert js/script.js, Abschnitt 9. -->
+    <section class="case-media">
+      <p class="eyebrow reveal">The content</p>
+      <h2 data-split>The night as a reel.</h2>
+      <div class="case-media__reels case-media__reels--zwei">
+          <figure class="embed embed--reel reveal">
+            <button class="embed__poster" type="button" data-embed="instagram" data-id="Ddjl-VWNMh0" aria-label="Play reel 1 from the Berlin Night Run (loads Instagram)">
+              <img class="embed__thumb" src="../assets/projects/berlin-night-run/reel-Ddjl-VWNMh0.webp" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <span class="embed__tag">Reel 01 · Night Run</span>
+              <span class="embed__play" aria-hidden="true"></span>
+              <span class="embed__hint">Tap to load Instagram</span>
+            </button>
+            <figcaption><a href="https://www.instagram.com/reel/Ddjl-VWNMh0/" target="_blank" rel="noopener">Watch on Instagram ↗</a></figcaption>
+          </figure>
+          <figure class="embed embed--reel reveal">
+            <button class="embed__poster" type="button" data-embed="instagram" data-id="DdmJPQysUQV" aria-label="Play reel 2 from the Berlin Night Run (loads Instagram)">
+              <img class="embed__thumb" src="../assets/projects/berlin-night-run/reel-DdmJPQysUQV.webp" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <span class="embed__tag">Reel 02 · Night Run</span>
+              <span class="embed__play" aria-hidden="true"></span>
+              <span class="embed__hint">Tap to load Instagram</span>
+            </button>
+            <figcaption><a href="https://www.instagram.com/reel/DdmJPQysUQV/" target="_blank" rel="noopener">Watch on Instagram ↗</a></figcaption>
+          </figure>
+      </div>
+    </section>
+
+    <section class="case-gallery">
+      <p class="eyebrow reveal">Impressions</p>
+      <h2 data-split>The night in pictures.</h2>
+      <div class="case-gallery__grid">
+        <!-- GALERIE: 10 Fotos (weitere stehen auf galerie.html) aus assets/projects/berlin-night-run/, Dateien
+             galerie-....jpg (die Nummer ist das Originalfoto: dsc = Ordner
+             BNR BILDER 1, ld = Ordner BNR BILDER 2 bis 5). 01.jpg steht schon oben
+             im Regler, cover.jpg ganz oben auf der Seite. Die Reihenfolge erzählt
+             den Abend: Treffpunkt, Start, Strecke, Stationen, Nacht, Ziel.
+             - Breite Felder (Zusatzklasse "wide", Datei quer 3:2) gehen über die
+               ganze Breite. object-position legt fest, welcher Streifen
+               des Fotos zu sehen ist (zweite Zahl: 0% = oben, 100% = unten).
+             - Querformate (3:2) ohne Zusatzklasse stehen zu zweit.
+             - Hochformate (Zusatzklasse "tall", Datei hoch 4:5) stehen zu dritt.
+               Am Handy stehen sie zu zweit; das dritte jeder Dreiergruppe trägt
+               zusätzlich "solo" und geht dort über die ganze Breite, damit keine
+               Lücke entsteht. Am einfachsten ein passendes Feld unten kopieren.
+             Ein neues Foto bekommt einen neuen Dateinamen, dann sehen auch
+             wiederkehrende Besucher sofort das neue Bild. -->
+        <div class="case-gallery__item case-gallery__item--wide reveal">
+          <div class="viz">
+            <canvas data-scene="crowd" data-seed="8" aria-hidden="true"></canvas>
+            <img width="2000" height="1333" src="../assets/projects/berlin-night-run/galerie-dsc5594.webp" alt="Berlin Night Run: meeting point under the bridge, the group gathers" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc5594">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img width="1080" height="1350" src="../assets/projects/berlin-night-run/galerie-dsc5412.webp" alt="Berlin Night Run: Malte gives the briefing with a megaphone before the start" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc5412">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img width="1080" height="1350" src="../assets/projects/berlin-night-run/galerie-dsc5624.webp" alt="Berlin Night Run: picking up the pace by the graffiti wall" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc5624">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall case-gallery__item--solo reveal">
+          <div class="viz">
+            <img width="1080" height="1350" src="../assets/projects/berlin-night-run/galerie-dsc5806.webp" alt="Berlin Night Run: stop outside a bar" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc5806">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="trails" data-seed="21" aria-hidden="true"></canvas>
+            <img width="1600" height="1067" src="../assets/projects/berlin-night-run/galerie-dsc5339.webp" alt="Berlin Night Run: three runners with Red Bull before the start" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc5339">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="eq" data-seed="5" aria-hidden="true"></canvas>
+            <img width="1600" height="1067" src="../assets/projects/berlin-night-run/galerie-dsc5687.webp" alt="Berlin Night Run: the Red Bull cargo bike with the DJ rides along" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc5687">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a> <span class="foto-credit__dj">· DJ <a href="https://www.instagram.com/ochser.wav/" target="_blank" rel="noopener">@ochser.wav</a></span></span>
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img width="1080" height="1350" src="../assets/projects/berlin-night-run/galerie-dsc6039.webp" alt="Berlin Night Run: runner with reflectors in the night" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc6039">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall reveal">
+          <div class="viz">
+            <img width="1080" height="1350" src="../assets/projects/berlin-night-run/galerie-dsc6841.webp" alt="Berlin Night Run: Malte with the HEJ Natural bars" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc6841">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--tall case-gallery__item--solo reveal">
+          <div class="viz">
+            <img width="1080" height="1350" src="../assets/projects/berlin-night-run/galerie-dsc6472.webp" alt="Berlin Night Run: afterparty with sunglasses" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc6472">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
+          </div>
+        </div>
+        <div class="case-gallery__item case-gallery__item--wide reveal">
+          <div class="viz">
+            <canvas data-scene="bokeh" data-seed="13" aria-hidden="true"></canvas>
+            <img width="2000" height="1333" src="../assets/projects/berlin-night-run/galerie-dsc6716.webp" alt="Berlin Night Run: group photo at the end of the night" loading="lazy" style="object-position: 50% 40%" onerror="this.remove()">
+            <span class="foto-credit" data-foto="dsc6716">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
+          </div>
+        </div>
+      </div>
+      <p class="case-gallery__more reveal"><a href="gallery.html" class="btn btn--ghost btn--arrow">More photos in the gallery</a></p>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow reveal">Your project</p>
+      <h2 data-split>Planning something that brings <span class="scribble" data-scribble="underline">people together?</span></h2>
+      <div class="cta-band__actions reveal">
+        <a href="contact.html" class="btn btn--large btn--beat">Start a project</a>
+        <a href="services.html" class="btn btn--large btn--ghost">Our services</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, brands and content&nbsp;– from the first idea to the final reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pages">
+        <span class="footer__label">Pages</span>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About us</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Focus">
+        <span class="footer__label">Focus</span>
+        <a href="event-agency.html">Event agency</a>
+        <a href="social-media-agency.html">Social media agency</a>
+        <a href="creator-events.html">Creator events</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Contact">
+        <span class="footer__label">Contact</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Legal">
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="../js/config.js?v=31"></script>
+  <script src="../js/visuals.js?v=31"></script>
+  <script src="../js/script.js?v=31"></script>
+  <script src="../js/assistent.js?v=31" defer></script>
+</body>
+</html>

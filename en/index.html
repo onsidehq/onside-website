@@ -66,12 +66,12 @@
     "founder": [
       {
         "@type": "Person",
-        "@id": "https://onsidehq.de/ueber-uns#julian",
+        "@id": "https://onsidehq.de/en/about#julian",
         "name": "Julian Seibt"
       },
       {
         "@type": "Person",
-        "@id": "https://onsidehq.de/ueber-uns#malte",
+        "@id": "https://onsidehq.de/en/about#malte",
         "name": "Malte Gerdes"
       }
     ],
@@ -227,7 +227,7 @@
 
   <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
   <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
-  <link rel="stylesheet" href="../css/styles.css?v=30" />
+  <link rel="stylesheet" href="../css/styles.css?v=31" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -270,9 +270,9 @@
     <nav class="nav__links" aria-label="Main navigation">
       <a href="#top" aria-current="page">Home</a>
       <a href="projects.html">Projects</a>
-      <a href="../galerie.html">Gallery</a>
+      <a href="gallery.html">Gallery</a>
       <a href="services.html">Services</a>
-      <a href="../ueber-uns.html">About us</a>
+      <a href="about.html">About us</a>
       <a href="#fragen">FAQ</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -295,9 +295,9 @@
     <nav class="menu-overlay__links" aria-label="Menu">
       <a href="#top" aria-current="page"><span class="menu-overlay__num">01</span>Home</a>
       <a href="projects.html"><span class="menu-overlay__num">02</span>Projects</a>
-      <a href="../galerie.html"><span class="menu-overlay__num">03</span>Gallery</a>
+      <a href="gallery.html"><span class="menu-overlay__num">03</span>Gallery</a>
       <a href="services.html"><span class="menu-overlay__num">04</span>Services</a>
-      <a href="../ueber-uns.html"><span class="menu-overlay__num">05</span>About us</a>
+      <a href="about.html"><span class="menu-overlay__num">05</span>About us</a>
       <a href="#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
       <a href="contact.html"><span class="menu-overlay__num">07</span>Contact</a>
     </nav>
@@ -336,7 +336,7 @@
         </p>
         <div class="hero__actions">
           <a href="#contact" class="btn btn--beat">Start a project</a>
-          <a href="../berlin-night-run.html" class="btn btn--ghost btn--arrow">See the Night Run</a>
+          <a href="berlin-night-run.html" class="btn btn--ghost btn--arrow">See the Night Run</a>
         </div>
       </div>
     </section>
@@ -352,7 +352,7 @@
              genau diesem Namen. Fehlt sie, laufen Lichtspuren durch die Nacht.
              object-position = Bildausschnitt: erste Zahl links/rechts, zweite
              oben/unten. "55% 30%" hält Kopf und Mütze des Läufers im Bild. -->
-        <a class="project__cover reveal" href="../berlin-night-run.html" aria-label="View project: Berlin Night Run">
+        <a class="project__cover reveal" href="berlin-night-run.html" aria-label="View project: Berlin Night Run">
           <div class="project__cover-bg viz">
             <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
             <picture>
@@ -371,7 +371,7 @@
           <p class="project__text reveal">
             The Berlin Night Run was where onside.hq started. Within a few weeks, an idea became a running event with a DJ, food and drinks, an afterparty and partners like Red&nbsp;Bull and HEJ&nbsp;Natural. Every step from concept to execution was in our hands&nbsp;– and we bring that same standard to every new project.
           </p>
-          <a href="../berlin-night-run.html" class="btn btn--ghost btn--arrow reveal">View project</a>
+          <a href="berlin-night-run.html" class="btn btn--ghost btn--arrow reveal">View project</a>
         </div>
 
         <dl class="project__facts reveal">
@@ -384,7 +384,7 @@
       <article class="project">
         <!-- Titelbild Dagen → assets/projects/dagen-yachtcharter/cover.webp (quer 3:2,
              Handy: hoch-cover.jpg). Fehlt es, läuft eine Animation. -->
-        <a class="project__cover reveal" href="../dagen-yachtcharter.html" aria-label="View project: Dagen Yachtcharter">
+        <a class="project__cover reveal" href="dagen-yachtcharter.html" aria-label="View project: Dagen Yachtcharter">
           <div class="project__cover-bg viz">
             <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
             <picture>
@@ -403,7 +403,7 @@
           <p class="project__text reveal">
             One week on board around Corfu: for Dagen Yachtcharter we produced 10&nbsp;reels and daily stories to make sailing appealing to a younger audience. The result: over 270,000&nbsp;views, on average 130 times more than before.
           </p>
-          <a href="../dagen-yachtcharter.html" class="btn btn--ghost btn--arrow reveal">View project</a>
+          <a href="dagen-yachtcharter.html" class="btn btn--ghost btn--arrow reveal">View project</a>
         </div>
 
         <dl class="project__facts reveal">
@@ -592,7 +592,7 @@
       </div>
 
       <div class="section-more reveal">
-        <a href="../ueber-uns.html" class="btn btn--ghost btn--arrow">Our story</a>
+        <a href="about.html" class="btn btn--ghost btn--arrow">Our story</a>
       </div>
     </section>
 
@@ -744,7 +744,7 @@
         <label class="consent field--full">
           <input type="checkbox" id="cf-consent" required>
           <span>
-            I agree that my details will be processed to handle my enquiry. More in the <a href="../datenschutz.html">privacy policy (German)</a>.
+            I agree that my details will be processed to handle my enquiry. More in the <a href="privacy.html">privacy policy</a>.
           </span>
         </label>
 
@@ -772,17 +772,17 @@
       <nav class="footer__nav" aria-label="Pages">
         <span class="footer__label">Pages</span>
         <a href="projects.html">Projects</a>
-        <a href="../galerie.html">Gallery</a>
+        <a href="gallery.html">Gallery</a>
         <a href="services.html">Services</a>
-        <a href="../ueber-uns.html">About us</a>
+        <a href="about.html">About us</a>
         <a href="#fragen">FAQ</a>
         <a href="contact.html">Contact</a>
       </nav>
       <nav class="footer__nav" aria-label="Focus">
         <span class="footer__label">Focus</span>
-        <a href="../eventagentur.html">Event agency</a>
-        <a href="../social-media-agentur.html">Social media agency</a>
-        <a href="../creator-events.html">Creator events</a>
+        <a href="event-agency.html">Event agency</a>
+        <a href="social-media-agency.html">Social media agency</a>
+        <a href="creator-events.html">Creator events</a>
       </nav>
       <nav class="footer__nav" aria-label="Contact">
         <span class="footer__label">Contact</span>
@@ -797,8 +797,8 @@
     <div class="footer__bottom">
       <span>© <span data-year></span> onside.hq</span>
       <nav class="footer__links" aria-label="Legal">
-        <a href="../impressum.html">Imprint</a>
-        <a href="../datenschutz.html">Privacy</a>
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
       </nav>
       <span>Potsdam · Innsbruck</span>
     </div>
@@ -808,9 +808,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="../js/config.js?v=30"></script>
-  <script src="../js/visuals.js?v=30"></script>
-  <script src="../js/script.js?v=30"></script>
-  <script src="../js/assistent.js?v=30" defer></script>
+  <script src="../js/config.js?v=31"></script>
+  <script src="../js/visuals.js?v=31"></script>
+  <script src="../js/script.js?v=31"></script>
+  <script src="../js/assistent.js?v=31" defer></script>
 </body>
 </html>

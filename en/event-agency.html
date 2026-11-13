@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Agency for Brand Events in Potsdam, Berlin &amp; Tyrol – onside.hq</title>
+  <meta name="description" content="Event agency from Potsdam and Innsbruck: we plan brand events, running and community events in Berlin, Potsdam and Tyrol, from the idea to the afterparty." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/en/event-agency" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/eventagentur" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/event-agency" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/eventagentur" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Event agency for brands – onside.hq" />
+  <meta property="og:description" content="Event agency from Potsdam and Innsbruck: we plan brand events, running and community events in Berlin, Potsdam and Tyrol, from the idea to the afterparty." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/en/event-agency" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen, Leistung und Fragen -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Start",
+            "item": "https://onsidehq.de/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://onsidehq.de/en/services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Event agency",
+            "item": "https://onsidehq.de/en/event-agency"
+          }
+        ]
+      },
+      {
+        "name": "Event management and event agency",
+        "serviceType": "Event agency",
+        "description": "Concept and delivery of brand events, running and community events: idea, schedule, venue, partners, programme and on-site content.",
+        "areaServed": [
+          "Potsdam",
+          "Berlin",
+          "Brandenburg",
+          "Innsbruck",
+          "Tyrol"
+        ],
+        "@type": "Service",
+        "provider": {
+          "@id": "https://onsidehq.de/en/#organisation"
+        },
+        "url": "https://onsidehq.de/en/event-agency"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does an event with you cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There is no fixed price list, because every event is different. After a short call you get a concrete quote. If you already know your budget, feel free to tell us right away."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much lead time does an event need?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "That depends on size, venue and permits. We put the Berlin Night Run together in a few weeks. The earlier you get in touch, the more room there is."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you also produce the content for the event?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Photos, reels and videos from the event are part of the package, so the night doesn’t end after a few hours but keeps going on your channels."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="../css/styles.css?v=31" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="leistungen">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – home">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="services.html" aria-current="page">Services</a>
+      <a href="about.html">About us</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Language">
+        <a class="lang-switch__item" href="../eventagentur.html" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a>
+        <span class="lang-switch__item is-active" lang="en" aria-current="true">EN</span>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
+    <a href="contact.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Start a project</span><span class="nav__cta-short">Contact</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menu">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projects.html"><span class="menu-overlay__num">02</span>Projects</a>
+      <a href="gallery.html"><span class="menu-overlay__num">03</span>Gallery</a>
+      <a href="services.html" aria-current="page"><span class="menu-overlay__num">04</span>Services</a>
+      <a href="about.html"><span class="menu-overlay__num">05</span>About us</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="contact.html"><span class="menu-overlay__num">07</span>Contact</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ EVENTAGENTUR ============
+         Eigene Seite für Google-Suchen wie "Eventagentur". Texte frei anpassen,
+         aber nichts versprechen, was wir nicht machen. -->
+    <section class="page-hero">
+      <div class="page-hero__text">
+        <p class="eyebrow intro"><a href="services.html">Services</a> · Event agency</p>
+        <h1 data-split>An event agency for brands people should <span class="scribble" data-scribble="underline">experience</span> first-hand.</h1>
+        <p class="page-hero__lead intro intro--2">
+          We plan events where your brand is not just on the banner but part of the experience. From Potsdam and Innsbruck, for Berlin, Brandenburg and Tyrol: from the first idea through partners and schedule to the afterparty and the content afterwards.
+        </p>
+        <nav class="chips intro intro--3" aria-label="Learn more">
+          <a href="#was">What we take care of</a>
+          <a href="#formate">Formats</a>
+          <a href="#beispiel">Example: Night Run</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="case-section" id="was">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">What we take care of</p>
+        <h2 data-split>One team for your whole event.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          It doesn’t start with the venue but with your brand: what does it stand for, who do you want to reach and what should people remember? From that we build a concept and deliver it from start to finish. You always talk directly to Malte and Julian.
+        </p>
+        <ul class="checklist reveal">
+          <li>Idea &amp; concept</li>
+          <li>Route, schedule &amp; timeline</li>
+          <li>Venue &amp; permits</li>
+          <li>Partners &amp; sponsors</li>
+          <li>Food, DJ &amp; programme</li>
+          <li>On-site content</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-section" id="formate">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Formats</p>
+        <h2 data-split>Events people talk about.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          We come from sport and are part of the audience many brands want to reach. That’s why we love building formats where people join in instead of watching.
+        </p>
+        <ul class="checklist reveal">
+          <li>Running and run club events</li>
+          <li>Community events &amp; afterparties</li>
+          <li>Brand activations with partners</li>
+          <li>Creator events &amp; content trips</li>
+          <li>Sports and outdoor events</li>
+          <li>Events with a social media package</li>
+        </ul>
+        <p class="reveal">
+          Creator events and content trips have their own page: <a href="creator-events.html">Organising creator events</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="case-section" id="beispiel">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Example</p>
+        <h2 data-split>The Berlin Night Run.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Our first own event: around 8&nbsp;kilometres through Berlin at night, across Kreuzberg and Neukölln. Start and afterparty at Ciao Ciao Bar, three stations at Myxa, Redrum Art Bar and Dietrich Bar, with a DJ on a cargo bike up front. Red Bull and HEJ Natural were part of it, and every partner had a role that matched their brand. Conceived and delivered in a few weeks.
+        </p>
+        <p class="reveal"><a href="berlin-night-run.html" class="btn btn--ghost btn--arrow">See the Night Run</a></p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Where we work</p>
+        <h2 data-split>Potsdam, Berlin, Innsbruck and Tyrol.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          We are based in Potsdam and Innsbruck. Berlin is right on our doorstep, and in Tyrol we are currently planning SNOWSIDE, a creator ski week. For the right project we will travel anywhere.
+        </p>
+      </div>
+    </section>
+
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Quick questions</p>
+        <h2 data-split>What you might still want to know.</h2>
+      </div>
+      <div class="case-section__body">
+        <details class="faq-mini reveal">
+          <summary>How much does an event with you cost?</summary>
+          <p>There is no fixed price list, because every event is different. After a short call you get a concrete quote. If you already know your budget, feel free to tell us right away.</p>
+        </details>
+        <details class="faq-mini reveal">
+          <summary>How much lead time does an event need?</summary>
+          <p>That depends on size, venue and permits. We put the Berlin Night Run together in a few weeks. The earlier you get in touch, the more room there is.</p>
+        </details>
+        <details class="faq-mini reveal">
+          <summary>Do you also produce the content for the event?</summary>
+          <p>Yes. Photos, reels and videos from the event are part of the package, so the night doesn’t end after a few hours but keeps going on your channels.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow reveal">Your project</p>
+      <h2 data-split>Planning an event?<br>Let’s <span class="scribble" data-scribble="underline">talk.</span></h2>
+      <div class="cta-band__actions reveal">
+        <a href="contact.html" class="btn btn--large btn--beat">Start a project</a>
+        <a href="projects.html" class="btn btn--large btn--ghost">See projects</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, brands and content&nbsp;– from the first idea to the final reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pages">
+        <span class="footer__label">Pages</span>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About us</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Focus">
+        <span class="footer__label">Focus</span>
+        <a href="event-agency.html">Event agency</a>
+        <a href="social-media-agency.html">Social media agency</a>
+        <a href="creator-events.html">Creator events</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Contact">
+        <span class="footer__label">Contact</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Legal">
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="../js/config.js?v=31"></script>
+  <script src="../js/visuals.js?v=31"></script>
+  <script src="../js/script.js?v=31"></script>
+  <script src="../js/assistent.js?v=31" defer></script>
+</body>
+</html>
