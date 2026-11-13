@@ -32,6 +32,8 @@
      1) Grundlagen
   --------------------------------------------------------------------- */
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Englische Seiten (unter /en/): Beschriftungen in den Animationen auf Englisch
+  const EN = (document.documentElement.lang || '').startsWith('en');
   const rootStyle = getComputedStyle(document.documentElement);
   const ACCENT = (rootStyle.getPropertyValue('--accent-rgb') || '63, 213, 255').trim();
   const CREAM = (rootStyle.getPropertyValue('--cream-rgb') || '247, 242, 232').trim();
@@ -497,13 +499,7 @@
       if (!running) paint(performance.now() / 1000);
       window.addEventListener('scroll', measureLevel, { passive: true });
 
-      window.addEventListener('pointermove', (e) => {
-        if (e.pointerType !== 'mouse') return;
-        pointer.x = e.clientX;
-        pointer.y = e.clientY;
-        pointer.active = true;
-      }, { passive: true });
-      document.documentElement.addEventListener('mouseleave', () => { pointer.active = false; });
+      // kein Aufhellen mehr um den Mauszeiger (Malte, 13.11.)
 
       // Klick oder Tippen: eine Welle genau von dieser Stelle
       if (SETTINGS.waves) window.addEventListener('pointerdown', (e) => {
@@ -1396,7 +1392,7 @@
 
       // die beiden Enden
       const arrive = clamp((v * 1.2 - 0.9) / 0.3, 0, 1) * clamp((1.2 - v * 1.2) / 0.2 + 1, 0, 1);
-      [[A, ACCENT, 'Du', reply], [B, CREAM, 'Wir', !reply]].forEach(([p, c, label, receiving]) => {
+      [[A, ACCENT, EN ? 'You' : 'Du', reply], [B, CREAM, EN ? 'Us' : 'Wir', !reply]].forEach(([p, c, label, receiving]) => {
         const hit = receiving ? Math.sin(clamp(arrive, 0, 1) * Math.PI) : 0;
         ctx.strokeStyle = rgba(c, 0.35 + 0.4 * hit);
         ctx.lineWidth = 1;
@@ -1732,7 +1728,7 @@
       if (off > 0) {
         ctx.textAlign = 'left';
         ctx.fillStyle = rgba(CREAM, 0.7 * off);
-        ctx.fillText(track('Abseits'), ax + ar + 8, ay);
+        ctx.fillText(track(EN ? 'Offside' : 'Abseits'), ax + ar + 8, ay);
       }
       const on = clamp((u - 2.5) / 0.4, 0, 1);
       if (on > 0) {
@@ -1750,8 +1746,8 @@
         let x = 14;
         ctx.textAlign = 'left';
         ctx.fillStyle = rgba(CREAM, 0.35 + 0.35 * appear);
-        ctx.fillText(track('Schon onside'), x, y);
-        x += ctx.measureText(track('Schon onside')).width + 12 + pr;
+        ctx.fillText(track(EN ? 'Already onside' : 'Schon onside'), x, y);
+        x += ctx.measureText(track(EN ? 'Already onside' : 'Schon onside')).width + 12 + pr;
         projects.forEach((im, i) => {
           roundPic(ctx, im, x, y, pr, rgba(ACCENT, 0.25 + 0.6 * appear), 0.25 + 0.75 * appear);
           if (projNames[i] && !small) {

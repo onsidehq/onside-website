@@ -7,6 +7,9 @@
   <meta name="description" content="Projekte von onside.hq: Berlin Night Run mit DJ und Partnern wie Red Bull, Reels für Dagen Yachtcharter auf Korfu und SNOWSIDE, die Creator Ski Week in Tirol." />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://onsidehq.de/projekte" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/projekte" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/projects" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/projekte" />
 
   <!-- Favicon / Browser-Tab-Icon -->
   <link rel="icon" href="favicon.ico" />
@@ -29,7 +32,31 @@
   <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=26" />
+  <!-- Für Suchmaschinen: Brotkrumen-Pfad -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Start",
+        "item": "https://onsidehq.de/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projekte",
+        "item": "https://onsidehq.de/projekte"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="css/styles.css?v=31" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -82,6 +109,15 @@
     </nav>
 
 
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Sprache">
+        <span class="lang-switch__item is-active" lang="de" aria-current="true">DE</span>
+        <a class="lang-switch__item" href="en/projects" hreflang="en" lang="en" aria-label="English version">EN</a>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Helles Design" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
     <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
   </header>
 
@@ -126,8 +162,8 @@
           <!-- Foto: 01.jpg (Handy: hoch-01.jpg). object-position = Bildausschnitt,
                "55% 45%" hält die Gruppe in der Mitte im Bild. -->
           <picture>
-            <source media="(max-width: 720px)" srcset="assets/projects/berlin-night-run/hoch-01.jpg">
-            <img src="assets/projects/berlin-night-run/01.jpg" alt="Berlin Night Run: die Laufgruppe unterwegs" fetchpriority="high" style="object-position: 55% 45%" onerror="onsideBildFehlt(this)">
+            <source media="(max-width: 720px)" srcset="assets/projects/berlin-night-run/hoch-01.webp">
+            <img width="2400" height="1600" src="assets/projects/berlin-night-run/01.webp" alt="Berlin Night Run: die Laufgruppe unterwegs" fetchpriority="high" style="object-position: 55% 45%" onerror="onsideBildFehlt(this)">
           </picture>
         </div>
         <div class="project-card__body">
@@ -145,8 +181,8 @@
       <a class="project-card reveal" href="dagen-yachtcharter.html" data-spot>
         <div class="project-card__media viz">
           <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
-          <!-- Foto: assets/projects/dagen-yachtcharter/01.jpg (quer 3:2) -->
-          <img src="assets/projects/dagen-yachtcharter/01.jpg" alt="Dagen Yachtcharter: Sprung vom Seil ins Meer neben dem Segelboot" loading="lazy" onerror="onsideBildFehlt(this)">
+          <!-- Foto: assets/projects/dagen-yachtcharter/01.webp (quer 3:2) -->
+          <img width="1536" height="1024" src="assets/projects/dagen-yachtcharter/01.webp" alt="Dagen Yachtcharter: Sprung vom Seil ins Meer neben dem Segelboot" loading="lazy" onerror="onsideBildFehlt(this)">
         </div>
         <div class="project-card__body">
           <p class="eyebrow">02 · Korfu · 2026</p>
@@ -163,7 +199,7 @@
       <a class="project-card reveal" href="snowside.html" data-spot>
         <div class="project-card__media viz">
           <canvas data-scene="bokeh" data-seed="12" aria-hidden="true"></canvas>
-          <img src="assets/projects/snowside/konzept-lift.jpg" alt="Konzeptbild: Freunde im Sessellift unter Wolkenhimmel" loading="lazy" onerror="onsideBildFehlt(this)">
+          <img width="960" height="640" src="assets/projects/snowside/konzept-lift.webp" alt="Konzeptbild: Freunde im Sessellift unter Wolkenhimmel" loading="lazy" onerror="onsideBildFehlt(this)">
           <span class="konzept-badge">Konzeptbild</span>
         </div>
         <div class="project-card__body">
@@ -178,9 +214,6 @@
       </a>
 
       <a class="project-card project-card--next reveal" href="kontakt.html" data-spot>
-        <div class="project-card__media viz">
-          <canvas data-scene="focus" data-seed="9" aria-hidden="true"></canvas>
-        </div>
         <div class="project-card__body">
           <p class="eyebrow">04 · Euer Projekt</p>
           <h2>Das nächste Projekt könnte eures sein.</h2>
@@ -207,6 +240,12 @@
         <a href="index.html#fragen">FAQ</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
+      <nav class="footer__nav" aria-label="Schwerpunkte">
+        <span class="footer__label">Schwerpunkte</span>
+        <a href="eventagentur.html">Eventagentur</a>
+        <a href="social-media-agentur.html">Social-Media-Agentur</a>
+        <a href="creator-events.html">Creator-Events</a>
+      </nav>
       <nav class="footer__nav" aria-label="Kontakt">
         <span class="footer__label">Kontakt</span>
         <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -231,9 +270,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=26"></script>
-  <script src="js/visuals.js?v=26"></script>
-  <script src="js/script.js?v=26"></script>
-  <script src="js/assistent.js?v=26" defer></script>
+  <script src="js/config.js?v=31"></script>
+  <script src="js/visuals.js?v=31"></script>
+  <script src="js/script.js?v=31"></script>
+  <script src="js/assistent.js?v=31" defer></script>
 </body>
 </html>

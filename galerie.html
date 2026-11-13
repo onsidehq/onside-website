@@ -7,6 +7,9 @@
   <meta name="description" content="Fotos vom Berlin Night Run mit DJ und Afterparty und vom Segeltörn mit Dagen Yachtcharter vor Korfu: So sehen Events und Content von onside.hq aus." />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://onsidehq.de/galerie" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/galerie" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/gallery" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/galerie" />
 
   <!-- Favicon / Browser-Tab-Icon -->
   <link rel="icon" href="favicon.ico" />
@@ -158,7 +161,9 @@
 }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=26" />
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="css/styles.css?v=31" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -211,6 +216,15 @@
     </nav>
 
 
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Sprache">
+        <span class="lang-switch__item is-active" lang="de" aria-current="true">DE</span>
+        <a class="lang-switch__item" href="en/gallery.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Helles Design" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
     <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
   </header>
 
@@ -258,98 +272,98 @@
 
       <div class="gallery__grid">
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc6716.jpg" data-lightbox aria-label="Foto groß ansehen: Gruppenfoto am Ende der Nacht">
-            <img src="assets/projects/berlin-night-run/galerie-dsc6716.jpg" alt="Berlin Night Run: Gruppenfoto der ganzen Crowd am Ende der Nacht" width="2000" height="1333" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc6716.webp" data-lightbox aria-label="Foto groß ansehen: Gruppenfoto am Ende der Nacht">
+            <img src="assets/projects/berlin-night-run/galerie-dsc6716.webp" alt="Berlin Night Run: Gruppenfoto der ganzen Crowd am Ende der Nacht" width="2000" height="1333" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Gruppenfoto am Ende der Nacht</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/start-hoch-dsc5433.jpg" data-lightbox aria-label="Foto groß ansehen: Warm-up vor dem Start">
-            <img src="assets/projects/berlin-night-run/start-hoch-dsc5433.jpg" alt="Berlin Night Run: Läufer springt beim Warm-up vor bunter Hausfassade" width="1080" height="1350" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/start-hoch-dsc5433.webp" data-lightbox aria-label="Foto groß ansehen: Warm-up vor dem Start">
+            <img src="assets/projects/berlin-night-run/start-hoch-dsc5433.webp" alt="Berlin Night Run: Läufer springt beim Warm-up vor bunter Hausfassade" width="1080" height="1350" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Warm-up vor dem Start</figcaption>
         </figure>
         <figure class="gallery__item" data-project="dg">
-          <a class="gallery__link" href="assets/projects/dagen-yachtcharter/galerie-abendlicht.jpg" data-lightbox aria-label="Foto groß ansehen: Abendlicht vor Korfu">
-            <img src="assets/projects/dagen-yachtcharter/galerie-abendlicht.jpg" alt="Dagen Yachtcharter: Segelboot im Abendlicht vor Korfu" width="1536" height="1024" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/dagen-yachtcharter/galerie-abendlicht.webp" data-lightbox aria-label="Foto groß ansehen: Abendlicht vor Korfu">
+            <img src="assets/projects/dagen-yachtcharter/galerie-abendlicht.webp" alt="Dagen Yachtcharter: Segelboot im Abendlicht vor Korfu" width="1536" height="1024" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="dagen-yachtcharter.html">Dagen Yachtcharter</a> · Abendlicht vor Korfu</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc5624.jpg" data-lightbox aria-label="Foto groß ansehen: Tempo an der Graffitiwand">
-            <img src="assets/projects/berlin-night-run/galerie-dsc5624.jpg" alt="Berlin Night Run: Läufer mit Tempo an einer Graffitiwand" width="1080" height="1350" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc5624.webp" data-lightbox aria-label="Foto groß ansehen: Tempo an der Graffitiwand">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5624.webp" alt="Berlin Night Run: Läufer mit Tempo an einer Graffitiwand" width="1080" height="1350" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Tempo an der Graffitiwand</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/start-quer-ld5222.jpg" data-lightbox aria-label="Foto groß ansehen: Rein in die Nacht">
-            <img src="assets/projects/berlin-night-run/start-quer-ld5222.jpg" alt="Berlin Night Run: Läufer im orangen Shirt jubelt in der Nacht" width="2000" height="1333" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/start-quer-ld5222.webp" data-lightbox aria-label="Foto groß ansehen: Rein in die Nacht">
+            <img src="assets/projects/berlin-night-run/start-quer-ld5222.webp" alt="Berlin Night Run: Läufer im orangen Shirt jubelt in der Nacht" width="2000" height="1333" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Rein in die Nacht</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc5339.jpg" data-lightbox aria-label="Foto groß ansehen: Red Bull vor dem Start">
-            <img src="assets/projects/berlin-night-run/galerie-dsc5339.jpg" alt="Berlin Night Run: drei Läufer trinken Red Bull vor dem Start" width="1600" height="1067" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc5339.webp" data-lightbox aria-label="Foto groß ansehen: Red Bull vor dem Start">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5339.webp" alt="Berlin Night Run: drei Läufer trinken Red Bull vor dem Start" width="1600" height="1067" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Red Bull vor dem Start</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/03.jpg" data-lightbox aria-label="Foto groß ansehen: Der DJ legt auf">
-            <img src="assets/projects/berlin-night-run/03.jpg" alt="Berlin Night Run: DJ mit Kopfhörern legt am Startpunkt auf" width="2000" height="1333" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/03.webp" data-lightbox aria-label="Foto groß ansehen: Der DJ legt auf">
+            <img src="assets/projects/berlin-night-run/03.webp" alt="Berlin Night Run: DJ mit Kopfhörern legt am Startpunkt auf" width="2000" height="1333" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Der DJ legt auf</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-ld4166.jpg" data-lightbox aria-label="Foto groß ansehen: Blaue Stunde">
-            <img src="assets/projects/berlin-night-run/galerie-ld4166.jpg" alt="Berlin Night Run: Läufer zur blauen Stunde auf der Straße" width="1600" height="1067" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-ld4166.webp" data-lightbox aria-label="Foto groß ansehen: Blaue Stunde">
+            <img src="assets/projects/berlin-night-run/galerie-ld4166.webp" alt="Berlin Night Run: Läufer zur blauen Stunde auf der Straße" width="1600" height="1067" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Blaue Stunde</figcaption>
         </figure>
         <figure class="gallery__item" data-project="dg">
-          <a class="gallery__link" href="assets/projects/dagen-yachtcharter/galerie-haengematte.jpg" data-lightbox aria-label="Foto groß ansehen: Hängematte über dem Meer">
-            <img src="assets/projects/dagen-yachtcharter/galerie-haengematte.jpg" alt="Dagen Yachtcharter: Hängematte über dem Meer am Bug des Segelboots" width="1536" height="1024" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/dagen-yachtcharter/galerie-haengematte.webp" data-lightbox aria-label="Foto groß ansehen: Hängematte über dem Meer">
+            <img src="assets/projects/dagen-yachtcharter/galerie-haengematte.webp" alt="Dagen Yachtcharter: Hängematte über dem Meer am Bug des Segelboots" width="1536" height="1024" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="dagen-yachtcharter.html">Dagen Yachtcharter</a> · Hängematte über dem Meer</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc6472.jpg" data-lightbox aria-label="Foto groß ansehen: Afterparty">
-            <img src="assets/projects/berlin-night-run/galerie-dsc6472.jpg" alt="Berlin Night Run: Afterparty mit Sonnenbrillen vor der Bar" width="1080" height="1350" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc6472.webp" data-lightbox aria-label="Foto groß ansehen: Afterparty">
+            <img src="assets/projects/berlin-night-run/galerie-dsc6472.webp" alt="Berlin Night Run: Afterparty mit Sonnenbrillen vor der Bar" width="1080" height="1350" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Afterparty</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/start-quer-ld3717.jpg" data-lightbox aria-label="Foto groß ansehen: Malte gibt den Takt vor">
-            <img src="assets/projects/berlin-night-run/start-quer-ld3717.jpg" alt="Berlin Night Run: Malte fährt mit Megafon auf dem Fahrrad vorneweg" width="2000" height="1333" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/start-quer-ld3717.webp" data-lightbox aria-label="Foto groß ansehen: Malte gibt den Takt vor">
+            <img src="assets/projects/berlin-night-run/start-quer-ld3717.webp" alt="Berlin Night Run: Malte fährt mit Megafon auf dem Fahrrad vorneweg" width="2000" height="1333" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Malte gibt den Takt vor</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc5687.jpg" data-lightbox aria-label="Foto groß ansehen: Lastenrad mit DJ">
-            <img src="assets/projects/berlin-night-run/galerie-dsc5687.jpg" alt="Berlin Night Run: das Red-Bull-Lastenrad mit DJ fährt mit" width="1600" height="1067" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc5687.webp" data-lightbox aria-label="Foto groß ansehen: Lastenrad mit DJ">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5687.webp" alt="Berlin Night Run: das Red-Bull-Lastenrad mit DJ fährt mit" width="1600" height="1067" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Lastenrad mit DJ</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc6039.jpg" data-lightbox aria-label="Foto groß ansehen: Reflektoren an">
-            <img src="assets/projects/berlin-night-run/galerie-dsc6039.jpg" alt="Berlin Night Run: Läuferin mit Reflektoren in der Nacht" width="1080" height="1350" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc6039.webp" data-lightbox aria-label="Foto groß ansehen: Reflektoren an">
+            <img src="assets/projects/berlin-night-run/galerie-dsc6039.webp" alt="Berlin Night Run: Läuferin mit Reflektoren in der Nacht" width="1080" height="1350" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Reflektoren an</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/start-hoch-dsc5534.jpg" data-lightbox aria-label="Foto groß ansehen: Volle Energie">
-            <img src="assets/projects/berlin-night-run/start-hoch-dsc5534.jpg" alt="Berlin Night Run: Läufer in gelben Schuhen im Kiez" width="1080" height="1350" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/start-hoch-dsc5534.webp" data-lightbox aria-label="Foto groß ansehen: Volle Energie">
+            <img src="assets/projects/berlin-night-run/start-hoch-dsc5534.webp" alt="Berlin Night Run: Läufer in gelben Schuhen im Kiez" width="1080" height="1350" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Volle Energie</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-11.jpg" data-lightbox aria-label="Foto groß ansehen: Briefing vor dem Start">
-            <img src="assets/projects/berlin-night-run/galerie-11.jpg" alt="Berlin Night Run: Briefing mit Megafon vor der Gruppe" width="1600" height="1067" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-11.webp" data-lightbox aria-label="Foto groß ansehen: Briefing vor dem Start">
+            <img src="assets/projects/berlin-night-run/galerie-11.webp" alt="Berlin Night Run: Briefing mit Megafon vor der Gruppe" width="1600" height="1067" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Briefing vor dem Start</figcaption>
         </figure>
         <figure class="gallery__item" data-project="nr">
-          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc5594.jpg" data-lightbox aria-label="Foto groß ansehen: Treffpunkt unter der Brücke">
-            <img src="assets/projects/berlin-night-run/galerie-dsc5594.jpg" alt="Berlin Night Run: Treffpunkt unter der Brücke, die Gruppe sammelt sich" width="2000" height="1333" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
+          <a class="gallery__link" href="assets/projects/berlin-night-run/galerie-dsc5594.webp" data-lightbox aria-label="Foto groß ansehen: Treffpunkt unter der Brücke">
+            <img src="assets/projects/berlin-night-run/galerie-dsc5594.webp" alt="Berlin Night Run: Treffpunkt unter der Brücke, die Gruppe sammelt sich" width="2000" height="1333" loading="lazy" decoding="async" onerror="this.closest('figure').remove()">
           </a>
           <figcaption><a href="berlin-night-run.html">Berlin Night Run</a> · Treffpunkt unter der Brücke</figcaption>
         </figure>
@@ -383,6 +397,12 @@
         <a href="ueber-uns.html">Wer sind wir?</a>
         <a href="index.html#fragen">FAQ</a>
         <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Schwerpunkte">
+        <span class="footer__label">Schwerpunkte</span>
+        <a href="eventagentur.html">Eventagentur</a>
+        <a href="social-media-agentur.html">Social-Media-Agentur</a>
+        <a href="creator-events.html">Creator-Events</a>
       </nav>
       <nav class="footer__nav" aria-label="Kontakt">
         <span class="footer__label">Kontakt</span>
@@ -419,9 +439,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=26"></script>
-  <script src="js/visuals.js?v=26"></script>
-  <script src="js/script.js?v=26"></script>
-  <script src="js/assistent.js?v=26" defer></script>
+  <script src="js/config.js?v=31"></script>
+  <script src="js/visuals.js?v=31"></script>
+  <script src="js/script.js?v=31"></script>
+  <script src="js/assistent.js?v=31" defer></script>
 </body>
 </html>

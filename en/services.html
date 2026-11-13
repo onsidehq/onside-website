@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services: Events, Brand Strategy &amp; Social Media – onside.hq</title>
+  <meta name="description" content="Event management, marketing &amp; brand strategy and social media from one team: how onside.hq plans and runs projects – from the idea to the content." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/en/services" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/leistungen" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/services" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/leistungen" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Services – onside.hq" />
+  <meta property="og:description" content="Event management, marketing &amp; brand strategy and social media from one team: how onside.hq plans and runs projects – from the idea to the content." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/en/services" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen und die drei Leistungen -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Start",
+            "item": "https://onsidehq.de/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://onsidehq.de/en/services"
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://onsidehq.de/en/services#events",
+        "name": "Event management",
+        "serviceType": "Event agency",
+        "description": "Events from idea to execution: concept, schedule, venue, partners and on-site organisation, built around your brand’s identity.",
+        "provider": {
+          "@id": "https://onsidehq.de/en/#organisation"
+        },
+        "areaServed": [
+          "Potsdam",
+          "Berlin",
+          "Innsbruck",
+          "Tyrol"
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://onsidehq.de/en/services#marke",
+        "name": "Marketing & brand strategy",
+        "serviceType": "Brand strategy and brand activation",
+        "description": "Positioning, brand identity, campaigns, activations and sponsorship: we get to know your brand first and then bring it to life.",
+        "provider": {
+          "@id": "https://onsidehq.de/en/#organisation"
+        },
+        "areaServed": [
+          "Potsdam",
+          "Berlin",
+          "Innsbruck",
+          "Tyrol"
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://onsidehq.de/en/services#social",
+        "name": "Social media & content",
+        "serviceType": "Social media agency and content production",
+        "description": "Photos, videos, reels, editing and channel management: content that speaks your language and turns reach into community.",
+        "provider": {
+          "@id": "https://onsidehq.de/en/#organisation"
+        },
+        "areaServed": [
+          "Potsdam",
+          "Berlin",
+          "Innsbruck",
+          "Tyrol"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="../css/styles.css?v=31" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="leistungen">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – home">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="services.html" aria-current="page">Services</a>
+      <a href="about.html">About us</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Language">
+        <a class="lang-switch__item" href="../leistungen.html" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a>
+        <span class="lang-switch__item is-active" lang="en" aria-current="true">EN</span>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
+    <a href="contact.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Start a project</span><span class="nav__cta-short">Contact</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menu">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projects.html"><span class="menu-overlay__num">02</span>Projects</a>
+      <a href="gallery.html"><span class="menu-overlay__num">03</span>Gallery</a>
+      <a href="services.html" aria-current="page"><span class="menu-overlay__num">04</span>Services</a>
+      <a href="about.html"><span class="menu-overlay__num">05</span>About us</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="contact.html"><span class="menu-overlay__num">07</span>Contact</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ LEISTUNGEN ============ -->
+    <section class="page-hero">
+      <div class="page-hero__text">
+        <p class="eyebrow intro">Services</p>
+        <h1 data-split>Three services. One <span class="scribble" data-scribble="underline">signature.</span></h1>
+        <p class="page-hero__lead intro intro--2">
+          For us, event, brand and content belong together: the event creates the moment, the brand gives it direction, the content carries it further. Each service works on its own&nbsp;– but all three together are strongest. And it always starts with your brand: we get to know your goals and your audience before we plan anything.
+        </p>
+        <nav class="chips intro intro--3" aria-label="Jump to services">
+          <a href="#events">Event management</a>
+          <a href="#marke">Marketing &amp; brand strategy</a>
+          <a href="#social">Social media</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Jede Leistung ist ein Block aus Bild + Text. Die Bilder sind kleine,
+         gebaute "Arbeitsproben" (Stil in css/styles.css bei .vg). Die Listen
+         ("Was dazugehört") lassen sich frei ergänzen oder kürzen. -->
+    <section class="service-detail" id="events">
+      <div class="service-detail__viz vg reveal" aria-hidden="true">
+        <img width="1000" height="625" class="vg-bg" src="../assets/leistungen/leistung-event.webp" alt="" loading="lazy">
+            <div class="vg-tile vg-plan">
+          <div class="vg-plan__head"><span class="vg-label">Run sheet</span><span class="vg-live">Live</span></div>
+          <ol class="vg-steps">
+            <li><span class="vg-dot"></span><span class="vg-what">Idea &amp; concept</span><span class="vg-when">T&minus;6 weeks</span></li>
+            <li><span class="vg-dot"></span><span class="vg-what">Venue &amp; partners</span><span class="vg-when">T&minus;3 weeks</span></li>
+            <li><span class="vg-dot"></span><span class="vg-what">Schedule &amp; crew</span><span class="vg-when">T&minus;1 week</span></li>
+            <li class="is-now"><span class="vg-dot"></span><span class="vg-what">Event</span><span class="vg-when">Today</span></li>
+          </ol>
+        </div>
+      </div>
+      <div class="service-detail__text">
+        <span class="service-detail__number reveal">01</span>
+        <h2 data-split>Event management</h2>
+        <p class="reveal">
+          We create events where your brand is not just on the banner but part of the experience. From the first idea to execution: concept, planning, partner management and the entire organisation.
+        </p>
+        <ul class="checklist reveal">
+          <li>Idea &amp; concept</li>
+          <li>Planning &amp; schedule</li>
+          <li>Venue &amp; logistics</li>
+          <li>Partners &amp; sponsors</li>
+          <li>Participant management</li>
+          <li>On-site execution</li>
+        </ul>
+        <p class="service-detail__more"><a href="event-agency.html">More about our event agency →</a> · <a href="creator-events.html">Creator events →</a></p>
+      </div>
+    </section>
+
+    <section class="service-detail service-detail--flip" id="marke">
+      <div class="service-detail__viz vg reveal" aria-hidden="true">
+        <div class="vg-brand">
+          <div class="vg-tile vg-type vg-photo"><img src="../assets/leistungen/leistung-bildwelt.webp" alt="" loading="lazy"><span class="vg-label">Visual style</span></div>
+          <div class="vg-tile vg-swatches vg-mood"><span class="vg-label">Moodboard</span><img src="../assets/leistungen/leistung-moodboard.webp" alt="" loading="lazy"></div>
+          <div class="vg-tile vg-pos"><span class="vg-label">Positioning</span><ul><li>For whom?</li><li>Why you?</li><li>How do you sound?</li></ul></div>
+        </div>
+      </div>
+      <div class="service-detail__text">
+        <span class="service-detail__number reveal">02</span>
+        <h2 data-split>Marketing&nbsp;&amp; brand strategy</h2>
+        <p class="reveal">
+          Before we plan anything, we get to know your brand: what you stand for, who you want to reach and what should stick. From that we develop strategies, brand identities and concepts that are relevant&nbsp;– not just visible.
+        </p>
+        <ul class="checklist reveal">
+          <li>Positioning</li>
+          <li>Brand identity</li>
+          <li>Campaign &amp; activation concepts</li>
+          <li>Partnerships &amp; sponsorship</li>
+          <li>Communication for Gen&nbsp;Z</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="service-detail" id="social">
+      <div class="service-detail__viz vg reveal" aria-hidden="true">
+        <div class="vg-social">
+          <div class="vg-phone">
+            <div class="vg-reel">
+                  <img width="400" height="822" class="vg-reel__img" src="../assets/leistungen/leistung-reel.webp" alt="" loading="lazy">
+              <div class="vg-bars"><i></i><i></i><i></i></div>
+              <span class="vg-play"></span>
+              <div class="vg-actions"><i></i><i></i><i></i></div>
+              <div class="vg-caption"><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="vg-tile vg-cal">
+            <span class="vg-label">Content calendar</span>
+            <div class="vg-days"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+            <div class="vg-grid"><i class="on"></i><i></i><i class="soft"></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="soft"></i><i class="on"></i><i></i><i class="soft"></i><i class="on today"></i><i></i><i class="on"></i><i></i><i class="soft"></i><i class="on"></i><i></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="service-detail__text">
+        <span class="service-detail__number reveal">03</span>
+        <h2 data-split>Social media</h2>
+        <p class="reveal">
+          An event only becomes a story when people share it. We produce content in your voice and your look, manage channels and turn reach into a real community.
+        </p>
+        <ul class="checklist reveal">
+          <li>Content production: photo, video, reels</li>
+          <li>Video editing</li>
+          <li>Channel management</li>
+          <li>Strategy &amp; content calendar</li>
+          <li>Community building</li>
+          <li>Event coverage</li>
+        </ul>
+        <p class="service-detail__more"><a href="social-media-agency.html">More about our social media agency →</a></p>
+      </div>
+    </section>
+
+    <!-- ============ ABLAUF ============ -->
+    <section class="process">
+      <p class="eyebrow reveal">How it works</p>
+      <h2 data-split>Four steps to the result.</h2>
+
+      <ol class="process__steps">
+        <li class="process__step reveal">
+          <span class="process__num">01</span>
+          <h3>Getting to know you</h3>
+          <p>We listen: what does your brand stand for, who do you want to reach and what should people remember? Only once we understand that do we think about ideas.</p>
+        </li>
+        <li class="process__step reveal">
+          <span class="process__num">02</span>
+          <h3>Concept</h3>
+          <p>We come back with an idea that only fits you and brings your brand identity to life&nbsp;– with schedule, budget and timeline.</p>
+        </li>
+        <li class="process__step reveal">
+          <span class="process__num">03</span>
+          <h3>Execution</h3>
+          <p>We organise, produce and keep all the threads together. You talk to us directly&nbsp;– no detours.</p>
+        </li>
+        <li class="process__step reveal">
+          <span class="process__num">04</span>
+          <h3>Keep the story going</h3>
+          <p>After the project, the story continues: content, evaluation and the question of what comes next.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow reveal">Your project</p>
+      <h2 data-split>What fits you?<br>Let’s find <span class="scribble" data-scribble="underline">out.</span></h2>
+      <div class="cta-band__actions reveal">
+        <a href="contact.html" class="btn btn--large btn--beat">Start a project</a>
+        <a href="projects.html" class="btn btn--large btn--ghost">See projects</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, brands and content&nbsp;– from the first idea to the final reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pages">
+        <span class="footer__label">Pages</span>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About us</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Focus">
+        <span class="footer__label">Focus</span>
+        <a href="event-agency.html">Event agency</a>
+        <a href="social-media-agency.html">Social media agency</a>
+        <a href="creator-events.html">Creator events</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Contact">
+        <span class="footer__label">Contact</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Legal">
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="../js/config.js?v=31"></script>
+  <script src="../js/visuals.js?v=31"></script>
+  <script src="../js/script.js?v=31"></script>
+  <script src="../js/assistent.js?v=31" defer></script>
+</body>
+</html>

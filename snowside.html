@@ -7,6 +7,9 @@
   <meta name="description" content="SNOWSIDE, unsere Creator Ski Week in Tirol: 8–10 Creator, ein Chalet, vier Skitage und viel Content. Jetzt als Partner oder Creator bewerben." />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://onsidehq.de/snowside" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/snowside" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/snowside" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/snowside" />
 
   <!-- Favicon / Browser-Tab-Icon -->
   <link rel="icon" href="favicon.ico" />
@@ -59,7 +62,9 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=26" />
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="css/styles.css?v=31" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -112,6 +117,15 @@
     </nav>
 
 
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Sprache">
+        <span class="lang-switch__item is-active" lang="de" aria-current="true">DE</span>
+        <a class="lang-switch__item" href="en/snowside" hreflang="en" lang="en" aria-label="English version">EN</a>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Helles Design" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
     <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
   </header>
 
@@ -141,8 +155,8 @@
       <div class="case-hero__media viz">
         <canvas data-scene="bokeh" data-seed="12" aria-hidden="true"></canvas>
         <picture>
-          <source media="(max-width: 720px)" srcset="assets/projects/snowside/hoch-konzept-drei-piste.jpg">
-          <img src="assets/projects/snowside/konzept-drei-piste.jpg" alt="Konzeptbild: drei Freunde mit Snowboards auf dem Weg zur Piste in der Wintersonne" fetchpriority="high" onerror="onsideBildFehlt(this)">
+          <source media="(max-width: 720px)" srcset="assets/projects/snowside/hoch-konzept-drei-piste.webp">
+          <img width="1600" height="1067" src="assets/projects/snowside/konzept-drei-piste.webp" alt="Konzeptbild: drei Freunde mit Snowboards auf dem Weg zur Piste in der Wintersonne" fetchpriority="high" onerror="onsideBildFehlt(this)">
         </picture>
         <span class="konzept-badge">Konzeptbild</span>
       </div>
@@ -190,7 +204,7 @@
         <article class="snow-week__item reveal">
           <div class="snow-week__media viz">
             <canvas data-scene="bokeh" data-seed="3" aria-hidden="true"></canvas>
-            <img src="assets/projects/snowside/konzept-freestyle.jpg" alt="Konzeptbild: Freestyle-Skifahrer springt vor blauem Himmel" loading="lazy" onerror="this.remove()">
+            <img width="960" height="1200" src="assets/projects/snowside/konzept-freestyle.webp" alt="Konzeptbild: Freestyle-Skifahrer springt vor blauem Himmel" loading="lazy" onerror="this.remove()">
             <span class="konzept-badge">Konzeptbild</span>
           </div>
           <p class="eyebrow">01 · Ski &amp; Content</p>
@@ -200,7 +214,7 @@
         <article class="snow-week__item reveal">
           <div class="snow-week__media viz">
             <canvas data-scene="rings" data-seed="5" aria-hidden="true"></canvas>
-            <img src="assets/projects/snowside/konzept-spielplatz.jpg" alt="Konzeptbild: Skifahrerin liegt lachend nach einem Sturz im Tiefschnee" loading="lazy" onerror="this.remove()">
+            <img width="960" height="1200" src="assets/projects/snowside/konzept-spielplatz.webp" alt="Konzeptbild: Skifahrerin liegt lachend nach einem Sturz im Tiefschnee" loading="lazy" onerror="this.remove()">
             <span class="konzept-badge">Konzeptbild</span>
           </div>
           <p class="eyebrow">02 · Wild Activities</p>
@@ -210,7 +224,7 @@
         <article class="snow-week__item reveal">
           <div class="snow-week__media viz">
             <canvas data-scene="bokeh" data-seed="8" aria-hidden="true"></canvas>
-            <img src="assets/projects/snowside/konzept-picknick.jpg" alt="Konzeptbild: gedeckter Tisch mitten im Schnee in den Bergen" loading="lazy" onerror="this.remove()">
+            <img width="960" height="1200" src="assets/projects/snowside/konzept-picknick.webp" alt="Konzeptbild: gedeckter Tisch mitten im Schnee in den Bergen" loading="lazy" onerror="this.remove()">
             <span class="konzept-badge">Konzeptbild</span>
           </div>
           <p class="eyebrow">03 · Food Moments</p>
@@ -220,7 +234,7 @@
         <article class="snow-week__item reveal">
           <div class="snow-week__media viz">
             <canvas data-scene="eq" data-seed="4" aria-hidden="true"></canvas>
-            <img src="assets/projects/snowside/konzept-abend.jpg" alt="Konzeptbild: zwei Freundinnen in bunten Retro-Skianzügen beim Après am Stehtisch" loading="lazy" onerror="this.remove()">
+            <img width="960" height="1200" src="assets/projects/snowside/konzept-abend.webp" alt="Konzeptbild: zwei Freundinnen in bunten Retro-Skianzügen beim Après am Stehtisch" loading="lazy" onerror="this.remove()">
             <span class="konzept-badge">Konzeptbild</span>
           </div>
           <p class="eyebrow">04 · Après &amp; Abend</p>
@@ -251,14 +265,14 @@
         <div class="case-gallery__item reveal">
           <div class="viz">
             <canvas data-scene="bokeh" data-seed="14" aria-hidden="true"></canvas>
-            <img src="assets/projects/snowside/konzept-dinner.jpg" alt="Konzeptbild: Freunde beim gemeinsamen Abendessen am großen Holztisch" loading="lazy" onerror="this.remove()">
+            <img width="1200" height="800" src="assets/projects/snowside/konzept-dinner.webp" alt="Konzeptbild: Freunde beim gemeinsamen Abendessen am großen Holztisch" loading="lazy" onerror="this.remove()">
             <span class="konzept-badge">Konzeptbild</span>
           </div>
         </div>
         <div class="case-gallery__item reveal">
           <div class="viz">
             <canvas data-scene="bokeh" data-seed="16" aria-hidden="true"></canvas>
-            <img src="assets/projects/snowside/konzept-innsbruck.jpg" alt="Konzeptbild: bunte Häuser am Inn in Innsbruck vor verschneiten Bergen" loading="lazy" onerror="this.remove()">
+            <img width="1200" height="800" src="assets/projects/snowside/konzept-innsbruck.webp" alt="Konzeptbild: bunte Häuser am Inn in Innsbruck vor verschneiten Bergen" loading="lazy" onerror="this.remove()">
             <span class="konzept-badge">Konzeptbild</span>
           </div>
         </div>
@@ -323,6 +337,12 @@
         <a href="index.html#fragen">FAQ</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
+      <nav class="footer__nav" aria-label="Schwerpunkte">
+        <span class="footer__label">Schwerpunkte</span>
+        <a href="eventagentur.html">Eventagentur</a>
+        <a href="social-media-agentur.html">Social-Media-Agentur</a>
+        <a href="creator-events.html">Creator-Events</a>
+      </nav>
       <nav class="footer__nav" aria-label="Kontakt">
         <span class="footer__label">Kontakt</span>
         <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -347,9 +367,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=26"></script>
-  <script src="js/visuals.js?v=26"></script>
-  <script src="js/script.js?v=26"></script>
-  <script src="js/assistent.js?v=26" defer></script>
+  <script src="js/config.js?v=31"></script>
+  <script src="js/visuals.js?v=31"></script>
+  <script src="js/script.js?v=31"></script>
+  <script src="js/assistent.js?v=31" defer></script>
 </body>
 </html>

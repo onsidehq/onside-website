@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>onside.hq – Event Agency &amp; Content Studio from Germany and Austria</title>
+  <meta name="description" content="We get to know your brand, plan events for brands, clubs and communities and produce the content that goes with them. Based in Potsdam and Innsbruck, often in Berlin." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/en/" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <!-- erstes Foto des Startbildschirms so früh wie möglich laden
+       (Querformat-Bildschirme: start-quer-dsc5668.jpg, Hochformat: start-hoch-dsc5658.jpg) -->
+  <link rel="preload" href="../assets/projects/berlin-night-run/start-quer-dsc5668.webp" as="image" fetchpriority="high" media="(orientation: landscape)">
+  <link rel="preload" href="../assets/projects/berlin-night-run/start-hoch-dsc5658.webp" as="image" fetchpriority="high" media="(orientation: portrait)">
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="onside.hq – Events &amp; Content for Brands and Communities" />
+  <meta property="og:description" content="From the first idea to the final reel: we get to know your brand and build events and content that show what you stand for." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/en/" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+
+  <!-- Angaben für Suchmaschinen (wer steckt hinter der Seite) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": [
+      "Organization",
+      "ProfessionalService"
+    ],
+    "@id": "https://onsidehq.de/en/#organisation",
+    "name": "onside.hq",
+    "legalName": "onside.hq GbR",
+    "url": "https://onsidehq.de/en/",
+    "logo": "https://onsidehq.de/favicon-512.png",
+    "image": "https://onsidehq.de/assets/og-image.jpg",
+    "email": "team@onsidehq.de",
+    "telephone": "+49 178 8519859",
+    "description": "Event and content studio from Potsdam and Innsbruck: events, brand strategy and social media for brands, clubs and communities.",
+    "slogan": "We build what people want to be part of.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Forststraße 44/46",
+      "postalCode": "14471",
+      "addressLocality": "Potsdam",
+      "addressCountry": "DE"
+    },
+    "founder": [
+      {
+        "@type": "Person",
+        "@id": "https://onsidehq.de/en/about#julian",
+        "name": "Julian Seibt"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onsidehq.de/en/about#malte",
+        "name": "Malte Gerdes"
+      }
+    ],
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Potsdam"
+      },
+      {
+        "@type": "City",
+        "name": "Berlin"
+      },
+      {
+        "@type": "City",
+        "name": "Innsbruck"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Tyrol"
+      },
+      {
+        "@type": "Country",
+        "name": "Germany"
+      },
+      {
+        "@type": "Country",
+        "name": "Austria"
+      }
+    ],
+    "knowsAbout": [
+      "Event management",
+      "Event marketing",
+      "Brand strategy",
+      "Brand activation",
+      "Sponsorship",
+      "Social media",
+      "Content production",
+      "Reels",
+      "Creator events"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@id": "https://onsidehq.de/en/services#events"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@id": "https://onsidehq.de/en/services#marke"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@id": "https://onsidehq.de/en/services#social"
+          }
+        }
+      ]
+    },
+    "sameAs": [
+      "https://instagram.com/onside.hq"
+    ]
+  }
+  </script>
+
+  <!-- FAQPage: dieselben Fragen und Antworten wie im Abschnitt "05 — Fragen"
+       weiter unten. Ändert ihr dort etwas, hier bitte genauso ändern. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a project with you cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on what you have in mind: a content package is something different from an event with partners and an afterparty. That’s why we don’t have a price list. After a short call you get a concrete quote. Feel free to tell us your budget right away, then we know what’s possible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much lead time do you need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on the project. Content for your channels is quicker than an event with a venue, partners and permits. We put the Night Run together in a few weeks. The earlier you get in touch, the more room there is."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does working together work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "First a short call where you tell us what you have in mind. Then we come back with a concept including schedule, budget and timeline. If everything fits, we make it happen and keep telling the story with content afterwards. You always talk to us directly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you make sure a project fits our brand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "By listening first. The first conversation is about your brand, your goals and your audience, not about our ideas. Only then do we develop a concept that makes your identity visible and tangible: in the schedule, the partners, the venue and the content. At the Night Run, for example, every partner had a role that matched their brand."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can we book just one service?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Of course. Events, brand strategy and social media are available individually or together. It works best when everything plays together, but it’s your call."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you only do sports events?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. We come from sport and love formats where people join in instead of just watching. Launch events, pop-ups, parties or community nights work just as well."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you bring partners and sponsors?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Partner management is part of what we do: we find the right partners, reach out to them and handle the arrangements. Red Bull and HEJ Natural were part of the Night Run."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do you work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We are based in Potsdam and Innsbruck, with Berlin right on our doorstep. For the right project we will travel anywhere."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How quickly do you reply?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Within 48 hours. Write to us using the form below, by email to team@onsidehq.de or on Instagram at @onside.hq."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="../css/styles.css?v=31" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    // Fehlt ein Foto, verschwindet das <img> und die Animation darunter bleibt
+    // sichtbar. Liegt es in einem <picture> mit Handy-Version (hoch-...), wird
+    // zuerst die Handy-Version weggelassen und das große Foto genommen.
+    window.onsideBildFehlt = function (img) {
+      if (!img.getAttribute('src')) return; // ohne Bildadresse nichts zu tun
+      var s = img.parentNode && img.parentNode.querySelector('source');
+      if (s) { s.remove(); img.src = img.getAttribute('src'); } else { img.remove(); }
+    };
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="home">
+
+  <!-- Auf der Startseite gibt es kein Punktfeld im Hintergrund: Hier sind die
+       Fotos im Startbildschirm der Hintergrund. Die Unterseiten haben es weiter. -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="#top" class="nav__logo" aria-label="onside.hq – home">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="#top" aria-current="page">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About us</a>
+      <a href="#fragen">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Language">
+        <a class="lang-switch__item" href="../" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a>
+        <span class="lang-switch__item is-active" lang="en" aria-current="true">EN</span>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
+    <a href="#contact" class="btn btn--small nav__cta"><span class="nav__cta-long">Start a project</span><span class="nav__cta-short">Contact</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menu">
+      <a href="#top" aria-current="page"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projects.html"><span class="menu-overlay__num">02</span>Projects</a>
+      <a href="gallery.html"><span class="menu-overlay__num">03</span>Gallery</a>
+      <a href="services.html"><span class="menu-overlay__num">04</span>Services</a>
+      <a href="about.html"><span class="menu-overlay__num">05</span>About us</a>
+      <a href="#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="contact.html"><span class="menu-overlay__num">07</span>Contact</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ HERO: Fotos vom Night Run ============
+         Die Fotos laufen nacheinander durch und blenden ruhig ineinander über.
+         Das erste Foto steht hier im HTML, damit es sofort lädt (start-quer-dsc5668.jpg
+         für Laptop und Tablet quer, start-hoch-dsc5658.jpg für Handy und Tablet hochkant).
+         Die ganze Liste mit Bildunterschriften und Bildausschnitten steht in
+         js/config.js unter "startbild". -->
+    <section class="hero" id="top" data-slides aria-label="Start">
+      <div class="hero__stage" aria-hidden="true">
+        <picture>
+          <source media="(orientation: portrait)" srcset="../assets/projects/berlin-night-run/start-hoch-dsc5658.webp">
+          <img width="2000" height="1333" class="hero__img is-on is-first" src="../assets/projects/berlin-night-run/start-quer-dsc5668.webp" alt="" fetchpriority="high" style="--pos: 50% 40%; --pos-m: 50% 50%" onerror="onsideBildFehlt(this)">
+        </picture>
+      </div>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__hud" aria-hidden="true">
+        <div class="hero__hud-top hero__label"><span class="hero__dot"></span><span>Berlin Night Run · 19 Sept 2026</span><span class="hero__count">01 / 05</span></div>
+        <div class="hero__bar"><i></i></div>
+        <span class="hero__caption">Good vibes on the course</span>
+      </div>
+
+      <div class="hero__text">
+        <p class="hero__eyebrow"><span>Event &amp; content studio<span class="hero__where"> · Potsdam &amp; Innsbruck</span></span></p>
+        <h1 class="hero__title" lang="en">We build what people <br class="br-lg">want to be <span class="scribble" data-scribble="underline">part of.</span></h1>
+        <p class="hero__sub">
+          From the first idea to the final reel: we get to know your brand and build events and content that show what you stand for. For brands, clubs and communities.
+        </p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--beat">Start a project</a>
+          <a href="berlin-night-run.html" class="btn btn--ghost btn--arrow">See the Night Run</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 01 — PROJEKTE ============ -->
+    <section id="projekte" class="projekte">
+      <p class="eyebrow reveal">01 — Work</p>
+      <h2 data-split>Our projects</h2>
+
+      <article class="project">
+        <!-- Titelbild vom Event → assets/projects/berlin-night-run/cover.webp
+             (Handy: hoch-cover.jpg). Zum Austauschen reicht eine neue Datei mit
+             genau diesem Namen. Fehlt sie, laufen Lichtspuren durch die Nacht.
+             object-position = Bildausschnitt: erste Zahl links/rechts, zweite
+             oben/unten. "55% 30%" hält Kopf und Mütze des Läufers im Bild. -->
+        <a class="project__cover reveal" href="berlin-night-run.html" aria-label="View project: Berlin Night Run">
+          <div class="project__cover-bg viz">
+            <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
+            <picture>
+              <source media="(max-width: 720px)" srcset="../assets/projects/berlin-night-run/hoch-cover.webp">
+              <img width="2400" height="1600" src="../assets/projects/berlin-night-run/cover.webp" alt="Runners at the Berlin Night Run" loading="lazy" decoding="async" style="object-position: 55% 30%" onerror="onsideBildFehlt(this)">
+            </picture>
+          </div>
+          <div class="project__cover-content">
+            <p class="eyebrow">Berlin · 2026</p>
+            <h3>Night Run</h3>
+          </div>
+          <span class="project__cover-go" aria-hidden="true">View project <i>→</i></span>
+        </a>
+
+        <div class="project__body">
+          <p class="project__text reveal">
+            The Berlin Night Run was where onside.hq started. Within a few weeks, an idea became a running event with a DJ, food and drinks, an afterparty and partners like Red&nbsp;Bull and HEJ&nbsp;Natural. Every step from concept to execution was in our hands&nbsp;– and we bring that same standard to every new project.
+          </p>
+          <a href="berlin-night-run.html" class="btn btn--ghost btn--arrow reveal">View project</a>
+        </div>
+
+        <dl class="project__facts reveal">
+          <div><dt>When</dt><dd>19.09.2026</dd></div>
+          <div><dt>Where</dt><dd>Berlin</dd></div>
+          <div><dt>Route</dt><dd>8&nbsp;km · 3&nbsp;stops</dd></div>
+          <div><dt>Partners</dt><dd>Red&nbsp;Bull, HEJ&nbsp;Natural</dd></div>
+        </dl>
+
+      <article class="project">
+        <!-- Titelbild Dagen → assets/projects/dagen-yachtcharter/cover.webp (quer 3:2,
+             Handy: hoch-cover.jpg). Fehlt es, läuft eine Animation. -->
+        <a class="project__cover reveal" href="dagen-yachtcharter.html" aria-label="View project: Dagen Yachtcharter">
+          <div class="project__cover-bg viz">
+            <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
+            <picture>
+              <source media="(max-width: 720px)" srcset="../assets/projects/dagen-yachtcharter/hoch-cover.webp">
+              <img width="1800" height="1200" src="../assets/projects/dagen-yachtcharter/cover.webp" alt="Dagen Yachtcharter sailing boat at anchor in a bay near Corfu" loading="lazy" decoding="async" onerror="onsideBildFehlt(this)">
+            </picture>
+          </div>
+          <div class="project__cover-content">
+            <p class="eyebrow">Corfu · 2026</p>
+            <h3>Dagen Yachtcharter</h3>
+          </div>
+          <span class="project__cover-go" aria-hidden="true">View project <i>→</i></span>
+        </a>
+
+        <div class="project__body">
+          <p class="project__text reveal">
+            One week on board around Corfu: for Dagen Yachtcharter we produced 10&nbsp;reels and daily stories to make sailing appealing to a younger audience. The result: over 270,000&nbsp;views, on average 130 times more than before.
+          </p>
+          <a href="dagen-yachtcharter.html" class="btn btn--ghost btn--arrow reveal">View project</a>
+        </div>
+
+        <dl class="project__facts reveal">
+          <div><dt>When</dt><dd>September 2026</dd></div>
+          <div><dt>Where</dt><dd>Corfu</dd></div>
+          <div><dt>Content</dt><dd>10&nbsp;reels · stories</dd></div>
+          <div><dt>Views</dt><dd>270.000+</dd></div>
+        </dl>
+      </article>
+      <!-- IN PLANUNG: schmaler Hinweis auf das nächste eigene Projekt -->
+      <a class="upcoming reveal" href="snowside.html" data-spot>
+        <span class="upcoming__label">In planning</span>
+        <span class="upcoming__title">SNOWSIDE · Creator Ski Week in Tyrol · March 2027</span>
+        <span class="upcoming__go">Looking for partners &amp; creators <i>→</i></span>
+      </a>
+    </section>
+
+    <!-- ============ PARTNER-LAUFBAND ============
+         Logos bisheriger Partner. Logos liegen in assets/partner/ (PNG mit
+         transparentem Hintergrund oder SVG), sie werden automatisch weiß
+         eingefärbt. Ein Logo an- oder abschalten: die <li>-Zeile ein- oder
+         auskommentieren. Hochformatige Logos bekommen class="partners__logo--hoch".
+         Red Bull und HEJ Natural stehen bewusst nur als Schriftzug drin.
+         Ab 4 Logos läuft das Band, bei weniger stehen sie ruhig in einer Reihe. -->
+    <section class="partners" aria-labelledby="partners-title">
+      <p class="eyebrow partners__title" id="partners-title">Who we have worked with</p>
+      <div class="partners__band" data-partners>
+        <ul class="partners__track">
+          <li><img src="../assets/partner/dagen-yachtcharter.png" alt="Dagen Yachtcharter" width="318" height="106"></li>
+          <li><span class="partners__name">Red Bull</span></li>
+          <li><img class="partners__logo--hoch" src="../assets/partner/myxa.png" alt="Myxa Bar Berlin" width="360" height="339"></li>
+          <li><span class="partners__name">HEJ Natural</span></li>
+          <li><img class="partners__logo--hoch" src="../assets/partner/redrum-art-bar.png" alt="Redrum Art Bar Berlin" width="279" height="307"></li>
+          <li><img class="partners__logo--hoch" src="../assets/partner/dietrich-bar.png" alt="Dietrich Bar Berlin" width="165" height="291"></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 02 — LEISTUNGEN ============
+         Jede Karte zeigt oben eine kleine, gebaute "Arbeitsprobe" (reines
+         HTML/CSS, Stil in css/styles.css bei .vg) und führt auf die
+         Leistungen-Seite. Dieselben Bilder stehen größer auf leistungen.html. -->
+    <section id="leistungen" class="services">
+      <p class="eyebrow reveal">02 — What we do</p>
+      <h2 data-split>Three services. One <span class="scribble" data-scribble="underline">signature.</span></h2>
+
+      <!-- Erst die Marke, dann das Event: so arbeiten wir. Stil: .brandflow in css/styles.css -->
+      <div class="brandflow reveal">
+        <p class="brandflow__lead">
+          We never start with our own ideas, we start with your brand. Every project should carry your identity&nbsp;– not just look good.
+        </p>
+        <ol class="brandflow__steps">
+          <li><span>01 · Understand</span>What does your brand stand for, who do you want to reach and what should people remember?</li>
+          <li><span>02 · Translate</span>We make your brand identity something people can experience: in the concept, the schedule, the partners and the location. For a drinks brand, for example, we would let two flavours compete as teams.</li>
+          <li><span>03 · Carry it forward</span>The content speaks your language and looks like you, so the brand lives on after the event.</li>
+        </ol>
+      </div>
+
+      <div class="services__grid">
+        <a class="service-card reveal" href="services.html#events" data-spot>
+          <div class="vg" aria-hidden="true">
+            <img width="1000" height="625" class="vg-bg" src="../assets/leistungen/leistung-event.webp" alt="" loading="lazy">
+            <div class="vg-tile vg-plan">
+              <div class="vg-plan__head"><span class="vg-label">Run sheet</span><span class="vg-live">Live</span></div>
+              <ol class="vg-steps">
+                <li><span class="vg-dot"></span><span class="vg-what">Idea &amp; concept</span><span class="vg-when">T&minus;6 weeks</span></li>
+                <li><span class="vg-dot"></span><span class="vg-what">Venue &amp; partners</span><span class="vg-when">T&minus;3 weeks</span></li>
+                <li><span class="vg-dot"></span><span class="vg-what">Schedule &amp; crew</span><span class="vg-when">T&minus;1 week</span></li>
+                <li class="is-now"><span class="vg-dot"></span><span class="vg-what">Event</span><span class="vg-when">Today</span></li>
+              </ol>
+            </div>
+          </div>
+          <span class="service-card__number">01</span>
+          <h3>Event management</h3>
+          <p>
+            We create events where your brand is not just on the banner but part of the experience. From the first idea to execution: concept, planning, partner management and the entire organisation.
+          </p>
+          <span class="service-card__more">Learn more <i>→</i></span>
+        </a>
+
+        <a class="service-card reveal" href="services.html#marke" data-spot>
+          <div class="vg" aria-hidden="true">
+            <div class="vg-brand">
+              <div class="vg-tile vg-type vg-photo"><img src="../assets/leistungen/leistung-bildwelt.webp" alt="" loading="lazy"><span class="vg-label">Visual style</span></div>
+              <div class="vg-tile vg-swatches vg-mood"><span class="vg-label">Moodboard</span><img src="../assets/leistungen/leistung-moodboard.webp" alt="" loading="lazy"></div>
+              <div class="vg-tile vg-pos"><span class="vg-label">Positioning</span><ul><li>For whom?</li><li>Why you?</li><li>How do you sound?</li></ul></div>
+            </div>
+          </div>
+          <span class="service-card__number">02</span>
+          <h3>Marketing&nbsp;&amp; brand strategy</h3>
+          <p>
+            Before we plan anything, we get to know your brand: what you stand for, who you want to reach and what should stick. From that we develop strategies, brand identities and concepts that are relevant&nbsp;– not just visible.
+          </p>
+          <span class="service-card__more">Learn more <i>→</i></span>
+        </a>
+
+        <a class="service-card reveal" href="services.html#social" data-spot>
+          <div class="vg" aria-hidden="true">
+            <div class="vg-social">
+              <div class="vg-phone">
+                <div class="vg-reel">
+                  <img width="400" height="822" class="vg-reel__img" src="../assets/leistungen/leistung-reel.webp" alt="" loading="lazy">
+                  <div class="vg-bars"><i></i><i></i><i></i></div>
+                  <span class="vg-play"></span>
+                  <div class="vg-actions"><i></i><i></i><i></i></div>
+                  <div class="vg-caption"><i></i><i></i></div>
+                </div>
+              </div>
+              <div class="vg-tile vg-cal">
+                <span class="vg-label">Content calendar</span>
+                <div class="vg-days"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+                <div class="vg-grid"><i class="on"></i><i></i><i class="soft"></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="soft"></i><i class="on"></i><i></i><i class="soft"></i><i class="on today"></i><i></i><i class="on"></i><i></i><i class="soft"></i><i class="on"></i><i></i></div>
+              </div>
+            </div>
+          </div>
+          <span class="service-card__number">03</span>
+          <h3>Social media</h3>
+          <p>
+            An event only becomes a story when people share it. We produce content in your voice and your look, manage channels and turn reach into a real community.
+          </p>
+          <span class="service-card__more">Learn more <i>→</i></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ 03 — WER SIND WIR ============
+         Kurzfassung. Geschichte und "Was uns unterscheidet" stehen ausführlich
+         auf der Seite ueber-uns.html. -->
+    <section id="wer-sind-wir" class="about">
+      <p class="eyebrow reveal">03 — About us</p>
+      <h2 data-split>Two people who would rather <span class="scribble" data-scribble="underline">build</span> <br class="br-lg">than watch.</h2>
+      <p class="about__lead reveal">
+        onside.hq is a studio for events, brands and content&nbsp;– founded by two sports management students who realised at some point: the moments that last don’t just happen. Someone builds them.
+      </p>
+
+      <div class="founders">
+        <!-- BILD 7: Foto Julian → assets/team/julian-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt)
+             Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
+             dieser Stelle eine Animation mit den Initialen. -->
+        <article class="founder reveal">
+          <div class="founder__media viz">
+            <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
+            <span class="founder__initials" aria-hidden="true">JS</span>
+            <img src="../assets/team/julian-onside.webp" alt="Julian Seibt, co-founder of onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="founder__body">
+            <span class="founder__role">Concept &amp; organisation</span>
+            <h3>Julian Seibt</h3>
+            <p class="founder__meta">Sports management</p>
+            <p class="founder__text">
+              Thinks about events from the experience first and then works backwards to build the structure behind it. “The moments that shaped me were built by someone. At some point I wanted to be on that side.”
+            </p>
+            <ul class="tags">
+              <li>Creativity</li>
+              <li>Idea development</li>
+              <li>Event concepts</li>
+              <li>Organisation</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- BILD 8: Foto Malte → assets/team/malte-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt).
+             Neues Foto = neuer Dateiname, dann sehen alle sofort das neue Bild. -->
+        <article class="founder reveal">
+          <div class="founder__media viz">
+            <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
+            <span class="founder__initials" aria-hidden="true">MG</span>
+            <img src="../assets/team/malte-onside.webp" alt="Malte Gerdes, co-founder of onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="founder__body">
+            <span class="founder__role">Content &amp; social</span>
+            <h3>Malte Gerdes</h3>
+            <p class="founder__meta">Sports management</p>
+            <p class="founder__text">
+              Turns an event into images that keep going afterwards&nbsp;– in the feed, on the channel, in people’s heads. Editing, content and the connections that lead to the next project.
+            </p>
+            <ul class="tags">
+              <li>Content production</li>
+              <li>Video editing</li>
+              <li>Social media</li>
+              <li>Networking</li>
+              <li>Communication</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="section-more reveal">
+        <a href="about.html" class="btn btn--ghost btn--arrow">Our story</a>
+      </div>
+    </section>
+
+    <!-- ============ WARUM ONSIDE ============
+         Über dem Text läuft eine kleine Taktiktafel: Ein Punkt steht im Abseits,
+         läuft zurück hinter die Linie, bekommt den Pass — und ist wieder im Spiel.
+         Gezeichnet in js/visuals.js (Szene "offside"). -->
+    <section class="statement">
+      <div class="statement__rings" aria-hidden="true"></div>
+      <div class="statement__inner">
+        <p class="eyebrow reveal">04 — Why onside?</p>
+        <div class="statement__board viz reveal">
+          <!-- Spielzug beim Scrollen: Köpfe, Namen und Projekte über die data-Attribute,
+               Zeichnung in js/visuals.js (Szene "offside") -->
+          <canvas data-scene="offside" aria-hidden="true"
+            data-players="../assets/team/kopf-julian.webp|../assets/team/kopf-malte.webp"
+            data-names="Julian|Malte"
+            data-target="Your brand"
+            data-projects="../assets/projects/berlin-night-run/kreis.webp|../assets/projects/dagen-yachtcharter/kreis.webp"
+            data-project-names="Night Run|Dagen"></canvas>
+        </div>
+        <p class="statement__text reveal">
+          The name comes from sport. <em class="scribble" data-scribble="circle">Onside</em> is the opposite of offside. That is exactly our job: bringing brands back from offside into the game&nbsp;– to where attention happens.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 05 — FRAGEN ============
+         Jede Frage ist ein <details>-Element: Klick auf die Frage klappt die
+         Antwort auf. Eine Frage ergänzen: einen <details>-Block kopieren und
+         Frage und Antwort ändern. Dieselben Fragen stehen noch einmal ganz oben
+         im <head> (Abschnitt "FAQPage") – dort bitte mitändern, damit
+         Suchmaschinen dieselben Antworten sehen. -->
+    <section id="fragen" class="faq">
+      <div class="faq__head">
+        <p class="eyebrow reveal">05 — Questions</p>
+        <h2 data-split>Quick <span class="scribble" data-scribble="underline">questions.</span></h2>
+        <p class="faq__sub reveal">The essentials up front. Missing something? Just write to us.</p>
+        <a href="#contact" class="btn btn--ghost btn--arrow faq__cta reveal">Ask us directly</a>
+      </div>
+
+      <div class="faq__list reveal">
+        <details class="faq__item">
+          <summary>How much does a project with you cost?</summary>
+          <div class="faq__a">
+            <p>It depends on what you have in mind: a content package is something different from an event with partners and an afterparty. That’s why we don’t have a price list. After a short call you get a concrete quote. Feel free to tell us your budget right away, then we know what’s possible.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>How much lead time do you need?</summary>
+          <div class="faq__a">
+            <p>It depends on the project. Content for your channels is quicker than an event with a venue, partners and permits. We put the Night Run together in a few weeks. The earlier you get in touch, the more room there is.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>How does working together work?</summary>
+          <div class="faq__a">
+            <p>First a short call where you tell us what you have in mind. Then we come back with a concept including schedule, budget and timeline. If everything fits, we make it happen and keep telling the story with content afterwards. You always talk to us directly. <a href="services.html">More about the process</a></p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>How do you make sure a project fits our brand?</summary>
+          <div class="faq__a">
+            <p>By listening first. The first conversation is about your brand, your goals and your audience, not about our ideas. Only then do we develop a concept that makes your identity visible and tangible: in the schedule, the partners, the venue and the content. At the Night Run, for example, every partner had a role that matched their brand.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Can we book just one service?</summary>
+          <div class="faq__a">
+            <p>Of course. Events, brand strategy and social media are available individually or together. It works best when everything plays together, but it’s your call.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Do you only do sports events?</summary>
+          <div class="faq__a">
+            <p>No. We come from sport and love formats where people join in instead of just watching. Launch events, pop-ups, parties or community nights work just as well.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Do you bring partners and sponsors?</summary>
+          <div class="faq__a">
+            <p>Partner management is part of what we do: we find the right partners, reach out to them and handle the arrangements. Red&nbsp;Bull and HEJ&nbsp;Natural were part of the Night Run.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Where do you work?</summary>
+          <div class="faq__a">
+            <p>We are based in Potsdam and Innsbruck, with Berlin right on our doorstep. For the right project we will travel anywhere.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>How quickly do you reply?</summary>
+          <div class="faq__a">
+            <p>Within 48 hours. Write to us using the form below, by email to <a href="mailto:team@onsidehq.de">team@onsidehq.de</a> or on Instagram at <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ 06 — KONTAKT ============ -->
+    <section id="contact" class="contact">
+      <p class="eyebrow reveal">06 — Let’s talk</p>
+      <h2 data-split>Let’s create something <br class="br-lg">people talk about.</h2>
+      <p class="contact__sub reveal">
+        Whether it’s an event, brand building or <span class="nowrap">social media management</span>&nbsp;– drop us a line about what you have in mind.
+      </p>
+
+      <!-- ================= KONTAKTFORMULAR =================
+           Das Formular verschickt die Anfrage über den Dienst Web3Forms an eure
+           Mailadresse — eine eigene Server-Programmierung braucht es dafür nicht.
+
+           Der "Access Key" von web3forms.com steht in js/config.js (ist
+           eingetragen) und gilt für das Formular auf der Startseite und auf der
+           Kontaktseite.
+      ==================================================== -->
+      <form class="contact-form reveal" id="formular" data-contact-form novalidate>
+        <input type="hidden" name="subject" value="Neue Anfrage über onsidehq.de">
+        <input type="hidden" name="from_name" value="onside.hq Website">
+        <!-- Spam-Falle: für Menschen unsichtbar, Bots füllen sie aus -->
+        <input type="checkbox" name="botcheck" class="contact-form__trap" tabindex="-1" aria-hidden="true">
+
+        <!-- Was braucht ihr? Mehrfachauswahl, freiwillig. Die Auswahl steht in der
+             Mail unter "Interesse" und im Betreff. -->
+        <fieldset class="topics field--full">
+          <legend>What do you need? <span>Multiple choice</span></legend>
+          <div class="topics__list">
+            <label class="chip"><input type="checkbox" name="interesse" value="Event"><span>Event</span></label>
+            <label class="chip"><input type="checkbox" name="interesse" value="Marke &amp; Strategie"><span>Brand &amp; strategy</span></label>
+            <label class="chip"><input type="checkbox" name="interesse" value="Social Media"><span>Social media</span></label>
+            <label class="chip"><input type="checkbox" name="interesse" value="Noch offen"><span>Not sure yet</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Your name">
+        </div>
+
+        <div class="field">
+          <label for="cf-mail">Email</label>
+          <input id="cf-mail" name="email" type="email" required autocomplete="email" placeholder="So we can reply">
+        </div>
+
+        <div class="field field--full">
+          <label for="cf-msg">What’s it about?</label>
+          <textarea id="cf-msg" name="message" rows="5" required placeholder="Idea, timing, location, rough scope&nbsp;– everything helps."></textarea>
+        </div>
+
+        <label class="consent field--full">
+          <input type="checkbox" id="cf-consent" required>
+          <span>
+            I agree that my details will be processed to handle my enquiry. More in the <a href="privacy.html">privacy policy</a>.
+          </span>
+        </label>
+
+        <div class="field--full contact-form__actions">
+          <button type="submit" class="btn btn--large" data-form-submit>Send enquiry</button>
+          <p class="contact-form__promise"><span aria-hidden="true"></span>We reply within 48&nbsp;hours.</p>
+          <p class="contact-form__status" data-form-status role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <p class="contact__fallback reveal">
+        Prefer to reach out directly? <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        · <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, brands and content&nbsp;– from the first idea to the final reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pages">
+        <span class="footer__label">Pages</span>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About us</a>
+        <a href="#fragen">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Focus">
+        <span class="footer__label">Focus</span>
+        <a href="event-agency.html">Event agency</a>
+        <a href="social-media-agency.html">Social media agency</a>
+        <a href="creator-events.html">Creator events</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Contact">
+        <span class="footer__label">Contact</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Legal">
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="../js/config.js?v=31"></script>
+  <script src="../js/visuals.js?v=31"></script>
+  <script src="../js/script.js?v=31"></script>
+  <script src="../js/assistent.js?v=31" defer></script>
+</body>
+</html>

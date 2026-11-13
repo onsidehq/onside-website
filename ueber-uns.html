@@ -7,6 +7,9 @@
   <meta name="description" content="onside.hq ist ein Studio für Events, Marken und Content aus Potsdam und Innsbruck – gegründet von Julian Seibt und Malte Gerdes." />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://onsidehq.de/ueber-uns" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/ueber-uns" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/about" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/ueber-uns" />
 
   <!-- Favicon / Browser-Tab-Icon -->
   <link rel="icon" href="favicon.ico" />
@@ -29,7 +32,65 @@
   <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=26" />
+  <!-- Für Suchmaschinen: Brotkrumen und die Gründer -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Start",
+            "item": "https://onsidehq.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Wer sind wir?",
+            "item": "https://onsidehq.de/ueber-uns"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onsidehq.de/ueber-uns#julian",
+        "name": "Julian Seibt",
+        "jobTitle": "Mitgründer · Konzept & Organisation",
+        "worksFor": {
+          "@id": "https://onsidehq.de/#organisation"
+        },
+        "image": "https://onsidehq.de/assets/team/julian-onside.jpg",
+        "knowsAbout": [
+          "Eventkonzepte",
+          "Organisation",
+          "Ideenentwicklung"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onsidehq.de/ueber-uns#malte",
+        "name": "Malte Gerdes",
+        "jobTitle": "Mitgründer · Content & Social Media",
+        "worksFor": {
+          "@id": "https://onsidehq.de/#organisation"
+        },
+        "image": "https://onsidehq.de/assets/team/malte-onside.jpg",
+        "knowsAbout": [
+          "Content-Produktion",
+          "Videoschnitt",
+          "Social Media"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="css/styles.css?v=31" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -74,6 +135,15 @@
     </nav>
 
 
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Sprache">
+        <span class="lang-switch__item is-active" lang="de" aria-current="true">DE</span>
+        <a class="lang-switch__item" href="en/about.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Helles Design" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
     <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
   </header>
 
@@ -106,23 +176,24 @@
           entstehen nicht von allein. Jemand baut sie.
         </p>
       </div>
-      <!-- zwei Punkte, die umeinander kreisen — ihr zwei -->
-      <div class="page-hero__viz viz reveal">
-        <canvas data-scene="orbits" data-seed="2" aria-hidden="true"></canvas>
+      <!-- Foto: Julian und Malte stellen SNOWSIDE auf der Bühne beim Tirol Hackathon vor
+           (assets/team/gruender-snowside.webp, 5:4) -->
+      <div class="page-hero__viz page-hero__viz--foto viz reveal">
+        <img src="assets/team/gruender-snowside.webp" alt="Julian Seibt und Malte Gerdes stellen SNOWSIDE auf der Bühne beim Tirol Hackathon vor" width="1600" height="1280" fetchpriority="high" style="object-position: 30% 50%">
       </div>
     </section>
 
     <section class="about about--page">
       <h2 class="sr-only">Die Gründer</h2>
       <div class="founders">
-        <!-- BILD 7: Foto Julian → assets/team/julian-2026.jpg (Tirol Hackathon, Nov. 2026)
+        <!-- BILD 7: Foto Julian → assets/team/julian-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt)
              Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
              dieser Stelle eine Animation mit den Initialen. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">JS</span>
-            <img src="assets/team/julian-2026.jpg" alt="Julian Seibt, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/julian-onside.webp" alt="Julian Seibt, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Konzept &amp; Organisation</span>
@@ -142,13 +213,13 @@
           </div>
         </article>
 
-        <!-- BILD 8: Foto Malte → assets/team/malte-2026.jpg (Tirol Hackathon, Nov. 2026).
+        <!-- BILD 8: Foto Malte → assets/team/malte-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt).
              Neues Foto = neuer Dateiname, dann sehen alle sofort das neue Bild. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">MG</span>
-            <img src="assets/team/malte-2026.jpg" alt="Malte Gerdes, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/malte-onside.webp" alt="Malte Gerdes, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Content &amp; Social</span>
@@ -245,6 +316,12 @@
         <a href="index.html#fragen">FAQ</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
+      <nav class="footer__nav" aria-label="Schwerpunkte">
+        <span class="footer__label">Schwerpunkte</span>
+        <a href="eventagentur.html">Eventagentur</a>
+        <a href="social-media-agentur.html">Social-Media-Agentur</a>
+        <a href="creator-events.html">Creator-Events</a>
+      </nav>
       <nav class="footer__nav" aria-label="Kontakt">
         <span class="footer__label">Kontakt</span>
         <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -269,9 +346,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=26"></script>
-  <script src="js/visuals.js?v=26"></script>
-  <script src="js/script.js?v=26"></script>
-  <script src="js/assistent.js?v=26" defer></script>
+  <script src="js/config.js?v=31"></script>
+  <script src="js/visuals.js?v=31"></script>
+  <script src="js/script.js?v=31"></script>
+  <script src="js/assistent.js?v=31" defer></script>
 </body>
 </html>

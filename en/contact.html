@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact: Start a Project – onside.hq</title>
+  <meta name="description" content="Whether it’s an event, brand building or social media management: drop us a line about what you have in mind. We reply within 48 hours." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/en/contact" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/kontakt" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/contact" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/kontakt" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Contact – onside.hq" />
+  <meta property="og:description" content="Whether it’s an event, brand building or social media management: drop us a line about what you have in mind." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/en/contact" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen-Pfad -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Start",
+        "item": "https://onsidehq.de/en/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact",
+        "item": "https://onsidehq.de/en/contact"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="../css/styles.css?v=31" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="kontakt">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – home">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About us</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+
+
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Language">
+        <a class="lang-switch__item" href="../kontakt.html" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a>
+        <span class="lang-switch__item is-active" lang="en" aria-current="true">EN</span>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
+    <a href="#formular" class="btn btn--small nav__cta"><span class="nav__cta-long">Start a project</span><span class="nav__cta-short">Contact</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menu">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projects.html"><span class="menu-overlay__num">02</span>Projects</a>
+      <a href="gallery.html"><span class="menu-overlay__num">03</span>Gallery</a>
+      <a href="services.html"><span class="menu-overlay__num">04</span>Services</a>
+      <a href="about.html"><span class="menu-overlay__num">05</span>About us</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="contact.html" aria-current="page"><span class="menu-overlay__num">07</span>Contact</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ KONTAKT ============
+         Links der Text und die Kontaktwege, rechts das Formular (es bleibt beim
+         Scrollen stehen). Auf dem Handy: Text, dann Formular, dann der Rest. -->
+    <section class="contact-page">
+      <div class="contact-page__intro">
+        <p class="eyebrow intro">Contact</p>
+        <h1 data-split>Let’s create something people <span class="scribble" data-scribble="underline">talk</span> about.</h1>
+        <p class="page-hero__lead intro intro--2">
+          Whether it’s an event, brand building or <span class="nowrap">social media management</span>&nbsp;– drop us a line about what you have in mind.
+        </p>
+      </div>
+
+      <div class="contact-page__form">
+        <!-- ================= KONTAKTFORMULAR =================
+             Das Formular verschickt die Anfrage über den Dienst Web3Forms an eure
+             Mailadresse — eine eigene Server-Programmierung braucht es dafür nicht.
+
+             Der "Access Key" von web3forms.com steht in js/config.js (ist
+             eingetragen) und gilt für das Formular auf der Startseite und auf der
+             Kontaktseite.
+        ==================================================== -->
+        <form class="contact-form intro intro--3" id="formular" data-contact-form novalidate>
+          <input type="hidden" name="subject" value="Neue Anfrage über onsidehq.de">
+          <input type="hidden" name="from_name" value="onside.hq Website">
+          <!-- Spam-Falle: für Menschen unsichtbar, Bots füllen sie aus -->
+          <input type="checkbox" name="botcheck" class="contact-form__trap" tabindex="-1" aria-hidden="true">
+
+          <!-- Was braucht ihr? Mehrfachauswahl, freiwillig. Die Auswahl steht in der
+               Mail unter "Interesse" und im Betreff. -->
+          <fieldset class="topics field--full">
+            <legend>What do you need? <span>Multiple choice</span></legend>
+            <div class="topics__list">
+              <label class="chip"><input type="checkbox" name="interesse" value="Event"><span>Event</span></label>
+              <label class="chip"><input type="checkbox" name="interesse" value="Marke &amp; Strategie"><span>Brand &amp; strategy</span></label>
+              <label class="chip"><input type="checkbox" name="interesse" value="Social Media"><span>Social media</span></label>
+              <label class="chip"><input type="checkbox" name="interesse" value="Noch offen"><span>Not sure yet</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Your name">
+          </div>
+
+          <div class="field">
+            <label for="cf-mail">Email</label>
+            <input id="cf-mail" name="email" type="email" required autocomplete="email" placeholder="So we can reply">
+          </div>
+
+          <div class="field field--full">
+            <label for="cf-msg">What’s it about?</label>
+            <textarea id="cf-msg" name="message" rows="5" required placeholder="Idea, timing, location, rough scope&nbsp;– everything helps."></textarea>
+          </div>
+
+          <label class="consent field--full">
+            <input type="checkbox" id="cf-consent" required>
+            <span>
+              I agree that my details will be processed to handle my enquiry. More in the <a href="privacy.html">privacy policy</a>.
+            </span>
+          </label>
+
+          <div class="field--full contact-form__actions">
+            <button type="submit" class="btn btn--large" data-form-submit>Send enquiry</button>
+            <p class="contact-form__promise"><span aria-hidden="true"></span>We reply within 48&nbsp;hours.</p>
+            <p class="contact-form__status" data-form-status role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+
+      <aside class="contact-page__info">
+        <div class="contact-page__block reveal">
+          <h2>Reach us directly</h2>
+          <ul class="contact-list">
+            <li><span>Email</span><a href="mailto:team@onsidehq.de">team@onsidehq.de</a></li>
+            <li><span>Instagram</span><a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a></li>
+            <li><span>Locations</span><em>Potsdam · Innsbruck</em></li>
+          </ul>
+        </div>
+
+        <div class="contact-page__block reveal">
+          <h2>What happens next</h2>
+          <ol class="steps-mini">
+            <li>You tell us what you have in mind.</li>
+            <li>We get back to you within 48&nbsp;hours.</li>
+            <li>We talk about your idea and the next step.</li>
+          </ol>
+          <p class="contact-page__more">Questions about cost, lead time or process? <a href="index.html#fragen">Find the answers here <i>→</i></a></p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, brands and content&nbsp;– from the first idea to the final reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pages">
+        <span class="footer__label">Pages</span>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About us</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Focus">
+        <span class="footer__label">Focus</span>
+        <a href="event-agency.html">Event agency</a>
+        <a href="social-media-agency.html">Social media agency</a>
+        <a href="creator-events.html">Creator events</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Contact">
+        <span class="footer__label">Contact</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Legal">
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="../js/config.js?v=31"></script>
+  <script src="../js/visuals.js?v=31"></script>
+  <script src="../js/script.js?v=31"></script>
+  <script src="../js/assistent.js?v=31" defer></script>
+</body>
+</html>

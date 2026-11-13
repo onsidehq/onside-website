@@ -7,6 +7,9 @@
   <meta name="description" content="Segelwoche rund um Korfu, 10 Reels, tägliche Stories, über 270.000 Views: So hat onside.hq Segeln für Dagen Yachtcharter einer jüngeren Zielgruppe gezeigt." />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://onsidehq.de/dagen-yachtcharter" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/dagen-yachtcharter" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/dagen-yachtcharter" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/dagen-yachtcharter" />
 
   <!-- Favicon / Browser-Tab-Icon -->
   <link rel="icon" href="favicon.ico" />
@@ -42,7 +45,9 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=26" />
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="css/styles.css?v=31" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -95,6 +100,15 @@
     </nav>
 
 
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Sprache">
+        <span class="lang-switch__item is-active" lang="de" aria-current="true">DE</span>
+        <a class="lang-switch__item" href="en/dagen-yachtcharter.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Helles Design" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
     <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
   </header>
 
@@ -121,14 +135,14 @@
          Bilder liegen in assets/projects/dagen-yachtcharter/ (siehe BILDER.md).
          Fehlt ein Foto, läuft an seiner Stelle eine Animation. -->
 
-    <!-- BILD 1: Titelbild → assets/projects/dagen-yachtcharter/cover.jpg (quer 3:2,
+    <!-- BILD 1: Titelbild → assets/projects/dagen-yachtcharter/cover.webp (quer 3:2,
          Handy: hoch-cover.jpg, hoch 4:5) -->
     <section class="case-hero">
       <div class="case-hero__media viz">
         <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
         <picture>
-          <source media="(max-width: 720px)" srcset="assets/projects/dagen-yachtcharter/hoch-cover.jpg">
-          <img src="assets/projects/dagen-yachtcharter/cover.jpg" alt="Segelboot von Dagen Yachtcharter vor Anker in einer Bucht bei Korfu, Drohnenaufnahme" fetchpriority="high" onerror="onsideBildFehlt(this)">
+          <source media="(max-width: 720px)" srcset="assets/projects/dagen-yachtcharter/hoch-cover.webp">
+          <img width="1800" height="1200" src="assets/projects/dagen-yachtcharter/cover.webp" alt="Segelboot von Dagen Yachtcharter vor Anker in einer Bucht bei Korfu, Drohnenaufnahme" fetchpriority="high" onerror="onsideBildFehlt(this)">
         </picture>
       </div>
       <div class="case-hero__content">
@@ -200,7 +214,7 @@
       <div class="case-media__reels">
           <figure class="embed embed--reel reveal">
             <button class="embed__poster" type="button" data-embed="instagram" data-id="Dc6vLdnsPCr" aria-label="Reel 1 von Dagen Yachtcharter abspielen (lädt Instagram)">
-              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/reel-Dc6vLdnsPCr.jpg" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/reel-Dc6vLdnsPCr.webp" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
               <span class="embed__tag">Reel 01 · 178.000 Views</span>
               <span class="embed__play" aria-hidden="true"></span>
               <span class="embed__hint">Antippen lädt Instagram</span>
@@ -209,7 +223,7 @@
           </figure>
           <figure class="embed embed--reel reveal">
             <button class="embed__poster" type="button" data-embed="instagram" data-id="Dc75sols2Ym" aria-label="Reel 2 von Dagen Yachtcharter abspielen (lädt Instagram)">
-              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/reel-Dc75sols2Ym.jpg" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/reel-Dc75sols2Ym.webp" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
               <span class="embed__tag">Reel 02 · 48.000 Views</span>
               <span class="embed__play" aria-hidden="true"></span>
               <span class="embed__hint">Antippen lädt Instagram</span>
@@ -218,7 +232,7 @@
           </figure>
           <figure class="embed embed--reel reveal">
             <button class="embed__poster" type="button" data-embed="instagram" data-id="DdMahkhsNPX" aria-label="Reel 3 von Dagen Yachtcharter abspielen (lädt Instagram)">
-              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/reel-DdMahkhsNPX.jpg" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/reel-DdMahkhsNPX.webp" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
               <span class="embed__tag">Reel 03 · 19.800 Views</span>
               <span class="embed__play" aria-hidden="true"></span>
               <span class="embed__hint">Antippen lädt Instagram</span>
@@ -226,10 +240,43 @@
             <figcaption><a href="https://www.instagram.com/reel/DdMahkhsNPX/" target="_blank" rel="noopener">Auf Instagram ansehen ↗</a></figcaption>
           </figure>
       </div>
+    </section>
+
+    <!-- Ergebnis: große Zahlen. Werte zwischen <dd> und </dd> ändern. -->
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Das Ergebnis</p>
+        <h2 data-split>Über <span class="scribble" data-scribble="underline">270.000 Views</span> mit zehn Reels.</h2>
+      </div>
+      <div class="case-section__body">
+        <dl class="case-stats reveal">
+          <div><dt>Views pro Reel im Schnitt</dt><dd>+13.000&nbsp;%</dd></div>
+          <div><dt>Top-Reel</dt><dd>178.000</dd></div>
+          <div><dt>Reel-Views gesamt</dt><dd>270.000+</dd></div>
+        </dl>
+        <p class="reveal">
+          Vorher kamen die Reels des Kanals im Schnitt auf rund 200&nbsp;Views. Unsere Reels
+          aus der Woche liegen bei rund 27.000&nbsp;Views im Schnitt, also etwa 130-mal so
+          viel. Der Beweis, dass Segeln auf Social Media funktioniert, wenn man es richtig erzählt.
+          Wie wir so etwas auch für eure Marke angehen, steht bei
+          <a href="social-media-agentur.html">Social Media &amp; Content</a> und <a href="creator-events.html">Creator-Events</a>.
+        </p>
+        <blockquote class="case-quote reveal">
+          <p>„Die Woche mit den Jungs von onside.hq hat unserem Instagram-Account rund 250.000&nbsp;Views gebracht, und wir haben viele positive Rückmeldungen zu den Inhalten bekommen. Unkomplizierte Zusammenarbeit, sehr professionelle Aufnahmen.“</p>
+          <footer>Dagen Yachtcharter</footer>
+        </blockquote>
+        <div class="client-logo reveal">
+          <img src="assets/projects/dagen-yachtcharter/logo-dagen.png" alt="Logo Dagen Yachtcharter" width="318" height="106" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Der Film zur Woche (lädt YouTube erst beim Antippen) -->
+    <section class="case-media case-media--film">
       <h3 class="case-media__sub reveal">Der Film zur Woche</h3>
       <figure class="embed embed--video reveal">
         <button class="embed__poster" type="button" data-embed="youtube" data-id="oB6_pFHHveQ" aria-label="Video zur Segelwoche mit Dagen Yachtcharter abspielen (lädt YouTube)">
-              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/video-poster.jpg" alt="" width="1280" height="720" loading="lazy" onerror="this.remove()">
+              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/video-poster.webp" alt="" width="1280" height="720" loading="lazy" onerror="this.remove()">
           <span class="embed__tag">YouTube</span>
           <span class="embed__play" aria-hidden="true"></span>
           <span class="embed__hint">Antippen lädt YouTube</span>
@@ -294,32 +341,6 @@
       </div>
     </section>
 
-    <!-- Ergebnis: große Zahlen. Werte zwischen <dd> und </dd> ändern. -->
-    <section class="case-section">
-      <div class="case-section__head">
-        <p class="eyebrow reveal">Das Ergebnis</p>
-        <h2 data-split>Über <span class="scribble" data-scribble="underline">270.000 Views</span> mit zehn Reels.</h2>
-      </div>
-      <div class="case-section__body">
-        <dl class="case-stats reveal">
-          <div><dt>Views pro Reel im Schnitt</dt><dd>+13.000&nbsp;%</dd></div>
-          <div><dt>Top-Reel</dt><dd>178.000</dd></div>
-          <div><dt>Reel-Views gesamt</dt><dd>270.000+</dd></div>
-        </dl>
-        <p class="reveal">
-          Vorher kamen die Reels des Kanals im Schnitt auf rund 200&nbsp;Views. Unsere Reels
-          aus der Woche liegen bei rund 27.000&nbsp;Views im Schnitt, also etwa 130-mal so
-          viel. Der Beweis, dass Segeln auf Social Media funktioniert, wenn man es richtig erzählt.
-        </p>
-        <blockquote class="case-quote reveal">
-          <p>„Die Woche mit den Jungs von onside.hq hat unserem Instagram-Account rund 250.000&nbsp;Views gebracht, und wir haben viele positive Rückmeldungen zu den Inhalten bekommen. Unkomplizierte Zusammenarbeit, sehr professionelle Aufnahmen.“</p>
-          <footer>Dagen Yachtcharter</footer>
-        </blockquote>
-        <div class="client-logo reveal">
-          <img src="assets/projects/dagen-yachtcharter/logo-dagen.png" alt="Logo Dagen Yachtcharter" width="318" height="106" loading="lazy">
-        </div>
-      </div>
-    </section>
 
     <!-- GALERIE: Fotos/Standbilder aus den Reels nach dem Muster der Night-Run-Seite
          (Dateien galerie-....jpg in assets/projects/dagen-yachtcharter/).
@@ -331,19 +352,19 @@
         <div class="case-gallery__item case-gallery__item--wide reveal">
           <div class="viz">
             <canvas data-scene="contour" data-seed="5" aria-hidden="true"></canvas>
-            <img src="assets/projects/dagen-yachtcharter/galerie-abendlicht.jpg" alt="Segelboot von Dagen Yachtcharter im Abendlicht vor Korfu" loading="lazy" style="object-position: 50% 70%" onerror="this.remove()">
+            <img width="1536" height="1024" src="assets/projects/dagen-yachtcharter/galerie-abendlicht.webp" alt="Segelboot von Dagen Yachtcharter im Abendlicht vor Korfu" loading="lazy" style="object-position: 50% 70%" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item reveal">
           <div class="viz">
             <canvas data-scene="bokeh" data-seed="4" aria-hidden="true"></canvas>
-            <img src="assets/projects/dagen-yachtcharter/galerie-haengematte.jpg" alt="Entspannen in der Hängematte unter dem Baum des Segelboots" loading="lazy" onerror="this.remove()">
+            <img width="1536" height="1024" src="assets/projects/dagen-yachtcharter/galerie-haengematte.webp" alt="Entspannen in der Hängematte unter dem Baum des Segelboots" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="case-gallery__item reveal">
           <div class="viz">
             <canvas data-scene="rings" data-seed="6" aria-hidden="true"></canvas>
-            <img src="assets/projects/dagen-yachtcharter/01.jpg" alt="Sprung vom Seil ins Meer neben dem Segelboot" loading="lazy" onerror="this.remove()">
+            <img width="1536" height="1024" src="assets/projects/dagen-yachtcharter/01.webp" alt="Sprung vom Seil ins Meer neben dem Segelboot" loading="lazy" onerror="this.remove()">
           </div>
         </div>
       </div>
@@ -375,6 +396,12 @@
         <a href="index.html#fragen">FAQ</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
+      <nav class="footer__nav" aria-label="Schwerpunkte">
+        <span class="footer__label">Schwerpunkte</span>
+        <a href="eventagentur.html">Eventagentur</a>
+        <a href="social-media-agentur.html">Social-Media-Agentur</a>
+        <a href="creator-events.html">Creator-Events</a>
+      </nav>
       <nav class="footer__nav" aria-label="Kontakt">
         <span class="footer__label">Kontakt</span>
         <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -399,9 +426,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=26"></script>
-  <script src="js/visuals.js?v=26"></script>
-  <script src="js/script.js?v=26"></script>
-  <script src="js/assistent.js?v=26" defer></script>
+  <script src="js/config.js?v=31"></script>
+  <script src="js/visuals.js?v=31"></script>
+  <script src="js/script.js?v=31"></script>
+  <script src="js/assistent.js?v=31" defer></script>
 </body>
 </html>

@@ -161,3 +161,13 @@ Sonst zeigen manche Browser noch einen Tag lang die alte Fassung.
 - HTML/CSS-Grundlagen: [freeCodeCamp – Responsive Web Design](https://www.freecodecamp.org/learn/2022/responsive-web-design/)
 - Einblenden beim Scrollen: [Intersection Observer (MDN)](https://developer.mozilla.org/de/docs/Web/API/Intersection_Observer_API)
 - Nachschlagewerk: [MDN Web Docs](https://developer.mozilla.org/de/)
+
+## Hell/Dunkel und Englisch (seit 13.11.2026)
+
+- Oben in der Leiste: Schalter Hell/Dunkel (Standard dunkel, die Wahl merkt sich der Browser) und DE/EN.
+  Farben für Hell stehen am Ende von css/styles.css (Abschnitt 30).
+- Englische Seiten liegen in en/ (Start, Leistungen = services, Projekte = projects, SNOWSIDE, Kontakt = contact).
+  Sie werden aus den deutschen Seiten gebaut: `python3 tools/englisch/build_en.py .`
+  Übersetzungen stehen in tools/englisch/tr.py. Nach jeder Textänderung an diesen fünf deutschen Seiten
+  die Übersetzung dort ergänzen und neu bauen (das Skript meldet fehlende Texte mit FEHLT).
+- Der Chat antwortet auf den englischen Seiten auf Englisch.

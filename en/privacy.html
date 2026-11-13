@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – onside.hq</title>
+  <meta name="description" content="Privacy policy of onside.hq." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/en/privacy" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/datenschutz" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/privacy" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/datenschutz" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Privacy Policy – onside.hq" />
+  <meta property="og:description" content="Privacy policy of onside.hq." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/en/privacy" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="../css/styles.css?v=31" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="legal">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – home">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About us</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Language">
+        <a class="lang-switch__item" href="../datenschutz.html" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a>
+        <span class="lang-switch__item is-active" lang="en" aria-current="true">EN</span>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
+    <a href="contact.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Start a project</span><span class="nav__cta-short">Contact</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menu">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projects.html"><span class="menu-overlay__num">02</span>Projects</a>
+      <a href="gallery.html"><span class="menu-overlay__num">03</span>Gallery</a>
+      <a href="services.html"><span class="menu-overlay__num">04</span>Services</a>
+      <a href="about.html"><span class="menu-overlay__num">05</span>About us</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="contact.html"><span class="menu-overlay__num">07</span>Contact</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ DATENSCHUTZ ============ -->
+    <article class="legal">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy policy</h1>
+      <p class="legal-note"><strong>Courtesy translation.</strong> Only the <a href="../datenschutz.html" hreflang="de" lang="de">German version</a> is legally binding.</p>
+
+      <h2>1. Controller</h2>
+      <p>
+        The controller responsible for data processing on this website is:<br>
+        onside.hq GbR<br>
+        Forststraße 44/46<br>
+        14471 Potsdam<br>
+        Email: <a href="mailto:team@onsidehq.de">team@onsidehq.de</a><br>
+        Phone: <a href="tel:+491788519859">+49&nbsp;178&nbsp;8519859</a>
+      </p>
+
+      <h2>2. General information on data processing</h2>
+      <p>
+        We only process personal data to the extent necessary to provide a functional website and our content, or where a legal basis permits it. This website does not set any cookies and does not use any advertising or tracking services. We measure how often our pages are visited without cookies using Cloudflare Web Analytics (see section&nbsp;4). Videos from Instagram and YouTube only load after a click (section&nbsp;6).
+      </p>
+
+      <h2>3. Hosting and server log files</h2>
+      <p>
+        This website is hosted by Cloudflare, Inc. (101 Townsend St., San Francisco, CA 94107, USA). When the website is accessed, the provider processes technically necessary data, in particular the IP address of the accessing device, the date and time of access, the page accessed, the browser used and the operating system. This processing is necessary to provide the website securely and reliably. The legal basis is Art. 6 (1) (f) GDPR (legitimate interest in technically error-free and secure operation). A data processing agreement in accordance with Art. 28 GDPR is in place with the provider. Transfers to the USA are based on the EU Commission’s standard contractual clauses.
+      </p>
+
+      <h2>4. Audience measurement with Cloudflare Web Analytics</h2>
+      <p>
+        To see how often our pages are visited and how quickly they load, we use Cloudflare Web Analytics by Cloudflare, Inc. (address see section&nbsp;3). For this, your browser loads a small script from Cloudflare when you open a page, which sends information about the page view to Cloudflare: the page accessed, the page you came from, browser, operating system and device type, country and loading times. For technical reasons, your IP address is transmitted to Cloudflare. No cookies are set and no data is stored in your browser. According to Cloudflare, visitors are not recognised by their IP address or in any other way, nor tracked across sites. We only see aggregated statistics that do not allow any conclusions about individual persons. The legal basis is Art. 6 (1) (f) GDPR; our legitimate interest lies in improving our website and detecting technical problems. For transfers to the USA, the information in section&nbsp;3 applies. You can object to this processing at any time, for example by using a content blocker in your browser or blocking the address cloudflareinsights.com.
+      </p>
+
+      <h2>5. Fonts and scripts</h2>
+      <p>
+        All fonts and scripts used on this website (except the measurement script from section&nbsp;4) are delivered directly from our server. No fonts from Google Fonts and no libraries from external content delivery networks are loaded. Beyond the provider named in section&nbsp;3, no connection to Google or other third parties is established when you visit the website, and your IP address is not transmitted to them. The only exceptions are when you play a video yourself (section&nbsp;6) or ask the chat assistant a question it cannot answer itself (section&nbsp;7).
+      </p>
+
+      <h2>6. Embedded videos from Instagram and YouTube</h2>
+      <p>
+        On some project pages we show reels from Instagram and videos from YouTube. These are only loaded when you click on the preview image (two-click solution). Before that, no connection to Instagram or YouTube is established; the preview image is stored on our server.
+      </p>
+      <p>
+        Only after the click does your browser connect to the servers of the respective provider. In particular, your IP address, the page accessed and information about your browser and device are transmitted. The provider may use cookies or similar technologies and, if you are logged in there, associate the view with your account. The providers are:
+      </p>
+      <ul>
+        <li>
+          Instagram: Meta Platforms Ireland Limited, Merrion Road, Dublin&nbsp;4, D04&nbsp;X2K5, Ireland. Privacy policy:
+          <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener">privacycenter.instagram.com/policy</a>
+        </li>
+        <li>
+          YouTube: Google Ireland Limited, Gordon House, Barrow Street, Dublin&nbsp;4, Ireland. We use the privacy-enhanced mode (youtube-nocookie.com). Privacy policy:
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>
+        </li>
+      </ul>
+      <p>
+        The legal basis is your consent under Art. 6 (1) (a) GDPR and § 25 (1) TDDDG, which you give by clicking on the preview image. It only applies to the respective video and the current page view; without a click, nothing is loaded. Both providers may transfer data to the USA. Meta and Google are certified under the EU-US Data Privacy Framework, on the basis of which (adequacy decision of the EU Commission) the transfer takes place.
+      </p>
+
+      <h2>7. Chat assistant</h2>
+      <p>
+        At the bottom right of the website there is a chat assistant that answers questions about our services. It answers common questions directly in your browser; no data is transmitted in this case.
+      </p>
+      <p>
+        Only if it does not know a suitable answer to a question is your question, together with the most recent chat messages, sent via our server at Cloudflare (section&nbsp;3) to the AI interface of Anthropic, PBC (548 Market Street, PMB 90375, San Francisco, CA 94104, USA), which generates an answer from it. Only the text of the chat is transmitted, not your IP address; for technical reasons, Cloudflare processes your IP address as described in section&nbsp;3. We do not store the chat. According to Anthropic, it does not use the content to train its models and generally deletes it after 30&nbsp;days at the latest. Please do not enter any sensitive personal data in the chat; for specific enquiries, it is best to use the contact form or our email address.
+      </p>
+      <p>
+        The legal basis is Art. 6 (1) (f) GDPR; our legitimate interest lies in answering questions about our services quickly. A data processing agreement in accordance with Art. 28 GDPR is in place with Anthropic; transfers to the USA are based on the EU Commission’s standard contractual clauses. Anthropic’s privacy policy:
+        <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">anthropic.com/legal/privacy</a>
+      </p>
+
+      <h2>8. Contact form</h2>
+      <p>
+        If you write to us using the contact form, the data you enter (name, email address, message and, where applicable, the selected topics) is processed to handle your enquiry. Technical delivery is handled by the service provider Web3Forms, which receives the information and forwards it to us as an email. The legal basis is your consent under Art. 6 (1) (a) GDPR, which you expressly give before sending, and Art. 6 (1) (b) GDPR insofar as your enquiry is aimed at concluding a contract. You can withdraw your consent at any time with effect for the future. Your data will be deleted as soon as it is no longer required for processing and no statutory retention obligations apply. Alternatively, you can reach us directly by email at any time.
+      </p>
+
+      <h2>9. Contact by email</h2>
+      <p>
+        If you contact us by email, we process the data you send (in particular your email address and the content of your message) to handle your enquiry. Cloudflare (see section&nbsp;3) forwards emails sent to our address to our mailbox at Google (Google Ireland Limited, Gordon House, Barrow Street, Dublin&nbsp;4, Ireland), where they are stored. The legal basis is Art. 6 (1) (b) GDPR if your enquiry is aimed at concluding a contract, otherwise Art. 6 (1) (f) GDPR. Your data will be deleted as soon as it is no longer required for processing and no statutory retention obligations apply.
+      </p>
+
+      <h2>10. Your rights</h2>
+      <p>
+        You have the right at any time to access the data stored about you (Art. 15 GDPR), to rectification (Art. 16 GDPR), to erasure (Art. 17 GDPR), to restriction of processing (Art. 18 GDPR), to data portability (Art. 20 GDPR) and to object to processing (Art. 21 GDPR). Please use the contact details above.
+      </p>
+
+      <h2>11. Right to lodge a complaint</h2>
+      <p>
+        You have the right to lodge a complaint with a data protection supervisory authority about the processing of your personal data. As a rule, the authority responsible is the one at your place of residence or at our company’s registered office.
+      </p>
+
+      <h2>12. Last updated</h2>
+      <p>
+        This privacy policy was last updated in November 2026.
+      </p>
+    </article>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, brands and content&nbsp;– from the first idea to the final reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pages">
+        <span class="footer__label">Pages</span>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About us</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Focus">
+        <span class="footer__label">Focus</span>
+        <a href="event-agency.html">Event agency</a>
+        <a href="social-media-agency.html">Social media agency</a>
+        <a href="creator-events.html">Creator events</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Contact">
+        <span class="footer__label">Contact</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Legal">
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="../js/config.js?v=31"></script>
+  <script src="../js/visuals.js?v=31"></script>
+  <script src="../js/script.js?v=31"></script>
+  <script src="../js/assistent.js?v=31" defer></script>
+</body>
+</html>

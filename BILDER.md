@@ -196,3 +196,14 @@ Ordner `assets/leistungen/`, alles eigene Night-Run-Fotos.
 | `leistung-bildwelt.jpg` | Karte 02 Marke, Kachel „Bildwelt“ | hoch | aus 08.jpg: Läufer mit Red-Bull-Dose |
 | `leistung-moodboard.jpg` | Karte 02 Marke, Kachel „Moodboard“ | quer 720×240 | Streifen aus 07.jpg, 09.jpg, 06.jpg |
 | `leistung-reel.jpg` | Karte 03 Social Media, Bild im Handy | hoch | aus start-hoch-ld3913: Läufer filmt am DJ-Bike |
+
+### Stand 13.11.2026: WebP, neue Gründerfotos
+
+- Alle Fotos, die auf den Seiten zu sehen sind, werden jetzt als `.webp` geladen
+  (kleiner, gleiche Qualität). Die `.jpg` daneben bleiben für Vorschaubilder beim
+  Teilen (og-*.jpg), für die strukturierten Daten und die Bild-Sitemap.
+  Neues Foto: als `.webp` (Qualität ca. 80) und mit neuem Dateinamen ablegen.
+- `assets/team/julian-onside.webp|jpg`, `assets/team/malte-onside.webp|jpg`: Gründerfotos
+  vom Tirol Hackathon mit ONSIDE-Shirt (quadratisch 1000×1000), Startseite und „Wer sind wir?“.
+- `assets/team/gruender-snowside.webp|jpg`: Julian und Malte stellen SNOWSIDE auf der Bühne
+  beim Tirol Hackathon vor (5:4, links beschnitten), oben auf „Wer sind wir?“.
