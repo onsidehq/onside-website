@@ -7,7 +7,7 @@ nichts muss umgewandelt werden: Was im Ordner liegt, ist die Seite.
 
 | Datei | Was drauf ist |
 |-------|---------------|
-| `index.html` | Startseite: Startbildschirm mit Fotos, Projekt-Teaser, Laufband, Leistungen, Wer sind wir, Warum onside, Fragen (FAQ), Kontakt |
+| `index.html` | Startseite: Startbildschirm mit Fotos, Projekt-Teaser, Leistungen, Wer sind wir, Warum onside, Fragen (FAQ), Kontakt |
 | `projekte.html` | Übersicht aller Projekte |
 | `berlin-night-run.html` | Projektseite Night Run mit dem Regler „Der Plan dahinter“ – zugleich die Vorlage für jedes weitere Projekt |
 | `leistungen.html` | Die drei Leistungen ausführlich + Ablauf einer Zusammenarbeit |

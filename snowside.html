@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNOWSIDE: Creator Ski Week in Tirol (März 2027) – onside.hq</title>
+  <meta name="description" content="SNOWSIDE, unsere Creator Ski Week in Tirol: 8–10 Creator, ein Chalet, vier Skitage und viel Content. Jetzt als Partner oder Creator bewerben." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/snowside" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="SNOWSIDE – Creator Ski Week in Tirol" />
+  <meta property="og:description" content="SNOWSIDE ist unsere Creator Ski Week in Tirol: 8–10 Creator, ein Chalet, vier Skitage und Content, der nach Abenteuer aussieht. Jetzt als Partner oder Creator bewerben." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/snowside" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-snowside.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen-Pfad Start > Projekte > SNOWSIDE -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://onsidehq.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Projekte", "item": "https://onsidehq.de/projekte" },
+      { "@type": "ListItem", "position": 3, "name": "SNOWSIDE", "item": "https://onsidehq.de/snowside" }
+    ]
+  }
+  </script>
+
+  <!-- Für Suchmaschinen: das geplante Event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "SNOWSIDE – Creator Ski Week",
+    "description": "Eine Woche in Tirol mit 8–10 ausgewählten Creatorn: Skifahren, Abenteuer, Food und Après – und Content, der nach Abenteuer aussieht.",
+    "startDate": "2027-03-01",
+    "endDate": "2027-03-06",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "Place", "name": "Tirol", "address": { "@type": "PostalAddress", "addressRegion": "Tirol", "addressCountry": "AT" } },
+    "image": "https://onsidehq.de/assets/og-snowside.jpg",
+    "organizer": { "@type": "Organization", "name": "onside.hq", "url": "https://onsidehq.de/" }
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=26" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    // Fehlt ein Foto, verschwindet das <img> und die Animation darunter bleibt
+    // sichtbar. Liegt es in einem <picture> mit Handy-Version (hoch-...), wird
+    // zuerst die Handy-Version weggelassen und das große Foto genommen.
+    window.onsideBildFehlt = function (img) {
+      if (!img.getAttribute('src')) return; // ohne Bildadresse nichts zu tun
+      var s = img.parentNode && img.parentNode.querySelector('source');
+      if (s) { s.remove(); img.src = img.getAttribute('src'); } else { img.remove(); }
+    };
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="snowside">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – zur Startseite">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="index.html">Home</a>
+      <a href="projekte.html" aria-current="page">Projekte</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="leistungen.html">Leistungen</a>
+      <a href="ueber-uns.html">Wer sind wir?</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+
+    <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menü">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projekte.html" aria-current="page"><span class="menu-overlay__num">02</span>Projekte</a>
+      <a href="galerie.html"><span class="menu-overlay__num">03</span>Galerie</a>
+      <a href="leistungen.html"><span class="menu-overlay__num">04</span>Leistungen</a>
+      <a href="ueber-uns.html"><span class="menu-overlay__num">05</span>Wer sind wir?</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">07</span>Kontakt</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ PROJEKTSEITE: SNOWSIDE (in Planung) ============
+         Zeigt Idee und Planung, noch keine Partnermarken nennen.
+         Alle Bilder hier sind Konzeptbilder (Stimmung, nicht von uns, lizenzfrei von Pexels.com) und
+         tragen deshalb das Etikett "Konzeptbild". Echte Fotos ersetzen sie nach dem Event. -->
+    <section class="case-hero case-hero--bright">
+      <div class="case-hero__media viz">
+        <canvas data-scene="bokeh" data-seed="12" aria-hidden="true"></canvas>
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/projects/snowside/hoch-konzept-drei-piste.jpg">
+          <img src="assets/projects/snowside/konzept-drei-piste.jpg" alt="Konzeptbild: drei Freunde mit Snowboards auf dem Weg zur Piste in der Wintersonne" fetchpriority="high" onerror="onsideBildFehlt(this)">
+        </picture>
+        <span class="konzept-badge">Konzeptbild</span>
+      </div>
+      <div class="case-hero__content">
+        <a class="back-link intro" href="projekte.html"><i>←</i> Alle Projekte</a>
+        <p class="eyebrow intro">In Planung · Tirol · März 2027</p>
+        <h1 data-split>SNOWSIDE</h1>
+        <p class="case-hero__lead intro intro--2">
+          Unsere Creator Ski Week: eine Woche in Tirol, ein Chalet, ausgewählte Creator
+          und Content, der nach Abenteuer aussieht und nicht nach Werbung klingt.
+        </p>
+      </div>
+    </section>
+
+    <section class="facts">
+      <dl class="facts__grid">
+        <div class="facts__item reveal"><dt>Wann</dt><dd>März 2027</dd></div>
+        <div class="facts__item reveal"><dt>Wo</dt><dd>Tirol</dd></div>
+        <div class="facts__item reveal"><dt>Wer</dt><dd>8–10 ausgewählte Creator</dd></div>
+        <div class="facts__item reveal"><dt>Basis</dt><dd>1 Chalet · 5 Nächte · 4 Skitage</dd></div>
+        <div class="facts__item reveal"><dt>Status</dt><dd>In Planung · Partner gesucht</dd></div>
+      </dl>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Die Idee</p>
+        <h2 data-split>Skifahren für die <span class="scribble" data-scribble="underline">nächste Generation.</span></h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Junge Leute wollen keine Woche im selben Skigebiet. Sie wollen Abwechslung,
+          Abenteuer und Abende, über die man noch lange redet. Genau das bauen wir: eine
+          Woche mit Creatorn aus Action, Travel und Lifestyle statt aus der Ski-Bubble.
+          Ihre Communities folgen ihnen wegen Abenteuer, nicht wegen Pistenkilometern.
+          Da holen wir sie ab.
+        </p>
+      </div>
+    </section>
+
+    <section class="case-gallery">
+      <p class="eyebrow reveal">Die Woche</p>
+      <h2 data-split>So könnte die Woche aussehen.</h2>
+      <div class="snow-week">
+        <article class="snow-week__item reveal">
+          <div class="snow-week__media viz">
+            <canvas data-scene="bokeh" data-seed="3" aria-hidden="true"></canvas>
+            <img src="assets/projects/snowside/konzept-freestyle.jpg" alt="Konzeptbild: Freestyle-Skifahrer springt vor blauem Himmel" loading="lazy" onerror="this.remove()">
+            <span class="konzept-badge">Konzeptbild</span>
+          </div>
+          <p class="eyebrow">01 · Ski &amp; Content</p>
+          <h3>Jeden Tag ein neues Erlebnis.</h3>
+          <p>Verschiedene Pisten, Tiefschnee und Bergbahnen&nbsp;– gefilmt von denen, die gerade fahren.</p>
+        </article>
+        <article class="snow-week__item reveal">
+          <div class="snow-week__media viz">
+            <canvas data-scene="rings" data-seed="5" aria-hidden="true"></canvas>
+            <img src="assets/projects/snowside/konzept-spielplatz.jpg" alt="Konzeptbild: Skifahrerin liegt lachend nach einem Sturz im Tiefschnee" loading="lazy" onerror="this.remove()">
+            <span class="konzept-badge">Konzeptbild</span>
+          </div>
+          <p class="eyebrow">02 · Wild Activities</p>
+          <h3>Die Piste ist unser Spielplatz.</h3>
+          <p>Kostüm-Day, Nachtrodeln, Snowbike: Wir wollen „besonders“, nicht Pauschalurlaub.</p>
+        </article>
+        <article class="snow-week__item reveal">
+          <div class="snow-week__media viz">
+            <canvas data-scene="bokeh" data-seed="8" aria-hidden="true"></canvas>
+            <img src="assets/projects/snowside/konzept-picknick.jpg" alt="Konzeptbild: gedeckter Tisch mitten im Schnee in den Bergen" loading="lazy" onerror="this.remove()">
+            <span class="konzept-badge">Konzeptbild</span>
+          </div>
+          <p class="eyebrow">03 · Food Moments</p>
+          <h3>Essen, wo man es nicht erwartet.</h3>
+          <p>Brotzeit auf Skiern, Dinner im Schnee: Momente, die man sofort teilen will.</p>
+        </article>
+        <article class="snow-week__item reveal">
+          <div class="snow-week__media viz">
+            <canvas data-scene="eq" data-seed="4" aria-hidden="true"></canvas>
+            <img src="assets/projects/snowside/konzept-abend.jpg" alt="Konzeptbild: zwei Freundinnen in bunten Retro-Skianzügen beim Après am Stehtisch" loading="lazy" onerror="this.remove()">
+            <span class="konzept-badge">Konzeptbild</span>
+          </div>
+          <p class="eyebrow">04 · Après &amp; Abend</p>
+          <h3>Piste und Abend an einem Tag.</h3>
+          <p>Après, Stadt und lange Abende im Chalet&nbsp;– das Finale gehört der Gruppe.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Warum das funktioniert</p>
+        <h2 data-split>Drei Seiten, <span class="scribble" data-scribble="underline">ein Ziel.</span></h2>
+      </div>
+      <div class="case-section__body">
+        <ul class="snow-why reveal">
+          <li><strong>Die Creator</strong> bringen Reichweite und Glaubwürdigkeit bei 18- bis 30-Jährigen, die Ski noch nicht auf dem Schirm haben.</li>
+          <li><strong>Die Marken</strong> kommen in Momenten vor, die die Creator ohnehin erleben&nbsp;– nicht in einem Werbeblock.</li>
+          <li><strong>Wir</strong> machen daraus eine Woche, über die man spricht: Konzept, Organisation, Dreh und ein gemeinsames Aftermovie.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-gallery">
+      <p class="eyebrow reveal">Stimmung</p>
+      <h2 data-split>Woran wir gerade planen.</h2>
+      <div class="case-gallery__grid">
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="bokeh" data-seed="14" aria-hidden="true"></canvas>
+            <img src="assets/projects/snowside/konzept-dinner.jpg" alt="Konzeptbild: Freunde beim gemeinsamen Abendessen am großen Holztisch" loading="lazy" onerror="this.remove()">
+            <span class="konzept-badge">Konzeptbild</span>
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="bokeh" data-seed="16" aria-hidden="true"></canvas>
+            <img src="assets/projects/snowside/konzept-innsbruck.jpg" alt="Konzeptbild: bunte Häuser am Inn in Innsbruck vor verschneiten Bergen" loading="lazy" onerror="this.remove()">
+            <span class="konzept-badge">Konzeptbild</span>
+          </div>
+        </div>
+      </div>
+      <p class="konzept-note reveal">Alle Bilder auf dieser Seite sind Konzeptbilder und zeigen die Stimmung, die wir planen. Die echten Fotos gibt es nach der Woche.</p>
+    </section>
+
+    <!-- MITMACHEN: zwei Wege. Marken -> Mail/Kontaktformular. Creator -> Instagram
+         (Kommentar unter dem Aufruf-Post oder DM). Link zum Post hier eintragen,
+         sobald er online ist (data-snow-post). -->
+    <section class="snow-join" id="mitmachen">
+      <p class="eyebrow reveal">Mitmachen</p>
+      <h2 data-split>Werde Teil von <span class="scribble" data-scribble="underline">SNOWSIDE.</span></h2>
+      <div class="snow-join__grid">
+        <article class="snow-join__card reveal" data-spot>
+          <p class="eyebrow">Für Marken &amp; Unternehmen</p>
+          <h3>Als Partner dabei sein</h3>
+          <p>
+            Ihr wollt eine junge Zielgruppe erreichen, und zwar mit Content, den sie
+            freiwillig anschauen? Wir suchen Partner, die Teil der Woche werden: von
+            Ausrüstung über Unterkunft und Food bis zum Presenting Partner. Wie das
+            konkret aussieht, gestalten wir gemeinsam.
+          </p>
+          <div class="snow-join__actions">
+            <a class="btn btn--beat" href="mailto:team@onsidehq.de?subject=SNOWSIDE%202027%20%E2%80%93%20Partnerschaft">Partner werden</a>
+            <a class="btn btn--ghost" href="kontakt.html">Zum Kontaktformular</a>
+          </div>
+        </article>
+        <article class="snow-join__card reveal" data-spot>
+          <p class="eyebrow">Für Creator</p>
+          <h3>Mit nach Tirol kommen</h3>
+          <p>Du liebst Abenteuer und willst eine Woche mit uns in die Berge? Das passt, wenn du:</p>
+          <ul class="checklist">
+            <li>zwischen 20 und 27 bist</li>
+            <li>aus Deutschland, Österreich oder der Schweiz kommst</li>
+            <li>Action, Travel oder Sidequests machst</li>
+            <li>selbst filmst und schneidest</li>
+            <li>sicher Ski fährst</li>
+          </ul>
+          <p>Bewirb dich auf Instagram: Kommentier unter unserem Aufruf-Post oder schreib uns eine DM.</p>
+          <div class="snow-join__actions">
+            <a class="btn btn--beat" href="https://instagram.com/onside.hq" target="_blank" rel="noopener" data-snow-post>Auf Instagram bewerben</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, Marken und Content&nbsp;– von der ersten Idee bis zum letzten Reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Seiten">
+        <span class="footer__label">Seiten</span>
+        <a href="projekte.html">Projekte</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="ueber-uns.html">Wer sind wir?</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Kontakt">
+        <span class="footer__label">Kontakt</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="js/config.js?v=26"></script>
+  <script src="js/visuals.js?v=26"></script>
+  <script src="js/script.js?v=26"></script>
+  <script src="js/assistent.js?v=26" defer></script>
+</body>
+</html>

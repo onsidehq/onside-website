@@ -1,5 +1,6 @@
 # Suchmaschinen dürfen alles lesen. Die Sitemap listet alle Seiten auf.
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://onsidehq.de/sitemap.xml

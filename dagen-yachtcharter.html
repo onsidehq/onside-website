@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dagen Yachtcharter: Reels von Korfu mit 270.000 Views – onside.hq</title>
+  <meta name="description" content="Segelwoche rund um Korfu, 10 Reels, tägliche Stories, über 270.000 Views: So hat onside.hq Segeln für Dagen Yachtcharter einer jüngeren Zielgruppe gezeigt." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/dagen-yachtcharter" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Dagen Yachtcharter – onside.hq" />
+  <meta property="og:description" content="Eine Segelwoche rund um Korfu, 10 Reels, tägliche Stories und über 270.000 Views: Für Dagen Yachtcharter hat onside.hq Segeln für eine jüngere Zielgruppe in Szene gesetzt." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/dagen-yachtcharter" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-dagen.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen-Pfad Start > Projekte > Dagen Yachtcharter -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://onsidehq.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Projekte", "item": "https://onsidehq.de/projekte" },
+      { "@type": "ListItem", "position": 3, "name": "Dagen Yachtcharter", "item": "https://onsidehq.de/dagen-yachtcharter" }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=26" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    // Fehlt ein Foto, verschwindet das <img> und die Animation darunter bleibt
+    // sichtbar. Liegt es in einem <picture> mit Handy-Version (hoch-...), wird
+    // zuerst die Handy-Version weggelassen und das große Foto genommen.
+    window.onsideBildFehlt = function (img) {
+      if (!img.getAttribute('src')) return; // ohne Bildadresse nichts zu tun
+      var s = img.parentNode && img.parentNode.querySelector('source');
+      if (s) { s.remove(); img.src = img.getAttribute('src'); } else { img.remove(); }
+    };
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="dagen">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – zur Startseite">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="index.html">Home</a>
+      <a href="projekte.html" aria-current="page">Projekte</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="leistungen.html">Leistungen</a>
+      <a href="ueber-uns.html">Wer sind wir?</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+
+    <a href="kontakt.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Projekt anfragen</span><span class="nav__cta-short">Anfragen</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menü">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projekte.html" aria-current="page"><span class="menu-overlay__num">02</span>Projekte</a>
+      <a href="galerie.html"><span class="menu-overlay__num">03</span>Galerie</a>
+      <a href="leistungen.html"><span class="menu-overlay__num">04</span>Leistungen</a>
+      <a href="ueber-uns.html"><span class="menu-overlay__num">05</span>Wer sind wir?</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">07</span>Kontakt</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ PROJEKTSEITE: DAGEN YACHTCHARTER ============
+         Aufgebaut nach dem Muster von berlin-night-run.html.
+         Bilder liegen in assets/projects/dagen-yachtcharter/ (siehe BILDER.md).
+         Fehlt ein Foto, läuft an seiner Stelle eine Animation. -->
+
+    <!-- BILD 1: Titelbild → assets/projects/dagen-yachtcharter/cover.jpg (quer 3:2,
+         Handy: hoch-cover.jpg, hoch 4:5) -->
+    <section class="case-hero">
+      <div class="case-hero__media viz">
+        <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/projects/dagen-yachtcharter/hoch-cover.jpg">
+          <img src="assets/projects/dagen-yachtcharter/cover.jpg" alt="Segelboot von Dagen Yachtcharter vor Anker in einer Bucht bei Korfu, Drohnenaufnahme" fetchpriority="high" onerror="onsideBildFehlt(this)">
+        </picture>
+      </div>
+      <div class="case-hero__content">
+        <a class="back-link intro" href="projekte.html"><i>←</i> Alle Projekte</a>
+        <p class="eyebrow intro">Projekt 02 · Korfu · 2026</p>
+        <h1 data-split>Dagen Yachtcharter</h1>
+        <p class="case-hero__lead intro intro--2">
+          Eine Woche an Bord, eine Kamera dabei: Wir haben Segeln so erzählt, dass es
+          eine jüngere Zielgruppe sehen will.
+        </p>
+      </div>
+    </section>
+
+    <!-- Eckdaten: hier einfach die Texte zwischen <dd> und </dd> ändern -->
+    <section class="facts">
+      <dl class="facts__grid">
+        <div class="facts__item reveal"><dt>Kunde</dt><dd>Dagen Yachtcharter</dd></div>
+        <div class="facts__item reveal"><dt>Wann</dt><dd>September 2026</dd></div>
+        <div class="facts__item reveal"><dt>Wo</dt><dd>Korfu, Griechenland</dd></div>
+                <div class="facts__item reveal"><dt>Content</dt><dd>10&nbsp;Reels · tägliche Stories</dd></div>
+        <div class="facts__item reveal"><dt>Unsere Rolle</dt><dd>Konzept, Dreh, Schnitt, Posting</dd></div>
+      </dl>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Die Aufgabe</p>
+        <h2 data-split>Segeln kann jeder buchen.<br>Man muss es nur <span class="scribble" data-scribble="underline">wollen.</span></h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Dagen Yachtcharter vermietet Segelboote. Der Instagram-Kanal stand noch ganz am
+          Anfang. Das Ziel: Chartern für eine jüngere Zielgruppe attraktiv machen und
+          zeigen, dass ein Segeltörn genau das Erlebnis ist, das sie suchen.
+        </p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Die Umsetzung</p>
+        <h2 data-split>Eine Woche an Bord, jeden Tag Content.</h2>
+      </div>
+      <div class="case-section__body">
+        <p class="reveal">
+          Statt Werbefilm haben wir gezeigt, wie sich eine Woche auf dem Boot wirklich
+          anfühlt. Gedreht haben wir an Bord, die Stories liefen jeden Tag live mit,
+          dazu zehn Reels für den Kanal.
+        </p>
+        <ul class="checklist reveal">
+          <li>Content-Konzept</li>
+          <li>Dreh an Bord</li>
+          <li>10 Reels</li>
+          <li>Tägliche Stories</li>
+          <li>Schnitt &amp; Posting</li>
+          <li>Auswertung</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTENT-BEISPIELE: Videos laden erst beim Antippen (schnelle Seite, vorher
+         gehen keine Daten an Instagram/YouTube). Neues Video: einen <figure>-Block
+         kopieren und data-id ändern (Reel: Teil nach /reel/, YouTube: Teil nach youtu.be/).
+         Das Abspielen steuert js/script.js, Abschnitt 9. -->
+    <section class="case-media">
+      <p class="eyebrow reveal">Der Content</p>
+      <h2 data-split>Reels aus der Woche.</h2>
+      <p class="case-media__lead reveal">Die drei stärksten der zehn Reels. Views laut Instagram, Stand November 2026.</p>
+      <div class="case-media__reels">
+          <figure class="embed embed--reel reveal">
+            <button class="embed__poster" type="button" data-embed="instagram" data-id="Dc6vLdnsPCr" aria-label="Reel 1 von Dagen Yachtcharter abspielen (lädt Instagram)">
+              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/reel-Dc6vLdnsPCr.jpg" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <span class="embed__tag">Reel 01 · 178.000 Views</span>
+              <span class="embed__play" aria-hidden="true"></span>
+              <span class="embed__hint">Antippen lädt Instagram</span>
+            </button>
+            <figcaption><a href="https://www.instagram.com/reel/Dc6vLdnsPCr/" target="_blank" rel="noopener">Auf Instagram ansehen ↗</a></figcaption>
+          </figure>
+          <figure class="embed embed--reel reveal">
+            <button class="embed__poster" type="button" data-embed="instagram" data-id="Dc75sols2Ym" aria-label="Reel 2 von Dagen Yachtcharter abspielen (lädt Instagram)">
+              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/reel-Dc75sols2Ym.jpg" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <span class="embed__tag">Reel 02 · 48.000 Views</span>
+              <span class="embed__play" aria-hidden="true"></span>
+              <span class="embed__hint">Antippen lädt Instagram</span>
+            </button>
+            <figcaption><a href="https://www.instagram.com/reel/Dc75sols2Ym/" target="_blank" rel="noopener">Auf Instagram ansehen ↗</a></figcaption>
+          </figure>
+          <figure class="embed embed--reel reveal">
+            <button class="embed__poster" type="button" data-embed="instagram" data-id="DdMahkhsNPX" aria-label="Reel 3 von Dagen Yachtcharter abspielen (lädt Instagram)">
+              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/reel-DdMahkhsNPX.jpg" alt="" width="540" height="960" loading="lazy" onerror="this.remove()">
+              <span class="embed__tag">Reel 03 · 19.800 Views</span>
+              <span class="embed__play" aria-hidden="true"></span>
+              <span class="embed__hint">Antippen lädt Instagram</span>
+            </button>
+            <figcaption><a href="https://www.instagram.com/reel/DdMahkhsNPX/" target="_blank" rel="noopener">Auf Instagram ansehen ↗</a></figcaption>
+          </figure>
+      </div>
+      <h3 class="case-media__sub reveal">Der Film zur Woche</h3>
+      <figure class="embed embed--video reveal">
+        <button class="embed__poster" type="button" data-embed="youtube" data-id="oB6_pFHHveQ" aria-label="Video zur Segelwoche mit Dagen Yachtcharter abspielen (lädt YouTube)">
+              <img class="embed__thumb" src="assets/projects/dagen-yachtcharter/video-poster.jpg" alt="" width="1280" height="720" loading="lazy" onerror="this.remove()">
+          <span class="embed__tag">YouTube</span>
+          <span class="embed__play" aria-hidden="true"></span>
+          <span class="embed__hint">Antippen lädt YouTube</span>
+        </button>
+        <figcaption><a href="https://youtu.be/oB6_pFHHveQ" target="_blank" rel="noopener">Auf YouTube ansehen ↗</a></figcaption>
+      </figure>
+    </section>
+
+    <!-- DAS REVIER: Karte als SVG direkt im HTML (aus Natural-Earth-Küstenlinien,
+         gemeinfrei). Farben in css/styles.css bei .seamap. Eine Route kann später
+         Die Segelroute (citymap__route) zeichnet sich beim Reinscrollen, data-at = Anteil der Strecke, an dem ein Stopp erscheint (js/script.js, Abschnitt 12). -->
+    <section class="case-section case-section--map">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Das Revier</p>
+        <h2 data-split>Eine Woche rund um <span class="scribble" data-scribble="underline">Korfu.</span></h2>
+        <p class="reveal case-section__note">
+          Von Kerkyra an der Ostküste entlang nach Lefkimmi, rüber nach Paxos und
+          Antipaxos, einmal ans Festland und zurück nach Kerkyra: Buchten, Ankerplätze
+          und Abende auf dem Ionischen Meer&nbsp;– die perfekte Kulisse für Content, der
+          nach Urlaub aussieht und nicht nach Werbung.
+        </p>
+      </div>
+      <div class="case-section__body">
+        <div class="seamap-wrap reveal" data-citymap>
+          <svg class="seamap" viewBox="0 0 800 837" role="img" aria-labelledby="seamap-title">
+            <title id="seamap-title">Karte: Segelroute von Kerkyra über Lefkimmi, Paxos, Antipaxos und das Festland zurück nach Kerkyra im Ionischen Meer, Griechenland</title>
+            <g class="seamap__grid"><line x1="154" y1="0" x2="154" y2="837"/><line x1="462" y1="0" x2="462" y2="837"/><line x1="769" y1="0" x2="769" y2="837"/><line x1="0" y1="798" x2="800" y2="798"/><line x1="0" y1="399" x2="800" y2="399"/></g>
+            <g><path class="seamap__land seamap__land--main" d="M780.2 637.4 L762.0 624.8 L756.2 617.9 L758.4 610.7 L755.3 603.4 L753.9 594.1 L754.7 584.9 L758.4 578.0 L758.4 572.1 L751.0 575.4 L744.7 576.4 L740.2 573.8 L737.4 566.6 L728.3 571.9 L719.5 571.5 L711.2 567.2 L703.7 560.7 L686.5 568.1 L661.5 555.2 L641.7 531.6 L640.4 506.7 L632.1 498.7 L627.5 488.6 L620.9 480.7 L606.8 479.0 L606.8 473.6 L611.0 473.6 L611.0 468.6 L606.0 462.3 L599.2 449.9 L594.2 446.3 L604.8 442.9 L617.6 443.3 L626.1 441.1 L624.0 430.1 L618.0 423.6 L594.2 407.8 L594.2 402.8 L604.9 403.4 L612.5 405.4 L618.5 404.8 L624.0 397.3 L624.0 391.9 L617.6 387.4 L606.8 382.2 L598.2 381.8 L598.4 391.9 L593.0 386.8 L585.9 382.5 L578.9 381.5 L585.8 375.0 L574.2 372.2 L563.6 371.1 L553.6 371.9 L543.7 375.0 L548.5 368.6 L551.1 361.2 L552.1 352.7 L551.8 342.4 L556.3 347.8 L560.6 347.4 L564.7 343.3 L569.0 337.5 L569.2 334.7 L568.7 324.4 L569.0 320.6 L570.2 320.1 L576.0 316.0 L577.4 315.7 L573.4 299.5 L563.2 292.2 L552.7 289.1 L547.9 285.2 L545.9 281.9 L536.2 273.7 L533.1 272.1 L526.0 270.3 L520.9 266.4 L516.2 260.7 L489.0 254.5 L474.9 249.1 L467.7 244.4 L464.2 245.0 L461.4 244.4 L459.6 245.2 L459.0 249.9 L454.8 249.9 L451.4 238.2 L453.5 224.9 L463.2 200.8 L452.7 196.4 L449.6 193.5 L459.0 173.1 L470.3 133.2 L471.6 123.6 L467.6 107.1 L461.1 102.6 L451.5 101.8 L438.0 96.8 L437.1 94.9 L436.9 91.7 L436.2 88.2 L433.8 85.5 L425.3 80.6 L419.2 78.2 L408.7 77.8 L404.0 74.6 L404.0 69.7 L413.1 58.3 L419.1 52.2 L425.3 47.8 L414.7 37.6 L395.0 0.0 L800.0 0.0 L800.0 662.7 L780.2 637.4Z"/><path class="seamap__land" d="M521.1 460.3 L526.6 484.5 L534.0 496.1 L534.1 501.6 L526.6 506.7 L521.1 502.0 L505.9 497.4 L491.6 486.8 L481.5 482.5 L470.7 479.9 L461.1 479.0 L455.6 475.9 L439.9 461.8 L433.8 457.7 L423.2 456.3 L414.7 456.4 L407.3 454.3 L404.6 450.6 L409.2 451.5 L413.4 448.4 L416.9 440.9 L395.5 433.9 L387.5 430.1 L387.2 432.0 L386.9 435.0 L387.0 436.1 L378.8 423.8 L372.2 407.6 L367.8 391.0 L363.6 357.3 L356.2 341.1 L344.5 327.7 L328.7 315.7 L314.5 308.7 L306.8 303.0 L290.3 266.2 L288.6 260.7 L277.8 260.9 L270.6 259.9 L265.4 255.2 L261.1 244.4 L262.8 225.9 L259.5 220.1 L248.1 227.6 L248.4 215.0 L246.3 205.9 L241.0 201.0 L231.7 200.8 L237.8 194.3 L253.7 171.9 L256.9 164.7 L262.7 163.4 L319.8 161.0 L337.9 157.3 L353.8 150.4 L370.3 139.9 L378.8 142.7 L384.5 147.3 L389.5 152.4 L395.6 156.8 L411.6 162.0 L417.8 165.8 L421.1 173.1 L425.3 173.1 L425.3 167.2 L429.5 167.2 L428.5 192.0 L420.8 206.4 L408.0 215.0 L370.2 230.9 L364.0 235.9 L360.6 245.3 L362.5 255.3 L367.8 263.2 L374.6 266.2 L374.6 272.1 L366.1 272.1 L366.1 277.0 L402.4 295.8 L416.9 298.8 L414.5 316.2 L410.6 319.9 L400.1 315.7 L407.3 332.2 L420.0 415.7 L422.5 420.3 L429.5 425.1 L437.8 428.3 L455.0 431.9 L463.2 435.4 L476.1 445.5 L481.7 447.2 L492.6 446.3 L501.6 443.0 L507.1 439.5 L511.9 440.8 L518.2 451.8 L521.1 460.3Z"/><path class="seamap__land" d="M557.3 615.3 L568.2 624.3 L578.5 635.9 L585.8 654.3 L573.2 653.8 L565.4 651.7 L559.2 646.7 L546.7 630.6 L540.4 619.6 L538.7 609.3 L547.9 604.8 L557.3 615.3Z"/><path class="seamap__land" d="M612.6 685.8 L620.5 691.5 L613.7 694.2 L610.8 693.4 L608.9 691.2 L605.5 688.4 L601.5 685.2 L596.6 685.8 L593.9 679.5 L595.4 675.8 L602.3 672.8 L603.9 674.8 L606.3 678.1 L607.7 679.0 L612.6 685.8Z"/><path class="seamap__land" d="M172.9 183.5 L177.5 191.7 L173.3 194.4 L168.4 192.1 L166.1 186.8 L163.5 182.7 L160.1 177.8 L162.2 172.1 L172.9 183.5Z"/><path class="seamap__land" d="M107.3 105.9 L112.3 106.6 L98.2 126.5 L88.3 129.2 L84.6 127.4 L81.1 123.5 L79.8 115.8 L81.8 109.2 L87.3 106.6 L98.9 109.2 L102.0 107.6 L107.3 105.9Z"/><path class="seamap__land" d="M202.9 81.3 L212.0 86.9 L210.8 96.1 L205.2 96.1 L200.1 99.1 L194.2 86.8 L199.7 79.7 L202.9 81.3Z"/></g>
+            <g class="seamap__labels">
+              <text x="277" y="439" class="seamap__name">KORFU</text>
+              <text x="483" y="643" class="seamap__small">PAXOS</text>
+              <text x="780" y="303" text-anchor="end" class="seamap__small seamap__small--dim">GRIECHENLAND</text>
+              <text x="62" y="758" class="seamap__small seamap__small--dim">IONISCHES MEER</text>
+            </g>
+            <path class="citymap__track" d="M417 300 C420 303 437 309 440 319 C443 329 434 346 436 359 C437 372 441 386 448 399 C455 412 469 425 480 435 C491 444 501 447 514 456 C526 466 545 474 554 491 C562 508 562 535 566 559 C570 583 572 616 578 634 C585 653 595 678 604 672 C613 666 630 631 631 598 C631 566 621 508 608 477 C595 447 573 435 554 415 C534 395 515 374 492 355 C469 336 429 309 417 300"/>
+            <path class="citymap__route" d="M417 300 C420 303 437 309 440 319 C443 329 434 346 436 359 C437 372 441 386 448 399 C455 412 469 425 480 435 C491 444 501 447 514 456 C526 466 545 474 554 491 C562 508 562 535 566 559 C570 583 572 616 578 634 C585 653 595 678 604 672 C613 666 630 631 631 598 C631 566 621 508 608 477 C595 447 573 435 554 415 C534 395 515 374 492 355 C469 336 429 309 417 300"/>
+            <g class="seamap__pin" transform="translate(417 300)">
+              <circle r="22" class="seamap__ring"/>
+              <circle r="6" class="seamap__dot"/>
+              <text x="-16" y="-16" text-anchor="end" class="seamap__small">KERKYRA · START &amp; ZIEL</text>
+            </g>
+            <g class="citymap__pin" data-at="0.220" transform="translate(514 456)">
+              <circle r="16" class="citymap__ring"/><circle r="5" class="citymap__dot"/>
+              <text x="-16" y="22" text-anchor="end" class="seamap__small">LEFKIMMI</text>
+            </g>
+            <g class="citymap__pin" data-at="0.437" transform="translate(578 634)">
+              <circle r="16" class="citymap__ring"/><circle r="5" class="citymap__dot"/>
+            </g>
+            <g class="citymap__pin" data-at="0.491" transform="translate(604 672)">
+              <circle r="16" class="citymap__ring"/><circle r="5" class="citymap__dot"/>
+              <text x="0" y="40" text-anchor="middle" class="seamap__small">ANTIPAXOS</text>
+            </g>
+            <g class="citymap__pin" data-at="0.714" transform="translate(608 477)">
+              <circle r="16" class="citymap__ring"/><circle r="5" class="citymap__dot"/>
+              <text x="22" y="6" class="seamap__small">FESTLAND</text>
+            </g>
+            <circle class="citymap__runner" r="7" cx="417" cy="300"/>
+            <text x="780" y="817" text-anchor="end" class="seamap__small seamap__small--dim">39.6° N · 19.9° E</text>
+          </svg>
+          <button class="citymap__replay" type="button" hidden>Nochmal segeln</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ergebnis: große Zahlen. Werte zwischen <dd> und </dd> ändern. -->
+    <section class="case-section">
+      <div class="case-section__head">
+        <p class="eyebrow reveal">Das Ergebnis</p>
+        <h2 data-split>Über <span class="scribble" data-scribble="underline">270.000 Views</span> mit zehn Reels.</h2>
+      </div>
+      <div class="case-section__body">
+        <dl class="case-stats reveal">
+          <div><dt>Views pro Reel im Schnitt</dt><dd>+13.000&nbsp;%</dd></div>
+          <div><dt>Top-Reel</dt><dd>178.000</dd></div>
+          <div><dt>Reel-Views gesamt</dt><dd>270.000+</dd></div>
+        </dl>
+        <p class="reveal">
+          Vorher kamen die Reels des Kanals im Schnitt auf rund 200&nbsp;Views. Unsere Reels
+          aus der Woche liegen bei rund 27.000&nbsp;Views im Schnitt, also etwa 130-mal so
+          viel. Der Beweis, dass Segeln auf Social Media funktioniert, wenn man es richtig erzählt.
+        </p>
+        <blockquote class="case-quote reveal">
+          <p>„Die Woche mit den Jungs von onside.hq hat unserem Instagram-Account rund 250.000&nbsp;Views gebracht, und wir haben viele positive Rückmeldungen zu den Inhalten bekommen. Unkomplizierte Zusammenarbeit, sehr professionelle Aufnahmen.“</p>
+          <footer>Dagen Yachtcharter</footer>
+        </blockquote>
+        <div class="client-logo reveal">
+          <img src="assets/projects/dagen-yachtcharter/logo-dagen.png" alt="Logo Dagen Yachtcharter" width="318" height="106" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIE: Fotos/Standbilder aus den Reels nach dem Muster der Night-Run-Seite
+         (Dateien galerie-....jpg in assets/projects/dagen-yachtcharter/).
+         Fehlt ein Foto, verschwindet das Feld (onerror) und die Animation bleibt. -->
+    <section class="case-gallery">
+      <p class="eyebrow reveal">Eindrücke</p>
+      <h2 data-split>Die Woche in Bildern.</h2>
+      <div class="case-gallery__grid">
+        <div class="case-gallery__item case-gallery__item--wide reveal">
+          <div class="viz">
+            <canvas data-scene="contour" data-seed="5" aria-hidden="true"></canvas>
+            <img src="assets/projects/dagen-yachtcharter/galerie-abendlicht.jpg" alt="Segelboot von Dagen Yachtcharter im Abendlicht vor Korfu" loading="lazy" style="object-position: 50% 70%" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="bokeh" data-seed="4" aria-hidden="true"></canvas>
+            <img src="assets/projects/dagen-yachtcharter/galerie-haengematte.jpg" alt="Entspannen in der Hängematte unter dem Baum des Segelboots" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+        <div class="case-gallery__item reveal">
+          <div class="viz">
+            <canvas data-scene="rings" data-seed="6" aria-hidden="true"></canvas>
+            <img src="assets/projects/dagen-yachtcharter/01.jpg" alt="Sprung vom Seil ins Meer neben dem Segelboot" loading="lazy" onerror="this.remove()">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow reveal">Euer Projekt</p>
+      <h2 data-split>Eure Marke braucht <span class="scribble" data-scribble="underline">Content,</span> den man sehen will?</h2>
+      <div class="cta-band__actions reveal">
+        <a href="kontakt.html" class="btn btn--large btn--beat">Projekt anfragen</a>
+        <a href="leistungen.html#social" class="btn btn--large btn--ghost">Social Media bei uns</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, Marken und Content&nbsp;– von der ersten Idee bis zum letzten Reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Seiten">
+        <span class="footer__label">Seiten</span>
+        <a href="projekte.html">Projekte</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="ueber-uns.html">Wer sind wir?</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Kontakt">
+        <span class="footer__label">Kontakt</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="js/config.js?v=26"></script>
+  <script src="js/visuals.js?v=26"></script>
+  <script src="js/script.js?v=26"></script>
+  <script src="js/assistent.js?v=26" defer></script>
+</body>
+</html>

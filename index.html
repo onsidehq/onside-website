@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>onside.hq – Eventagentur &amp; Content-Studio aus Potsdam</title>
-  <meta name="description" content="Wir planen Events für Marken, Vereine und Communities, setzen sie um und produzieren den Content dazu. Aus Potsdam und Innsbruck, oft in Berlin." />
+  <meta name="description" content="Wir denken uns in eure Marke rein, planen Events für Marken, Vereine und Communities und produzieren den Content dazu. Aus Potsdam und Innsbruck, oft in Berlin." />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://onsidehq.de/" />
 
@@ -23,7 +23,7 @@
 
   <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
   <meta property="og:title" content="onside.hq – Events &amp; Content für Marken und Communities" />
-  <meta property="og:description" content="Von der ersten Idee bis zum letzten Reel. Wir entwickeln Events, Marken und Content, die Menschen nicht nur sehen – sondern erleben." />
+  <meta property="og:description" content="Von der ersten Idee bis zum letzten Reel: Wir denken uns in eure Marke rein und bauen Events und Content, die zeigen, wofür ihr steht." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://onsidehq.de/" />
   <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
@@ -96,6 +96,14 @@
       },
       {
         "@type": "Question",
+        "name": "Wie sorgt ihr dafür, dass ein Projekt zu unserer Marke passt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Indem wir zuerst zuhören. Im ersten Gespräch geht es um eure Marke, eure Ziele und eure Zielgruppe, nicht um unsere Ideen. Erst dann entwickeln wir ein Konzept, in dem eure Identität sichtbar und erlebbar wird: im Ablauf, bei Partnern und Location und im Content. Beim Night Run hatte zum Beispiel jeder Partner eine Rolle, die zu seiner Marke passt."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Kann man auch nur eine Leistung buchen?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -138,7 +146,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=10" />
+  <link rel="stylesheet" href="css/styles.css?v=26" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -181,6 +189,7 @@
     <nav class="nav__links" aria-label="Hauptnavigation">
       <a href="#top" aria-current="page">Home</a>
       <a href="projekte.html">Projekte</a>
+      <a href="galerie.html">Galerie</a>
       <a href="leistungen.html">Leistungen</a>
       <a href="ueber-uns.html">Wer sind wir?</a>
       <a href="#fragen">FAQ</a>
@@ -196,10 +205,11 @@
     <nav class="menu-overlay__links" aria-label="Menü">
       <a href="#top" aria-current="page"><span class="menu-overlay__num">01</span>Home</a>
       <a href="projekte.html"><span class="menu-overlay__num">02</span>Projekte</a>
-      <a href="leistungen.html"><span class="menu-overlay__num">03</span>Leistungen</a>
-      <a href="ueber-uns.html"><span class="menu-overlay__num">04</span>Wer sind wir?</a>
-      <a href="#fragen"><span class="menu-overlay__num">05</span>FAQ</a>
-      <a href="kontakt.html"><span class="menu-overlay__num">06</span>Kontakt</a>
+      <a href="galerie.html"><span class="menu-overlay__num">03</span>Galerie</a>
+      <a href="leistungen.html"><span class="menu-overlay__num">04</span>Leistungen</a>
+      <a href="ueber-uns.html"><span class="menu-overlay__num">05</span>Wer sind wir?</a>
+      <a href="#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">07</span>Kontakt</a>
     </nav>
     <div class="menu-overlay__meta">
       <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -232,8 +242,8 @@
         <p class="hero__eyebrow"><span>Event- &amp; Content-Studio<span class="hero__where"> · Potsdam &amp; Innsbruck</span></span></p>
         <h1 class="hero__title" lang="en">We build what people <br class="br-lg">want to be <span class="scribble" data-scribble="underline">part of.</span></h1>
         <p class="hero__sub">
-          Von der ersten Idee bis zum letzten Reel: Wir planen Events für Marken, Clubs und
-          Communities, setzen sie um und produzieren den Content dazu.
+          Von der ersten Idee bis zum letzten Reel: Wir denken uns in eure Marke rein und
+          bauen Events und Content, die zeigen, wofür ihr steht. Für Marken, Clubs und Communities.
         </p>
         <div class="hero__actions">
           <a href="#contact" class="btn btn--beat">Projekt anfragen</a>
@@ -286,29 +296,66 @@
           <div><dt>Partner</dt><dd>Red&nbsp;Bull, HEJ&nbsp;Natural</dd></div>
         </dl>
 
+      <article class="project">
+        <!-- Titelbild Dagen → assets/projects/dagen-yachtcharter/cover.jpg (quer 3:2,
+             Handy: hoch-cover.jpg). Fehlt es, läuft eine Animation. -->
+        <a class="project__cover reveal" href="dagen-yachtcharter.html" aria-label="Zum Projekt: Dagen Yachtcharter">
+          <div class="project__cover-bg viz">
+            <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
+            <picture>
+              <source media="(max-width: 720px)" srcset="assets/projects/dagen-yachtcharter/hoch-cover.jpg">
+              <img src="assets/projects/dagen-yachtcharter/cover.jpg" alt="Segelboot von Dagen Yachtcharter vor Anker in einer Bucht bei Korfu" loading="lazy" decoding="async" onerror="onsideBildFehlt(this)">
+            </picture>
+          </div>
+          <div class="project__cover-content">
+            <p class="eyebrow">Korfu · 2026</p>
+            <h3>Dagen Yachtcharter</h3>
+          </div>
+          <span class="project__cover-go" aria-hidden="true">Zum Projekt <i>→</i></span>
+        </a>
+
+        <div class="project__body">
+          <p class="project__text reveal">
+            Eine Woche an Bord rund um Korfu: Für Dagen Yachtcharter haben wir 10&nbsp;Reels
+            und tägliche Stories produziert, um Segeln für eine jüngere Zielgruppe
+            attraktiv zu machen. Ergebnis: über 270.000&nbsp;Views, im Schnitt 130-mal so viel wie vorher.
+          </p>
+          <a href="dagen-yachtcharter.html" class="btn btn--ghost btn--arrow reveal">Zum Projekt</a>
+        </div>
+
+        <dl class="project__facts reveal">
+          <div><dt>Wann</dt><dd>September 2026</dd></div>
+          <div><dt>Wo</dt><dd>Korfu</dd></div>
+          <div><dt>Content</dt><dd>10&nbsp;Reels · Stories</dd></div>
+          <div><dt>Views</dt><dd>270.000+</dd></div>
+        </dl>
       </article>
+      <!-- IN PLANUNG: schmaler Hinweis auf das nächste eigene Projekt -->
+      <a class="upcoming reveal" href="snowside.html" data-spot>
+        <span class="upcoming__label">In Planung</span>
+        <span class="upcoming__title">SNOWSIDE · Creator Ski Week in Tirol · März 2027</span>
+        <span class="upcoming__go">Partner &amp; Creator gesucht <i>→</i></span>
+      </a>
     </section>
 
-    <!-- ============ LAUFBAND — Ausblick ============
-         Zwei Zeilen, die gegeneinander laufen: oben gefüllt, unten als Outline.
-         Der Inhalt wird in js/script.js automatisch verdoppelt, damit die
-         Schleife nahtlos läuft. -->
-    <section class="next" aria-label="Euer Projekt könnte das nächste sein">
-      <div class="next__row next__row--a" data-marquee>
-        <div class="next__group">
-          <span class="next__word">Euer Projekt könnte das nächste sein</span>
-          <span class="next__mark"></span>
-          <span class="next__word next__word--outline">Euer Projekt könnte das nächste sein</span>
-          <span class="next__mark"></span>
-        </div>
-      </div>
-      <div class="next__row next__row--b" data-marquee>
-        <div class="next__group">
-          <span class="next__word next__word--outline">Euer Projekt könnte das nächste sein</span>
-          <span class="next__mark"></span>
-          <span class="next__word">Euer Projekt könnte das nächste sein</span>
-          <span class="next__mark"></span>
-        </div>
+    <!-- ============ PARTNER-LAUFBAND ============
+         Logos bisheriger Partner. Logos liegen in assets/partner/ (PNG mit
+         transparentem Hintergrund oder SVG), sie werden automatisch weiß
+         eingefärbt. Ein Logo an- oder abschalten: die <li>-Zeile ein- oder
+         auskommentieren. Hochformatige Logos bekommen class="partners__logo--hoch".
+         Red Bull und HEJ Natural stehen bewusst nur als Schriftzug drin.
+         Ab 4 Logos läuft das Band, bei weniger stehen sie ruhig in einer Reihe. -->
+    <section class="partners" aria-labelledby="partners-title">
+      <p class="eyebrow partners__title" id="partners-title">Mit wem wir schon gearbeitet haben</p>
+      <div class="partners__band" data-partners>
+        <ul class="partners__track">
+          <li><img src="assets/partner/dagen-yachtcharter.png" alt="Dagen Yachtcharter" width="318" height="106"></li>
+          <li><span class="partners__name">Red Bull</span></li>
+          <li><img class="partners__logo--hoch" src="assets/partner/myxa.png" alt="Myxa Bar Berlin" width="360" height="339"></li>
+          <li><span class="partners__name">HEJ Natural</span></li>
+          <li><img class="partners__logo--hoch" src="assets/partner/redrum-art-bar.png" alt="Redrum Art Bar Berlin" width="279" height="307"></li>
+          <li><img class="partners__logo--hoch" src="assets/partner/dietrich-bar.png" alt="Dietrich Bar Berlin" width="165" height="291"></li>
+        </ul>
       </div>
     </section>
 
@@ -320,9 +367,23 @@
       <p class="eyebrow reveal">02 — Was wir machen</p>
       <h2 data-split>Drei Leistungen. Eine <span class="scribble" data-scribble="underline">Handschrift.</span></h2>
 
+      <!-- Erst die Marke, dann das Event: so arbeiten wir. Stil: .brandflow in css/styles.css -->
+      <div class="brandflow reveal">
+        <p class="brandflow__lead">
+          Wir fangen nie bei unseren Ideen an, sondern bei eurer Marke. Jedes Projekt
+          soll eure Identität transportieren&nbsp;– nicht nur gut aussehen.
+        </p>
+        <ol class="brandflow__steps">
+          <li><span>01 · Verstehen</span>Wofür steht eure Marke, wen wollt ihr erreichen und was soll am Ende hängen bleiben?</li>
+          <li><span>02 · Übersetzen</span>Wir machen eure Markenidentität erlebbar: im Konzept, im Ablauf, bei Partnern und Location. Für eine Getränkemarke lassen wir zum Beispiel zwei Sorten als Teams gegeneinander antreten.</li>
+          <li><span>03 · Weitertragen</span>Der Content spricht eure Sprache und sieht nach euch aus, damit die Marke nach dem Event weiterlebt.</li>
+        </ol>
+      </div>
+
       <div class="services__grid">
         <a class="service-card reveal" href="leistungen.html#events" data-spot>
           <div class="vg" aria-hidden="true">
+            <img class="vg-bg" src="assets/leistungen/leistung-event.jpg" alt="" loading="lazy">
             <div class="vg-tile vg-plan">
               <div class="vg-plan__head"><span class="vg-label">Ablaufplan</span><span class="vg-live">Live</span></div>
               <ol class="vg-steps">
@@ -336,9 +397,9 @@
           <span class="service-card__number">01</span>
           <h3>Event-Organisation</h3>
           <p>
-            Wir entwickeln Events, die Menschen zusammenbringen und Marken erlebbar machen.
-            Von der ersten Idee bis zur Umsetzung: Konzeption, Planung, Partnermanagement
-            und die gesamte Organisation.
+            Wir entwickeln Events, in denen eure Marke nicht nur auf dem Banner steht, sondern
+            Teil des Erlebnisses ist. Von der ersten Idee bis zur Umsetzung: Konzeption,
+            Planung, Partnermanagement und die gesamte Organisation.
           </p>
           <span class="service-card__more">Mehr dazu <i>→</i></span>
         </a>
@@ -346,16 +407,17 @@
         <a class="service-card reveal" href="leistungen.html#marke" data-spot>
           <div class="vg" aria-hidden="true">
             <div class="vg-brand">
-              <div class="vg-tile vg-type"><span class="vg-label">Schrift</span><span class="vg-aa">Aa</span></div>
-              <div class="vg-tile vg-swatches"><span class="vg-label">Farben</span><div><i style="--c: #3fd5ff"></i><i style="--c: #f7f2e8"></i><i style="--c: #0b0b0a"></i></div></div>
+              <div class="vg-tile vg-type vg-photo"><img src="assets/leistungen/leistung-bildwelt.jpg" alt="" loading="lazy"><span class="vg-label">Bildwelt</span></div>
+              <div class="vg-tile vg-swatches vg-mood"><span class="vg-label">Moodboard</span><img src="assets/leistungen/leistung-moodboard.jpg" alt="" loading="lazy"></div>
               <div class="vg-tile vg-pos"><span class="vg-label">Positionierung</span><ul><li>Für wen?</li><li>Warum ihr?</li><li>Wie klingt ihr?</li></ul></div>
             </div>
           </div>
           <span class="service-card__number">02</span>
           <h3>Marketing&nbsp;&amp; Marken&shy;strategie</h3>
           <p>
-            Jede starke Marke beginnt mit einer klaren Positionierung. Wir entwickeln
-            Strategien, Markenauftritte und Konzepte, die relevant sind&nbsp;– nicht nur sichtbar.
+            Bevor wir etwas planen, verstehen wir eure Marke: wofür ihr steht, wen ihr
+            erreichen wollt und was hängen bleiben soll. Daraus entwickeln wir Strategien,
+            Markenauftritte und Konzepte, die relevant sind&nbsp;– nicht nur sichtbar.
           </p>
           <span class="service-card__more">Mehr dazu <i>→</i></span>
         </a>
@@ -365,6 +427,7 @@
             <div class="vg-social">
               <div class="vg-phone">
                 <div class="vg-reel">
+                  <img class="vg-reel__img" src="assets/leistungen/leistung-reel.jpg" alt="" loading="lazy">
                   <div class="vg-bars"><i></i><i></i><i></i></div>
                   <span class="vg-play"></span>
                   <div class="vg-actions"><i></i><i></i><i></i></div>
@@ -382,8 +445,8 @@
           <h3>Social Media</h3>
           <p>
             Aus einem Event wird erst dann eine Geschichte, wenn Menschen sie teilen. Wir
-            produzieren Content, betreuen Kanäle und entwickeln Strategien, die Reichweite
-            in echte Community verwandeln.
+            produzieren Content in eurer Sprache und eurem Look, betreuen Kanäle und
+            verwandeln Reichweite in echte Community.
           </p>
           <span class="service-card__more">Mehr dazu <i>→</i></span>
         </a>
@@ -403,14 +466,14 @@
       </p>
 
       <div class="founders">
-        <!-- BILD 7: Foto Julian → assets/team/julian.jpg
+        <!-- BILD 7: Foto Julian → assets/team/julian-2026.jpg (Tirol Hackathon, Nov. 2026)
              Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
              dieser Stelle eine Animation mit den Initialen. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">JS</span>
-            <img src="assets/team/julian.jpg" alt="Julian Seibt" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/julian-2026.jpg" alt="Julian Seibt, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Konzept &amp; Organisation</span>
@@ -430,15 +493,13 @@
           </div>
         </article>
 
-        <!-- BILD 8: Foto Malte → assets/team/malte.jpg (Malte auf dem Rad beim
-             Night Run). Datei hochladen, das Foto erscheint von selbst. Das ?v=3
-             sorgt dafür, dass Browser das neue Foto sofort laden; beim nächsten
-             Austausch auf ?v=4 erhöhen. -->
+        <!-- BILD 8: Foto Malte → assets/team/malte-2026.jpg (Tirol Hackathon, Nov. 2026).
+             Neues Foto = neuer Dateiname, dann sehen alle sofort das neue Bild. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">MG</span>
-            <img src="assets/team/malte.jpg?v=3" alt="Malte Gerdes auf dem Rad beim Berlin Night Run" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/malte-2026.jpg" alt="Malte Gerdes, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Content &amp; Social</span>
@@ -474,7 +535,14 @@
       <div class="statement__inner">
         <p class="eyebrow reveal">04 — Warum onside?</p>
         <div class="statement__board viz reveal">
-          <canvas data-scene="offside" aria-hidden="true"></canvas>
+          <!-- Spielzug beim Scrollen: Köpfe, Namen und Projekte über die data-Attribute,
+               Zeichnung in js/visuals.js (Szene "offside") -->
+          <canvas data-scene="offside" aria-hidden="true"
+            data-players="assets/team/kopf-julian.jpg|assets/team/kopf-malte.jpg"
+            data-names="Julian|Malte"
+            data-target="Eure Marke"
+            data-projects="assets/projects/berlin-night-run/kreis.jpg|assets/projects/dagen-yachtcharter/kreis.jpg"
+            data-project-names="Night Run|Dagen"></canvas>
         </div>
         <p class="statement__text reveal">
           Der Name kommt aus dem Sport. <em class="scribble" data-scribble="circle">Onside</em> ist das Gegenteil von Abseits.
@@ -515,6 +583,12 @@
           <summary>Wie läuft eine Zusammenarbeit ab?</summary>
           <div class="faq__a">
             <p>Erst ein kurzes Gespräch, in dem ihr erzählt, was ihr vorhabt. Dann kommen wir mit einem Konzept samt Ablauf, Budget und Zeitplan zurück. Passt alles, setzen wir es um und erzählen die Geschichte danach mit Content weiter. Ihr sprecht dabei immer direkt mit uns. <a href="leistungen.html">Mehr zum Ablauf</a></p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Wie sorgt ihr dafür, dass ein Projekt zu unserer Marke passt?</summary>
+          <div class="faq__a">
+            <p>Indem wir zuerst zuhören. Im ersten Gespräch geht es um eure Marke, eure Ziele und eure Zielgruppe, nicht um unsere Ideen. Erst dann entwickeln wir ein Konzept, in dem eure Identität sichtbar und erlebbar wird: im Ablauf, bei Partnern und Location und im Content. Beim Night Run hatte zum Beispiel jeder Partner eine Rolle, die zu seiner Marke passt.</p>
           </div>
         </details>
         <details class="faq__item">
@@ -631,6 +705,7 @@
       <nav class="footer__nav" aria-label="Seiten">
         <span class="footer__label">Seiten</span>
         <a href="projekte.html">Projekte</a>
+        <a href="galerie.html">Galerie</a>
         <a href="leistungen.html">Leistungen</a>
         <a href="ueber-uns.html">Wer sind wir?</a>
         <a href="#fragen">FAQ</a>
@@ -660,8 +735,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=10"></script>
-  <script src="js/visuals.js?v=10"></script>
-  <script src="js/script.js?v=10"></script>
+  <script src="js/config.js?v=26"></script>
+  <script src="js/visuals.js?v=26"></script>
+  <script src="js/script.js?v=26"></script>
+  <script src="js/assistent.js?v=26" defer></script>
 </body>
 </html>

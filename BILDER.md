@@ -35,7 +35,8 @@ schon mal da waren, sofort das neue Bild statt des alten aus dem Zwischenspeiche
 | `cover.jpg` | Projekt-Kasten auf der Startseite, ganz oben auf der Projektseite | quer 3:2 | Läufer bei Nacht mit Lichtspuren |
 | `01.jpg` | Projekte-Übersicht, Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Die Laufgruppe unterwegs |
 | `hoch-01.jpg`, `hoch-cover.jpg` | dieselben Stellen wie `01.jpg` und `cover.jpg`, aber am Handy | hoch 4:5 | Hochformat-Ausschnitte (laden am Handy schneller) |
-| `plan.jpg` | Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Planskizze, aus `01.jpg` erzeugt |
+| `plan-skizze.jpg` | Regler „Der Plan dahinter“ auf der Projektseite | quer 3:2 | Planskizze, aus `01.jpg` erzeugt |
+| `reel-<ID>.jpg` | Vorschaubilder der Night-Run-Reels | hoch 9:16 | echte Instagram-Titelbilder (Ddjl-VWNMh0, DdmJPQysUQV), 540x960 |
 | `start-quer-dsc5668.jpg` | Startbildschirm quer, erstes Foto | quer 3:2 | Gute Laune auf der Strecke |
 | `start-quer-ld3717.jpg` | Startbildschirm quer | quer 3:2 | Malte gibt mit dem Megafon den Takt vor |
 | `start-quer-ld3921.jpg` | Startbildschirm quer | quer 3:2 | Der DJ fährt mit |
@@ -64,7 +65,7 @@ schon mal da waren, sofort das neue Bild statt des alten aus dem Zwischenspeiche
 | `galerie-dsc6472.jpg` | Galerie | hoch 4:5 | Afterparty mit Sonnenbrillen |
 | `galerie-dsc6716.jpg` | Galerie, breites Bild unten | quer 3:2 | Gruppenfoto am Ende der Nacht |
 
-`plan.jpg` passt nur zu `01.jpg`: Die Linien zeichnen genau die Personen auf
+`plan-skizze.jpg` passt nur zu `01.jpg`: Die Linien zeichnen genau die Personen auf
 diesem Foto nach. Wer `01.jpg` austauscht, braucht auch eine neue Planskizze.
 
 Startbild quer und Startbild hochkant sind zwei getrennte Listen. Jeder
@@ -82,12 +83,11 @@ zu jedem Projekt. Die Texte darin stehen direkt in `index.html` und
 
 | Datei | Wo auf der Seite | Format |
 |-------|------------------|--------|
-| `julian.jpg` | Gründerkarte Julian (Startseite und „Wer sind wir?“) | quadratisch 1:1 |
-| `malte.jpg` | Gründerkarte Malte (Startseite und „Wer sind wir?“): Malte auf dem Rad beim Night Run (LD203503) | quadratisch 1:1 |
+| `julian-2026.jpg` | Gründerkarte Julian (Startseite und „Wer sind wir?“): Tirol Hackathon, Nov. 2026 | quadratisch 1:1 |
+| `malte-2026.jpg` | Gründerkarte Malte (Startseite und „Wer sind wir?“): Tirol Hackathon, Nov. 2026 | quadratisch 1:1 |
 
-Im HTML steht `malte.jpg?v=3`. Die Zahl sorgt dafür, dass Browser ein neues Foto
-sofort laden statt das alte aus dem Zwischenspeicher. Wer das Foto wieder
-austauscht, erhöht sie in `index.html` und `ueber-uns.html` auf `?v=4`.
+Ein neues Foto bekommt einen neuen Dateinamen (z. B. `malte-2027.jpg`) und wird in
+`index.html` und `ueber-uns.html` eingetragen. So sehen alle sofort das neue Bild.
 
 ## Vorschaubilder beim Teilen
 
@@ -141,3 +141,58 @@ langsam. Vorher durch [squoosh.app](https://squoosh.app) schicken (kostenlos,
 läuft im Browser) und auf grob 150–400 KB pro Bild bringen. Bei diesen Größen
 sieht man keinen Qualitätsunterschied. Alle Fotos oben sind bereits so
 aufbereitet, Standortdaten sind entfernt.
+
+## SNOWSIDE-Konzeptbilder (`assets/projects/snowside/`)
+
+Platzhalter bis nach dem Event, auf der Seite als "Konzeptbild" markiert.
+Alle von Pexels.com (Pexels-Lizenz: kommerziell frei, keine Namensnennung nötig).
+
+| Datei | Pexels-ID | Verwendet auf |
+|---|---|---|
+| konzept-drei-piste.jpg / hoch-… | 848594 | snowside (Hero), og-snowside.jpg |
+| konzept-lift.jpg | 373111 | projekte (Karte 03) |
+| konzept-freestyle.jpg | 2433356 | snowside |
+| konzept-spielplatz.jpg | 31299012 | snowside |
+| konzept-picknick.jpg | 30463153 | snowside |
+| konzept-abend.jpg | 7357325 | snowside |
+| konzept-dinner.jpg | 5847904 | snowside |
+| konzept-innsbruck.jpg | 6128188 | snowside |
+
+## Galerie (`galerie.html`)
+
+Zeigt eine Auswahl aus den Projektordnern, es gibt keine eigenen Dateien.
+Jedes Foto dort steht sonst höchstens noch an einer anderen Stelle
+(Night-Run-Seite oder Startbild in js/config.js), damit bleibt es bei
+maximal zweimal pro Foto. Neue Galerie-Fotos auch in sitemap.xml
+(Eintrag /galerie) und im Bilderblock oben in galerie.html ergänzen.
+
+## Partner-Logos (`assets/partner/`)
+
+Für das Laufband auf der Startseite. PNG mit transparentem Hintergrund oder
+SVG, Dateiname = Partnername (z. B. `red-bull.png`). Werden per CSS weiß
+eingefärbt. Drin: Dagen, Myxa, Redrum Art Bar, Dietrich (Logos), Red Bull und
+HEJ Natural bewusst nur als Schriftzug (kein Logo-OK).
+
+### Night Run: Routenkarte (berlin-night-run.html, Abschnitt „Die Route“)
+
+| Datei | Wofür | Format | Inhalt |
+|---|---|---|---|
+| `route-karte.jpg` | Kartengrund der Routenanimation | quer 1800×1276 | Straßen, Spree, Landwehrkanal und Parks aus OpenStreetMap (© OpenStreetMap-Mitwirkende, ODbL), eingefärbt im Look der Korfu-Karte |
+| `route-start.jpg` | Station Start (Ciao Ciao Bar) | quer 4:3 | aus galerie-ld3490: die Crowd läuft los |
+| `route-myxa.jpg` | Station 1 Myxa | quer 4:3 | aus 04.jpg: Stopp vor der Myxa Bar |
+| `route-redrum.jpg` | Station 2 Redrum | quer 4:3 | aus 10.jpg: Mocktail-Becher der Redrum Art Bar |
+| `route-dietrich.jpg` | Station 3 Dietrich | quer 4:3 | aus 12.jpg: Spritz-Stand vor der Dietrich Bar |
+| `route-ziel.jpg` | Ziel/Afterparty (Ciao Ciao Bar) | quer 4:3 | aus 13.jpg: Afterparty |
+
+Die Strecke im SVG stammt aus der Strava-Aufzeichnung der Testrunde (BNR Route).
+
+### Leistungen: Fotos in den Karten 01–03 (index.html, leistungen.html)
+
+Ordner `assets/leistungen/`, alles eigene Night-Run-Fotos.
+
+| Datei | Wofür | Format | Inhalt |
+|---|---|---|---|
+| `leistung-event.jpg` | Karte 01 Events, Hintergrund hinter dem Ablaufplan | quer | aus 05.jpg |
+| `leistung-bildwelt.jpg` | Karte 02 Marke, Kachel „Bildwelt“ | hoch | aus 08.jpg: Läufer mit Red-Bull-Dose |
+| `leistung-moodboard.jpg` | Karte 02 Marke, Kachel „Moodboard“ | quer 720×240 | Streifen aus 07.jpg, 09.jpg, 06.jpg |
+| `leistung-reel.jpg` | Karte 03 Social Media, Bild im Handy | hoch | aus start-hoch-ld3913: Läufer filmt am DJ-Bike |

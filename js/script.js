@@ -616,17 +616,28 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   const SVGNS = 'http://www.w3.org/2000/svg';
 
   const NOTES = [
-    { x: 0.721, y: 0.50, rx: 0.03, ry: 0.06, k: '01 · Ziel', t: 'Genau diese Gesichter', lx: 0.078, ly: 0.075,
+    { x: 0.717, y: 0.512, rx: 0.028, ry: 0.052, k: '01 · Ziel', t: 'Genau diese Gesichter', lx: 0.082, ly: 0.063,
       handy: { lx: -0.128, ly: -0.27 } },
     { x: 0.638, y: 0.525, rx: 0.03, ry: 0.06, k: '02 · Content', t: 'Momente, die man filmen will', lx: -0.055, ly: 0.15,
       handy: { hide: true } },
-    { x: 0.385, y: 0.75, rx: 0.085, ry: 0.11, k: '03 · Sound', t: 'DJ fährt vorneweg', lx: 0.0, ly: -0.37,
+    { x: 0.392, y: 0.594, rx: 0.042, ry: 0.06, k: '03 · Sound', t: 'DJ fährt vorneweg', lx: -0.02, ly: -0.25,
       handy: { hide: true } },
   ];
+
+  // Planungsschritte: je mehr vom Plan zu sehen ist, desto mehr Schritte stehen da
+  const steps = Array.from((box.closest('section') || box).querySelectorAll('.backstage__steps li'));
+  function showSteps() {
+    const shown = (100 - x) / 100;                 // 0 = nur Foto, 1 = nur Plan
+    steps.forEach((li, i) => {
+      const need = 0.08 + (i / steps.length) * 0.8;
+      li.classList.toggle('is-on', shown >= need);
+    });
+  }
 
   let x = 100;
   function setX(v, byUser) {
     x = Math.max(0, Math.min(100, v));
+    showSteps();
     box.style.setProperty('--x', x + '%');
     handle.setAttribute('aria-valuenow', Math.round(x));
     if (byUser) box.classList.add('was-used');
@@ -764,6 +775,143 @@ if (window.location.protocol === 'https:') {
 }
 
 /* ---------------------------------------------------------------------
+   9) Videos erst beim Antippen laden (Instagram-Reels, YouTube)
+   Bis zum Klick steht nur eine Vorschau-Fläche da: Die Seite bleibt schnell,
+   und es geht vorher keine Anfrage an Instagram oder YouTube.
+--------------------------------------------------------------------- */
+document.querySelectorAll('[data-embed]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const id = encodeURIComponent(btn.dataset.id || '');
+    if (!id) return;
+    const frame = document.createElement('iframe');
+    frame.loading = 'lazy';
+    frame.allowFullscreen = true;
+    frame.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+    if (btn.dataset.embed === 'youtube') {
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+      frame.title = 'YouTube-Video';
+    } else {
+      frame.src = 'https://www.instagram.com/reel/' + id + '/embed/';
+      frame.title = 'Instagram-Reel';
+      frame.setAttribute('scrolling', 'no');
+    }
+    frame.className = 'embed__frame';
+    btn.replaceWith(frame);
+  });
+});
+
+/* ---------------------------------------------------------------------
+   10) Galerie: Filter nach Projekt und Großansicht (galerie.html)
+   Tippen öffnet das Foto groß. Pfeiltasten oder Wischen blättern,
+   Esc oder Tippen daneben schließt. Ohne JavaScript öffnet der Link
+   einfach das Foto.
+--------------------------------------------------------------------- */
+(() => {
+  const grid = document.querySelector('.gallery__grid');
+  if (!grid) return;
+  const items = () => [...grid.querySelectorAll('.gallery__item')];
+
+  document.querySelectorAll('.gallery__btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.gallery__btn').forEach((b) =>
+        b.setAttribute('aria-pressed', String(b === btn)));
+      items().forEach((it) => { it.hidden = f !== 'alle' && it.dataset.project !== f; });
+    });
+  });
+
+  const box = document.getElementById('lightbox');
+  if (!box) return;
+  const img = box.querySelector('.lightbox__img');
+  const cap = box.querySelector('.lightbox__caption');
+  let list = [];
+  let idx = 0;
+  let lastFocus = null;
+
+  const show = (i) => {
+    idx = (i + list.length) % list.length;
+    const fig = list[idx];
+    const pic = fig.querySelector('img');
+    img.src = fig.querySelector('a').getAttribute('href');
+    img.alt = pic.alt;
+    cap.textContent = fig.querySelector('figcaption').textContent;
+  };
+  const open = (fig) => {
+    list = items().filter((it) => !it.hidden);
+    lastFocus = document.activeElement;
+    box.hidden = false;
+    document.body.classList.add('lightbox-open');
+    show(list.indexOf(fig));
+    box.querySelector('.lightbox__close').focus();
+  };
+  const close = () => {
+    box.hidden = true;
+    document.body.classList.remove('lightbox-open');
+    img.removeAttribute('src');
+    if (lastFocus) lastFocus.focus();
+  };
+
+  grid.addEventListener('click', (e) => {
+    const link = e.target.closest('[data-lightbox]');
+    if (!link) return;
+    e.preventDefault();
+    open(link.closest('.gallery__item'));
+  });
+  box.querySelector('.lightbox__close').addEventListener('click', close);
+  box.querySelector('.lightbox__nav--prev').addEventListener('click', () => show(idx - 1));
+  box.querySelector('.lightbox__nav--next').addEventListener('click', () => show(idx + 1));
+  box.addEventListener('click', (e) => { if (e.target === box) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+  let x0 = null;
+  box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+})();
+
+/* ---------------------------------------------------------------------
+   11) Partner-Laufband (Startseite)
+   Ab 4 Logos wird die Reihe so oft kopiert, dass das Band lückenlos
+   durchläuft. Bei weniger Logos bleibt sie ruhig stehen.
+--------------------------------------------------------------------- */
+document.querySelectorAll('[data-partners]').forEach((band) => {
+  const track = band.querySelector('.partners__track');
+  const logos = [...track.children];
+  if (logos.length < 4) { band.classList.add('is-static'); return; }
+  const fill = () => {
+    track.querySelectorAll('[data-copy]').forEach((c) => c.remove());
+    const one = track.scrollWidth;
+    const copies = Math.ceil(band.clientWidth / one) + 1;
+    // Eine Runde = einmal alle Logos; kopiert wird so oft, dass immer Logos sichtbar sind
+    for (let i = 0; i < copies; i++) {
+      logos.forEach((li) => {
+        const c = li.cloneNode(true);
+        c.setAttribute('data-copy', '');
+        c.setAttribute('aria-hidden', 'true');
+        track.appendChild(c);
+      });
+    }
+    const first = track.querySelector('[data-copy]');
+    const round = first.offsetLeft - logos[0].offsetLeft;
+    track.style.setProperty('--loop', -round + 'px');
+    track.style.setProperty('--dauer', Math.max(12, round / 40) + 's');
+    band.classList.add('is-running');
+  };
+  const imgs = [...track.querySelectorAll('img')];
+  Promise.all(imgs.map((im) => im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; }))).then(fill);
+  let t;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fill, 200); });
+});
+
+/* ---------------------------------------------------------------------
    Wenn du hier weiterbauen willst:
 
    - Animationen anpassen: die SETTINGS ganz oben in js/visuals.js.
@@ -772,3 +920,52 @@ if (window.location.protocol === 'https:') {
    - Eigene Farben: die Variablen ganz oben in css/styles.css —
      wichtig: --accent UND --accent-rgb gemeinsam ändern.
 --------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------
+   12) Night-Run-Route (berlin-night-run.html)
+   Die Strecke zeichnet sich, sobald die Karte im Bild ist. An jeder Station
+   (data-at = Anteil der Strecke) erscheinen Punkt und Foto.
+--------------------------------------------------------------------- */
+document.querySelectorAll('[data-citymap]').forEach((map) => {
+  const route = map.querySelector('.citymap__route');
+  const runner = map.querySelector('.citymap__runner');
+  const items = [...map.querySelectorAll('[data-at]')];
+  const replay = map.querySelector('.citymap__replay');
+  const start = map.querySelector('.citymap__card--start');
+  const len = route.getTotalLength();
+  const DAUER = 9000;
+  route.style.strokeDasharray = len;
+
+  function show(p) {
+    route.style.strokeDashoffset = len * (1 - p);
+    const pt = route.getPointAtLength(len * p);
+    runner.setAttribute('cx', pt.x);
+    runner.setAttribute('cy', pt.y);
+    items.forEach((el) => el.classList.toggle('is-on', p >= parseFloat(el.dataset.at)));
+    // Am Ziel ersetzt das Afterparty-Foto das Startfoto (gleicher Ort)
+    if (start) start.classList.toggle('is-off', p >= 1);
+  }
+
+  let raf;
+  function run() {
+    cancelAnimationFrame(raf);
+    replay.hidden = true;
+    const t0 = performance.now();
+    const tick = (now) => {
+      const k = Math.min(1, (now - t0) / DAUER);
+      const p = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; // weich an und aus
+      show(Math.max(0.0001, p));
+      if (k < 1) raf = requestAnimationFrame(tick);
+      else replay.hidden = false;
+    };
+    raf = requestAnimationFrame(tick);
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { show(1); return; }
+  show(0.0001);
+  const io = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { io.disconnect(); run(); }
+  }, { threshold: 0.45 });
+  io.observe(map);
+  replay.addEventListener('click', run);
+});

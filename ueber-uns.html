@@ -29,7 +29,7 @@
   <meta property="og:site_name" content="onside.hq" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/styles.css?v=10" />
+  <link rel="stylesheet" href="css/styles.css?v=26" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -66,6 +66,7 @@
     <nav class="nav__links" aria-label="Hauptnavigation">
       <a href="index.html">Home</a>
       <a href="projekte.html">Projekte</a>
+      <a href="galerie.html">Galerie</a>
       <a href="leistungen.html">Leistungen</a>
       <a href="ueber-uns.html" aria-current="page">Wer sind wir?</a>
       <a href="index.html#fragen">FAQ</a>
@@ -81,10 +82,11 @@
     <nav class="menu-overlay__links" aria-label="Menü">
       <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
       <a href="projekte.html"><span class="menu-overlay__num">02</span>Projekte</a>
-      <a href="leistungen.html"><span class="menu-overlay__num">03</span>Leistungen</a>
-      <a href="ueber-uns.html" aria-current="page"><span class="menu-overlay__num">04</span>Wer sind wir?</a>
-      <a href="index.html#fragen"><span class="menu-overlay__num">05</span>FAQ</a>
-      <a href="kontakt.html"><span class="menu-overlay__num">06</span>Kontakt</a>
+      <a href="galerie.html"><span class="menu-overlay__num">03</span>Galerie</a>
+      <a href="leistungen.html"><span class="menu-overlay__num">04</span>Leistungen</a>
+      <a href="ueber-uns.html" aria-current="page"><span class="menu-overlay__num">05</span>Wer sind wir?</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="kontakt.html"><span class="menu-overlay__num">07</span>Kontakt</a>
     </nav>
     <div class="menu-overlay__meta">
       <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
@@ -113,14 +115,14 @@
     <section class="about about--page">
       <h2 class="sr-only">Die Gründer</h2>
       <div class="founders">
-        <!-- BILD 7: Foto Julian → assets/team/julian.jpg
+        <!-- BILD 7: Foto Julian → assets/team/julian-2026.jpg (Tirol Hackathon, Nov. 2026)
              Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
              dieser Stelle eine Animation mit den Initialen. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">JS</span>
-            <img src="assets/team/julian.jpg" alt="Julian Seibt" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/julian-2026.jpg" alt="Julian Seibt, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Konzept &amp; Organisation</span>
@@ -140,15 +142,13 @@
           </div>
         </article>
 
-        <!-- BILD 8: Foto Malte → assets/team/malte.jpg (Malte auf dem Rad beim
-             Night Run). Datei hochladen, das Foto erscheint von selbst. Das ?v=3
-             sorgt dafür, dass Browser das neue Foto sofort laden; beim nächsten
-             Austausch auf ?v=4 erhöhen. -->
+        <!-- BILD 8: Foto Malte → assets/team/malte-2026.jpg (Tirol Hackathon, Nov. 2026).
+             Neues Foto = neuer Dateiname, dann sehen alle sofort das neue Bild. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">MG</span>
-            <img src="assets/team/malte.jpg?v=3" alt="Malte Gerdes auf dem Rad beim Berlin Night Run" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/malte-2026.jpg" alt="Malte Gerdes, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
           </div>
           <div class="founder__body">
             <span class="founder__role">Content &amp; Social</span>
@@ -192,6 +192,9 @@
             sehen es jeden Tag im eigenen Feed. Diese Perspektive verbinden wir mit
             strategischem Denken und sauberer Umsetzung. Was dabei entstehen soll, ist
             keine Kampagne, die man wegklickt, sondern etwas, über das gesprochen wird.
+            Und wir fangen nie bei uns an, sondern bei euch: Jedes Projekt beginnt damit,
+            dass wir eure Marke, eure Zielgruppe und eure Ziele verstehen. Erst dann bauen
+            wir ein Erlebnis, das genau das transportiert.
           </p>
         </article>
       </div>
@@ -236,6 +239,7 @@
       <nav class="footer__nav" aria-label="Seiten">
         <span class="footer__label">Seiten</span>
         <a href="projekte.html">Projekte</a>
+        <a href="galerie.html">Galerie</a>
         <a href="leistungen.html">Leistungen</a>
         <a href="ueber-uns.html">Wer sind wir?</a>
         <a href="index.html#fragen">FAQ</a>
@@ -265,8 +269,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=10"></script>
-  <script src="js/visuals.js?v=10"></script>
-  <script src="js/script.js?v=10"></script>
+  <script src="js/config.js?v=26"></script>
+  <script src="js/visuals.js?v=26"></script>
+  <script src="js/script.js?v=26"></script>
+  <script src="js/assistent.js?v=26" defer></script>
 </body>
 </html>

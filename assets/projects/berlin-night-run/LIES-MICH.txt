@@ -9,7 +9,7 @@ Hier liegen die Fotos vom Berlin Night Run.
   01.jpg              Projekte-Übersicht und Regler "Der Plan dahinter" (quer 3:2)
   hoch-01.jpg, hoch-cover.jpg
                       Hochformat-Ausschnitte fürs Handy
-  plan.jpg            Planskizze für den Regler auf der Projektseite (passt nur zu 01.jpg)
+  plan-skizze.jpg     Planskizze für den Regler auf der Projektseite (passt nur zu 01.jpg)
 
 Die Nummer im Dateinamen ist das Originalfoto: dsc = Ordner "BNR BILDER 1",
 ld = Ordner "BNR BILDER 2" bis "5".
