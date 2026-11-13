@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects: Night Run, Dagen Yachtcharter, SNOWSIDE – onside.hq</title>
+  <meta name="description" content="Projects by onside.hq: the Berlin Night Run with a DJ and partners like Red Bull, reels for Dagen Yachtcharter in Corfu and SNOWSIDE, the creator ski week in Tyrol." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://onsidehq.de/en/projects" />
+  <link rel="alternate" hreflang="de" href="https://onsidehq.de/projekte" />
+  <link rel="alternate" hreflang="en" href="https://onsidehq.de/en/projects" />
+  <link rel="alternate" hreflang="x-default" href="https://onsidehq.de/projekte" />
+
+  <!-- Favicon / Browser-Tab-Icon -->
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <!-- Schriften liegen im Projekt (siehe fonts/) — nichts wird extern geladen -->
+  <link rel="preload" href="../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Vorschau, wenn der Link bei WhatsApp/Instagram/LinkedIn geteilt wird -->
+  <meta property="og:title" content="Projects – onside.hq" />
+  <meta property="og:description" content="Projects by onside.hq: the Berlin Night Run with a DJ, afterparty and partners like Red Bull and HEJ Natural, reels for Dagen Yachtcharter and SNOWSIDE, our creator ski week in Tyrol." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://onsidehq.de/en/projects" />
+  <meta property="og:image" content="https://onsidehq.de/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:site_name" content="onside.hq" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Für Suchmaschinen: Brotkrumen-Pfad -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Start",
+        "item": "https://onsidehq.de/en/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projects",
+        "item": "https://onsidehq.de/en/projects"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
+  <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
+  <link rel="stylesheet" href="../css/styles.css?v=30" />
+
+  <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
+       einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
+  <script>
+    document.documentElement.classList.add('js');
+    // Fehlt ein Foto, verschwindet das <img> und die Animation darunter bleibt
+    // sichtbar. Liegt es in einem <picture> mit Handy-Version (hoch-...), wird
+    // zuerst die Handy-Version weggelassen und das große Foto genommen.
+    window.onsideBildFehlt = function (img) {
+      if (!img.getAttribute('src')) return; // ohne Bildadresse nichts zu tun
+      var s = img.parentNode && img.parentNode.querySelector('source');
+      if (s) { s.remove(); img.src = img.getAttribute('src'); } else { img.remove(); }
+    };
+    setTimeout(function () {
+      if (!window.__onsideReady) document.documentElement.classList.add('no-anim');
+    }, 3000);
+  </script>
+</head>
+<body data-page="projekte">
+
+  <!-- Hintergrund für die ganze Seite: das Punktfeld ("Crowd & Beat") läuft
+       hinter allen Abschnitten weiter und reagiert auf Maus und Tippen.
+       Gezeichnet wird es in js/visuals.js. -->
+  <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ NAVIGATION ============
+       Steht auf jeder Seite gleich. Der Link der aktuellen Seite trägt
+       aria-current="page" und wird dadurch hervorgehoben. -->
+  <header class="nav" id="nav">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo" aria-label="onside.hq – home">ONSIDE</a>
+      <!-- Menü-Button: sitzt fest neben dem Logo, immer sichtbar.
+           Beim Öffnen wird aus den Strichen ein X. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="../galerie.html">Gallery</a>
+      <a href="services.html">Services</a>
+      <a href="../ueber-uns.html">About us</a>
+      <a href="index.html#fragen">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+
+    <div class="nav__tools">
+      <div class="lang-switch" aria-label="Language">
+        <a class="lang-switch__item" href="../projekte.html" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a>
+        <span class="lang-switch__item is-active" lang="en" aria-current="true">EN</span>
+      </div>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+        <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+      </button>
+    </div>
+    <a href="contact.html" class="btn btn--small nav__cta"><span class="nav__cta-long">Start a project</span><span class="nav__cta-short">Contact</span></a>
+  </header>
+
+  <!-- Vollbild-Menü, wird vom Menü-Button geöffnet -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-overlay__links" aria-label="Menu">
+      <a href="index.html"><span class="menu-overlay__num">01</span>Home</a>
+      <a href="projects.html" aria-current="page"><span class="menu-overlay__num">02</span>Projects</a>
+      <a href="../galerie.html"><span class="menu-overlay__num">03</span>Gallery</a>
+      <a href="services.html"><span class="menu-overlay__num">04</span>Services</a>
+      <a href="../ueber-uns.html"><span class="menu-overlay__num">05</span>About us</a>
+      <a href="index.html#fragen"><span class="menu-overlay__num">06</span>FAQ</a>
+      <a href="contact.html"><span class="menu-overlay__num">07</span>Contact</a>
+    </nav>
+    <div class="menu-overlay__meta">
+      <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+      <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">@onside.hq</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ PROJEKTE — Übersicht ============
+         Jedes Projekt ist eine Karte. Für ein neues Projekt: eine Karte kopieren,
+         Texte und Link anpassen und eine eigene Projektseite nach dem Muster von
+         berlin-night-run.html anlegen. -->
+    <section class="page-hero">
+      <div class="page-hero__text">
+        <p class="eyebrow intro">Projects</p>
+        <h1 data-split>What we have <span class="scribble" data-scribble="underline">built</span> so far.</h1>
+        <p class="page-hero__lead intro intro--2">
+          Every project starts with the brand behind it and only ends when the last reel is online. It started with the Berlin Night Run, then we went out on the boat for Dagen Yachtcharter.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-list">
+      <a class="project-card" href="../berlin-night-run.html" data-spot>
+        <div class="project-card__media viz">
+          <canvas data-scene="trails" data-seed="7" aria-hidden="true"></canvas>
+          <!-- Foto: 01.jpg (Handy: hoch-01.jpg). object-position = Bildausschnitt,
+               "55% 45%" hält die Gruppe in der Mitte im Bild. -->
+          <picture>
+            <source media="(max-width: 720px)" srcset="../assets/projects/berlin-night-run/hoch-01.webp">
+            <img width="2400" height="1600" src="../assets/projects/berlin-night-run/01.webp" alt="Berlin Night Run: the running group on the move" fetchpriority="high" style="object-position: 55% 45%" onerror="onsideBildFehlt(this)">
+          </picture>
+        </div>
+        <div class="project-card__body">
+          <p class="eyebrow">01 · Berlin · 2026</p>
+          <h2>Night Run</h2>
+          <p>
+            A run through Berlin at night with a DJ, food and drinks, an afterparty and partners like Red&nbsp;Bull and HEJ&nbsp;Natural. Our first own event&nbsp;– from idea to execution in a few weeks.
+          </p>
+          <span class="btn btn--ghost btn--arrow">View project</span>
+        </div>
+      </a>
+
+      <a class="project-card reveal" href="../dagen-yachtcharter.html" data-spot>
+        <div class="project-card__media viz">
+          <canvas data-scene="contour" data-seed="17" aria-hidden="true"></canvas>
+          <!-- Foto: assets/projects/dagen-yachtcharter/01.webp (quer 3:2) -->
+          <img width="1536" height="1024" src="../assets/projects/dagen-yachtcharter/01.webp" alt="Dagen Yachtcharter: jumping from a rope into the sea next to the sailing boat" loading="lazy" onerror="onsideBildFehlt(this)">
+        </div>
+        <div class="project-card__body">
+          <p class="eyebrow">02 · Corfu · 2026</p>
+          <h2>Dagen Yachtcharter</h2>
+          <p>
+            One week on board, 10&nbsp;reels, daily stories and over 270,000&nbsp;views. Sailing, told for a younger audience.
+          </p>
+          <span class="btn btn--ghost btn--arrow">View project</span>
+        </div>
+      </a>
+
+      <!-- IN PLANUNG -->
+      <a class="project-card reveal" href="snowside.html" data-spot>
+        <div class="project-card__media viz">
+          <canvas data-scene="bokeh" data-seed="12" aria-hidden="true"></canvas>
+          <img width="960" height="640" src="../assets/projects/snowside/konzept-lift.webp" alt="Concept image: friends on a chairlift under a cloudy sky" loading="lazy" onerror="onsideBildFehlt(this)">
+          <span class="konzept-badge">Concept image</span>
+        </div>
+        <div class="project-card__body">
+          <p class="eyebrow">03 · In planning · Tyrol · March 2027</p>
+          <h2>SNOWSIDE</h2>
+          <p>
+            Our creator ski week: one week in Tyrol with selected creators, a chalet and plenty of adventure. We are looking for partners and creators.
+          </p>
+          <span class="btn btn--ghost btn--arrow">View project</span>
+        </div>
+      </a>
+
+      <a class="project-card project-card--next reveal" href="contact.html" data-spot>
+        <div class="project-card__body">
+          <p class="eyebrow">04 · Your project</p>
+          <h2>The next project could be yours.</h2>
+          <p>Tell us what you have in mind.</p>
+          <span class="btn btn--ghost btn--arrow">Start a project</span>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">ONSIDE</a>
+        <p>Events, brands and content&nbsp;– from the first idea to the final reel.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pages">
+        <span class="footer__label">Pages</span>
+        <a href="projects.html">Projects</a>
+        <a href="../galerie.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="../ueber-uns.html">About us</a>
+        <a href="index.html#fragen">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Focus">
+        <span class="footer__label">Focus</span>
+        <a href="../eventagentur.html">Event agency</a>
+        <a href="../social-media-agentur.html">Social media agency</a>
+        <a href="../creator-events.html">Creator events</a>
+      </nav>
+      <nav class="footer__nav" aria-label="Contact">
+        <span class="footer__label">Contact</span>
+        <a href="mailto:team@onsidehq.de">team@onsidehq.de</a>
+        <a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <!-- großer Schriftzug als Abschluss der Seite -->
+    <div class="footer__mark" aria-hidden="true">ONSIDE</div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year></span> onside.hq</span>
+      <nav class="footer__links" aria-label="Legal">
+        <a href="../impressum.html">Imprint</a>
+        <a href="../datenschutz.html">Privacy</a>
+      </nav>
+      <span>Potsdam · Innsbruck</span>
+    </div>
+  </footer>
+
+  <!-- Skripte — alles lokal, nichts von fremden Servern.
+       config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
+       visuals.js = alles, was gezeichnet und animiert wird
+       script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
+  <script src="../js/config.js?v=30"></script>
+  <script src="../js/visuals.js?v=30"></script>
+  <script src="../js/script.js?v=30"></script>
+  <script src="../js/assistent.js?v=30" defer></script>
+</body>
+</html>

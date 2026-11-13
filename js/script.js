@@ -26,6 +26,10 @@ const lateStart = document.documentElement.classList.contains('no-anim');
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Englische Seiten (unter /en/): Texte, die das Skript selbst schreibt, auf Englisch
+const EN = (document.documentElement.lang || '').startsWith('en');
+const tr = (de, en) => (EN ? en : de);
+
 // Aktuelles Jahr automatisch in den Footer schreiben
 document.querySelectorAll('[data-year], #year').forEach((el) => {
   el.textContent = new Date().getFullYear();
@@ -179,7 +183,7 @@ function setMenu(open) {
   menuOverlay.classList.toggle('is-open', open);
   navBurger.classList.toggle('is-open', open);
   navBurger.setAttribute('aria-expanded', String(open));
-  navBurger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+  navBurger.setAttribute('aria-label', open ? tr('Menü schließen', 'Close menu') : tr('Menü öffnen', 'Open menu'));
   document.body.classList.toggle('menu-open', open);
   document.documentElement.classList.toggle('menu-open', open); // sperrt das Scrollen dahinter
 
@@ -390,9 +394,9 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   done.innerHTML =
     '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><path d="m15 24.5 6 6 12-12.5"/></svg>' +
     '<p class="contact-form__done-title" tabindex="-1"></p>' +
-    '<p class="contact-form__done-text">Wir melden uns innerhalb von 48\u00a0Stunden. Bis dahin findest du uns auf ' +
+    '<p class="contact-form__done-text">' + tr('Wir melden uns innerhalb von 48\u00a0Stunden. Bis dahin findest du uns auf ', 'We will get back to you within 48\u00a0hours. Until then, find us on ') +
     '<a href="https://instagram.com/onside.hq" target="_blank" rel="noopener">Instagram</a>.</p>' +
-    '<button type="button" class="btn btn--ghost btn--small">Noch eine Anfrage</button>';
+    '<button type="button" class="btn btn--ghost btn--small">' + tr('Noch eine Anfrage', 'Send another enquiry') + '</button>';
   form.appendChild(done);
   const doneTitle = done.querySelector('.contact-form__done-title');
   done.querySelector('button').addEventListener('click', () => {
@@ -405,7 +409,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   // Klappt das Senden nicht, soll nichts verloren gehen: Die Meldung enthält
   // einen Mail-Link, der das schon Geschriebene gleich in die Mail übernimmt.
   const setFailed = (text) => {
-    setStatus(text + ' Schreib uns gern direkt an ', 'error');
+    setStatus(text + tr(' Schreib uns gern direkt an ', ' Feel free to email us at '), 'error');
     const data = new FormData(form);
     const topic = interests() ? 'Interesse: ' + interests() : '';
     const body = [topic, data.get('message'), data.get('name')].filter(Boolean).join('\n\n').slice(0, 1500);
@@ -427,12 +431,12 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
     // Solange in js/config.js noch kein Access Key steht, kann nichts verschickt werden.
     const key = (window.ONSIDE && window.ONSIDE.formKey) || '';
     if (!key || key === 'DEIN-ACCESS-KEY-HIER') {
-      setFailed('Das Formular ist gerade nicht erreichbar.');
+      setFailed(tr('Das Formular ist gerade nicht erreichbar.', 'The form is not available right now.'));
       return;
     }
 
     submitBtn.disabled = true;
-    setStatus('Wird gesendet …');
+    setStatus(tr('Wird gesendet …', 'Sending …'));
 
     try {
       const data = new FormData(form);
@@ -444,7 +448,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
       // worum es geht: "Neue Anfrage von Lea (Event, Social Media)"
       const picked = interests();
       payload.Interesse = picked || 'nicht angegeben';
-      payload.subject = 'Neue Anfrage von ' + (String(data.get('name') || '').trim() || 'onsidehq.de') + (picked ? ' (' + picked + ')' : '');
+      payload.subject = (EN ? '[EN] ' : '') + 'Neue Anfrage von ' + (String(data.get('name') || '').trim() || 'onsidehq.de') + (picked ? ' (' + picked + ')' : '');
       payload.access_key = key;
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -456,16 +460,16 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
       if (response.ok && result.success) {
         const firstName = String(data.get('name') || '').trim().split(/\s+/)[0];
         form.reset();
-        setStatus('Danke! Deine Anfrage ist da. Wir melden uns innerhalb von 48 Stunden.', 'ok');
-        doneTitle.textContent = 'Danke' + (firstName ? ', ' + firstName : '') + '! Deine Anfrage ist da.';
+        setStatus(tr('Danke! Deine Anfrage ist da. Wir melden uns innerhalb von 48 Stunden.', 'Thanks! We have your enquiry and will reply within 48 hours.'), 'ok');
+        doneTitle.textContent = tr('Danke', 'Thanks') + (firstName ? ', ' + firstName : '') + tr('! Deine Anfrage ist da.', '! We have your enquiry.');
         form.classList.add('is-sent');
         done.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
         doneTitle.focus({ preventScroll: true });
       } else {
-        setFailed('Das hat gerade nicht geklappt.');
+        setFailed(tr('Das hat gerade nicht geklappt.', 'That didn’t work just now.'));
       }
     } catch (err) {
-      setFailed('Keine Verbindung.');
+      setFailed(tr('Keine Verbindung.', 'No connection.'));
     } finally {
       submitBtn.disabled = false;
     }
@@ -516,7 +520,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
 
   function label(k) {
     if (countEl) countEl.textContent = pad(k + 1) + ' / ' + pad(list.length);
-    if (capEl) capEl.textContent = list[k].text || '';
+    if (capEl) capEl.textContent = (EN && list[k].en) || list[k].text || '';
     if (!bar) return;
     bar.classList.remove('is-running');
     void bar.offsetWidth; // Animation neu starten

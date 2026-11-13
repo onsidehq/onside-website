@@ -5625,3 +5625,16 @@ body.menu-open .assistent {
   --border-strong: rgba(20, 19, 15, 0.24);
   color: var(--text);
 }
+
+/* Kontaktseite: Felder im Formular-Kasten sind im dunklen Design extra dunkel */
+:root[data-theme='light'] .contact-page__form .contact-form :is(input[type='text'], input[type='email'], textarea) {
+  background: var(--bg);
+}
+
+:root[data-theme='light'] .contact-page__form .chip span {
+  background: var(--bg);
+}
+
+:root[data-theme='light'] .contact-form :is(input, textarea)::placeholder {
+  color: #8a8275;
+}

@@ -17,6 +17,9 @@
    ========================================================================== */
 (() => {
   const KI_ADRESSE = '/api/assistent';   // leer lassen = keine KI, nur feste Antworten
+  // Englische Seiten (unter /en/): Chat auf Englisch, Antworten aus THEMEN_EN
+  const EN = (document.documentElement.lang || '').startsWith('en');
+  const tr = (de, en) => (EN ? en : de);
 
   const KONTAKT = {
     mail: 'team@onsidehq.de',
@@ -26,21 +29,22 @@
   };
 
   // Knöpfe, die unter einer Antwort erscheinen können
+  // (Links mit / am Anfang, damit sie auch von den englischen Seiten unter /en/ stimmen)
   const KNOEPFE = {
-    mail: { text: 'Mail schreiben', link: 'mailto:' + KONTAKT.mail },
-    anrufen: { text: 'Anrufen', link: KONTAKT.telefonLink },
+    mail: { text: tr('Mail schreiben', 'Send an email'), link: 'mailto:' + KONTAKT.mail },
+    anrufen: { text: tr('Anrufen', 'Call us'), link: KONTAKT.telefonLink },
     insta: { text: 'Instagram', link: KONTAKT.instagram, extern: true },
-    anfrage: { text: 'Projekt anfragen', link: 'kontakt.html' },
-    leistungen: { text: 'Leistungen ansehen', link: 'leistungen.html' },
-    projekte: { text: 'Projekte ansehen', link: 'projekte.html' },
-    nightrun: { text: 'Zum Night Run', link: 'berlin-night-run.html' },
-    dagen: { text: 'Zu Dagen', link: 'dagen-yachtcharter.html' },
-    snowside: { text: 'Zu SNOWSIDE', link: 'snowside.html' },
-    team: { text: 'Wer wir sind', link: 'ueber-uns.html' },
-    galerie: { text: 'Zur Galerie', link: 'galerie.html' },
+    anfrage: { text: tr('Projekt anfragen', 'Start a project'), link: tr('/kontakt', '/en/contact') },
+    leistungen: { text: tr('Leistungen ansehen', 'See services'), link: tr('/leistungen', '/en/services') },
+    projekte: { text: tr('Projekte ansehen', 'See projects'), link: tr('/projekte', '/en/projects') },
+    nightrun: { text: tr('Zum Night Run', 'Night Run (German)'), link: '/berlin-night-run' },
+    dagen: { text: tr('Zu Dagen', 'Dagen (German)'), link: '/dagen-yachtcharter' },
+    snowside: { text: tr('Zu SNOWSIDE', 'See SNOWSIDE'), link: tr('/snowside', '/en/snowside') },
+    team: { text: tr('Wer wir sind', 'About us (German)'), link: '/ueber-uns' },
+    galerie: { text: tr('Zur Galerie', 'See gallery'), link: '/galerie' },
   };
 
-  const THEMEN = [
+  const THEMEN_DE = [
     {
       woerter: ['hallo', 'hi', 'hey', 'servus', 'moin', 'guten tag', 'gruss', 'griass'],
       antwort: 'Hey! Schön, dass du da bist. Frag mich einfach, was du über onside.hq wissen willst, oder tipp eins der Themen unten an.',
@@ -152,9 +156,123 @@
     },
   ];
 
-  const WEISS_NICHT = 'Das kann ich dir hier leider nicht sicher beantworten. Schreib uns am besten kurz oder ruf an, dann klären wir das direkt.';
-  const BEGRUESSUNG = 'Hey! Ich bin der digitale Assistent von onside.hq, also kein Mensch: Manche Antworten schreibt eine KI. Frag mich alles zu Events, Content, unseren Projekten oder SNOWSIDE. Bitte gib hier keine persönlichen Daten ein.';
-  const VORSCHLAEGE = ['Was macht ihr?', 'Was kostet ein Projekt?', 'Wie läuft das ab?', 'SNOWSIDE', 'Kontakt'];
+  // Dieselben Themen auf Englisch (für die Seiten unter /en/)
+  const THEMEN_EN = [
+    {
+      woerter: ['hello', 'hi', 'hey', 'good morning', 'servus'],
+      antwort: 'Hey! Great to have you here. Ask me anything about onside.hq or tap one of the topics below.',
+      vorschlaege: true,
+    },
+    {
+      woerter: ['fit our brand', 'our brand', 'brand identity', 'identity', 'brand values', 'values'],
+      antwort: 'We always start with your brand, not with our ideas: what does it stand for, who do you want to reach, what should people remember? From that we build a concept that makes its identity visible and tangible, in the schedule, the partners and the content.',
+      knoepfe: ['anfrage', 'leistungen'],
+    },
+    {
+      woerter: ['how much', 'project cost', 'cost', 'price', 'pricing', 'budget', 'expensive', 'euro', '€', 'money', 'pay', 'fee', 'rate'],
+      antwort: 'We don’t have a fixed price list, because a content package is something different from an event with partners and an afterparty. After a short call you get a concrete quote. If you already know your budget, tell us right away so we know what’s possible.',
+      knoepfe: ['anfrage', 'anrufen'],
+    },
+    {
+      woerter: ['lead time', 'how long', 'how fast', 'timeline', 'short notice', 'deadline', 'weeks', 'months'],
+      antwort: 'It depends on the project: content for your channels is quicker than an event with a venue, partners and permits. We put the Berlin Night Run together in a few weeks. The earlier you get in touch, the more room there is.',
+      knoepfe: ['anfrage'],
+    },
+    {
+      woerter: ['process', 'work together', 'collaboration', 'steps', 'how does it work', 'first call'],
+      antwort: 'In four steps: 1. We get to know you in a short call. 2. We come back with a concept including schedule, budget and timeline. 3. We make it happen and you always talk to us directly. 4. Afterwards we keep telling the story with content.',
+      knoepfe: ['anfrage', 'leistungen'],
+    },
+    {
+      woerter: ['services', 'what do you do', 'what do you offer', 'offer', 'agency'],
+      antwort: 'We do three things, individually or together: event management (idea, planning, venue, partners, on-site execution), marketing & brand strategy (positioning, campaigns, sponsorship, communication for Gen Z) and social media (photo, video, reels, editing, channel management).',
+      knoepfe: ['leistungen', 'anfrage'],
+    },
+    {
+      woerter: ['event', 'party', 'launch', 'pop-up', 'popup', 'festival', 'community night', 'venue', 'company party'],
+      antwort: 'Events are our core: we develop the concept, plan the schedule and venue, bring in the right partners and are there on the day. We come from sport, but we do launch events, pop-ups, parties and community nights just as well, ideally formats people can join in.',
+      knoepfe: ['anfrage', 'nightrun'],
+    },
+    {
+      woerter: ['social', 'instagram', 'tiktok', 'content', 'reel', 'video', 'photo', 'film', 'editing', 'channel', 'posts', 'youtube'],
+      antwort: 'We produce photos, videos and reels, edit everything ourselves and can manage your channels too. One example: for Dagen Yachtcharter we shot reels in Corfu that got over 270,000 views in total.',
+      knoepfe: ['dagen', 'anfrage'],
+    },
+    {
+      woerter: ['brand', 'branding', 'strategy', 'positioning', 'campaign', 'marketing', 'target group', 'audience', 'gen z'],
+      antwort: 'Marketing & brand strategy is about what your brand stands for and how it lands with a young audience: positioning, brand identity, campaign and activation concepts, partnerships and communication for Gen Z.',
+      knoepfe: ['leistungen', 'anfrage'],
+    },
+    {
+      woerter: ['only one', 'individually', 'book', 'just social', 'just content', 'just an event', 'combine'],
+      antwort: 'Sure. Events, brand strategy and social media are available individually or together. It works best when everything plays together, but it’s your call.',
+      knoepfe: ['anfrage'],
+    },
+    {
+      woerter: ['sponsor', 'partner'],
+      antwort: 'Partner management is part of what we do: we find the right partners, reach out and handle the arrangements. Red Bull, HEJ Natural and several Berlin bars were part of the Night Run, for example. Want to become a SNOWSIDE partner yourself? Just drop us a line.',
+      knoepfe: ['mail', 'snowside'],
+    },
+    {
+      woerter: ['where are you', 'location', 'based', 'potsdam', 'innsbruck', 'berlin', 'austria', 'germany', 'tyrol', 'office', 'address'],
+      antwort: 'We are based in Potsdam and Innsbruck, with Berlin right on our doorstep. For the right project we will travel anywhere.',
+      knoepfe: ['team'],
+    },
+    {
+      woerter: ['project', 'reference', 'example', 'so far', 'clients', 'portfolio', 'work'],
+      antwort: 'So far: the Berlin Night Run, our own event with a DJ, afterparty and partners, and reels for Dagen Yachtcharter in Corfu. Right now we are planning SNOWSIDE, a creator ski week in Tyrol in March 2027.',
+      knoepfe: ['projekte', 'galerie'],
+    },
+    {
+      woerter: ['night run', 'nightrun', 'run', 'running', 'red bull', 'redbull', 'hej'],
+      antwort: 'The Berlin Night Run was our first own event: a run through Berlin at night with a DJ on a cargo bike, food and drinks, stops at bars and an afterparty. Red Bull and HEJ Natural were part of it.',
+      knoepfe: ['nightrun'],
+    },
+    {
+      woerter: ['dagen', 'yacht', 'sail', 'boat', 'corfu', 'greece'],
+      antwort: 'For Dagen Yachtcharter we spent a week on a sailing boat around Corfu in September 2026 and produced reels and stories. The result: over 270,000 views, around 130 times more than their reels before.',
+      knoepfe: ['dagen'],
+    },
+    {
+      woerter: ['snowside', 'ski', 'snowboard', 'snow', 'winter', 'chalet', 'march 2027', 'ski week'],
+      antwort: 'SNOWSIDE is our creator ski week: one week in March 2027 in Tyrol with 8–10 selected creators, a chalet and plenty of adventure. We are currently looking for partners and creators.',
+      knoepfe: ['snowside'],
+    },
+    {
+      woerter: ['creator', 'influencer', 'apply', 'join', 'take part', 'participate'],
+      antwort: 'Want to come to Tyrol as a creator? You’re a good fit if you are between 20 and 27, from Germany, Austria or Switzerland, into action, travel or sidequests, film yourself and ski confidently. Applications go through Instagram: comment on our SNOWSIDE post and send us a DM.',
+      knoepfe: ['insta', 'snowside'],
+    },
+    {
+      woerter: ['who are you', 'team', 'founder', 'malte', 'julian', 'about you', 'behind'],
+      antwort: 'Malte and Julian are behind onside.hq. We come from sport, organise events and produce the content ourselves. You always talk to the two of us directly.',
+      knoepfe: ['team'],
+    },
+    {
+      woerter: ['contact', 'mail', 'e-mail', 'email', 'phone', 'call', 'number', 'reach', 'whatsapp', 'talk', 'meeting'],
+      antwort: 'The quickest way to reach us is by email at ' + KONTAKT.mail + ' or by phone at ' + KONTAKT.telefon + '. On Instagram we are @onside.hq.',
+      knoepfe: ['mail', 'anrufen', 'insta'],
+    },
+    {
+      woerter: ['reply', 'respond', 'get back', 'answer'],
+      antwort: 'We get back to you within 48 hours, usually sooner.',
+      knoepfe: ['anfrage', 'mail'],
+    },
+    {
+      woerter: ['job', 'internship', 'intern', 'work for you', 'freelance', 'freelancer', 'photographer', 'videographer'],
+      antwort: 'Great that you’re keen! Send us a short email with a few sentences about yourself and links to your work.',
+      knoepfe: ['mail'],
+    },
+    {
+      woerter: ['thanks', 'thank you', 'great', 'perfect', 'cool', 'nice'],
+      antwort: 'You’re welcome! If anything else comes up, just ask.',
+    },
+  ];
+
+  const THEMEN = EN ? THEMEN_EN : THEMEN_DE;
+  const WEISS_NICHT = tr('Das kann ich dir hier leider nicht sicher beantworten. Schreib uns am besten kurz oder ruf an, dann klären wir das direkt.', 'I can’t answer that reliably here, sorry. Best to drop us a line or give us a call and we’ll sort it out directly.');
+  const BEGRUESSUNG = tr('Hey! Ich bin der digitale Assistent von onside.hq, also kein Mensch: Manche Antworten schreibt eine KI. Frag mich alles zu Events, Content, unseren Projekten oder SNOWSIDE. Bitte gib hier keine persönlichen Daten ein.', 'Hey! I’m the digital assistant of onside.hq, so not a human: some answers are written by an AI. Ask me anything about events, content, our projects or SNOWSIDE. Please don’t enter any personal data here.');
+  const VORSCHLAEGE = EN ? ['What do you do?', 'How much does a project cost?', 'How does it work?', 'SNOWSIDE', 'Contact'] : ['Was macht ihr?', 'Was kostet ein Projekt?', 'Wie läuft das ab?', 'SNOWSIDE', 'Kontakt'];
 
   /* ---------------- ab hier Technik ---------------- */
 
@@ -193,22 +311,22 @@
   toggle.type = 'button';
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-controls', 'assistentPanel');
-  toggle.setAttribute('aria-label', 'Du hast noch Fragen? Chat öffnen');
+  toggle.setAttribute('aria-label', tr('Du hast noch Fragen? Chat öffnen', 'Any questions? Open chat'));
   toggle.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" class="assistent__icon-chat"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="currentColor"/></svg>'
     + '<svg viewBox="0 0 24 24" aria-hidden="true" class="assistent__icon-close"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>'
-    + '<span class="assistent__toggle-text">Du hast noch Fragen?</span>';
+    + '<span class="assistent__toggle-text">' + tr('Du hast noch Fragen?', 'Any questions?') + '</span>';
 
   const panel = el('section', 'assistent__panel');
   panel.id = 'assistentPanel';
   panel.hidden = true;
-  panel.setAttribute('aria-label', 'Assistent von onside.hq');
+  panel.setAttribute('aria-label', tr('Assistent von onside.hq', 'onside.hq assistant'));
 
   const head = el('header', 'assistent__head');
   const title = el('div', 'assistent__title');
-  title.append(el('strong', '', 'onside Assistent'), el('span', '', 'KI-gestützt · alles Weitere direkt mit uns'));
+  title.append(el('strong', '', tr('onside Assistent', 'onside assistant')), el('span', '', tr('KI-gestützt · alles Weitere direkt mit uns', 'AI-powered · for everything else, talk to us')));
   const close = el('button', 'assistent__close');
   close.type = 'button';
-  close.setAttribute('aria-label', 'Chat schließen');
+  close.setAttribute('aria-label', tr('Chat schließen', 'Close chat'));
   close.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
   head.append(title, close);
 
@@ -219,8 +337,8 @@
   const form = el('form', 'assistent__form');
   const input = el('textarea', 'assistent__input');
   input.rows = 1;
-  input.placeholder = 'Deine Frage …';
-  input.setAttribute('aria-label', 'Deine Frage');
+  input.placeholder = tr('Deine Frage …', 'Your question …');
+  input.setAttribute('aria-label', tr('Deine Frage', 'Your question'));
   input.maxLength = 500;
   input.autocomplete = 'off';
   // Eingabefeld wächst mit dem Text (bis etwa 6 Zeilen, danach scrollt es)
@@ -235,12 +353,12 @@
   });
   const send = el('button', 'assistent__send');
   send.type = 'submit';
-  send.setAttribute('aria-label', 'Senden');
+  send.setAttribute('aria-label', tr('Senden', 'Send'));
   send.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   form.append(input, send);
 
   const foot = el('p', 'assistent__foot');
-  foot.innerHTML = 'Lieber direkt? <a href="mailto:' + KONTAKT.mail + '">' + KONTAKT.mail + '</a> · <a href="' + KONTAKT.telefonLink + '">' + KONTAKT.telefon + '</a>';
+  foot.innerHTML = tr('Lieber direkt?', 'Prefer to talk directly?') + ' <a href="mailto:' + KONTAKT.mail + '">' + KONTAKT.mail + '</a> · <a href="' + KONTAKT.telefonLink + '">' + KONTAKT.telefon + '</a>';
 
   panel.append(head, log, form, foot);
   wrap.append(panel, toggle);
@@ -252,7 +370,7 @@
   function nachricht(text, wer, knoepfe, vorschlaege, vonKi) {
     const m = el('div', 'assistent__msg assistent__msg--' + wer);
     text.split(/\n{2,}/).forEach((absatz) => m.append(el('p', '', absatz)));
-    if (vonKi) m.append(el('span', 'assistent__ki', 'KI-Antwort · ohne Gewähr'));
+    if (vonKi) m.append(el('span', 'assistent__ki', tr('KI-Antwort · ohne Gewähr', 'AI answer · no guarantee')));
     if (knoepfe && knoepfe.length) {
       const row = el('div', 'assistent__actions');
       knoepfe.forEach((k) => {
@@ -304,7 +422,7 @@
         const r = await fetch(KI_ADRESSE, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ frage: text, verlauf: verlauf.slice(-10), seite: document.title }),
+          body: JSON.stringify({ frage: text, verlauf: verlauf.slice(-10), seite: document.title, sprache: EN ? 'en' : 'de' }),
         });
         if (r.ok) ki = await r.json();
       } catch (e) { /* dann eben die feste Antwort */ }
@@ -324,7 +442,7 @@
     panel.hidden = !offen;
     wrap.classList.toggle('is-open', offen);
     toggle.setAttribute('aria-expanded', String(offen));
-    toggle.setAttribute('aria-label', offen ? 'Chat schließen' : 'Du hast noch Fragen? Chat öffnen');
+    toggle.setAttribute('aria-label', offen ? tr('Chat schließen', 'Close chat') : tr('Du hast noch Fragen? Chat öffnen', 'Any questions? Open chat'));
     if (offen) {
       if (!gestartet) { nachricht(BEGRUESSUNG, 'bot', null, true); gestartet = true; }
       if (window.matchMedia('(min-width: 721px)').matches) input.focus();

@@ -19,7 +19,7 @@ const ERLAUBTE_HOSTS = ['onsidehq.de', 'www.onsidehq.de'];
 const WISSEN = `Du bist der Chat-Assistent auf der Website von onside.hq. Du bist eine KI und sagst das auch, wenn jemand fragt.
 
 So antwortest du:
-- Immer auf Deutsch, locker, herzlich und mit "du". Klingt wie ein junger, sportlicher Teamkollege, nicht wie ein Callcenter.
+- Auf Deutsch (außer auf der englischen Website, siehe unten), locker, herzlich und mit "du". Klingt wie ein junger, sportlicher Teamkollege, nicht wie ein Callcenter.
 - Geh konkret auf genau das ein, was die Person geschrieben hat. Greif ihre Worte, ihre Branche oder ihr Vorhaben auf und sag, wie onside.hq dabei helfen könnte. Keine Standardfloskeln, keine Wiederholung der Frage.
 - Wenn jemand ein Vorhaben beschreibt (z. B. Firmenevent, Produktlaunch, Social Media für einen Verein), denk kurz mit: nenn eine passende Idee oder einen ersten Gedanken, wie man die Marke dabei sichtbar macht, und stell eine kurze Rückfrage, die das Gespräch weiterbringt.
 - Meist 2 bis 4 Sätze. Kein Markdown, keine Sternchen, keine Aufzählungszeichen. Ein Absatz ist okay, wenn es hilft.
@@ -65,6 +65,7 @@ export async function onRequestPost({ request, env }) {
   try { eingabe = await request.json(); } catch (e) { return json({ fehler: 'ungültig' }, 400); }
   const frage = String(eingabe.frage || '').trim();
   const seite = String(eingabe.seite || '').slice(0, 120).replace(/[\r\n`]/g, ' ');
+  const englisch = eingabe.sprache === 'en';
   if (!frage || frage.length > MAX_ZEICHEN) return json({ fehler: 'ungültig' }, 400);
 
   // Verlauf in abwechselnde Nachrichten umwandeln, erste muss vom Nutzer sein
@@ -96,7 +97,8 @@ export async function onRequestPost({ request, env }) {
         model: MODELL,
         max_tokens: 1024,
         output_config: { effort: 'medium' },
-        system: WISSEN + (seite ? '\n\nDie Person ist gerade auf dieser Seite: ' + seite : ''),
+        system: WISSEN + (seite ? '\n\nDie Person ist gerade auf dieser Seite: ' + seite : '')
+          + (englisch ? '\n\nWICHTIG: Die Person ist auf der englischen Website. Antworte auf Englisch (locker, herzlich, gleiche Regeln wie oben). Die Zeile "KNOEPFE:" bleibt genau so mit den deutschen Wörtern.' : ''),
         messages,
       }),
     });
