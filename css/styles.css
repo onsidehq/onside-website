@@ -2872,13 +2872,19 @@ body.menu-open .nav__cta {
   max-width: 42ch;
 }
 
-/* zweite Karte gespiegelt: Text links, Animation rechts */
+/* Einladungskarte: kompakt, nur Text und Knopf */
 .project-card--next {
-  grid-template-columns: 1fr 1.25fr;
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  margin-inline: auto;
 }
 
-.project-card--next .project-card__media {
-  order: 2;
+.project-card--next .project-card__body {
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+}
+
+.project-card--next .project-card__body p:not(.eyebrow) {
+  margin-bottom: 1.2rem;
 }
 
 .project-card--next h2 {
@@ -2906,10 +2912,6 @@ body.menu-open .nav__cta {
   .project-card,
   .project-card--next {
     grid-template-columns: 1fr;
-  }
-
-  .project-card--next .project-card__media {
-    order: 0;
   }
 
   /* quadratisch: passt zum Hochformat-Foto (hoch-cover.jpg) auf dem Handy */

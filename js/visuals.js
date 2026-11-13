@@ -497,13 +497,7 @@
       if (!running) paint(performance.now() / 1000);
       window.addEventListener('scroll', measureLevel, { passive: true });
 
-      window.addEventListener('pointermove', (e) => {
-        if (e.pointerType !== 'mouse') return;
-        pointer.x = e.clientX;
-        pointer.y = e.clientY;
-        pointer.active = true;
-      }, { passive: true });
-      document.documentElement.addEventListener('mouseleave', () => { pointer.active = false; });
+      // kein Aufhellen mehr um den Mauszeiger (Malte, 13.11.)
 
       // Klick oder Tippen: eine Welle genau von dieser Stelle
       if (SETTINGS.waves) window.addEventListener('pointerdown', (e) => {

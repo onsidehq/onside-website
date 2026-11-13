@@ -193,10 +193,10 @@
   toggle.type = 'button';
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-controls', 'assistentPanel');
-  toggle.setAttribute('aria-label', 'Fragen? Chat öffnen');
+  toggle.setAttribute('aria-label', 'Du hast noch Fragen? Chat öffnen');
   toggle.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" class="assistent__icon-chat"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="currentColor"/></svg>'
     + '<svg viewBox="0 0 24 24" aria-hidden="true" class="assistent__icon-close"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>'
-    + '<span class="assistent__toggle-text">Fragen?</span>';
+    + '<span class="assistent__toggle-text">Du hast noch Fragen?</span>';
 
   const panel = el('section', 'assistent__panel');
   panel.id = 'assistentPanel';
@@ -324,7 +324,7 @@
     panel.hidden = !offen;
     wrap.classList.toggle('is-open', offen);
     toggle.setAttribute('aria-expanded', String(offen));
-    toggle.setAttribute('aria-label', offen ? 'Chat schließen' : 'Fragen? Chat öffnen');
+    toggle.setAttribute('aria-label', offen ? 'Chat schließen' : 'Du hast noch Fragen? Chat öffnen');
     if (offen) {
       if (!gestartet) { nachricht(BEGRUESSUNG, 'bot', null, true); gestartet = true; }
       if (window.matchMedia('(min-width: 721px)').matches) input.focus();
