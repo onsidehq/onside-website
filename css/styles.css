@@ -542,11 +542,11 @@ body.menu-open .nav__cta {
   pointer-events: none;
 }
 
-/* Unter 980 px ist kein Platz mehr für die Linkleiste -> Menü-Button übernimmt.
-   Die Grenze steht in em (61.25em = 980 px bei normaler Schriftgröße): Wer im
+/* Unter 1200 px (mit den Schaltern für Sprache und Hell/Dunkel) ist kein Platz mehr für die Linkleiste -> Menü-Button übernimmt.
+   Die Grenze steht in em (75em = 1200 px bei normaler Schriftgröße): Wer im
    Browser eine größere Schrift eingestellt hat, bekommt die kompakte Leiste
    entsprechend früher, statt dass rechts etwas abgeschnitten wird. */
-@media (max-width: 61.25em) {
+@media (max-width: 75em) {
   .nav__links { display: none; }
 }
 
@@ -5368,3 +5368,260 @@ body.menu-open .assistent {
 .case-section__body .checklist + p { margin-top: 1.2rem; }
 .case-partners__lead a,
 .case-section__body p a:not(.btn) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ==========================================================================
+   30  Schalter oben (Sprache + Hell/Dunkel) und helles Design
+   Standard ist dunkel. Hell wird über <html data-theme="light"> eingeschaltet
+   (js/script.js, Teil 9). Fotos, Animationsflächen, der Startbildschirm und
+   der Footer bleiben auch im hellen Design dunkel: Sie haben dort die
+   dunklen Farben unten bei "dunkle Inseln".
+   ========================================================================== */
+.nav__tools {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 3px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.lang-switch__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 100%;
+  padding: 0 0.45rem;
+  border-radius: 999px;
+  color: var(--text-dim);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.lang-switch__item.is-active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+@media (hover: hover) {
+  a.lang-switch__item:hover { color: var(--text); }
+}
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.theme-switch__track {
+  position: relative;
+  display: block;
+  width: 52px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: rgba(var(--cream-rgb), 0.06);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+/* Knopf: links mit Mond (dunkel), rechts mit Sonne (hell) */
+.theme-switch__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--text) no-repeat center / 14px 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z' fill='%23000'/%3E%3C/svg%3E");
+  transition: transform 0.3s var(--ease-out), background-color 0.25s ease;
+}
+
+.theme-switch[aria-checked='true'] .theme-switch__thumb {
+  transform: translateX(20px);
+  background-color: var(--accent);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4.2' fill='%23fff' stroke='none'/%3E%3Cpath d='M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6'/%3E%3C/svg%3E");
+}
+
+.theme-switch:focus-visible .theme-switch__track,
+.lang-switch__item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Auf schmalen Bildschirmen: etwas kompakter, damit Logo, Menü und Button passen */
+@media (max-width: 35em) {
+  .nav { gap: 0.6rem; }
+  .nav__tools { gap: 0.4rem; margin-left: auto; }
+  .lang-switch { height: 30px; font-size: 0.66rem; }
+  .lang-switch__item { min-width: 24px; padding: 0 0.3rem; }
+  .theme-switch__track { width: 46px; height: 30px; }
+  .theme-switch__thumb { width: 22px; height: 22px; }
+  .theme-switch[aria-checked='true'] .theme-switch__thumb { transform: translateX(16px); }
+}
+
+@media (max-width: 75em) {
+  .nav__tools { margin-left: auto; }
+}
+
+/* sanfter Übergang nur im Moment des Umschaltens */
+.theme-anim,
+.theme-anim *,
+.theme-anim *::before,
+.theme-anim *::after {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, fill 0.4s ease !important;
+}
+
+/* ---------- Helles Design: Farben ---------- */
+:root[data-theme='light'] {
+  --bg: #f5f0e6;
+  --bg-elevated: #ffffff;
+  --bg-raised: #ece5d6;
+  --text: #14130f;
+  --text-soft: #2a2722;
+  --text-muted: #4a453c;
+  --text-dim: #6f685c;
+  --cream-rgb: 20, 19, 15;
+  --accent: #0096c2;
+  --accent-rgb: 0, 150, 194;
+  --border: rgba(20, 19, 15, 0.12);
+  --border-strong: rgba(20, 19, 15, 0.24);
+  color-scheme: light;
+}
+
+/* Punktfeld im Hintergrund: dieselbe Animation, umgekehrt eingefärbt
+   (dunkle Punkte auf hellem Grund) */
+:root[data-theme='light'] .ambient {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme='light'] .grain { opacity: 0.035; }
+
+:root[data-theme='light'] .nav {
+  background: rgba(245, 240, 230, 0.82);
+}
+
+:root[data-theme='light'] .btn--ghost {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+:root[data-theme='light'] .btn {
+  color: #fff;
+}
+
+:root[data-theme='light'] .btn--ghost {
+  color: var(--text);
+}
+
+:root[data-theme='light'] :is(.chips a, .gallery__btn[aria-pressed="false"]) {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+:root[data-theme='light'] .gallery__btn[aria-pressed="true"] {
+  color: #fff;
+}
+
+:root[data-theme='light'] .case-partners__row img {
+  filter: brightness(0);
+  opacity: 0.7;
+}
+
+:root[data-theme='light'] .case-backstage > .backstage__sheet {
+  background: var(--bg-elevated);
+}
+
+:root[data-theme='light'] .menu-overlay {
+  background: rgba(245, 240, 230, 0.985);
+}
+
+:root[data-theme='light'] .partners__track img {
+  filter: brightness(0);
+  opacity: 0.62;
+}
+
+/* ---------- Dunkle Inseln: bleiben auch im hellen Design dunkel ---------- */
+:root[data-theme='light'] :is(
+  .hero,
+  .nav.nav--over,
+  .viz,
+  .footer,
+  .assistent__toggle,
+  .lightbox,
+  .page-hero__viz,
+  .project__cover,
+  .project-card__media,
+  .case-hero,
+  .vg,
+  .embed__poster,
+  .menu-overlay__x
+) {
+  --bg: #000000;
+  --bg-elevated: #12110f;
+  --bg-raised: #1a1815;
+  --text: #f7f2e8;
+  --text-soft: #ece4d4;
+  --text-muted: #d2c8b6;
+  --text-dim: #a09684;
+  --cream-rgb: 247, 242, 232;
+  --accent: #3fd5ff;
+  --accent-rgb: 63, 213, 255;
+  --border: rgba(247, 242, 232, 0.12);
+  --border-strong: rgba(247, 242, 232, 0.26);
+  color: var(--text);
+}
+
+:root[data-theme='light'] .nav.nav--over {
+  background: transparent;
+}
+
+:root[data-theme='light'] :is(.hero, .case-hero, .nav.nav--over, .viz, .footer, .assistent__toggle) .btn:not(.btn--ghost) {
+  color: #04141a;
+}
+
+:root[data-theme='light'] :is(.hero, .case-hero, .nav.nav--over, .viz, .footer) .btn--ghost {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+:root[data-theme='light'] .footer {
+  background: #0b0b0a;
+  color: var(--text-muted);
+}
+
+:root[data-theme='light'] .assistent__input {
+  background: #fff;
+}
+
+:root[data-theme='light'] .assistent__send {
+  color: #fff;
+}
+
+/* offenes Menü im hellen Design: Leiste wieder mit dunkler Schrift */
+:root[data-theme='light'] body.menu-open .nav.nav--over {
+  --bg: #f5f0e6;
+  --bg-elevated: #ffffff;
+  --text: #14130f;
+  --text-soft: #2a2722;
+  --text-muted: #4a453c;
+  --text-dim: #6f685c;
+  --cream-rgb: 20, 19, 15;
+  --accent: #0096c2;
+  --accent-rgb: 0, 150, 194;
+  --border: rgba(20, 19, 15, 0.12);
+  --border-strong: rgba(20, 19, 15, 0.24);
+  color: var(--text);
+}

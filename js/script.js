@@ -200,7 +200,7 @@ if (navBurger && menuOverlay) {
   });
   // wird das Fenster breit gezogen, während das Menü offen ist: schließen
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 980 && menuOverlay.classList.contains('is-open')) setMenu(false);
+    if (window.innerWidth > 1200 && menuOverlay.classList.contains('is-open')) setMenu(false);
   });
 }
 
@@ -969,3 +969,38 @@ document.querySelectorAll('[data-citymap]').forEach((map) => {
   io.observe(map);
   replay.addEventListener('click', run);
 });
+
+/* ---------------------------------------------------------------------------
+   9) Hell/Dunkel-Schalter oben in der Leiste
+   Standard ist dunkel. Die Wahl wird im Browser gespeichert und schon im
+   <head> gesetzt, damit die Seite beim Laden nicht kurz falsch aufblitzt.
+--------------------------------------------------------------------------- */
+(() => {
+  const root = document.documentElement;
+  const en = (root.lang || '').startsWith('en');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const switches = document.querySelectorAll('[data-theme-toggle]');
+  if (!switches.length) return;
+
+  function apply(light, save) {
+    if (light) root.dataset.theme = 'light';
+    else delete root.dataset.theme;
+    if (meta) meta.setAttribute('content', light ? '#f5f0e6' : '#000000');
+    switches.forEach((b) => {
+      b.setAttribute('aria-checked', light ? 'true' : 'false');
+      b.setAttribute('aria-label', light
+        ? (en ? 'Switch to dark mode' : 'Dunkles Design einschalten')
+        : (en ? 'Switch to light mode' : 'Helles Design einschalten'));
+    });
+    if (save) {
+      try { localStorage.setItem('onside-theme', light ? 'light' : 'dark'); } catch (e) { /* privates Fenster */ }
+    }
+  }
+
+  apply(root.dataset.theme === 'light', false);
+  switches.forEach((b) => b.addEventListener('click', () => {
+    root.classList.add('theme-anim');
+    apply(root.dataset.theme !== 'light', true);
+    window.setTimeout(() => root.classList.remove('theme-anim'), 500);
+  }));
+})();
