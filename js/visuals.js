@@ -34,6 +34,7 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Englische Seiten (unter /en/): Beschriftungen in den Animationen auf Englisch
   const EN = (document.documentElement.lang || '').startsWith('en');
+  const tr = (de, en) => (EN ? en : de);
   const rootStyle = getComputedStyle(document.documentElement);
   const ACCENT = (rootStyle.getPropertyValue('--accent-rgb') || '63, 213, 255').trim();
   const CREAM = (rootStyle.getPropertyValue('--cream-rgb') || '247, 242, 232').trim();
@@ -1460,7 +1461,7 @@
   };
 
   /* --- offside: die Taktiktafel hinter dem Namen -----------------------
-     Ein Spielzug, der beim Scrollen abläuft: Julian spielt zu Malte, "Eure
+     Ein Spielzug, der beim Drüberfahren mit der Maus startet: Julian spielt zu Malte, "Eure
      Marke" steht erst im Abseits, läuft zurück hinter die Linie, Malte spielt
      den Pass in die Tiefe, Tor: Eure Marke ist onside. Danach leuchten unten
      die Projekte auf, die schon onside sind.
@@ -1542,14 +1543,46 @@
     const fontPx = small ? 9 : 10.5;
     const T = BEAT * 14;
 
-    // Fortschritt beim Scrollen: 0 = Tafel kommt unten ins Bild,
-    // 1 = Tafel steht im oberen Drittel. Weich nachgezogen.
-    let shown = 0;
-    function scrollProgress() {
-      if (!canvas) return 1;
-      const rect = canvas.getBoundingClientRect();
-      const vh = window.innerHeight || 800;
-      return clamp((vh * 0.92 - rect.top) / (vh * 0.62), 0, 1);
+    // Der Spielzug startet erst, wenn man mit der Maus über die Tafel fährt
+    // (am Handy: antippen oder sobald die Tafel ganz im Bild ist), läuft dann
+    // in einem Zug durch und bietet am Ende "Nochmal spielen" an. Der Zustand
+    // hängt am <canvas>, damit er ein Neuaufbauen (Fenstergröße) übersteht.
+    const BALL = [tr('Die Idee', 'The idea'), tr('Das Projekt', 'The project')];
+    const SPEED = 1.15;   // Spielzug-Sekunden pro echter Sekunde (ca. 6 s gesamt)
+    const END = 7;
+    const game = canvas ? (canvas._spielzug || (canvas._spielzug = { start: null, pending: false, done: false })) : null;
+    if (personal && game && !canvas._spielzugBound) {
+      canvas._spielzugBound = true;
+      const board = canvas.closest('.statement__board') || canvas.parentElement;
+      const hint = board.querySelector('.statement__hint');
+      const replay = board.querySelector('.statement__replay');
+      game.ui = { board, hint, replay };
+      const kickoff = () => {
+        if (game.start !== null || game.pending) return;
+        game.pending = true;
+        if (hint) hint.hidden = true;
+      };
+      board.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse' || e.pointerType === 'pen') kickoff(); });
+      board.addEventListener('click', (e) => { if (!e.target.closest('.statement__replay')) kickoff(); });
+      if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+        const seen = new IntersectionObserver((entries) => {
+          entries.forEach((en) => { if (en.isIntersecting) { kickoff(); seen.disconnect(); } });
+        }, { threshold: 0.85 });
+        seen.observe(board);
+      }
+      if (replay) {
+        replay.addEventListener('click', () => {
+          game.start = null;
+          game.done = false;
+          game.pending = true;
+          replay.hidden = true;
+        });
+      }
+      if (hint) {
+        const touch = window.matchMedia('(hover: none)').matches;
+        hint.textContent = touch ? tr('Antippen für den Anstoß', 'Tap for kick-off') : tr('Maus drauf für den Anstoß', 'Hover for kick-off');
+        hint.hidden = game.start !== null || game.pending;
+      }
     }
 
     const draw = function (ctx, t) {
@@ -1557,11 +1590,15 @@
       let fadeAll = 1;
       if (t < 0) {
         u = 7;                                   // Standbild: Endzustand
+      } else if (personal && game) {
+        if (game.pending) { game.start = t; game.pending = false; }
+        u = game.start === null ? 0 : Math.min(END, (t - game.start) * SPEED);
+        if (u >= END && !game.done) {
+          game.done = true;
+          if (game.ui && game.ui.replay) game.ui.replay.hidden = false;
+        }
       } else if (personal) {
-        const goal = scrollProgress() * 7;
-        shown += (goal - shown) * 0.12;
-        if (Math.abs(goal - shown) < 0.002) shown = goal;
-        u = shown;
+        u = END;
       } else {
         u = t % T;
         fadeAll = u > T - 0.8 ? (T - u) / 0.8 : u < 0.5 ? u / 0.5 : 1;
@@ -1684,6 +1721,33 @@
       ctx.beginPath();
       ctx.arc(ball[0], ball[1], 2.6, 0, TAU);
       ctx.fill();
+
+      // Beschriftung am Ball: erster Pass "Die Idee", zweiter Pass "Das Projekt"
+      if (personal) {
+        const arrived = played && pass >= 1;
+        ctx.fillStyle = rgba(CREAM, 0.6);
+        if (arrived) {
+          ctx.textAlign = 'right';
+          ctx.fillText(track(BALL[1]), ball[0] - 8, ball[1] - fontPx - 2);
+        } else if (played) {
+          ctx.textAlign = 'center';
+          ctx.fillText(track(BALL[1]), ball[0], ball[1] - fontPx - 2);
+        } else {
+          // vor und während des ersten Passes: rechts neben dem Ball, damit
+          // die Schrift nicht über den Köpfen liegt
+          if (prePass < 1) {
+            // gleitet beim Pass von rechts neben dem Ball (weg von Julian)
+            // nach links neben den Ball (weg von Malte)
+            const label = track(BALL[0]);
+            const half = ctx.measureText(label).width / 2 + 7;
+            ctx.textAlign = 'center';
+            ctx.fillText(label, ball[0] + lerp(half, -half, prePass), ball[1] - fontPx * lerp(0.2, 1, prePass));
+          } else {
+            ctx.textAlign = 'left';
+            ctx.fillText(track(BALL[0]), ball[0] + 8, ball[1]);
+          }
+        }
+      }
 
       // Jubel: Ringe, sobald der Ball angekommen ist (beim Scrollen einmal)
       if (scored) {

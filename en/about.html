@@ -63,7 +63,7 @@
         "worksFor": {
           "@id": "https://onsidehq.de/en/#organisation"
         },
-        "image": "https://onsidehq.de/assets/team/julian-onside.jpg",
+        "image": "https://onsidehq.de/assets/team/julian-dulinski.jpg",
         "knowsAbout": [
           "Event concepts",
           "Organisation",
@@ -78,7 +78,7 @@
         "worksFor": {
           "@id": "https://onsidehq.de/en/#organisation"
         },
-        "image": "https://onsidehq.de/assets/team/malte-onside.jpg",
+        "image": "https://onsidehq.de/assets/team/malte-dulinski.jpg",
         "knowsAbout": [
           "Content production",
           "Video editing",
@@ -91,7 +91,7 @@
 
   <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
   <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
-  <link rel="stylesheet" href="../css/styles.css?v=31" />
+  <link rel="stylesheet" href="../css/styles.css?v=33" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -175,24 +175,26 @@
           onside.hq is a studio for events, brands and content&nbsp;– founded by two sports management students who realised at some point: the moments that last don’t just happen. Someone builds them.
         </p>
       </div>
-      <!-- Foto: Julian und Malte stellen SNOWSIDE auf der Bühne beim Tirol Hackathon vor
-           (assets/team/gruender-snowside.webp, 5:4) -->
+      <!-- Foto: Julian und Malte auf der Bühne beim Tirol Hackathon, Foto @dulinski.media
+           (assets/team/gruender-buehne.webp, 5:4) -->
       <div class="page-hero__viz page-hero__viz--foto viz reveal">
-        <img src="../assets/team/gruender-snowside.webp" alt="Julian Seibt and Malte Gerdes presenting SNOWSIDE on stage at the Tirol Hackathon" width="1600" height="1280" fetchpriority="high" style="object-position: 30% 50%">
+        <img src="../assets/team/gruender-buehne.webp" alt="Julian Seibt and Malte Gerdes on stage at Tirol Hackathon, the ONSIDE logo behind them" width="1600" height="1280" fetchpriority="high" style="object-position: 50% 50%">
+        <span class="foto-credit">Photo: <a href="https://www.instagram.com/dulinski.media/" target="_blank" rel="noopener">@dulinski.media</a></span>
       </div>
     </section>
 
     <section class="about about--page">
       <h2 class="sr-only">The founders</h2>
       <div class="founders">
-        <!-- BILD 7: Foto Julian → assets/team/julian-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt)
+        <!-- BILD 7: Foto Julian → assets/team/julian-dulinski.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt)
              Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
              dieser Stelle eine Animation mit den Initialen. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">JS</span>
-            <img src="../assets/team/julian-onside.webp" alt="Julian Seibt, co-founder of onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <img src="../assets/team/julian-dulinski.webp" alt="Julian Seibt, co-founder of onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit">Photo: <a href="https://www.instagram.com/dulinski.media/" target="_blank" rel="noopener">@dulinski.media</a></span>
           </div>
           <div class="founder__body">
             <span class="founder__role">Concept &amp; organisation</span>
@@ -210,13 +212,14 @@
           </div>
         </article>
 
-        <!-- BILD 8: Foto Malte → assets/team/malte-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt).
+        <!-- BILD 8: Foto Malte → assets/team/malte-dulinski.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt).
              Neues Foto = neuer Dateiname, dann sehen alle sofort das neue Bild. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">MG</span>
-            <img src="../assets/team/malte-onside.webp" alt="Malte Gerdes, co-founder of onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <img src="../assets/team/malte-dulinski.webp" alt="Malte Gerdes, co-founder of onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit">Photo: <a href="https://www.instagram.com/dulinski.media/" target="_blank" rel="noopener">@dulinski.media</a></span>
           </div>
           <div class="founder__body">
             <span class="founder__role">Content &amp; social</span>
@@ -328,9 +331,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="../js/config.js?v=31"></script>
-  <script src="../js/visuals.js?v=31"></script>
-  <script src="../js/script.js?v=31"></script>
-  <script src="../js/assistent.js?v=31" defer></script>
+  <script src="../js/config.js?v=33"></script>
+  <script src="../js/visuals.js?v=33"></script>
+  <script src="../js/script.js?v=33"></script>
+  <script src="../js/assistent.js?v=33" defer></script>
 </body>
 </html>

@@ -103,7 +103,7 @@
 
   <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
   <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
-  <link rel="stylesheet" href="../css/styles.css?v=31" />
+  <link rel="stylesheet" href="../css/styles.css?v=33" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -202,6 +202,7 @@
           <img width="2400" height="1600" src="../assets/projects/berlin-night-run/cover.webp" alt="Runners at the Berlin Night Run" fetchpriority="high" style="object-position: 60% 35%" onerror="onsideBildFehlt(this)">
         </picture>
       </div>
+      <span class="foto-credit case-hero__credit">Photo: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a></span>
       <div class="case-hero__content">
         <a class="back-link intro" href="projects.html"><i>←</i> All projects</a>
         <p class="eyebrow intro">Project 01 · Berlin · 2026</p>
@@ -283,18 +284,23 @@
         <div class="citymap__cards" aria-hidden="true">
           <figure class="citymap__card citymap__card--start" data-at="0.0" style="left:60.0%;top:3.1%">
             <img src="../assets/projects/berlin-night-run/route-start.webp" alt="The runners start at Ciao Ciao Bar in Kreuzberg" width="640" height="480" loading="lazy">
+            <span class="foto-credit foto-credit--mini">Photo: @jonaxlog · @bsti.s</span>
           </figure>
           <figure class="citymap__card citymap__card--myxa" data-at="0.294" style="left:45.0%;top:76.9%">
             <img src="../assets/projects/berlin-night-run/route-myxa.webp" alt="First stop outside Myxa Bar on Lenaustraße" width="640" height="480" loading="lazy">
+            <span class="foto-credit foto-credit--mini">Photo: @jonaxlog · @bsti.s</span>
           </figure>
           <figure class="citymap__card citymap__card--redrum" data-at="0.439" style="left:3.0%;top:59.9%">
             <img src="../assets/projects/berlin-night-run/route-redrum.webp" alt="Mocktail cups from Redrum Art Bar" width="640" height="480" loading="lazy">
+            <span class="foto-credit foto-credit--mini">Photo: @jonaxlog · @bsti.s</span>
           </figure>
           <figure class="citymap__card citymap__card--dietrich" data-at="0.807" style="left:70.5%;top:59.9%">
             <img src="../assets/projects/berlin-night-run/route-dietrich.webp" alt="Alcohol-free spritz at the stand outside Dietrich Bar" width="640" height="480" loading="lazy">
+            <span class="foto-credit foto-credit--mini">Photo: @jonaxlog · @bsti.s</span>
           </figure>
           <figure class="citymap__card citymap__card--ziel" data-at="1.0" style="left:60.0%;top:3.1%">
             <img src="../assets/projects/berlin-night-run/route-ziel.webp" alt="Afterparty at Ciao Ciao Bar after the run" width="640" height="480" loading="lazy">
+            <span class="foto-credit foto-credit--mini">Photo: @jonaxlog · @bsti.s</span>
           </figure>
         </div>
         <button class="citymap__replay" type="button" hidden>Run it again</button>
@@ -559,9 +565,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="../js/config.js?v=31"></script>
-  <script src="../js/visuals.js?v=31"></script>
-  <script src="../js/script.js?v=31"></script>
-  <script src="../js/assistent.js?v=31" defer></script>
+  <script src="../js/config.js?v=33"></script>
+  <script src="../js/visuals.js?v=33"></script>
+  <script src="../js/script.js?v=33"></script>
+  <script src="../js/assistent.js?v=33" defer></script>
 </body>
 </html>

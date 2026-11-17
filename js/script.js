@@ -508,6 +508,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   const stage = hero.querySelector('.hero__stage');
   const countEl = hero.querySelector('.hero__count');
   const capEl = hero.querySelector('.hero__caption');
+  const djEl = hero.querySelector('.hero__credit .foto-credit__dj');
   const bar = hero.querySelector('.hero__bar i');
   let list = pickList();
   let index = 0;
@@ -521,6 +522,7 @@ document.querySelectorAll('[data-contact-form]').forEach((form) => {
   function label(k) {
     if (countEl) countEl.textContent = pad(k + 1) + ' / ' + pad(list.length);
     if (capEl) capEl.textContent = (EN && list[k].en) || list[k].text || '';
+    if (djEl) djEl.hidden = !list[k].dj;
     if (!bar) return;
     bar.classList.remove('is-running');
     void bar.offsetWidth; // Animation neu starten
