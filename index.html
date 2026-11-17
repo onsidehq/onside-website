@@ -226,7 +226,7 @@
 
   <!-- Hell/Dunkel: gespeicherte Wahl sofort setzen, bevor die Seite gezeichnet wird (Standard: dunkel) -->
   <script>try{if(localStorage.getItem('onside-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}</script>
-  <link rel="stylesheet" href="css/styles.css?v=31" />
+  <link rel="stylesheet" href="css/styles.css?v=32" />
 
   <!-- Sicherheitsnetz: Texte blenden beim Scrollen ein. Sollte das Skript
        einmal nicht laden, zeigt diese Zeile nach 3 Sekunden trotzdem alles an. -->
@@ -321,6 +321,7 @@
         </picture>
       </div>
       <div class="hero__shade" aria-hidden="true"></div>
+      <span class="foto-credit hero__credit">Foto: <a href="https://www.instagram.com/jonaxlog/" target="_blank" rel="noopener">@jonaxlog</a> · <a href="https://www.instagram.com/bsti.s/" target="_blank" rel="noopener">@bsti.s</a> <span class="foto-credit__dj" hidden>· DJ <a href="https://www.instagram.com/ochser.wav/" target="_blank" rel="noopener">@ochser.wav</a></span></span>
       <div class="hero__hud" aria-hidden="true">
         <div class="hero__hud-top hero__label"><span class="hero__dot"></span><span>Berlin Night Run · 19.09.2026</span><span class="hero__count">01 / 05</span></div>
         <div class="hero__bar"><i></i></div>
@@ -360,6 +361,7 @@
               <img width="2400" height="1600" src="assets/projects/berlin-night-run/cover.webp" alt="Läuferinnen und Läufer beim Berlin Night Run" loading="lazy" decoding="async" style="object-position: 55% 30%" onerror="onsideBildFehlt(this)">
             </picture>
           </div>
+          <span class="foto-credit">Foto: @jonaxlog · @bsti.s</span>
           <div class="project__cover-content">
             <p class="eyebrow">Berlin · 2026</p>
             <h3>Night Run</h3>
@@ -555,14 +557,15 @@
       </p>
 
       <div class="founders">
-        <!-- BILD 7: Foto Julian → assets/team/julian-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt)
+        <!-- BILD 7: Foto Julian → assets/team/julian-dulinski.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt)
              Datei hochladen, das Foto erscheint von selbst. Bis dahin läuft an
              dieser Stelle eine Animation mit den Initialen. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="11" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">JS</span>
-            <img src="assets/team/julian-onside.webp" alt="Julian Seibt, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/julian-dulinski.webp" alt="Julian Seibt, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit">Foto: <a href="https://www.instagram.com/dulinski.media/" target="_blank" rel="noopener">@dulinski.media</a></span>
           </div>
           <div class="founder__body">
             <span class="founder__role">Konzept &amp; Organisation</span>
@@ -582,13 +585,14 @@
           </div>
         </article>
 
-        <!-- BILD 8: Foto Malte → assets/team/malte-onside.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt).
+        <!-- BILD 8: Foto Malte → assets/team/malte-dulinski.webp (Tirol Hackathon, Nov. 2026, ONSIDE-Shirt).
              Neues Foto = neuer Dateiname, dann sehen alle sofort das neue Bild. -->
         <article class="founder reveal">
           <div class="founder__media viz">
             <canvas data-scene="contour" data-seed="29" aria-hidden="true"></canvas>
             <span class="founder__initials" aria-hidden="true">MG</span>
-            <img src="assets/team/malte-onside.webp" alt="Malte Gerdes, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <img src="assets/team/malte-dulinski.webp" alt="Malte Gerdes, Mitgründer von onside.hq" width="1000" height="1000" loading="lazy" onerror="this.remove()">
+            <span class="foto-credit">Foto: <a href="https://www.instagram.com/dulinski.media/" target="_blank" rel="noopener">@dulinski.media</a></span>
           </div>
           <div class="founder__body">
             <span class="founder__role">Content &amp; Social</span>
@@ -624,7 +628,7 @@
       <div class="statement__inner">
         <p class="eyebrow reveal">04 — Warum onside?</p>
         <div class="statement__board viz reveal">
-          <!-- Spielzug beim Scrollen: Köpfe, Namen und Projekte über die data-Attribute,
+          <!-- Spielzug startet beim Drüberfahren (Handy: Antippen oder ganz im Bild): Köpfe, Namen und Projekte über die data-Attribute,
                Zeichnung in js/visuals.js (Szene "offside") -->
           <canvas data-scene="offside" aria-hidden="true"
             data-players="assets/team/kopf-julian.webp|assets/team/kopf-malte.webp"
@@ -632,6 +636,8 @@
             data-target="Eure Marke"
             data-projects="assets/projects/berlin-night-run/kreis.webp|assets/projects/dagen-yachtcharter/kreis.webp"
             data-project-names="Night Run|Dagen"></canvas>
+          <p class="statement__hint" hidden>Maus drauf: Anstoß</p>
+          <button class="statement__replay" type="button" hidden>Nochmal spielen</button>
         </div>
         <p class="statement__text reveal">
           Der Name kommt aus dem Sport. <em class="scribble" data-scribble="circle">Onside</em> ist das Gegenteil von Abseits.
@@ -830,9 +836,9 @@
        config.js  = die eine Stelle für eure Einstellungen (Formular-Key, Startbild-Fotos)
        visuals.js = alles, was gezeichnet und animiert wird
        script.js  = Bedienung: Einblenden, Menü, Laufband, Formular, Startbild, Regler -->
-  <script src="js/config.js?v=31"></script>
-  <script src="js/visuals.js?v=31"></script>
-  <script src="js/script.js?v=31"></script>
-  <script src="js/assistent.js?v=31" defer></script>
+  <script src="js/config.js?v=32"></script>
+  <script src="js/visuals.js?v=32"></script>
+  <script src="js/script.js?v=32"></script>
+  <script src="js/assistent.js?v=32" defer></script>
 </body>
 </html>

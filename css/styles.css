@@ -5642,3 +5642,58 @@ body.menu-open .assistent {
 /* Hinweis auf englischen Rechtsseiten: nur die deutsche Fassung gilt */
 .legal-note { margin: 1rem 0 2rem; padding: .9rem 1.1rem; border: 1px solid var(--line, rgba(255,255,255,.15)); border-radius: 12px; color: var(--muted, inherit); font-size: .95rem; }
 .legal-note a { color: inherit; text-decoration: underline; }
+
+/* Fotocredits auf allen Night-Run-Bildern (Galerie, Startseite, Projekte, Route) */
+.gallery__frame { position: relative; }
+.gallery__frame .foto-credit { right: 0.4rem; bottom: 0.4rem; font-size: 0.56rem; padding: 0.12rem 0.42rem; }
+.project__cover > .foto-credit { z-index: 4; right: 0.75rem; bottom: 0.65rem; }
+.project-card__media .foto-credit { z-index: 2; }
+.case-hero__credit, .hero__credit { z-index: 5; top: calc(var(--nav-height) + 0.6rem); bottom: auto; right: max(var(--gutter), 0.75rem); }
+.foto-credit--mini { right: 0.25rem; bottom: 0.25rem; padding: 0.08rem 0.32rem; font-size: 0.48rem; letter-spacing: 0; }
+@media (max-width: 720px) {
+  .foto-credit--mini { display: none; }
+}
+
+/* Taktiktafel auf der Startseite: Hinweis vor dem Anstoß und "Nochmal spielen" */
+.statement__board { cursor: pointer; }
+.statement__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0.9rem;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(2, 12, 18, 0.6);
+  color: rgba(var(--cream-rgb), 0.8);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: hint-puls 2.4s ease-in-out infinite;
+}
+@keyframes hint-puls { 50% { opacity: 0.55; } }
+.statement__hint[hidden], .statement__replay[hidden] { display: none; }
+.statement__replay {
+  position: absolute;
+  left: 50%;
+  bottom: 0.9rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid rgba(var(--accent-rgb), 0.5);
+  border-radius: 999px;
+  background: rgba(2, 12, 18, 0.75);
+  color: var(--cream, #f7f2e8);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.statement__replay:hover { border-color: var(--accent); }
+@media (max-width: 720px) {
+  .statement__replay { bottom: 0.6rem; font-size: 0.7rem; padding: 0.35rem 0.7rem; }
+  .statement__hint { font-size: 0.68rem; bottom: 0.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .statement__hint { animation: none; }
+}

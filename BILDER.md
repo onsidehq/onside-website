@@ -203,7 +203,7 @@ Ordner `assets/leistungen/`, alles eigene Night-Run-Fotos.
   (kleiner, gleiche Qualität). Die `.jpg` daneben bleiben für Vorschaubilder beim
   Teilen (og-*.jpg), für die strukturierten Daten und die Bild-Sitemap.
   Neues Foto: als `.webp` (Qualität ca. 80) und mit neuem Dateinamen ablegen.
-- `assets/team/julian-onside.webp|jpg`, `assets/team/malte-onside.webp|jpg`: Gründerfotos
+- `assets/team/julian-dulinski.webp|jpg`, `assets/team/malte-dulinski.webp|jpg`: Gründerfotos (Foto: @dulinski.media, Tirol Hackathon Nov. 2026)
   vom Tirol Hackathon mit ONSIDE-Shirt (quadratisch 1000×1000), Startseite und „Wer sind wir?“.
-- `assets/team/gruender-snowside.webp|jpg`: Julian und Malte stellen SNOWSIDE auf der Bühne
+- `assets/team/gruender-buehne.webp|jpg`: Julian und Malte auf der Bühne vor dem ONSIDE-Logo (Foto: @dulinski.media)
   beim Tirol Hackathon vor (5:4, links beschnitten), oben auf „Wer sind wir?“.

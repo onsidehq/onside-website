@@ -14,6 +14,7 @@ window.ONSIDE = {
   /* Startbildschirm: Diese Fotos laufen nacheinander durch und blenden ruhig
      ineinander über.
      - "bild": Pfad zur Datei
+     - "dj: true": Der DJ ist auf dem Foto zu sehen, dann steht er mit in den Fotocredits
      - "text": die Bildunterschrift ("en": dieselbe auf Englisch für die englische Seite)
      - "ausschnitt": welcher Teil des Fotos zu sehen ist. Erste Zahl links/rechts,
        zweite oben/unten. "50% 50%" ist die Mitte, "30% 50%" etwas weiter links.
@@ -33,15 +34,15 @@ window.ONSIDE = {
     breit: [
       { bild: '/assets/projects/berlin-night-run/start-quer-dsc5668.webp', text: 'Gute Laune auf der Strecke', en: 'Good vibes on the course', ausschnitt: '50% 40%' },
       { bild: '/assets/projects/berlin-night-run/start-quer-ld3717.webp', text: 'Malte gibt den Takt vor', en: 'Malte sets the pace', ausschnitt: '50% 0%' },
-      { bild: '/assets/projects/berlin-night-run/start-quer-ld3921.webp', text: 'Der DJ fährt mit', en: 'The DJ rides along', ausschnitt: '50% 50%' },
+      { bild: '/assets/projects/berlin-night-run/start-quer-ld3921.webp', dj: true, text: 'Der DJ fährt mit', en: 'The DJ rides along', ausschnitt: '50% 50%' },
       { bild: '/assets/projects/berlin-night-run/start-quer-ld5222.webp', text: 'Rein in die Nacht', en: 'Into the night', ausschnitt: '50% 35%' },
-      { bild: '/assets/projects/berlin-night-run/start-quer-dsc6089.webp', text: 'Alle Lichter an', en: 'All lights on', ausschnitt: '50% 45%' },
+      { bild: '/assets/projects/berlin-night-run/start-quer-dsc6089.webp', dj: true, text: 'Alle Lichter an', en: 'All lights on', ausschnitt: '50% 45%' },
     ],
     handy: [
       { bild: '/assets/projects/berlin-night-run/start-hoch-dsc5658.webp', text: 'Gute Laune auf der Strecke', en: 'Good vibes on the course', ausschnitt: '50% 50%' },
       { bild: '/assets/projects/berlin-night-run/start-hoch-dsc5433.webp', text: 'Warm-up vor dem Start', en: 'Warm-up before the start', ausschnitt: '50% 50%' },
       { bild: '/assets/projects/berlin-night-run/start-hoch-dsc5534.webp', text: 'Volle Energie', en: 'Full energy', ausschnitt: '50% 50%' },
-      { bild: '/assets/projects/berlin-night-run/start-hoch-ld3913.webp', text: 'Der DJ fährt mit', en: 'The DJ rides along', ausschnitt: '50% 50%' },
+      { bild: '/assets/projects/berlin-night-run/start-hoch-ld3913.webp', dj: true, text: 'Der DJ fährt mit', en: 'The DJ rides along', ausschnitt: '50% 50%' },
       { bild: '/assets/projects/berlin-night-run/start-hoch-dsc6846.webp', text: 'Snackpause mit HEJ Natural', en: 'Snack break with HEJ Natural', ausschnitt: '50% 50%' },
     ],
     sekunden: 6,   // wie lange jedes Foto stehen bleibt
