@@ -1547,6 +1547,7 @@
     // (am Handy: antippen oder sobald die Tafel ganz im Bild ist), läuft dann
     // in einem Zug durch und bietet am Ende "Nochmal spielen" an. Der Zustand
     // hängt am <canvas>, damit er ein Neuaufbauen (Fenstergröße) übersteht.
+    const BALL = [tr('Die Idee', 'The idea'), tr('Das Projekt', 'The project')];
     const SPEED = 1.15;   // Spielzug-Sekunden pro echter Sekunde (ca. 6 s gesamt)
     const END = 7;
     const game = canvas ? (canvas._spielzug || (canvas._spielzug = { start: null, pending: false, done: false })) : null;
@@ -1720,6 +1721,33 @@
       ctx.beginPath();
       ctx.arc(ball[0], ball[1], 2.6, 0, TAU);
       ctx.fill();
+
+      // Beschriftung am Ball: erster Pass "Die Idee", zweiter Pass "Das Projekt"
+      if (personal) {
+        const arrived = played && pass >= 1;
+        ctx.fillStyle = rgba(CREAM, 0.6);
+        if (arrived) {
+          ctx.textAlign = 'right';
+          ctx.fillText(track(BALL[1]), ball[0] - 8, ball[1] - fontPx - 2);
+        } else if (played) {
+          ctx.textAlign = 'center';
+          ctx.fillText(track(BALL[1]), ball[0], ball[1] - fontPx - 2);
+        } else {
+          // vor und während des ersten Passes: rechts neben dem Ball, damit
+          // die Schrift nicht über den Köpfen liegt
+          if (prePass < 1) {
+            // gleitet beim Pass von rechts neben dem Ball (weg von Julian)
+            // nach links neben den Ball (weg von Malte)
+            const label = track(BALL[0]);
+            const half = ctx.measureText(label).width / 2 + 7;
+            ctx.textAlign = 'center';
+            ctx.fillText(label, ball[0] + lerp(half, -half, prePass), ball[1] - fontPx * lerp(0.2, 1, prePass));
+          } else {
+            ctx.textAlign = 'left';
+            ctx.fillText(track(BALL[0]), ball[0] + 8, ball[1]);
+          }
+        }
+      }
 
       // Jubel: Ringe, sobald der Ball angekommen ist (beim Scrollen einmal)
       if (scored) {
